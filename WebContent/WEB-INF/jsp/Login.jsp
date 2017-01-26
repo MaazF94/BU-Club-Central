@@ -37,7 +37,7 @@
                 <div class="section-110 section-cover range range-xs-center range-xs-middle">
                   <div class="cell-xs-8 cell-sm-6 cell-md-4">
                     <div class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
-                                <!-- Icon Box Type 4--><span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>
+                                <!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
                                 <div>
                                   <div class="offset-top-24 text-darker big text-bold">Login to your account</div>
                                   <p class="text-extra-small text-dark offset-top-4">Enter your credentials below</p>
@@ -54,7 +54,7 @@
                             <input id="login-your-password" placeholder="Your Password" type="password" name="password" data-constraints="@Required" class="form-control">
                           </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-icon btn-block btn-warning offset-top-20">Sign In <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+                        <button type="submit" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Sign In <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                        
                       </form>
                       <div class="offset-top-30 text-sm-left text-dark text-extra-small"><a href="#" class="text-picton-blue">Forgot your password?</a>
@@ -67,7 +67,7 @@
             </div>
           </section>
           <div class="one-page-footer">
-            <p style="color: rgba(255,255,255, 0.3)" class="small">Intense &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a></p>
+            <p style="color: rgba(255,255,255, 0.3)" class="small">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a></p>
           </div>
         </div>
       </main>
