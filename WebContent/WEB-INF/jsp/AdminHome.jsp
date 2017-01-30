@@ -4,15 +4,14 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
     <!-- Site Title-->
-    <title>Club Central Home</title>
-    
+    <title>Contact Us</title>
+   
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="intense web design multipurpose template">
     <meta name="date" content="Dec 26">
-    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
-
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
@@ -24,33 +23,31 @@
   <body>
     <!-- Page-->
     <div class="page text-center">
-      <div class="page-loader page-loader-variant-1">
-        <div><img class='img-responsive' style='margin-top: -20px;margin-left: -18px;' width='280' height='67' src='img/BURedTransparent.png' alt=''/>
-          <div class="offset-top-41 text-center">
-            <div class="spinner"></div>
-          </div>
-        </div>
-      </div>
-      <!-- Page Head-->
-      <header class="page-head slider-menu-position">
+     <header class="page-head slider-menu-position">
         <!-- RD Navbar Transparent-->
         <div class="rd-navbar-wrap">
-          <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar rd-navbar-default rd-navbar-transparent" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
+          <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar container rd-navbar-floated rd-navbar-dark" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
             <div class="rd-navbar-inner">
-              <!-- RD Navbar Panel-->
+              <!-- RD Navbar Top Panel-->
+              <div class="rd-navbar-top-panel context-dark bg-danger">
+               
+                
+                
+              </div>
+              <!-- RD Navbar Panel -->
               <div class="rd-navbar-panel">
                 <!-- RD Navbar Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
+                <!-- RD Navbar Top Panel Toggle-->
+                <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel" class="rd-navbar-top-panel-toggle"><span></span></button>
                 <!--Navbar Brand-->
-                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
+                
               </div>
-               
               <div class="rd-navbar-menu-wrap">
                 <div class="rd-navbar-nav-wrap">
                   <div class="rd-navbar-mobile-scroll">
-                
                     <!--Navbar Brand Mobile-->
-                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
+                   
                     <div class="form-search-wrap">
                       <!-- RD Search Form-->
                       <form action="search-results.html" method="GET" class="form-search rd-search">
@@ -63,64 +60,60 @@
                     </div>
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                      <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
-                      <li><a href="EventServlet"><span>Events</span></a>
+                      <li><a class = "active" href="EventServlet"><span>Events</span></a>
                        
                          
-                      <li><a href="#"><span>clubs</span></a>
+                      <li><a href="#"><span>Clubs</span></a>
                        
                          
                       <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
-                        
-                      </li>
                     </ul>
                   </div>
                 </div>
                 <!--RD Navbar Search-->
-                <div class="rd-navbar-search"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
+                <div class="rd-navbar-search rd-navbar-search-top-panel"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
                   <form action="search-results.html" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
                     <div class="form-group">
                       <label for="rd-navbar-search-form-input" class="form-label">Type and hit enter...</label>
                       <input id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off" class="rd-navbar-search-form-input form-control form-control-gray-lightest"/>
                     </div>
-                    <!--button(type="submit").rd-navbar-search-form-submit.mdi.mdi-magnify-->
                   </form>
-                  <!--div.rd-navbar-live-search-results-->
-                  <!--button(data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-inner, .rd-navbar-live-search-results").rd-navbar-search-toggle-->
-                  <!--  span-->
                 </div>
               </div>
             </div>
           </nav>
         </div>
-        <!-- Welcome to Intense-->
-        <section>
-          <div data-on="false" data-md-on="true" class="bg-gray-base context-dark rd-parallax">
-            <div data-speed="0.45" data-type="media" data-url='img/snowyBU.jpg' class="rd-parallax-layer"></div>
-            <div data-speed="0.3" data-type="html" data-md-fade="true" class="rd-parallax-layer">
-              <div class="shell">
-                <div class="range">
-                  <div class="range range-xs-middle range-xs-center section-cover section-top-124 section-bottom-98 section-sm-top-110 section-sm-bottom-110 context-dark">
-                    <div class="range range-xs-center">
-                      <div class="cell-lg-12">
-                        <div data-caption-animate="fadeInUp" data-caption-delay="300" class="text-extra-big text-bold text-italic text-uppercase">WELCOME TO CLUB CENTRAL</div>
-                      </div>
-                      <div class="cell-lg-9 offset-top-20">
-                        <h5 data-caption-animate="fadeInUp" data-caption-delay="500" class="hidden reveal-xs-block text-light">
-                          
-                        </h5>
-                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a href="#" class="btn btn-danger">JOIN A CLUB</a><a href="EventServlet"class="btn btn-danger">Find an Event</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div class="context-dark">
+          <!-- Modern Breadcrumbs-->
+          <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+            <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
+            <div data-speed="0" data-type="html" class="rd-parallax-layer">
+              <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
+                <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>
+                
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </header>
-      <!-- Page Footer-->
+      <!-- Page Contents-->
+      <main class="page-content">
+        <section class="section-top-98 section-md-top-110 text-lg-left">
+          <div class="shell">
+            <div class="range range-xs-center range-xs-center">
+              <div class="cell-lg-4">
+               
+              </div>
+              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+                
+          </div>
+          <div class="offset-top-98 offset-lg-top-124">
+           
+        </section>
+      </main>
+    <!-- Page Footer-->
       <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">
