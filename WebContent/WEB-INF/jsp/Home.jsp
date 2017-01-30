@@ -203,7 +203,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#"><img src="img/BUSpiritRockP1.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#"><img src="img/image_part_001.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Infrastructure Themes</h4>
@@ -218,7 +218,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/BUSpiritRockP2.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/image_part_002.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Blog Themes</h4>
@@ -233,7 +233,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/BUSpiritRockP3.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/image_part_003.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Portfolio Themes</h4>
@@ -248,7 +248,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/BUSpiritRockP4.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/image_part_004.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Business Themes</h4>
@@ -259,21 +259,7 @@
                 </div>
               </div>
             </div>
-            <div>
-              <div class="range range-xs-center">
-                <div class="cell-xs-8 cell-sm-6 cell-md-12">
-                  <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/kindlonSnowy.jpg" alt=""/></a>
-                    <figcaption>
-                      <div>
-                        <h4 class="thumbnail-terry-title">Creative Themes</h4>
-                      </div>
-                      <p class="thumbnail-terry-desc offset-top-0"></p><a href="#" class="btn offset-top-10 offset-md-top-0 btn-danger">view all themes</a>
-                    </figcaption>
-                  </figure>
-                </div>
-              </div>
-            </div>
+            
           </div>
           <!-- About-->
           <section class="section-98 section-md-110">
