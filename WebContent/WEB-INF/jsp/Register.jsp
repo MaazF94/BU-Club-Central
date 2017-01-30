@@ -28,7 +28,7 @@
         <div class="one-page">
           <div class="one-page-header">
             <!--Navbar Brand-->
-            <div class="rd-navbar-brand"><a href="index.html"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='images/intense/logo-light.png' alt=''/></a></div>
+            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='images/intense/logo-light.png' alt=''/></a></div>
           </div>
           <!-- Register-->
           <section>
