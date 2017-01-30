@@ -49,7 +49,7 @@
                   <div class="rd-navbar-mobile-scroll">
                 
                     <!--Navbar Brand Mobile-->
-                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='images/skins/skin-red-energy-logo-238x30.png' alt=''/></a></div>
+                    <div class="rd-navbar-mobile-brand"><a href="#"><img class='img-responsive' width='238' height='30' src='images/skins/skin-red-energy-logo-238x30.png' alt=''/></a></div>
                     <div class="form-search-wrap">
                       <!-- RD Search Form-->
                       <form action="search-results.html" method="GET" class="form-search rd-search">
@@ -112,7 +112,7 @@
                         <h5 data-caption-animate="fadeInUp" data-caption-delay="500" class="hidden reveal-xs-block text-light">
                           
                         </h5>
-                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a href="#" class="btn btn-danger">JOIN A CLUB</a><a href="EventServlet" data-waypoint-to="EventServlet" class="btn btn-default">Find Club Events</a></div>
+                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a href="#" class="btn btn-danger">JOIN A CLUB</a><a href="EventServlet"class="btn btn-danger">Find an Event</a></div>
                       </div>
                     </div>
                   </div>
