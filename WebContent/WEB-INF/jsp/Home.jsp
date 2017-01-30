@@ -259,7 +259,7 @@
                 </div>
               </div>
             </div>
-            
+            <!-- removed banner placeholder -->
           </div>
           <!-- About-->
           <section class="section-98 section-md-110">
@@ -316,8 +316,8 @@
                   <div class="range">
                     <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
                       <!-- Box Member-->
-                      <div class="box-member"><img src="images/users/user-ryan-jackson-270x270.jpg" alt="" class="img-responsive"/>
-                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Ryan Jackson</a> <small class="text-danger">Founder</small>
+                      <div class="box-member"><img src="img/danny.jpg" alt="" class="img-responsive"/>
+                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Daniel Turano</a> <small class="text-danger">Founder</small>
                         </h5>
                         <div class="box-member-wrap">
                           <div class="box-member-caption">
@@ -334,8 +334,8 @@
                     </div>
                     <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-sm-top-0 offset-lg-top-0">
                       <!-- Box Member-->
-                      <div class="box-member"><img src="images/users/user-emily-perkins-270x270.jpg" alt="" class="img-responsive"/>
-                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Emily Perkins</a> <small class="text-danger">Manager</small>
+                      <div class="box-member"><img src="img/BUred.png" alt="" class="img-responsive"/>
+                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Joan Henehan</a> <small class="text-danger">Manager</small>
                         </h5>
                         <div class="box-member-wrap">
                           <div class="box-member-caption">
@@ -352,8 +352,8 @@
                     </div>
                     <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
                       <!-- Box Member-->
-                      <div class="box-member"><img src="images/users/user-samantha-ruiz-270x270.jpg" alt="" class="img-responsive"/>
-                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Samantha Ruiz</a> <small class="text-danger">Designer</small>
+                      <div class="box-member"><img src="img/BUred.png" alt="" class="img-responsive"/>
+                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Katie Buell</a> <small class="text-danger">Designer</small>
                         </h5>
                         <div class="box-member-wrap">
                           <div class="box-member-caption">
@@ -368,24 +368,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                      <!-- Box Member-->
-                      <div class="box-member"><img src="images/users/user-ronald-oswald-270x270.jpg" alt="" class="img-responsive"/>
-                        <h5 class="text-bold offset-top-20"><a href="team-member.html">Austin Ortiz</a> <small class="text-danger">Developer</small>
-                        </h5>
-                        <div class="box-member-wrap">
-                          <div class="box-member-caption">
-                            <div class="box-member-caption-inner">
-                              <ul class="list-inline list-inline-xs">
-                                <li><a href="#" class="icon fa fa-facebook icon-xs icon-circle icon-darkest-filled"></a></li>
-                                <li><a href="#" class="icon fa fa-twitter icon-xs icon-circle icon-darkest-filled"></a></li>
-                                <li><a href="#" class="icon fa fa-google-plus icon-xs icon-circle icon-darkest-filled"></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+     				<!-- removed staff placeholder -->
                   </div><a href="our-team.html" class="offset-top-50 btn btn-danger">view all team</a>
                 </div>
               </div>
