@@ -1,4 +1,4 @@
-package edu.ben.bu_club_central.JUnitTests;
+package edu.ben.bu_club_central.JUnitTests.userDaoTests;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import junit.framework.Assert;
 
 public class UserDao_checkUsernameChars {
 	
-	UserDao uDao = new UserDao();
+	private UserDao uDao = new UserDao();
 
 	@Test
 	public void test1() {

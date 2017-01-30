@@ -1,4 +1,4 @@
-package edu.ben.bu_club_central.JUnitTests;
+package edu.ben.bu_club_central.JUnitTests.userDaoTests;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import edu.ben.bu_club_central.daos.UserDao;
 import junit.framework.Assert;
 
 public class UserDao_checkPasswordMatch {
-	UserDao uDao = new UserDao();
+	private UserDao uDao = new UserDao();
 
 	@Test
 	public void test1() {
