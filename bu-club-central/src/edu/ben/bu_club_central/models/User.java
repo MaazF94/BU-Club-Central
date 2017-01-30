@@ -9,7 +9,10 @@ public class User {
 	private String email;
 	private int role_id;
 	private int enabled;
+	private int club_id_num;
 	
+	
+
 	
 
 	public User(String first_name, String last_name, String username, String password, int id_num, String email) {
@@ -85,7 +88,13 @@ public class User {
 		this.enabled = enabled;
 	}
 	
-	
+	public int getClub_id_num() {
+		return club_id_num;
+	}
+
+	public void setClub_id_num(int club_id_num) {
+		this.club_id_num = club_id_num;
+	}
 	
 	
 }

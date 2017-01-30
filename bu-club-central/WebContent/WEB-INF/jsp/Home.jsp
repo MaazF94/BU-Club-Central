@@ -60,6 +60,9 @@
                     </div>
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
+                    	 
+                    	 </span></a>
+                    
                       <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
                       <li><a href="#"><span>Features</span></a>

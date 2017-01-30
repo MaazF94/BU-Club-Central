@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import edu.ben.bu_club_central.models.User;
+
 public class UserDao {
 	private String tableName = "bu_club_central.user";
 	private int enabled = 1;
 	private int disabled = 0;
+	private User userObject;
 
 	private DatabaseConnection dbc = new DatabaseConnection();
 	private Connection conn = dbc.getConn();
@@ -52,6 +55,11 @@ public class UserDao {
 		return true;
 	}
 
+	/**
+	 * Checks to see if the username in the database exists
+	 * @param username
+	 * @return
+	 */
 	public boolean checkUsernameExist(String username) {
 		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'";
 
@@ -172,7 +180,47 @@ public class UserDao {
 			}
 		}
 		return true;
-
 	}
 
+	
+	public boolean userLogin(String username, String password) {
+		userObject = null;
+		System.out.println(username + " " + password);
+		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "' and passwrd='" + password + "'";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+//			System.out.println(rs.getString("username"));
+			if(!rs.next()) {
+				System.out.println("Null user");
+				return false;
+			}else {
+				userObject = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				userObject.setRole_id((Integer) rs.getInt("role_id"));
+				userObject.setClub_id_num((Integer) rs.getInt("club_id_num"));
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not login");
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public User getUserObject() {
+		return userObject;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
