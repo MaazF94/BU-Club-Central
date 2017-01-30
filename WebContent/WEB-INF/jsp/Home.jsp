@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="intense web design multipurpose template">
     <meta name="date" content="Dec 26">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
@@ -24,7 +24,7 @@
     <!-- Page-->
     <div class="page text-center">
       <div class="page-loader page-loader-variant-1">
-        <div><img class='img-responsive' style='margin-top: -20px;margin-left: -18px;' width='330' height='67' src='images/childs/green-space-logo-big-330x67.png' alt=''/>
+        <div><img class='img-responsive' style='margin-top: -20px;margin-left: -18px;' width='280' height='67' src='img/BURedTransparent.png' alt=''/>
           <div class="offset-top-41 text-center">
             <div class="spinner"></div>
           </div>
@@ -41,13 +41,13 @@
                 <!-- RD Navbar Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
                 <!--Navbar Brand-->
-                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='images/skins/skin-red-energy-logo-238x30.png' alt=''/></a></div>
+                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
               </div>
               <div class="rd-navbar-menu-wrap">
                 <div class="rd-navbar-nav-wrap">
                   <div class="rd-navbar-mobile-scroll">
                     <!--Navbar Brand Mobile-->
-                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='images/skins/skin-red-energy-logo-238x30.png' alt=''/></a></div>
+                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
                     <div class="form-search-wrap">
                       <!-- RD Search Form-->
                       <form action="search-results.html" method="GET" class="form-search rd-search">
@@ -96,7 +96,7 @@
         <!-- Welcome to Intense-->
         <section>
           <div data-on="false" data-md-on="true" class="bg-gray-base context-dark rd-parallax">
-            <div data-speed="0.45" data-type="media" data-url="images/backgrounds/background-43-1920x1024.jpg" class="rd-parallax-layer"></div>
+            <div data-speed="0.45" data-type="media" data-url='img/snowyBU.jpg' class="rd-parallax-layer"></div>
             <div data-speed="0.3" data-type="html" data-md-fade="true" class="rd-parallax-layer">
               <div class="shell">
                 <div class="range">
@@ -203,7 +203,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#"><img width="480" height="480" src="images/skins/skin-red-energy-infrastructure-480x480.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#"><img src="img/BUSpiritRockP1.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Infrastructure Themes</h4>
@@ -218,7 +218,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img width="480" height="480" src="images/skins/skin-red-energy-blog-themes-480x480.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/BUSpiritRockP2.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Blog Themes</h4>
@@ -233,7 +233,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img width="480" height="480" src="images/skins/skin-red-energy-portfolio-themes-480x480.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/BUSpiritRockP3.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Portfolio Themes</h4>
@@ -248,7 +248,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img width="480" height="480" src="images/skins/skin-red-energy-business-themes-480x480.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/BUSpiritRockP4.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Business Themes</h4>
@@ -263,7 +263,7 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-8 cell-sm-6 cell-md-12">
                   <!-- Thumbnail Terry-->
-                  <figure class="thumbnail-terry"><a href="#isotope"><img width="480" height="480" src="images/skins/skin-red-energy-creative-themes-480x480.jpg" alt=""/></a>
+                  <figure class="thumbnail-terry"><a href="#isotope"><img src="img/kindlonSnowy.jpg" alt=""/></a>
                     <figcaption>
                       <div>
                         <h4 class="thumbnail-terry-title">Creative Themes</h4>
