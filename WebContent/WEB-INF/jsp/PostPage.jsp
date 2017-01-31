@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="intense web design multipurpose template">
     <meta name="date" content="Dec 26">
-    <link rel="icon" href="fonts/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
@@ -88,7 +88,7 @@
         <div class="context-dark">
           <!-- Modern Breadcrumbs-->
           <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-            <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
+            <div data-speed="0.2" data-type="media" data-url="img/interview.jpg" class="rd-parallax-layer"></div>
             <div data-speed="0" data-type="html" class="rd-parallax-layer">
               <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
                 <h2 class="veil reveal-md-block offset-top-30"><span class="big">Post</span></h2>
@@ -125,8 +125,8 @@
                 <!-- PostContent-->
                 <section class="post-content offset-top-41">
                 </section>
-              </article><a class="thumbnail-classic" data-photo-swipe-item="" data-size="1024x683" href="images/post-01-1024x683.jpg">
-                <figure><img width="770" height="434" src="images/post-01-770x434.jpg" alt=""/>
+              </article><a class="thumbnail-classic" data-photo-swipe-item="" data-size="1024x683" href="img/interview.jpeg">
+                <figure><img width="770" height="434" src="img/interview.jpeg" alt=""/>
                 </figure></a>
               <p>The computer science club is throwing a club event this week to help graduating students learn the interviewing process and what it takes to land your dream job.
               <hr class="hr hr-gradient"/>
@@ -182,7 +182,7 @@
                
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img width='173' height='30' src='images/logo.png' alt=''/></a></div>
+                  <div class="footer-brand"><a href="../index.html"><img width='150' height='42' src='img/logo_benedictinetransparentwhite.png' alt=''/></a></div>
                   <div class="offset-top-50 text-xs-center text-lg-left">
                           <ul class="list-inline">
                             <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>

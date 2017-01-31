@@ -150,7 +150,7 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img src="images/skins/skin-red-energy-logo-238x30.png" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
+                  <div class="footer-brand"><a href="../index.html"><img src="img/kindlonSnowy.jpg" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>

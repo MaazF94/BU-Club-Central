@@ -26,9 +26,9 @@
       <!-- Page Content-->
       <main class="page-content bg-shark-radio">
         <div class="one-page">
-          <div class="one-page-header">
+           <div class="one-page-header">
             <!--Navbar Brand-->
-           
+            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: 5px;margin-left: -30px;' width='150' height='42' src='img/logo_benedictinetransparentwhite.png' alt=''/></a></div>
           </div>
           <!-- Login-->
           <section>

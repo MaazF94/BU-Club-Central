@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="intense web design multipurpose template">
     <meta name="date" content="Dec 26">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
@@ -143,7 +143,7 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img src="images/skins/skin-red-energy-logo-238x30.png" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
+                  <div class="footer-brand"><a href="../index.html"><img src="img/logo_benedictinetransparentwhite.png" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
