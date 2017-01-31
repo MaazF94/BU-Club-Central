@@ -1,5 +1,6 @@
 package edu.ben.bu_club_central.models;
 
+
 public class User {
 	private String first_name;
 	private String last_name;
