@@ -179,6 +179,31 @@ public class UserDao {
 				return false;
 			}
 		}
+		
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE id_num='" + id_num + "'";
+
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("Did not pull from username to see if it exists");
+			e.printStackTrace();
+		}
+
+		try {
+			while (rs.next()) {
+				if (rs.getInt("id_num") == Integer.parseInt(id_num)) {
+					return false;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not pull from username to see if it exists 2");
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 

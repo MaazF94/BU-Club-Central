@@ -12,7 +12,7 @@ public class UserDao_checkId_num {
 	
 	@Test
 	public void test1() {
-		Assert.assertEquals(true, uDao.checkId_num("123456"));
+		Assert.assertEquals(false, uDao.checkId_num("123456"));
 	}
 
 	@Test
