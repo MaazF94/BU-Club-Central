@@ -46,7 +46,7 @@
                       <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
-                            <input id="login-your-login" placeholder="Your Login" type="text" name="login" data-constraints="@Required" class="form-control">
+                            <input id="login-your-login" placeholder="Your Username" type="text" name="username" data-constraints="@Required" class="form-control">
                           </div>
                         </div>
                         <div class="form-group offset-top-20">

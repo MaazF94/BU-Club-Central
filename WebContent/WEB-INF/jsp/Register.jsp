@@ -46,7 +46,17 @@
                       <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
-                            <input id="login-user-name" placeholder="User Name" type="text" name="user-name" data-constraints="@Required" class="form-control">
+                            <input id="login-user-name" placeholder="First Name" type="text" name="first_name" data-constraints="@Required" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
+                            <input id="login-user-name" placeholder="Last Name" type="text" name="last_name" data-constraints="@Required" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
+                            <input id="login-user-name" placeholder="User Name" type="text" name="username" data-constraints="@Required" class="form-control">
                           </div>
                         </div>
                         <div class="form-group offset-top-20">
@@ -54,14 +64,19 @@
                             <input id="login-email" placeholder="E-Mail" type="email" name="email" data-constraints="@Required @Email" class="form-control">
                           </div>
                         </div>
+                        <div class="form-group">
+                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
+                            <input id="login-user-name" placeholder="ID Number" type="text" name="id_num" data-constraints="@Required" class="form-control">
+                          </div>
+                        </div>
                         <div class="form-group offset-top-20">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-lock-open-outline"></span></span>
-                            <input id="login-password" placeholder="Password" type="password" name="password" data-constraints="@Required" class="form-control">
+                            <input id="login-password" placeholder="Password" type="password" name="passwrd" data-constraints="@Required" class="form-control">
                           </div>
                         </div>
                         <div class="form-group offset-top-20">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-lock-outline"></span></span>
-                            <input id="login-repeat-password" placeholder="Repeat a password" type="password" name="repeat-password" data-constraints="@Required" class="form-control">
+                            <input id="login-repeat-password" placeholder="Repeat a password" type="password" name="repeat-passwrd" data-constraints="@Required" class="form-control">
                           </div>
                         </div>
                         <div class="form-group offset-top-24">
