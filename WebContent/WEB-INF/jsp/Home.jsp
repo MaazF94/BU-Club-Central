@@ -72,6 +72,9 @@
                        
                          
                       <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
+                      
+                      <li><a href="ContactUsServlet"><span>Contact Us</span></a>
+                      
                         
                       </li>
                     </ul>
