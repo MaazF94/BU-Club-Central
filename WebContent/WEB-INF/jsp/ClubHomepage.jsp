@@ -6,6 +6,10 @@
     <!-- Site Title-->
     <title>Computer Science Club</title>
     
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -112,7 +116,23 @@
                         <h5 data-caption-animate="fadeInUp" data-caption-delay="500" class="hidden reveal-xs-block text-light">
                           
                         </h5>
-                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a href="#" class="btn btn-danger">JOIN OUR CLUB</a><a href="EventServlet"class="btn btn-danger">Find an Event</a></div>
+                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a style="color: white;" href="#myPopup" data-rel="popup" class="btn btn-danger" >JOIN OUR CLUB</a> <a style="color: white;" href="EventServlet"class="btn btn-danger">Find an Event</a></div>
+                            <div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;">
+      <form method="post" action="demoform.asp">
+        <div>
+          <h3>Join Our Club:</h3>
+          <label for="fullname" class="ui-hidden-accessible">Full Name:</label>
+          <input type="text" name="fullname" id="fullname" placeholder="Full Name">
+          <label for="idnumber" class="ui-hidden-accessible">ID Number:</label>
+          <input type="text" name="idnumber" id="idnumber" placeholder="ID Number">
+          <label for=email class="ui-hidden-accessible">Email:</label>
+          <input type="text" name="email" id="email" placeholder="Email">
+          <label for="log">Welcome!</label>
+          <input type="submit" data-inline="true" value="Join">
+        </div>
+      </form>
+    </div>
+  </div>
                       </div>
                     </div>
                   </div>
