@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import edu.ben.bu_club_central.models.User;
 
@@ -11,7 +12,6 @@ public class UserDao {
 	private String tableName = "bu_club_central.user";
 	private int enabled = 1;
 	private int disabled = 0;
-	private User userObject;
 
 	private DatabaseConnection dbc = new DatabaseConnection();
 	private Connection conn = dbc.getConn();
@@ -208,33 +208,37 @@ public class UserDao {
 	}
 
 	
-	public boolean userLogin(String username, String password) {
-		userObject = null;
-		System.out.println(username + " " + password);
-		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "' and passwrd='" + password + "'";
+	public User getUserByUsername(String username) {
+		LinkedList<User> userList = new LinkedList<User>();
+		User user = null;
+		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'"; 
 		
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-//			System.out.println(rs.getString("username"));
 			if(!rs.next()) {
-				System.out.println("Null user");
-				return false;
-			}else {
-				userObject = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
-				userObject.setRole_id((Integer) rs.getInt("role_id"));
-				userObject.setClub_id_num((Integer) rs.getInt("club_id_num"));
+				return null;
 			}
+			
+			while(rs.next()) {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				user.setRole_id((Integer) rs.getInt("role_id"));
+				user.setClub_id_num((Integer) rs.getInt("club_id_num"));
+				userList.add(user);
+			}
+			
+			
 		} catch (SQLException e) {
 			System.out.println("Did not login");
 			e.printStackTrace();
 		}
-		return true;
+		if(userList.size() > 1) {
+			return null;
+		}
+		return user;
 	}
 
-	public User getUserObject() {
-		return userObject;
-	}
+	
 	
 	
 	

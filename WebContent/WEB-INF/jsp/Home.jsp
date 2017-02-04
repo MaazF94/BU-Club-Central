@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="edu.ben.bu_club_central.models.User"%>    
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
@@ -71,7 +74,22 @@
                       <li><a href="#"><span>clubs</span></a>
                        
                          
-                      <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
+                      <li><a class="btn btn-default" href="LoginServlet"><span>	
+                      
+                      <% 
+                      
+                      if(session.isNew()){
+                    	  
+                    	 out.print("Sign In yess");
+                      }else {
+                    	  
+                    	  User user = (User) session.getAttribute("user");
+                    	  out.print(user.getFirst_name());
+                      }
+                      
+                      %>
+                      
+                      </span></a>
                         
                       </li>
                     </ul>
