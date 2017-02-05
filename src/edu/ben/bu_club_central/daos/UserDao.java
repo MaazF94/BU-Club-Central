@@ -1,9 +1,10 @@
 package edu.ben.bu_club_central.daos;
-
+import mailDispatcher.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 import edu.ben.bu_club_central.models.User;
 
@@ -32,6 +33,18 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		// send email to a newly registered user
+		//come back later to this and use html in your email to make it look better and expand the message some more.
+		String subject = "Thank You for Registering " + first_name + "!";
+		String content = "Hello " + first_name + ",\n";
+		content += "\n\n";
+		content += "We'd like to thank you for registering for Club Central! There are multiple things you can do here at\n";
+		content += "Club Central, such as, RSVP for events, join a club, get notified of events you're RSVP'ed to. And much more!\n";
+		content += "\nWe hope you enjoy using the website!\n";
+		content += "\n\nRegards,";
+		content += "\n BU Club Central";
+		SendMail.email("BUclubcentral@gmail.com", username, "thefirm123", email, subject, content);
+		
 	}
 
 	/**
@@ -235,17 +248,4 @@ public class UserDao {
 	public User getUserObject() {
 		return userObject;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
