@@ -65,6 +65,9 @@
                     <ul class="rd-navbar-nav">
                       <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
+                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                        
                       <li><a href="EventServlet"><span>Events</span></a>
                        
                          
@@ -106,12 +109,12 @@
                   <div class="range range-xs-middle range-xs-center section-cover section-top-124 section-bottom-98 section-sm-top-110 section-sm-bottom-110 context-dark">
                     <div class="range range-xs-center">
                       <div class="cell-lg-12">
-                        <div data-caption-animate="fadeInUp" data-caption-delay="300" class="text-extra-big text-bold text-italic text-uppercase">DOCUMENT CENTRAL</div>
+                        <div data-caption-animate="fadeInUp" data-caption-delay="300" class="text-extra-big text-bold text-italic text-uppercase" style="color:red">DOCUMENT CENTRAL</div>
                       </div>
                       <div class="cell-lg-9 offset-top-20">
                         <h5 data-caption-animate="fadeInUp" data-caption-delay="500" class="hidden reveal-xs-block text-light">
                         </h5>
-                        <h6> Below are all the necessary documents that clubs will need.</h6>
+                        <h6 style="font-size: 24px;"> Below are all the necessary documents that clubs will need.</h6>
                         
                       </div>
                     </div>

@@ -4,9 +4,12 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
     <!-- Site Title-->
-    <title>Contact Us</title>
+    <title>About Us</title>
     
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -102,7 +105,50 @@
           </nav>
         </div>
         <!-- Welcome to Intense-->
+        <section>
+          <div data-on="false" data-md-on="true" class="bg-gray-base context-dark rd-parallax">
+            <div data-speed="0.3" data-type="html" data-md-fade="true" class="rd-parallax-layer">
+              <div class="shell">
+                <div class="range">
+                  <div class="range range-xs-middle range-xs-center section-cover section-top-124 section-bottom-98 section-sm-top-110 section-sm-bottom-110 context-dark">
+                    <div class="range range-xs-center">
+                      <div class="cell-lg-12">
+                        <div data-caption-animate="fadeInUp" data-caption-delay="300" class="text-extra-big text-bold text-italic text-uppercase" style="color:red"> Meet The Admins</div>
+                      </div>
+                      <div class="cell-lg-9 offset-top-20">
+                        <h5 data-caption-animate="fadeInUp" data-caption-delay="500" class="hidden reveal-xs-block text-light">
+                          
+                        </h5>
+                        <h6 style="font-size: 24px;"> Take a look below to learn about the people behind the scenes that help make BenU Clubs great.</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </header>
+      
+      <!-- First Grid -->
+<div data-on="false" data-md-on="true" class="bg-gray-base context-dark rd-parallax">
+  <div class="shell">
+      <h1 style="padding:15px; color:red;">Meet Danny Turano</h1>
+	  <img src="img\danny.jpg" alt="Danny Turano" style="width:225px;height:228px;">
+      
+      <h6 class="range">Hi, my name is Danny Turano and I'm the Director of Student Life. Hi, my name is Danny Turano and I'm the Director of Student Life. Hi, my name is Danny Turano and I'm the Director of Student Life. Hi, my name is Danny Turano and I'm the Director of Student Life.</h6>
+  </div>
+</div>
+
+      <!-- Second Grid -->
+<div data-on="false" data-md-on="true" class="bg-gray-base context-dark rd-parallax">
+  <div style="padding: 30px;" class="shell">
+      <h1 style="top-margin:15px; color: red;">Meet Joan Henehan</h1>
+      	  <img src="img\JoanHenehan.jpg" alt="Joan Henehan" style="width:225px;height:228px;">
+      <h6 class="range">Hi, my name is Joan Henehan and I am the Director of Student Engagement and Leadership Development. Hi, my name is Joan Henehan and I am the Director of Student Engagement and Leadership Development. Hi, my name is Joan Henehan and I am the Director of Student Engagement and Leadership Development. Hi, my name is Joan Henehan and I am the Director of Student Engagement and Leadership Development.</h6>
+  </div>
+</div>
+
       <!-- Page Footer-->
       <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
@@ -113,27 +159,6 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                  <div id = "example3">
-                      <form id="form3" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
-                      <h1 style="color: white;"> Contact Us</h1>
-                        <div class="form-group">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
-                            <input id="fullname" placeholder="Full Name" type="text" name="fullName" data-constraints="@Required" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group offset-top-20">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"> <i class="material-icons" style="font-size:19px">email</i></span>
-                            <input id="emailaddress" placeholder="Your Email Address" type="text" name="email" data-constraints="@Required" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group offset-top-20">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"> <i class="fa fa-commenting-o" style="font-size:19px"></i></span>
-                            <textarea style="height:100px;" id="comment" placeholder="Write Your Comment Here..." type="text" name="comment" data-constraints="@Required" class="form-control"></textarea> 
-                          </div>
-                        </div>
-                        <button type="submit" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
-                        </form>
-  
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
@@ -151,6 +176,43 @@
           </div>
         </div>
       </footer>
+    </div>
+    <!-- Global Mailform Output-->
+    <div id="form-output-global" class="snackbars"></div>
+    <!-- PhotoSwipe Gallery-->
+    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
+            <button title="Share" class="pswp__button pswp__button--share"></button>
+            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
+            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
+          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>

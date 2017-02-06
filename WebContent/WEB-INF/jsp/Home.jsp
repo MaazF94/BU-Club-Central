@@ -64,6 +64,9 @@
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
                       <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                      
+                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                      
                         
                       <li><a href="EventServlet"><span>Events</span></a>
                        
@@ -113,7 +116,7 @@
                         <h5 data-caption-animate="fadeInUp" data-caption-delay="500" class="hidden reveal-xs-block text-light">
                           
                         </h5>
-                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a href="#" class="btn btn-danger">JOIN A CLUB</a><a href="EventServlet"class="btn btn-danger">Find an Event</a></div>
+                        <div class="group group-xl offset-top-41 offset-sm-top-30"><a href="JoinAClubServlet" class="btn btn-danger" >JOIN A CLUB</a><a href="EventServlet"class="btn btn-danger">Find an Event</a></div>
                       </div>
                     </div>
                   </div>

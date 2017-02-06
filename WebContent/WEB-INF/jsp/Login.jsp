@@ -23,13 +23,78 @@
   <body>
     <!-- Page-->
     <div class="page text-center">
+          <!-- Page Head-->
+      <header class="page-head slider-menu-position">
+        <!-- RD Navbar Transparent-->
+        <div class="rd-navbar-wrap">
+          <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar rd-navbar-default rd-navbar-transparent" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
+            <div class="rd-navbar-inner">
+              <!-- RD Navbar Panel-->
+              <div class="rd-navbar-panel">
+                <!-- RD Navbar Toggle-->
+                <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
+                <!--Navbar Brand-->
+                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
+              </div>
+               
+              <div class="rd-navbar-menu-wrap">
+                <div class="rd-navbar-nav-wrap">
+                  <div class="rd-navbar-mobile-scroll">
+                
+                    <!--Navbar Brand Mobile-->
+                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
+                    <div class="form-search-wrap">
+                      <!-- RD Search Form-->
+                      <form action="search-results.html" method="GET" class="form-search rd-search">
+                        <div class="form-group">
+                          <label for="rd-navbar-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
+                          <input id="rd-navbar-form-search-widget" type="text" name="s" autocomplete="off" class="form-search-input input-sm form-control form-control-gray-lightest input-sm"/>
+                        </div>
+                        <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
+                      </form>
+                    </div>
+                    <!-- RD Navbar Nav-->
+                    <ul class="rd-navbar-nav">
+                      <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                        
+                      <li><a href="EventServlet"><span>Events</span></a>
+                       
+                         
+                      <li><a href="#"><span>clubs</span></a>
+                       
+                         
+                      <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
+                      
+                      <li><a href="ContactUsServlet"><span>Contact Us</span></a>
+                      
+                        
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!--RD Navbar Search-->
+                <div class="rd-navbar-search"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
+                  <form action="search-results.html" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
+                    <div class="form-group">
+                      <label for="rd-navbar-search-form-input" class="form-label">Type and hit enter...</label>
+                      <input id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off" class="rd-navbar-search-form-input form-control form-control-gray-lightest"/>
+                    </div>
+                    <!--button(type="submit").rd-navbar-search-form-submit.mdi.mdi-magnify-->
+                  </form>
+                  <!--div.rd-navbar-live-search-results-->
+                  <!--button(data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-inner, .rd-navbar-live-search-results").rd-navbar-search-toggle-->
+                  <!--  span-->
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
       <!-- Page Content-->
       <main class="page-content bg-shark-radio">
         <div class="one-page">
-           <div class="one-page-header">
-            <!--Navbar Brand-->
-            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: 5px;margin-left: -30px;' width='150' height='42' src='img/logo_benedictinetransparentwhite.png' alt=''/></a></div>
-          </div>
           <!-- Login-->
           <section>
             <div class="shell">

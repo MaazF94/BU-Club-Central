@@ -4,7 +4,7 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
     <!-- Site Title-->
-    <title>Contact Us</title>
+    <title>New Club Submission</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="format-detection" content="telephone=no">
@@ -66,6 +66,9 @@
                     <ul class="rd-navbar-nav">
                       <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
+                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                        
                       <li><a href="EventServlet"><span>Events</span></a>
                        
                          
@@ -110,7 +113,7 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                      <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
+                      <form id="myform" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                       <h1 style="color: white;">New Club</h1>
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><i class="material-icons" style="font-size:19px">people_outline</i></span>
@@ -137,14 +140,7 @@
                             <textarea style="height:100px;" id="comment" placeholder="Tell Us About Your Club Idea Here..." type="text" name="comment" data-constraints="@Required" class="form-control"></textarea> 
                           </div>
                         </div>
-                        <button id="submit" type="submit" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
-                       <script type="text/javascript">
-    					document.getElementById("submit").onclick = function () {
-    					confirm('Once you submit this information, we will review and get back to you within 1 week.');
-    					if(confirm) location.href = "http://localhost:8015/bu-club-central/HomeServlet";
-    					if(!confirm) {e.preventDefault();
-    					}
-					   </script>
+                        <button id="submit" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">

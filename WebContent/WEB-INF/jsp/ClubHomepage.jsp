@@ -6,6 +6,7 @@
     <!-- Site Title-->
     <title>Computer Science Club</title>
     
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -69,6 +70,9 @@
                     <ul class="rd-navbar-nav">
                       <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
+                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                        
                       <li><a href="EventServlet"><span>Events</span></a>
                        
                          
@@ -121,14 +125,12 @@
       <form method="post" action="demoform.asp">
         <div>
           <h3>Join Our Club:</h3>
-          <label for="fullname" class="ui-hidden-accessible">Full Name:</label>
-          <input type="text" name="fullname" id="fullname" placeholder="Full Name">
-          <label for="idnumber" class="ui-hidden-accessible">ID Number:</label>
-          <input type="text" name="idnumber" id="idnumber" placeholder="ID Number">
-          <label for=email class="ui-hidden-accessible">Email:</label>
-          <input type="text" name="email" id="email" placeholder="Email">
-          <label for="log">Welcome!</label>
-          <input type="submit" data-inline="true" value="Join">
+          <div>
+                         <input id="fullname" placeholder="Your Full Name" type="text" name="fullname" data-constraints="@Required" class="form-control">
+                         <input id="ID" placeholder="Your BenU ID Number" type="text" name="ID" data-constraints="@Required" class="form-control">
+                            <input id="emailaddress" placeholder="Your Email Address" type="text" name="email" data-constraints="@Required" class="form-control">
+    						
+	                        <button style="color: white; background: #FF3333;" id="submit" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
         </div>
       </form>
     </div>
