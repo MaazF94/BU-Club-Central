@@ -135,6 +135,7 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
+  position: relative;
   margin: 0; }
 
 article,
@@ -1650,6 +1651,7 @@ th {
   text-align: left; }
 
 .table {
+	overflow: scroll;
   width: 100%;
   max-width: 100%;
   margin-bottom: 24px; }
