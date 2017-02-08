@@ -122,7 +122,7 @@
                         </h5>
                         <div class="group group-xl offset-top-41 offset-sm-top-30"><a style="color: white;" href="#myPopup" data-rel="popup" class="btn btn-danger" >JOIN OUR CLUB</a> <a style="color: white;" href="EventServlet"class="btn btn-danger">Find an Event</a></div>
                             <div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;">
-      <form method="post" action="demoform.asp">
+      <form method="post" name="myform" id="myform" action="demoform.asp">
         <div>
           <h3>Join Our Club:</h3>
           <div>
@@ -130,9 +130,33 @@
                          <input id="ID" placeholder="Your BenU ID Number" type="text" name="ID" data-constraints="@Required" class="form-control">
                             <input id="emailaddress" placeholder="Your Email Address" type="text" name="email" data-constraints="@Required" class="form-control">
     						
-	                        <button style="color: white; background: #FF3333;" id="submit" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+	                        <button style="color: white; background: #FF3333;" id="submit" onclick="hide()" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
         </div>
       </form>
+      
+                              
+                      <script>
+                      function hide() {
+                    	  var checkLetters =  /^[A-Za-z]/;
+                    	  if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
+                    		  alert("You must write your full name");
+                    		  return false;
+                    	  } else if ((isNaN(document.forms["myform"]["ID"].value)) || document.forms["myform"]["ID"].value == "" || document.forms["myform"]["ID"].value.length != 7) {
+                    		  alert("You must write a valid ID number");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["email"].value.indexOf("@") == -1 || document.forms["myform"]["email"].value.indexOf(".com") == -1) {
+                    		  alert("You must write a valid email address");
+                    		  return false;
+                    	  }
+                    	  var r = confirm("Are you sure this information is correct?");
+                    	  if (r == true) {
+                    	      x = "Great, thanks for joining our club!";
+                      	      document.getElementById("myform").innerHTML = x;
+                    	  } 
+                         }
+                      
+                      </script>
+                      
     </div>
   </div>
                       </div>

@@ -113,7 +113,7 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                      <form id="prac" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
+                      <form name="myform" id="prac" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                       <h1 style="color: white;">Join a Club</h1>
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
@@ -137,8 +137,29 @@
     						<label><input type="checkbox" name="club" value="HSA" />Hindu Student Association</label><br>    						
     						<label><input type="checkbox" name="club" value="MSA" />Muslim Student Association</label><br>
     						
-	                        <button id="submit" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+	                        <button id="submit" type="button" onClick="hide()" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
+                      <script>
+                      function hide() {
+                    	  var checkLetters =  /^[A-Za-z]/;
+                    	  if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
+                    		  alert("You must write your full name");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["email"].value.indexOf("@") == -1 || document.forms["myform"]["email"].value.indexOf(".com") == -1) {
+                    		  alert("You must write a valid email address");
+                    		  return false;
+                    	  } else if ((isNaN(document.forms["myform"]["ID"].value)) || document.forms["myform"]["ID"].value == "" || document.forms["myform"]["ID"].value.length != 7) {
+                    		  alert("You must write a valid ID number");
+                    		  return false;
+                    	  }
+                    	  var r = confirm("Are you sure this information is correct?");
+                    	  if (r == true) {
+                    	      x = "Great, thanks for joining! You will now be subscribed to the club(s) that you chose.";
+                      	      document.getElementById("prac").innerHTML = x;
+                    	  } 
+                         }
+                      
+                      </script>
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>

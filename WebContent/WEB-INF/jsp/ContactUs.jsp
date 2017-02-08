@@ -114,7 +114,7 @@
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
                   <div id = "example3">
-                      <form id="form3" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
+                      <form name="myform" id="myform" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                       <h1 style="color: white;"> Contact Us</h1>
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
@@ -131,8 +131,30 @@
                             <textarea style="height:100px;" id="comment" placeholder="Write Your Comment Here..." type="text" name="comment" data-constraints="@Required" class="form-control"></textarea> 
                           </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+                        <button type="button" id="submit" onclick="hide()" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                         </form>
+                        
+                      <script>
+                      function hide() {
+                    	  var checkLetters =  /^[A-Za-z]/;
+                    	  if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
+                    		  alert("You must write your full name");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["email"].value.indexOf("@") == -1 || document.forms["myform"]["email"].value.indexOf(".com") == -1) {
+                    		  alert("You must write a valid email address");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["comment"].value == "") {
+                    		  alert("You must write a comment");
+                    		  return false;
+                    	  }
+                    	  var r = confirm("Are you sure this information is correct?");
+                    	  if (r == true) {
+                    	      x = "Great, thanks for contacting us! You'll receive a reply from us soon.";
+                      	      document.getElementById("myform").innerHTML = x;
+                    	  } 
+                         }
+                      
+                      </script>
   
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">

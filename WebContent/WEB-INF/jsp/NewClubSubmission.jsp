@@ -113,7 +113,7 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                      <form id="myform" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
+                      <form name="myform" id="myform" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                       <h1 style="color: white;">New Club</h1>
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><i class="material-icons" style="font-size:19px">people_outline</i></span>
@@ -140,8 +140,37 @@
                             <textarea style="height:100px;" id="comment" placeholder="Tell Us About Your Club Idea Here..." type="text" name="comment" data-constraints="@Required" class="form-control"></textarea> 
                           </div>
                         </div>
-                        <button id="submit" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+                        <button id="submit" onclick="hide()" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
+                      
+                      <script>
+                      function hide() {
+                    	  var checkLetters =  /^[A-Za-z]/;
+                    	  if (!checkLetters.test(document.forms["myform"]["organizationname"].value)) {
+                    		  alert("You must write the club/organization name");
+                    		  return false;
+                    	  } else if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
+                    		  alert("You must write your full name");
+                    		  return false;
+                    	  }  else if (document.forms["myform"]["email"].value.indexOf("@") == -1 || document.forms["myform"]["email"].value.indexOf(".com") == -1) {
+                    		  alert("You must write a valid email address");
+                    		  return false;
+                    	  } else if (!checkLetters.test(document.forms["myform"]["advisorname"].value)) {
+                    		  alert("You must write your Advisor's full name");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["comment"].value == "") {
+                    		  alert("You must write a comment");
+                    		  return false;
+                    	  }
+                    	  var r = confirm("Are you sure this information is correct?");
+                    	  if (r == true) {
+                    	      x = "Great, thanks for submitting your new club idea! We'll get back to you shortly with our feedback";
+                      	      document.getElementById("myform").innerHTML = x;
+                    	  } 
+                         }
+                      
+                      </script>
+                      
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
