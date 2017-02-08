@@ -82,7 +82,6 @@
                     	  
                     	 out.print("Sign In yess");
                       }else {
-                    	  
                     	  User user = (User) session.getAttribute("user");
                     	  out.print(user.getFirst_name());
                       }

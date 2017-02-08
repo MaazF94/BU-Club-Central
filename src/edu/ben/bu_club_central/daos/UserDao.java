@@ -57,6 +57,7 @@ public class UserDao {
 
 	/**
 	 * Checks to see if the username in the database exists
+	 * 
 	 * @param username
 	 * @return
 	 */
@@ -179,8 +180,7 @@ public class UserDao {
 				return false;
 			}
 		}
-		
-		
+
 		String sql = "SELECT * FROM " + tableName + " WHERE id_num='" + id_num + "'";
 
 		PreparedStatement ps;
@@ -203,53 +203,64 @@ public class UserDao {
 			System.out.println("Did not pull from username to see if it exists 2");
 			e.printStackTrace();
 		}
-		
+
 		return true;
 	}
 
-	
 	public User getUserByUsername(String username) {
-		LinkedList<User> userList = new LinkedList<User>();
 		User user = null;
-		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'"; 
-		
+		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'";
+
+		PreparedStatement ps;
+		ResultSet rs = null;
 		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(!rs.next()) {
-				return null;
-			}
-			
-			while(rs.next()) {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
-				user.setRole_id((Integer) rs.getInt("role_id"));
-				user.setClub_id_num((Integer) rs.getInt("club_id_num"));
-				userList.add(user);
-			}
-			
-			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
 		} catch (SQLException e) {
-			System.out.println("Did not login");
 			e.printStackTrace();
 		}
-		if(userList.size() > 1) {
-			return null;
+		 
+		try {
+			if (!rs.next()) {
+				return null;
+			}else {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
 		return user;
 	}
+	
+	public LinkedList<User> getAllUsers() {
+		User user;
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		String sql = "SELECT * FROM " + tableName;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

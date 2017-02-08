@@ -157,7 +157,7 @@
 				<div class="col-lg-6" style="height: 300px">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h1>Messages</h1>
+							<h1>User dashboard</h1>
 						</div>
 						<div class="panel-body"></div>
 					</div>
