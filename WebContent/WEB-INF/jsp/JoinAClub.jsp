@@ -113,7 +113,7 @@
                 
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                      <form name="myform" id="prac" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
+                      <form name="myform" id="myform" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
                       <h1 style="color: white;">Join a Club</h1>
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
@@ -142,6 +142,7 @@
                       <script>
                       function hide() {
                     	  var checkLetters =  /^[A-Za-z]/;
+                    	  var checkboxes=document.getElementsByName("club");
                     	  if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
                     		  alert("You must write your full name");
                     		  return false;
@@ -151,11 +152,14 @@
                     	  } else if ((isNaN(document.forms["myform"]["ID"].value)) || document.forms["myform"]["ID"].value == "" || document.forms["myform"]["ID"].value.length != 7) {
                     		  alert("You must write a valid ID number");
                     		  return false;
+                    	  } else if (!$('#myform input:checked').length > 0) {
+                    		  alert("You must check at least one checkbox");
+                    		  return false;
                     	  }
                     	  var r = confirm("Are you sure this information is correct?");
                     	  if (r == true) {
                     	      x = "Great, thanks for joining! You will now be subscribed to the club(s) that you chose.";
-                      	      document.getElementById("prac").innerHTML = x;
+                      	      document.getElementById("myform").innerHTML = x;
                     	  } 
                          }
                       
