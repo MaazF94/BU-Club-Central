@@ -113,6 +113,171 @@
 			<div class="row" style="height: 200px; background: black"></div>
 		</div>
 
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h1>Control Panel</h1>
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#users"
+									aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
+								<li role="presentation"><a href="#events"
+									aria-controls="events" role="tab" data-toggle="tab">Events</a></li>
+								<li role="presentation"><a href="#messages"
+									aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+								<li role="presentation"><a href="#email"
+									aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="users">
+									<div>
+										<!-- Inner user tabs -->
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a href="#tab1"
+												aria-controls="tab1" role="tab" data-toggle="tab">Edit
+													User Information</a></li>
+											<li role="presentation"><a href="#tab2"
+												aria-controls="tab2" role="tab" data-toggle="tab">Add/Remove
+													User from Club</a></li>
+										</ul>
+
+										<!-- Inner Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="tab1">
+												form to edit user info</div>
+											<div role="tabpanel" class="tab-pane" id="tab2">form to
+												add/remove user from club</div>
+										</div>
+									</div>
+									edit user info
+								</div>
+
+
+								<div role="tabpanel" class="tab-pane" id="events">
+
+									<div role="tabpanel" class="tab-pane active" id="events">
+
+										<!-- Inner user tabs -->
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a href="#tab1"
+												aria-controls="tab1" role="tab" data-toggle="tab">
+													Create Events </a></li>
+											<li role="presentation"><a href="#tab2"
+												aria-controls="tab2" role="tab" data-toggle="tab"> edit
+													events </a></li>
+
+											<li role="presentation"><a href="#tab3"
+												aria-controls="tab3" role="tab" data-toggle="tab">
+													remove events </a></li>
+										</ul>
+
+										<!-- Inner Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="tab1">
+												create events</div>
+											<div role="tabpanel" class="tab-pane" id="tab2">edit
+												events</div>
+
+											<div role="tabpanel" class="tab-pane" id="tab3">remove
+												events</div>
+										</div>
+
+
+									</div>
+									edit/create events
+								</div>
+
+
+
+								<div role="tabpanel" class="tab-pane" id="messages">
+
+									<div role="tabpanel" class="tab-pane active" id="messages">
+										<div>
+											<!-- Inner user tabs -->
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a href="#tab1"
+													aria-controls="tab1" role="tab" data-toggle="tab">send
+														messages</a></li>
+
+											</ul>
+
+											<!-- Inner Tab panes -->
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="tab1">
+													send messages to certain users/all</div>
+
+											</div>
+										</div>
+
+									</div>
+									send messages
+								</div>
+
+
+
+
+								<div role="tabpanel" class="tab-pane" id="email">
+
+
+									<div role="tabpanel" class="tab-pane active" id="email">
+										<div>
+											<!-- Inner user tabs -->
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a href="#tab1"
+													aria-controls="tab1" role="tab" data-toggle="tab">send
+														emails</a></li>
+
+											</ul>
+
+											<!-- Inner Tab panes -->
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="tab1">
+													send emails to user(s)</div>
+
+											</div>
+										</div>
+
+									</div>
+									send emails
+								</div>
+								
+								
+								<div role="tabpanel" class="tab-pane" id="club">
+
+
+									<div role="tabpanel" class="tab-pane active" id="club">
+										<div>
+											<!-- Inner user tabs -->
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a href="#tab1"
+													aria-controls="tab1" role="tab" data-toggle="tab">edit club info</a></li>
+
+											</ul>
+
+											<!-- Inner Tab panes -->
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="tab1">
+													edit club</div>
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6" style="height: 300px">
@@ -218,65 +383,45 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Control Panel</h1>
-						</div>
-						<div class="panel-body">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#users"
-									aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
-								<li role="presentation"><a href="#events"
-									aria-controls="events" role="tab" data-toggle="tab">Events</a></li>
-								<li role="presentation"><a href="#messages"
-									aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-								<li role="presentation"><a href="#email"
-									aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
-							</ul>
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="users">
-
-									edit user info</div>
-								<div role="tabpanel" class="tab-pane" id="events">
-
-									edit/create events</div>
-								<div role="tabpanel" class="tab-pane" id="messages">send
-									messages</div>
-								<div role="tabpanel" class="tab-pane" id="email">send
-									emails</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4">
+				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h1>Club Statistics</h1>
 						</div>
 						<div class="panel-body">
-							# members
-							# users
-							club info
-							
-							more info
-						
+							<div class="container">
+
+								<div class="col-lg-6">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h1>form</h1>
+										</div>
+									</div>
+									form to generate report on statistics
+								</div>
+
+
+								<div class="col-lg-6">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h1>report</h1>
+										</div>
+									</div>
+
+									cart where report will display
+								</div>
+							</div>
+
+
+
 						</div>
+
+
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
 		</div>
+	</div>
 
 
 
@@ -298,76 +443,74 @@
 
 
 
-		<!-- Page Footer-->
-		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-		<div class="shell">
-			<div class="range range-sm-center text-lg-left">
-				<div class="cell-sm-12">
-					<div class="range range-xs-center">
-						<div
-							class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-							<!-- Twitter Feed-->
-							<p
-								class="text-uppercase text-spacing-60 text-bold text-center text-lg-left">Twitter
-								Feed</p>
-							<div class="offset-top-20">
-								<div data-twitter-username="templatemonster"
-									data-twitter-date-hours=" hours ago"
-									data-twitter-date-minutes=" minutes ago" class="twitter">
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
+	<!-- Page Footer-->
+	<footer
+		class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+	<div class="shell">
+		<div class="range range-sm-center text-lg-left">
+			<div class="cell-sm-12">
+				<div class="range range-xs-center">
+					<div
+						class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
+						<!-- Twitter Feed-->
+						<p
+							class="text-uppercase text-spacing-60 text-bold text-center text-lg-left">Twitter
+							Feed</p>
+						<div class="offset-top-20">
+							<div data-twitter-username="templatemonster"
+								data-twitter-date-hours=" hours ago"
+								data-twitter-date-minutes=" minutes ago" class="twitter">
+								<div data-twitter-type="tweet" class="twitter-sm">
+									<div class="twitter-date text-dark small">
+										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
+										<span data-date="text" class="text-middle"></span>
 									</div>
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
+									<div data-tweet="text" class="twitter-text"></div>
+									<div data-screen_name="text" class="twitter-name text-bold big"></div>
+								</div>
+								<div data-twitter-type="tweet" class="twitter-sm">
+									<div class="twitter-date text-dark small">
+										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
+										<span data-date="text" class="text-middle"></span>
 									</div>
+									<div data-tweet="text" class="twitter-text"></div>
+									<div data-screen_name="text" class="twitter-name text-bold big"></div>
 								</div>
 							</div>
 						</div>
+					</div>
 
 
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
-							<div class="footer-brand">
-								<a href="../index.html"><img width='175' height='50'
-									src='img/logo_benedictinetransparentwhite.png' alt='' /></a>
-							</div>
-							<div class="offset-top-50 text-xs-center text-lg-left">
-								<ul class="list-inline">
-									<li><a href="#"
-										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-								</ul>
-							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-									href="#">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
+					<div
+						class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<!-- Footer brand-->
+						<div class="footer-brand">
+							<a href="../index.html"><img width='175' height='50'
+								src='img/logo_benedictinetransparentwhite.png' alt='' /></a>
 						</div>
+						<div class="offset-top-50 text-xs-center text-lg-left">
+							<ul class="list-inline">
+								<li><a href="#"
+									class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="#"
+									class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="#"
+									class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="#"
+									class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+							</ul>
+						</div>
+						<p class="text-darker offset-top-20">
+							The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+								href="#">Privacy Policy</a>
+							<!-- {%FOOTER_LINK}-->
+						</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		</footer>
+	</div>
+	</footer>
 	</div>
 
 
