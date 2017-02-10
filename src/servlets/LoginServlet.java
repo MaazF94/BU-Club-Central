@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		User user;
 		
 		if(!request.getParameter("username").equals(null) || !request.getParameter("password").equals(null)) {
-			if(!loginUser(request.getParameter("username")).equals(null)) {
+			if(!(loginUser(request.getParameter("username")) == null)) {
 				user = uDao.getUserByUsername(request.getParameter("username"));
 				request.getSession().setAttribute("user", user);
 //				request.getSession().setAttribute("signIn", user.getFirst_name());
