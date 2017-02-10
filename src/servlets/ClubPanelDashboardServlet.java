@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BoardMemberDashboard
+ * Servlet implementation class ClubPanelDashboard
  */
-@WebServlet("/BoardMemberDashboard")
+@WebServlet("/ClubPanelDashboard")
 public class ClubPanelDashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class ClubPanelDashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubPanelDashboard.jsp").forward(request, response);
 	}
 
 	/**
