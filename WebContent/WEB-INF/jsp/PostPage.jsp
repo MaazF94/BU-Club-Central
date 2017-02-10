@@ -62,6 +62,9 @@
                     <ul class="rd-navbar-nav">
                         <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
+                        <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                        
                       <li><a class = "active" href="EventServlet"><span>Events</span></a>
                        
                          
