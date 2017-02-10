@@ -101,28 +101,28 @@
             <hr class="divider bg-red">
             <div class="range range-xs-center offset-top-66">
               <div class="cell-lg-8">
-                <p>Welcome to your board member dashboard! From here you can:</p>
+                <p>Welcome to the Benedictine Senate homepage! From here you can:</p>
               </div>
             </div>
             <div class="range offset-top-98">
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
                 <!-- Icon Box Type 5-->
-                <div class="box-icon box-icon-bordered"><a href = #><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-account-remove"></span></a>
-                  <h4 class="text-danger offset-top-20">Remove a Member</h4>
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#sendModal"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-email"></span></a>
+                  <h4 class="text-danger offset-top-20">Send an E-mail</h4>
                   <p></p>
                 </div>
               </div>
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
                 <!-- Icon Box Type 5-->
-                <div class="box-icon box-icon-bordered"><a href = #><span class="icon icon-outlined icon-xs icon-dark-filled mdi mdi-email"></span></a>
-                  <h4 class="text-danger offset-top-20">Send an E-Mail</h4>
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#deleteModal"><span class="icon icon-outlined icon-xs icon-dark-filled mdi mdi-account"></span></a>
+                  <h4 class="text-danger offset-top-20">Join the Club!</h4>
                   <p></p>
                 </div>
               </div>
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
                 <!-- Icon Box Type 5-->
-                <div class="box-icon box-icon-bordered"><a href = #><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-calendar-check thumbnail:hover"></span> </a>
-                  <h4 class="text-danger offset-top-20">Create an Event</h4>
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#createModal"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-calendar-check thumbnail:hover"></span> </a>
+                  <h4 class="text-danger offset-top-20">RSVP for an Event</h4>
                   <p></p>
                 </div>
               </div>
@@ -169,7 +169,7 @@
                       <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
                     </ul>
                   </div>
-                  <p class="text-darker offset-top-20">Intense &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                  <p class="text-darker offset-top-20">The F.I.R.M. &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->
                   </p>
                 </div>
@@ -216,6 +216,92 @@
         </div>
       </div>
     </div>
+<!-- delete Modal -->
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog" style="top:195px;">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span> Member ID</label>
+              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+            <div class="form-group">
+              <label for="email"><span class="glyphicon glyphicon-eye-open"></span> Member E-mail</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> Join</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+  <!-- send Modal -->
+  <div class="modal fade" id="sendModal" role="dialog">
+    <div class="modal-dialog" style="top:195px;">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group offset-top-20">
+                <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"> <i class="fa fa-commenting-o" style="font-size:19px"></i></span>
+                  <textarea style="height:100px;" id="comment" placeholder="Type your message here..." type="text" name="content"class="form-control"></textarea> 
+                </div>
+              </div>
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-email"></span> Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+<!-- create Modal -->
+  <div class="modal fade" id="createModal" role="dialog">
+    <div class="modal-dialog" style="top:195px;">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span>Event Date</label>
+              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+            <div class="form-group">
+              <label for="email"><span class="glyphicon glyphicon-eye-open"></span> Event Name</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span> Location</label>
+              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+            
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> RSVP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>   
+<script>
+$(document).ready(function(){
+        $("#deleteModal").modal();
+        $("#sendModal").modal();
+        $("#createModal").modal();
+    });
+</script>
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
