@@ -303,7 +303,6 @@ public class UserDao {
 		}
 		return false;
 	}
-<<<<<<< HEAD
 	
 	/**
 	 * Checks to make sure that value pasted in is all numbers
@@ -335,6 +334,4 @@ public class UserDao {
 		}
 		return false;
 	}
-=======
->>>>>>> 6a07248455ec42ffab228455552389188599cce7
 }
