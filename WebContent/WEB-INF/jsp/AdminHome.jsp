@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
+
   <head>
     <!-- Site Title-->
     <title>Contact Us</title>
@@ -28,12 +32,7 @@
         <div class="rd-navbar-wrap">
           <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar container rd-navbar-floated rd-navbar-dark" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
             <div class="rd-navbar-inner">
-              <!-- RD Navbar Top Panel-->
-              <div class="rd-navbar-top-panel context-dark bg-danger">
-               
-                
-                
-              </div>
+              
               <!-- RD Navbar Panel -->
               <div class="rd-navbar-panel">
                 <!-- RD Navbar Toggle-->
@@ -41,6 +40,7 @@
                 <!-- RD Navbar Top Panel Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel" class="rd-navbar-top-panel-toggle"><span></span></button>
                 <!--Navbar Brand-->
+                 <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
                 
               </div>
               <div class="rd-navbar-menu-wrap">
@@ -60,32 +60,25 @@
                     </div>
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                        <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                        <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                      
-                      
-                      <li><a class = "active" href="EventServlet"><span>Events</span></a>
-                       
-                         
-                      <li><a href="#"><span>Clubs</span></a>
-                       
-                         
-                      <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
-                    </ul>
+								<li class=""><a href="HomeServlet"><span>Home</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li class=""><a href="MeetTheAdminsServlet"><span>About
+											Us</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li><a href="EventServlet"><span>Events</span></a>
+								<li><a href="ClublistServlet"><span>clubs</span></a>
+								
+								<li><a href="LoginServlet"><span>Sign in</span></a>
+								
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+
+
+								</li>
+							</ul>
                   </div>
                 </div>
-                <!--RD Navbar Search-->
-                <div class="rd-navbar-search rd-navbar-search-top-panel"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-                  <form action="search-results.html" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
-                    <div class="form-group">
-                      <label for="rd-navbar-search-form-input" class="form-label">Type and hit enter...</label>
-                      <input id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off" class="rd-navbar-search-form-input form-control form-control-gray-lightest"/>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+               
+                              
           </nav>
         </div>
         <div class="context-dark">
@@ -94,7 +87,7 @@
             <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
             <div data-speed="0" data-type="html" class="rd-parallax-layer">
               <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-                <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>
+             <!--   <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>-->
                 
               </div>
             </div>
@@ -106,9 +99,86 @@
         <section class="section-top-98 section-md-top-110 text-lg-left">
           <div class="shell">
             <div class="range range-xs-center range-xs-center">
-              <div class="cell-lg-4">
-               
+            
+               <!-- Put dashboard code here -->
+                <section>
+          <div class="shell">
+            <h1>Welcome (Teachers Name)</h1>
+          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
+            <div class="offset-sm-top-66 text-left">
+              <!-- Responsive-tabs-->
+              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
+                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
+                  <li>Add Club</li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
+                  <div>
+                  <!-- First toolbar tab -->
+                    <p class="big text-bold"></p>
+                    <form id="addClub" data-form-output="form-output-global"
+								data-form-type="contact" method="POST" action = "AdminHome"
+								class="text-left offset-top-30">
+								<h1 style="color: white;">Join a Club</h1>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon input-group-addon-inverse"></span> <input
+											id="idClub" placeholder="Club ID" type="text"
+											name="idClub" data-constraints="@Required"
+											class="form-control">
+									</div>
+								</div>
+								<div class="form-group offset-top-20">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon input-group-addon-inverse"></span> <input
+											id="clubName" placeholder="Club Name" type="text"
+											name="clubName" data-constraints="@Required" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon input-group-addon-inverse"></span> <input
+											id="clubIdNum" placeholder="Club identifier" type="text"
+											name="club_id_num" data-constraints="@Required"
+											class="form-control">
+									</div>
+								</div>
+								<div class="form-group offset-top-20">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon input-group-addon-inverse"></span> <input
+											id="memberCount" placeholder="Number of Members" type="text"
+											name="memberCount" data-constraints="@Required" class="form-control">
+									</div>
+								</div>
+								
+
+								<button id="submit" type="submit"
+									class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
+									Submit <span
+										class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
+								</button>
+							</form>
+                  </div>
+                  <!-- Second toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Third toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Fourth toolbar tab -->
+                  <div>
+                   
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </section>
+              
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
                 
           </div>

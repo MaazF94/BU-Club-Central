@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
@@ -92,117 +95,42 @@
         </div>
       </header>
       <!-- Page Contents-->
-      <main class="page-content section-98 section-sm-110">
-        <div class="shell">
-          <div class="range range-md-center range-lg-right">
-            <div class="cell-md-8 inset-md-right-30">
-              <!-- Blog Classic-->
-              <section>
-                <!-- Post Classic-->
-                <article class="post post-classic">
-                  <!-- Post media-->
-                  <!-- <header class="post-media">
-                    <div data-photo-swipe="gallery"><a class="thumbnail-classic" href="blog-post.html" target="_self">
-                        <figure><img width="770" height="434" src="images/post-01-770x434.jpg" alt=""/>
-                        </figure></a>
-                    </div>
-                  </header>-->
-                  <!-- Post content-->
-                  <section class="post-content text-left offset-top-41">
-                    <div class="unit unit-sm unit-sm-horizontal unit-sm-inverse">
-                      <div class="unit-body">
-                        <!-- Post Meta-->
-                        <div class="post-meta text-dark"><span class="text-middle icon-xxs text-danger mdi mdi-arrow-right"></span>
-                          <time datetime="2016-01-01" class="text-middle small">05/14/2017</time>
-                        </div>
-                        <!-- Post Title-->
-                        <h3 class="text-regular text-darker offset-top-10"><a href="PostServlet">Computer Science: How to interview</a></h3>
-                        <!-- Post Body-->
-                        <div class="post-body">
-                          <p>
-                        </div>
-                        <!-- Post Tags-->
-                        <p class="text-dark text-sm-right"><small><a href="#">ComputerScience</a> <a href="#"></a></small></p>
-                      </div>
-                      <div class="unit-right">
-                        <div class="unit unit-horizontal unit-middle unit-sm-vertical unit-spacing-xs">
-                          <div class="unit-left"><img src="img/interview.jpeg" alt=" " width="70" height="70" class="img-circle"/></div>
-                          <div class="unit-body">
-                            <p class="text-dark">
-                              <cite class="small text-normal"></cite>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </article>
-               
-                <div class="offset-top-66">
-                  <!-- Bootstrap Pagination-->
-                  <nav>
-                    <ul class="pagination pagination-sm">
-                      <li><a href="#" aria-label="Previous"><span aria-hidden="true" class="mdi mdi-chevron-double-left"></span></a></li>
-                      <li class="active"><a href="#">1</a></li>
-                      <!--<li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>-->
-                      <li><a href="#" aria-label="Next"><span aria-hidden="true" class="mdi mdi-chevron-double-right"></span></a></li>
-                    </ul>
-                  </nav>
-                </div>
-              </section>
-            </div>
-            <div class="cell-md-4 offset-top-66 offset-md-top-0">
-              <!-- Section Blog Modern-->
-              <aside class="text-left inset-md-left-20">
-                <!-- Search Form-->
-               <!--  <p class="big text-medium text-uppercase text-spacing-60">Search</p>
-                <div class="text-subline"></div>
-                <div class="offset-top-34">
-                                <!-- RD Search Form-->
-                               <!--  <form action="search-results.html" method="GET" class="form-search rd-search">
-                                  <div class="form-group">
-                                    <label for="blog-sidebar-2-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
-                                    <input id="blog-sidebar-2-form-search-widget" type="text" name="s" autocomplete="off" class="form-search-input input-sm form-control input-sm">
-                                  </div>
-                                  <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
-                                </form>
-                </div>-->
+      <%
+      ClubDao cDao = new ClubDao(); 
+		LinkedList<Club> clubList = new LinkedList<Club>();
+		clubList =cDao.displayClub(); 
+		
+		int index = 0;
+	%>
+	<!-- Button items-->
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-md-7">
+                <h3 class="offset-top-30">Benedictine University Clubs</h3>
+                <p>Here is the current list of clubs.
+                </p>
+	<%
+		while (index < clubList.size()) {
+	%>
+      
+            
+                <div class="list-group text-left">
                 
-                <div class="range offset-top-41">
-                  <div class="cell-xs-6 cell-md-12">
-                    <!-- Category-->
-                    <p class="big text-medium text-uppercase text-spacing-60">Clubs</p>
-                    <div class="text-subline"></div>
-                    <ul class="list list-marked offset-top-30">
-                      <li><a href="#">Computer Science <span class="text-dark"></span></a></li>
-                      <li><a href="#">Astronomy <span class="text-dark"></span></a></li>
-                      <li><a href="#">AMSA <span class="text-dark"></span></a></li>
-                     
-                    </ul>
-                  </div>
-                  <div class="cell-xs-6 cell-md-12 offset-top-41 offset-xs-top-0 offset-md-top-41">
-                    <!-- Archive-->
-                    <p class="big text-medium text-uppercase text-spacing-60">Archive</p>
-                    <div class="text-subline"></div>
-                    <ul class="list list-marked offset-top-30">
-                      <li><a href="#">January 2017 <span class="text-dark"></span></a></li>
-                      <li><a href="#">February 2017 <span class="text-dark"></span></a></li>
-                      <li><a href="#">March 2017 <span class="text-dark"></span></a></li>
-                      <li><a href="#">April 2017 <span class="text-dark"></span></a></li>
-                      <li><a href="#">May 2017 <span class="text-dark"></span></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Tags-->
+                  <button type="button" class="list-group-item text-danger"><% out.println(clubList.get(index).getClub_name());%></button>
+                  
                 
-              </aside>
+                </div>
+              
+            <%
+		index++;
+		}
+	%>
+	</div>
             </div>
-          </div>
-        </div>
-      </main>
-      <!-- Page Footer-->
+	
+	
+	
+	
+	<!-- Page Footer -->
       <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">

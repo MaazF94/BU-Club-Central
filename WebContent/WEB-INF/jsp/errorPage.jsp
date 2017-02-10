@@ -112,36 +112,17 @@
 								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
 								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
 								<div>
-									<div class="offset-top-24 text-darker big text-bold">Login
-										to your account</div>
-									<p class="text-extra-small text-dark offset-top-4">Enter
-										your credentials below</p>
+									<div class="offset-top-24 text-darker big text-bold">Error logging in</div>
+									<p class="text-extra-small text-dark offset-top-4"> Click on login again to retry</p>
 								</div>
 								<!-- RD Mailform-->
 								<form data-form-output="form-output-global"
 									data-form-type="contact" method="post"
 									class="text-left offset-top-30">
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-login" placeholder="Your Username"
-												type="text" name="username" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
-												id="login-your-password" placeholder="Your Password"
-												type="password" name="password" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
+									
 									<button type="submit"
 										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
-										Sign In <span
+										Login Again<span
 											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
 									</button>
 
@@ -156,9 +137,7 @@
 									</div>
 									
 								</div>
-								<div name = "error">
-								<p class = "text-danger">${error} </p>
-								</div>
+								
 							</div>
 						</div>
 					</div>

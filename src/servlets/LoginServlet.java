@@ -57,8 +57,10 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(user.getFirst_name());
 			System.out.println("logged in");
 			response.sendRedirect("HomeServlet");
+			
 		}else {
-			response.sendRedirect("LoginServlet");
+			
+			response.sendRedirect("errorLogin");
 		}
 		
 		//Need to add if checks for where to long into when there are different roles. ie: user, admin, president

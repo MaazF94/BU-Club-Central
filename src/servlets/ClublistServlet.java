@@ -1,26 +1,29 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.models.Club;
 
 /**
- * Servlet implementation class AdminHome
+ * Servlet implementation class ClublistServlet
  */
-@WebServlet("/AdminHome")
-public class AdminHomeServlet extends HttpServlet {
+@WebServlet("/ClublistServlet")
+public class ClublistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminHomeServlet() {
+    public ClublistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +33,16 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		ClubDao cDao = new ClubDao(); 
+		LinkedList<Club> clubList = new LinkedList<Club>();
+		clubList =cDao.displayClub(); 
+		
+
+		
+		request.getSession().setAttribute("clubs", clubList);
+		
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,10 +50,7 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		ClubDao cDao = new ClubDao();
-		cDao.addClub(request.getParameter("clubName"),Integer.parseInt(request.getParameter("club_id_num")), Integer.parseInt(request.getParameter("memberCount")), 1);
-		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		doGet(request, response);
 	}
 
 }
