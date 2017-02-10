@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import edu.ben.bu_club_central.daos.UserDao;
 
 /**
- * Servlet implementation class BoardMemberDashBoardServlet
+ * Servlet implementation class BmEditUserInfoServlet
  */
-@WebServlet("/BoardMemberDashBoard")
-public class BoardMemberDashBoardServlet extends HttpServlet {
+@WebServlet("/BmEditUserInfoServlet")
+public class BmEditUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardMemberDashBoardServlet() {
+    public BmEditUserInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,8 +28,7 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashBoard.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -38,34 +37,40 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDao uDao = new UserDao();
 		
-		if(uDao.checkNumericOnly(request.getParameter("id_num"))) {
-			if(add_removeUserFromClub(request.getParameter("add_removeButton"), request.getParameter("id_num"))) {
+		if(uDao.checkEmail(request.getParameter("newEmail"))) {
+			if(!uDao.checkId_num(request.getParameter("id_num"))) {
+				if(editUserInfo(request.getParameter("oldEmail"), request.getParameter("newEmail"), request.getParameter("id_num"))) {
+					response.sendRedirect("BoardMemberDashBoard");
+				}else {
+					response.sendRedirect("BoardMemberDashBoard");
+				}
+			}else {
 				response.sendRedirect("BoardMemberDashBoard");
 			}
+			
 		}else {
 			response.sendRedirect("BoardMemberDashBoard");
 		}
 		
+		
 	}
-	
+
 	/**
-	 * This method calls the add_remove from club method in user dao
-	 * @param add_remove String parameter for add or remove: either add or remove for values
-	 * @param id_num the id of the user you are adding or removing
-	 * @return true if they add/remove user false otherwise
+	 * This method edits users email
+	 * @param oldEmail for user
+	 * @param newEmail for user
+	 * @param id_num for user
+	 * @return true if email is changed or false if not
 	 */
-	public boolean add_removeUserFromClub(String add_remove, String id_num) {
+	public boolean editUserInfo(String oldEmail, String newEmail, String id_num) {
 		UserDao uDao = new UserDao();
-		if(uDao.add_removeFromClub(add_remove, id_num, 1)) {
+		if(uDao.editUserEmail(oldEmail, newEmail, id_num)) {
 			return true;
-		} else {
+		}else {
 			return false;
 		}
 		
 	}
 	
 	
-	
-	
-
 }

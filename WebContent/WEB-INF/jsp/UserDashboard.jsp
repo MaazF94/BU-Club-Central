@@ -115,104 +115,63 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6" style="height: 300px">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Class List</h1>
-						</div>
-						<div class="panel-body">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Email</th>
-									</tr>
-								</thead>
+				<div class="col-lg-12" style="height: 500px">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
 
-								<!-- 	UserDao user = new UserDao(); %>
-								userList = user.getAllUsers(); %>
-								int index = 0;%>
-								String fname, lname, email; %>-->
-								<tbody>
-									<tr>
-										<!--  
-											while(index < userList.size()) {
-												fname = userList.get(index).getFirst_name();
-												lname = userList.get(index).getLast_name();
-												email = userList.get(index).getEmail();
-										%>-->
-										<td></td>
-										<td></td>
-										<td></td>
-										<!-- index++;%>
-										 } %>-->
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+						</ol>
 
-				<div class="col-lg-6" style="height: 300px">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>User dashboard</h1>
+						<h1>Upcoming Events</h1>
+
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<img src="img/snowBU2.jpg" alt="Chania">
+							</div>
+
+							<div class="item">
+								<img src="img/kindlonSnowy.jpg" alt="Chania">
+							</div>
+
+							<div class="item">
+								<img src="img/snowyBU.jpg" alt="Flower">
+							</div>
+
+
 						</div>
-						<div class="panel-body"></div>
+
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel" role="button"
+							data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#myCarousel"
+							role="button" data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
 					</div>
+
+
 				</div>
 			</div>
 		</div>
+
 
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Upcoming Events</h1>
-						</div>
-						<div class="panel-body">
-							<div class="panel-group" id="accordion">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#collapse1">Event 1</a>
-										</h4>
-									</div>
-									<div id="collapse1" class="panel-collapse collapse in">
-										<div class="panel-body">event info</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#collapse2">Event 2</a>
-										</h4>
-									</div>
-									<div id="collapse2" class="panel-collapse collapse">
-										<div class="panel-body">event info</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#collapse3">Event 3</a>
-										</h4>
-									</div>
-									<div id="collapse3" class="panel-collapse collapse">
-										<div class="panel-body">event info</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="col" style="height: 300px"></div>
 			</div>
 		</div>
+
+
+
+
+
 
 
 
@@ -221,68 +180,68 @@
 				<div class="col-lg-8">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h1>Control Panel</h1>
+							<h1>Messages</h1>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body"></div>
+						<div>
+
+							<!-- Nav tabs -->
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#users"
-									aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
-								<li role="presentation"><a href="#events"
-									aria-controls="events" role="tab" data-toggle="tab">Events</a></li>
-								<li role="presentation"><a href="#messages"
-									aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-								<li role="presentation"><a href="#email"
-									aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
+								<li role="presentation" class="active"><a href="#inbox"
+									aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
+								<li role="presentation"><a href="#sent"
+									aria-controls="sent" role="tab" data-toggle="tab">Sent</a></li>
+
 							</ul>
 
 							<!-- Tab panes -->
 							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="users">
+								<div role="tabpanel" class="tab-pane active" id="inbox">
+									inbox that displays all messages</div>
+								<div role="tabpanel" class="tab-pane" id="sent">send
+									messages to other users</div>
 
-									edit user info</div>
-								<div role="tabpanel" class="tab-pane" id="events">
-
-									edit/create events</div>
-								<div role="tabpanel" class="tab-pane" id="messages">send
-									messages</div>
-								<div role="tabpanel" class="tab-pane" id="email">send
-									emails</div>
 							</div>
+
 						</div>
+
+
+
 					</div>
 				</div>
+
 
 				<div class="col-lg-4">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h1>Club Statistics</h1>
+							<h1>Club Central</h1>
 						</div>
-						<div class="panel-body">
-							# members
-							# users
-							club info
-							
-							more info
-						
+						<div class="panel-body"></div>
+						<div>
+
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#activeClubs"
+									aria-controls="activeClubs" role="tab" data-toggle="tab">Active Clubs</a></li>
+								<li role="presentation"><a href="#editClubs"
+									aria-controls="editClubs" role="tab" data-toggle="tab">Edit Clubs</a></li>
+								
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="activeClubs">
+									Display clubs that you are in
+								</div>
+								<div role="tabpanel" class="tab-pane" id="editClubs">
+									tab to where you request to join club or leave club
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
 		</div>
-
-
-
-
-
-
 
 
 

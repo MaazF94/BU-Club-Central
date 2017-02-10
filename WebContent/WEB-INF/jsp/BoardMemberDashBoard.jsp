@@ -150,12 +150,26 @@
 										<!-- Inner Tab panes -->
 										<div class="tab-content">
 											<div role="tabpanel" class="tab-pane active" id="tab1">
-												form to edit user info</div>
-											<div role="tabpanel" class="tab-pane" id="tab2">form to
-												add/remove user from club</div>
+												<form action="BmEditUserInfoServlet" method="POST">
+													Old Email: <input type="text" name="oldEmail"><br>
+													New Email: <input type="text" name="newEmail"><br>
+													ID Number: <input type="text" name="id_num" > <br>
+													<button type="submit">Submit</button>
+												</form>
+
+											</div>
+											<div role="tabpanel" class="tab-pane" id="tab2">
+													<form method="POST" action="BoardMemberDashBoard">
+													ID Number: <input type="text" name="id_num"><br>
+
+													<input type="radio" name="add_removeButton" value="Add"> Add <br>
+													<input type="radio" name="add_removeButton" value="Remove"> Remove <br>
+													<button type="submit">Submit</button>
+												</form>
+											
+											</div>
 										</div>
 									</div>
-									edit user info
 								</div>
 
 
@@ -246,8 +260,8 @@
 									</div>
 									send emails
 								</div>
-								
-								
+
+
 								<div role="tabpanel" class="tab-pane" id="club">
 
 
@@ -256,7 +270,8 @@
 											<!-- Inner user tabs -->
 											<ul class="nav nav-tabs" role="tablist">
 												<li role="presentation" class="active"><a href="#tab1"
-													aria-controls="tab1" role="tab" data-toggle="tab">edit club info</a></li>
+													aria-controls="tab1" role="tab" data-toggle="tab">edit
+														club info</a></li>
 
 											</ul>
 

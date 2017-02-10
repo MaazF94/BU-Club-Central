@@ -263,4 +263,62 @@ public class UserDao {
 		return userList;
 	}
 
+	/**
+	 * Adds or removes users from club 
+	 * @param add_remove String value that is either add or remove to determine what sql string to create
+	 * @param id_num the id number of the user that is being added/removed from club
+	 * @param club_id the id of the club that the user is being added or removed from
+	 * @return
+	 */
+	public boolean add_removeFromClub(String add_remove, String id_num, int club_id) {
+		String sql;
+		PreparedStatement ps;
+		
+		
+		if(add_remove.equals("Add")) {
+			sql = "UPDATE " + tableName + " SET club_id_num='" + club_id + "' WHERE id_num=" + id_num;
+		}else {
+			sql = "UPDATE " + tableName + " SET club_id_num='0' WHERE id_num=" + id_num;
+		}
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks to make sure that value pasted in is all numbers
+	 * @param num String num 
+	 * @return true if value passed in is all numeric false otherwise 
+	 */
+	public boolean checkNumericOnly(String num) {
+		char[] numArray = num.toCharArray();
+		
+		for (int i = 0; i < num.length(); i++) {
+			if (!Character.isDigit(numArray[i])) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	public boolean editUserEmail(String oldEmail, String newEmail, String id_num) {
+		String sql = "UPDATE " + tableName + " SET email='" + newEmail + "' WHERE id_num=" + id_num;
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

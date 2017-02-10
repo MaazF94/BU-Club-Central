@@ -43,7 +43,7 @@
                                   <p class="text-extra-small text-dark offset-top-4">Enter your credentials below</p>
                                 </div>
                       <!-- RD Mailform-->
-                      <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
+                      <form data-form-output="form-output-global" data-form-type="contact" method="post" action="LoginServlet" class="text-left offset-top-30">
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
                             <input id="login-your-login" placeholder="Your Username" type="text" name="username" data-constraints="@Required" class="form-control">

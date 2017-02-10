@@ -46,10 +46,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user;
 		
-		if(request.getParameter("username").equals(null) || request.getParameter("password").equals(null)) {
+		if(!request.getParameter("username").equals(null) || !request.getParameter("password").equals(null)) {
 			if(!loginUser(request.getParameter("username")).equals(null)) {
 				user = uDao.getUserByUsername(request.getParameter("username"));
 				request.getSession().setAttribute("user", user);
+//				request.getSession().setAttribute("signIn", user.getFirst_name());
 		        request.getRequestDispatcher("HomeServlet").forward(request, response);
 			}else {
 				response.sendRedirect("LoginServlet");
