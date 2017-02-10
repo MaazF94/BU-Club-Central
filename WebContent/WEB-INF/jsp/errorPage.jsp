@@ -4,7 +4,7 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Register</title>
+<title>Login</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -26,18 +26,82 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
-		<!-- Page Content-->
-		<main class="page-content bg-shark-radio">
-		<div class="one-page">
-			<div class="one-page-header">
-				<!--Navbar Brand-->
-				<div class="rd-navbar-brand">
-					<a href="#"><img style='margin-top: 5px; margin-left: -30px;'
-						width='150' height='42'
-						src='img/logo_benedictinetransparentwhite.png' alt='' /></a>
+		<!-- Page Head-->
+		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
+		<div class="rd-navbar-wrap">
+			<nav data-md-device-layout="rd-navbar-fixed"
+				data-lg-device-layout="rd-navbar-static"
+				class="rd-navbar rd-navbar-default rd-navbar-transparent"
+				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
+				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
+			<div class="rd-navbar-inner">
+				<!-- RD Navbar Panel-->
+				<div class="rd-navbar-panel">
+					<!-- RD Navbar Toggle-->
+					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
+						class="rd-navbar-toggle">
+						<span></span>
+					</button>
+					<!--Navbar Brand-->
+					<div class="rd-navbar-brand">
+						<a href="index.html"><img class='img-responsive' width='40'
+							height='30' src='img/BURedTransparent.png' alt='' /></a>
+					</div>
+				</div>
+
+				<div class="rd-navbar-menu-wrap">
+					<div class="rd-navbar-nav-wrap">
+						<div class="rd-navbar-mobile-scroll">
+
+							<!--Navbar Brand Mobile-->
+							<div class="rd-navbar-mobile-brand">
+								<a href="index.html"><img class='img-responsive' width='238'
+									height='30' src='img/BUred.png' alt='' /></a>
+							</div>
+							<div class="form-search-wrap">
+								<!-- RD Search Form-->
+								<form action="search-results.html" method="GET"
+									class="form-search rd-search">
+									<div class="form-group">
+										<label for="rd-navbar-form-search-widget"
+											class="form-label form-search-label form-label-sm">Search</label>
+										<input id="rd-navbar-form-search-widget" type="text" name="s"
+											autocomplete="off"
+											class="form-search-input input-sm form-control form-control-gray-lightest input-sm" />
+									</div>
+									<button type="submit" class="form-search-submit">
+										<span class="mdi mdi-magnify"></span>
+									</button>
+								</form>
+							</div>
+							<!-- RD Navbar Nav-->
+							<ul class="rd-navbar-nav">
+								<li class=""><a href="HomeServlet"><span>Home</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li class=""><a href="MeetTheAdminsServlet"><span>About
+											Us</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li><a href="EventServlet"><span>Events</span></a>
+								<li><a href="ClublistServlet"><span>clubs</span></a>
+								
+								<li><a href="LoginServlet"><span>Sign in</span></a>
+								
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+
+
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--RD Navbar Search-->
+				
 				</div>
 			</div>
-			<!-- Register-->
+			</nav>
+		</div>
+		<!-- Page Content--> <main class="page-content bg-shark-radio">
+		<div class="one-page">
+			<!-- Login-->
 			<section>
 			<div class="shell">
 				<div class="range">
@@ -48,93 +112,32 @@
 								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
 								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
 								<div>
-									<div class="offset-top-24 text-darker big text-bold">Create
-										your account</div>
-									<p class="text-extra-small text-dark offset-top-4">All
-										fields are required</p>
+									<div class="offset-top-24 text-darker big text-bold">Error logging in</div>
+									<p class="text-extra-small text-dark offset-top-4"> Click on login again to retry</p>
 								</div>
 								<!-- RD Mailform-->
 								<form data-form-output="form-output-global"
 									data-form-type="contact" method="post"
 									class="text-left offset-top-30">
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-user-name" placeholder="First Name" type="text"
-												name="first_name" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-user-name" placeholder="Last Name" type="text"
-												name="last_name" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-user-name" placeholder="User Name" type="text"
-												name="username" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-email-outline"></span></span> <input
-												id="login-email" placeholder="E-Mail" type="email"
-												name="email" data-constraints="@Required @Email"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-user-name" placeholder="ID Number" type="text"
-												name="id_num" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
-												id="login-password" placeholder="Password" type="password"
-												name="passwrd" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-lock-outline"></span></span> <input
-												id="login-repeat-password" placeholder="Repeat a password"
-												type="password" name="repeat-passwrd"
-												data-constraints="@Required" class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-24">
-										<label class="checkbox-inline"> <input
-											name="login-radio" value="checkbox-1" type="checkbox"
-											class="checkbox-custom"><span
-											class="text-dark text-extra-small">I agree with the <a
-												href="#" class="text-picton-blue">Terms of use</a>.
-										</span>
-										</label>
-									</div>
+									
 									<button type="submit"
-										class="btn btn-xs btn-icon btn-block btn-primary btn btn-danger">
-										Sign Up <span
+										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
+										Login Again<span
 											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
 									</button>
+
 								</form>
+								
+								<div
+									class="offset-top-30 text-sm-left text-dark text-extra-small">
+									<a href="#" class="text-picton-blue">Forgot your password?</a>
+									<div class="offset-top-0">
+										Don't have an account? <a href="RegisterServlet"
+											class="text-picton-blue">Sign up here</a>.
+									</div>
+									
+								</div>
+								
 							</div>
 						</div>
 					</div>

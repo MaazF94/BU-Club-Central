@@ -6,21 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class TestServlet
  */
-@WebServlet("/HomeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/TestServlet")
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-       
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public HomeServlet() {
-        super();
+    public TestServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -29,10 +26,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
-		
-		session.setAttribute("signIn", "Sign In");
-		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

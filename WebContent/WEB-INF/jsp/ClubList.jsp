@@ -2,13 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
-<%@ page import="java.util.LinkedList"%>   
+<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
-
   <head>
     <!-- Site Title-->
-    <title>Contact Us</title>
+    <title>Events</title>
    
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -27,12 +26,13 @@
   <body>
     <!-- Page-->
     <div class="page text-center">
-     <header class="page-head slider-menu-position">
+      <!-- Page Head-->
+      <header class="page-head slider-menu-position">
         <!-- RD Navbar Transparent-->
         <div class="rd-navbar-wrap">
           <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar container rd-navbar-floated rd-navbar-dark" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
             <div class="rd-navbar-inner">
-
+              
               <!-- RD Navbar Panel -->
               <div class="rd-navbar-panel">
                 <!-- RD Navbar Toggle-->
@@ -40,7 +40,7 @@
                 <!-- RD Navbar Top Panel Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel" class="rd-navbar-top-panel-toggle"><span></span></button>
                 <!--Navbar Brand-->
-                 <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
+                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
                 
               </div>
               <div class="rd-navbar-menu-wrap">
@@ -77,8 +77,9 @@
 							</ul>
                   </div>
                 </div>
-               
-                              
+                
+              </div>
+            </div>
           </nav>
         </div>
         <div class="context-dark">
@@ -87,106 +88,49 @@
             <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
             <div data-speed="0" data-type="html" class="rd-parallax-layer">
               <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-             <!--   <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>-->
-                
+               
               </div>
             </div>
           </section>
         </div>
       </header>
       <!-- Page Contents-->
-      <main class="page-content">
-        <section class="section-top-98 section-md-top-110 text-lg-left">
-          <div class="shell">
-            <div class="range range-xs-center range-xs-center">
+      <%
+      ClubDao cDao = new ClubDao(); 
+		LinkedList<Club> clubList = new LinkedList<Club>();
+		clubList =cDao.displayClub(); 
+		
+		int index = 0;
+	%>
+	<!-- Button items-->
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-md-7">
+                <h3 class="offset-top-30">Benedictine University Clubs</h3>
+                <p>Here is the current list of clubs.
+                </p>
+	<%
+		while (index < clubList.size()) {
+	%>
+      
             
-               <!-- Put dashboard code here -->
-                <section>
-          <div class="shell">
-            <h1>Welcome (Teachers Name)</h1>
-          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
-            <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Add Club</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                    <p class="big text-bold"></p>
-                    <form id="addClub" data-form-output="form-output-global"
-								data-form-type="contact" method="POST" action = "AdminHome"
-								class="text-left offset-top-30">
-								<h1 style="color: white;">Join a Club</h1>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="idClub" placeholder="Club ID" type="text"
-											name="idClub" data-constraints="@Required"
-											class="form-control">
-									</div>
-								</div>
-								<div class="form-group offset-top-20">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="clubName" placeholder="Club Name" type="text"
-											name="clubName" data-constraints="@Required" class="form-control">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="clubIdNum" placeholder="Club identifier" type="text"
-											name="club_id_num" data-constraints="@Required"
-											class="form-control">
-									</div>
-								</div>
-								<div class="form-group offset-top-20">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="memberCount" placeholder="Number of Members" type="text"
-											name="memberCount" data-constraints="@Required" class="form-control">
-									</div>
-								</div>
-								
-
-								<button id="submit" type="submit"
-									class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
-									Submit <span
-										class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
-								</button>
-							</form>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-              
-              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+                <div class="list-group text-left">
                 
-          </div>
-          <div class="offset-top-98 offset-lg-top-124">
-           
-        </section>
-      </main>
-    <!-- Page Footer-->
+                  <button type="button" class="list-group-item text-danger"><% out.println(clubList.get(index).getClub_name());%></button>
+                  
+                
+                </div>
+              
+            <%
+		index++;
+		}
+	%>
+	</div>
+            </div>
+	
+	
+	
+	
+	<!-- Page Footer -->
       <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">
@@ -194,38 +138,38 @@
               <div class="range range-xs-center">
                 <div class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
                   <!-- Twitter Feed-->
-                  <h6 class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter Feed</h6>
+                  <p class="text-uppercase text-spacing-60 text-bold text-center text-lg-left">Twitter Feed</p>
                   <div class="offset-top-20">
-                    <div data-twitter-username="templatemonster" data-twitter-date-hours=" hours ago" data-twitter-date-minutes=" minutes ago" class="twitter">
-                      <div data-twitter-type="tweet" class="twitter-sm">
-                        <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                        </div>
-                        <div data-tweet="text" class="twitter-text"></div>
-                        <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                      </div>
-                      <div data-twitter-type="tweet" class="twitter-sm">
-                        <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                        </div>
-                        <div data-tweet="text" class="twitter-text"></div>
-                        <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                      </div>
-                    </div>
+                          <div data-twitter-username="templatemonster" data-twitter-date-hours=" hours ago" data-twitter-date-minutes=" minutes ago" class="twitter">
+                            <div data-twitter-type="tweet" class="twitter-sm">
+                              <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
+                              </div>
+                              <div data-tweet="text" class="twitter-text"></div>
+                              <div data-screen_name="text" class="twitter-name text-bold big"></div>
+                            </div>
+                            <div data-twitter-type="tweet" class="twitter-sm">
+                              <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
+                              </div>
+                              <div data-tweet="text" class="twitter-text"></div>
+                              <div data-screen_name="text" class="twitter-name text-bold big"></div>
+                            </div>
+                          </div>
                   </div>
                 </div>
-               
                 
+               
                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
                   <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img src="img/logo_benedictinetransparentwhite.png" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
+                  <div class="footer-brand"><a href="../index.html"><img width='175' height='50' src='img/logo_benedictinetransparentwhite.png' alt=''/></a></div>
                   <div class="offset-top-50 text-xs-center text-lg-left">
-                    <ul class="list-inline">
-                      <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-                    </ul>
+                          <ul class="list-inline">
+                            <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+                            <li><a href="#" class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+                            <li><a href="#" class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+                            <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+                          </ul>
                   </div>
-                  <p class="text-darker offset-top-20">Intense &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="#">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->
                   </p>
                 </div>

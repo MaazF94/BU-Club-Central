@@ -1,25 +1,29 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+
+import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.models.Club;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class ClublistServlet
  */
-@WebServlet("/HomeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/ClublistServlet")
+public class ClublistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public ClublistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +33,16 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
+		ClubDao cDao = new ClubDao(); 
+		LinkedList<Club> clubList = new LinkedList<Club>();
+		clubList =cDao.displayClub(); 
 		
-		session.setAttribute("signIn", "Sign In");
-		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+
+		
+		request.getSession().setAttribute("clubs", clubList);
+		
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
 	}
 
 	/**

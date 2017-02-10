@@ -29,12 +29,7 @@
         <div class="rd-navbar-wrap">
           <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar container rd-navbar-floated rd-navbar-dark" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
             <div class="rd-navbar-inner">
-              <!-- RD Navbar Top Panel-->
-              <div class="rd-navbar-top-panel context-dark bg-danger">
-               
-                
-                
-              </div>
+              
               <!-- RD Navbar Panel -->
               <div class="rd-navbar-panel">
                 <!-- RD Navbar Toggle-->
@@ -42,6 +37,7 @@
                 <!-- RD Navbar Top Panel Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel" class="rd-navbar-top-panel-toggle"><span></span></button>
                 <!--Navbar Brand-->
+                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
                 
               </div>
               <div class="rd-navbar-menu-wrap">
@@ -61,33 +57,24 @@
                     </div>
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                        <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                        <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                        
-                      <li><a class = "active" href="EventServlet"><span>Events</span></a>
-                       
-                         
-                      <li><a href="#"><span>Clubs</span></a>
-                       
-                         
-                      <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
-                      
-                      <li><a href="ContactUsServlet"><span>Contact Us</span></a>
-                      
-                    </ul>
+								<li class=""><a href="HomeServlet"><span>Home</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li class=""><a href="MeetTheAdminsServlet"><span>About
+											Us</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li><a href="EventServlet"><span>Events</span></a>
+								<li><a href="ClublistServlet"><span>clubs</span></a>
+								
+								<li><a href="LoginServlet"><span>Sign in</span></a>
+								
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+
+
+								</li>
+							</ul>
                   </div>
                 </div>
-                <!--RD Navbar Search-->
-                <div class="rd-navbar-search rd-navbar-search-top-panel"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-                  <form action="search-results.html" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
-                    <div class="form-group">
-                      <label for="rd-navbar-search-form-input" class="form-label">Type and hit enter...</label>
-                      <input id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off" class="rd-navbar-search-form-input form-control form-control-gray-lightest"/>
-                    </div>
-                  </form>
-                </div>
+                
               </div>
             </div>
           </nav>
@@ -98,11 +85,7 @@
             <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
             <div data-speed="0" data-type="html" class="rd-parallax-layer">
               <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-                <h2 class="veil reveal-md-block offset-top-30"><span class="big">EVENTS</span></h2>
-                <ul class="list-inline list-inline-dashed">
-                  
-                  </li>
-                </ul>
+               
               </div>
             </div>
           </section>

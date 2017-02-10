@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Post</title>
+<title>Events</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -26,6 +30,7 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
+		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
 			<nav data-md-device-layout="rd-navbar-fixed"
@@ -76,9 +81,6 @@
 							<ul class="rd-navbar-nav">
 								<li class=""><a href="HomeServlet"><span>Home</span><span
 										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
 								<li><a class="active" href="EventServlet"><span>Events</span></a>
 								<li><a href="#"><span>Clubs</span></a>
 								<li><a class="btn btn-default" href="LoginServlet"><span>Sign
@@ -104,80 +106,157 @@
 			</div>
 			</nav>
 		</div>
-		<div class="context-dark">
-			<!-- Modern Breadcrumbs-->
-			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-			<div data-speed="0.2" data-type="media" data-url="img/interview.jpg"
-				class="rd-parallax-layer"></div>
-			<div data-speed="0" data-type="html" class="rd-parallax-layer">
-				<div
-					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-					<h2 class="veil reveal-md-block offset-top-30">
-						<span class="big">Post</span>
-					</h2>
-					<ul class="list-inline list-inline-dashed">
+		<div class="context-dark"></div>
+		</header>
+
+		<div class="container">
+			<div class="row" style="height: 200px; background: black"></div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12" style="height: 500px">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+
+						</ol>
+
+						<h1>Upcoming Events</h1>
+
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<img src="img/snowBU2.jpg" alt="Chania">
+							</div>
+
+							<div class="item">
+								<img src="img/kindlonSnowy.jpg" alt="Chania">
+							</div>
+
+							<div class="item">
+								<img src="img/snowyBU.jpg" alt="Flower">
+							</div>
 
 
-					</ul>
+						</div>
+
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel" role="button"
+							data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#myCarousel"
+							role="button" data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+
+
 				</div>
 			</div>
-			</section>
 		</div>
-		</header>
-		<!-- Page Contents-->
-		<main class="page-content section-98 section-sm-110 text-sm-left">
-		<div class="shell">
-			<div class="range">
-				<div class="cell-md-8">
-					<!-- Post Wide-->
-					<article class="post post-default text-left"> <!-- Post Header-->
-					<div class="header post-header">
-						<!-- Post Meta-->
-						<ul class="post-controls list-inline list-inline-sm p text-dark">
-							<li><span
-								class="text-middle icon-xxs text-danger mdi mdi-clock"></span> <time
-									datetime="2016-01-01" class="text-middle">05/14/2017</time></li>
 
 
-						</ul>
-						<!-- Post Meta-->
-						<h3 class="text-regular text-darker post-title">Computer
-							Science: How to interview</h3>
-						<!-- Post Media-->
-					</div>
-					<!-- PostContent--> <section class="post-content offset-top-41">
-					</section> </article>
-					<a class="thumbnail-classic" data-photo-swipe-item=""
-						data-size="1024x683" href="img/interview.jpeg"> <figure>
-						<img width="770" height="434" src="img/interview.jpeg" alt="" /> </figure></a>
-					<p>The computer science club is throwing a club event this week
-						to help graduating students learn the interviewing process and
-						what it takes to land your dream job.
-					<hr class="hr hr-gradient" />
-					<p class="h3 text-center text-italic text-regular text-darker">
+		<div class="container">
+			<div class="row">
+				<div class="col" style="height: 300px"></div>
+			</div>
+		</div>
 
-					</p>
-					<hr class="hr hr-gradient" />
 
-					<div class="offset-top-50">
-						<div class="pull-sm-left">
-							<p class="big text-bold">
-								<span class="big">Share this post:</span>
-							</p>
+
+
+
+
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h1>Messages</h1>
 						</div>
-						<ul
-							class="list-inline list-inline-sm list-inline-danger offset-top-10 offset-sm-top-0 pull-sm-right">
-							<li><a href="#" class="fa fa-facebook"></a></li>
-							<li><a href="#" class="fa fa-twitter"></a></li>
-							<li><a href="#" class="fa fa-google-plus"></a></li>
-							<li><a href="#" class="fa fa-pinterest-p"></a></li>
-						</ul>
-						<div class="clearfix"></div>
-						<hr class="offset-top-50">
-						<h4
-							class="offset-top-66 text-uppercase text-spacing-120 text-medium">Related
-							Posts</h4>
-		</main>
+						<div class="panel-body"></div>
+						<div>
+
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#inbox"
+									aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
+								<li role="presentation"><a href="#sent"
+									aria-controls="sent" role="tab" data-toggle="tab">Sent</a></li>
+
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="inbox">
+									inbox that displays all messages</div>
+								<div role="tabpanel" class="tab-pane" id="sent">send
+									messages to other users</div>
+
+							</div>
+
+						</div>
+
+
+
+					</div>
+				</div>
+
+
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h1>Club Central</h1>
+						</div>
+						<div class="panel-body"></div>
+						<div>
+
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#activeClubs"
+									aria-controls="activeClubs" role="tab" data-toggle="tab">Active Clubs</a></li>
+								<li role="presentation"><a href="#editClubs"
+									aria-controls="editClubs" role="tab" data-toggle="tab">Edit Clubs</a></li>
+								
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="activeClubs">
+									Display clubs that you are in
+								</div>
+								<div role="tabpanel" class="tab-pane" id="editClubs">
+									tab to where you request to join club or leave club
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- Page Footer-->
 		<footer
 			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
@@ -216,16 +295,13 @@
 								</div>
 							</div>
 						</div>
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-3 cell-sm-10 cell-lg-2 offset-lg-top-0 cell-lg-push-3">
 
-						</div>
 
 						<div
 							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
 							<!-- Footer brand-->
 							<div class="footer-brand">
-								<a href="../index.html"><img width='150' height='42'
+								<a href="../index.html"><img width='175' height='50'
 									src='img/logo_benedictinetransparentwhite.png' alt='' /></a>
 							</div>
 							<div class="offset-top-50 text-xs-center text-lg-left">
@@ -252,48 +328,9 @@
 		</div>
 		</footer>
 	</div>
-	<!-- Global Mailform Output-->
-	<div id="form-output-global" class="snackbars"></div>
-	<!-- PhotoSwipe Gallery-->
-	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-		<div class="pswp__bg"></div>
-		<div class="pswp__scroll-wrap">
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
-			<div class="pswp__ui pswp__ui--hidden">
-				<div class="pswp__top-bar">
-					<div class="pswp__counter"></div>
-					<button title="Close (Esc)"
-						class="pswp__button pswp__button--close"></button>
-					<button title="Share" class="pswp__button pswp__button--share"></button>
-					<button title="Toggle fullscreen"
-						class="pswp__button pswp__button--fs"></button>
-					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-								<div class="pswp__preloader__donut"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div
-					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-					<div class="pswp__share-tooltip"></div>
-				</div>
-				<button title="Previous (arrow left)"
-					class="pswp__button pswp__button--arrow--left"></button>
-				<button title="Next (arrow right)"
-					class="pswp__button pswp__button--arrow--right"></button>
-				<div class="pswp__caption">
-					<div class="pswp__caption__center"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+
 	<!-- Java script-->
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
