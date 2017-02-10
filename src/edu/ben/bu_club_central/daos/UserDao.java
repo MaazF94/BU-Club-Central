@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 
 import edu.ben.bu_club_central.models.User;
@@ -12,7 +13,6 @@ public class UserDao {
 	private String tableName = "bu_club_central.user";
 	private int enabled = 1;
 	private int disabled = 0;
-	private User userObject;
 
 	private DatabaseConnection dbc = new DatabaseConnection();
 	private Connection conn = dbc.getConn();
@@ -70,6 +70,7 @@ public class UserDao {
 
 	/**
 	 * Checks to see if the username in the database exists
+	 * 
 	 * @param username
 	 * @return
 	 */
@@ -192,8 +193,7 @@ public class UserDao {
 				return false;
 			}
 		}
-		
-		
+
 		String sql = "SELECT * FROM " + tableName + " WHERE id_num='" + id_num + "'";
 
 		PreparedStatement ps;
@@ -216,36 +216,122 @@ public class UserDao {
 			System.out.println("Did not pull from username to see if it exists 2");
 			e.printStackTrace();
 		}
-		
+
 		return true;
 	}
 
-	
-	public boolean userLogin(String username, String password) {
-		userObject = null;
-		System.out.println(username + " " + password);
-		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "' and passwrd='" + password + "'";
-		
+	public User getUserByUsername(String username) {
+		User user = null;
+		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'";
+
+		PreparedStatement ps;
+		ResultSet rs = null;
 		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-//			System.out.println(rs.getString("username"));
-			if(!rs.next()) {
-				System.out.println("Null user");
-				return false;
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
+		try {
+			if (!rs.next()) {
+				return null;
 			}else {
-				userObject = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
-				userObject.setRole_id((Integer) rs.getInt("role_id"));
-				userObject.setClub_id_num((Integer) rs.getInt("club_id_num"));
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
 			}
 		} catch (SQLException e) {
-			System.out.println("Did not login");
 			e.printStackTrace();
+		}
+
+		return user;
+	}
+	
+	public LinkedList<User> getAllUsers() {
+		User user;
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		String sql = "SELECT * FROM " + tableName;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
+
+	/**
+	 * Adds or removes users from club 
+	 * @param add_remove String value that is either add or remove to determine what sql string to create
+	 * @param id_num the id number of the user that is being added/removed from club
+	 * @param club_id the id of the club that the user is being added or removed from
+	 * @return
+	 */
+	public boolean add_removeFromClub(String add_remove, String id_num, int club_id) {
+		String sql;
+		PreparedStatement ps;
+		
+		
+		if(add_remove.equals("Add")) {
+			sql = "UPDATE " + tableName + " SET club_id_num='" + club_id + "' WHERE id_num=" + id_num;
+		}else {
+			sql = "UPDATE " + tableName + " SET club_id_num='0' WHERE id_num=" + id_num;
+		}
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks to make sure that value pasted in is all numbers
+	 * @param num String num 
+	 * @return true if value passed in is all numeric false otherwise 
+	 */
+	public boolean checkNumericOnly(String num) {
+		char[] numArray = num.toCharArray();
+		
+		for (int i = 0; i < num.length(); i++) {
+			if (!Character.isDigit(numArray[i])) {
+				return false;
+			}
 		}
 		return true;
 	}
-
-	public User getUserObject() {
-		return userObject;
+	
+	
+	public boolean editUserEmail(String oldEmail, String newEmail, String id_num) {
+		String sql = "UPDATE " + tableName + " SET email='" + newEmail + "' WHERE id_num=" + id_num;
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

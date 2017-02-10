@@ -66,14 +66,6 @@ public class RegisterServlet extends HttpServlet {
 			String passwrd2, String id_num, String email, HttpServletRequest request, HttpServletResponse response) {
 		UserDao uDao = new UserDao();
 		
-//		if(uDao.checkName(first_name, last_name) && uDao.checkUsernameChars(username) && !uDao.checkUsernameExist(username) &&
-//				uDao.checkPasswordMatch(passwrd, passwrd2) && uDao.checkId_num(id_num) && uDao.checkEmail(email)) {
-//			return true;
-//		}else {
-//			return false;
-//		}
-		
-		
 		if (uDao.checkName(first_name, last_name)) {
 			if (uDao.checkUsernameChars(username)) {
 				if (!uDao.checkUsernameExist(username)) {
