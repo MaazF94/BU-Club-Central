@@ -92,7 +92,7 @@
 							<ul class="rd-navbar-nav">
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="ClubServlet"><span>clubs</span></a></li>
+								<li><a href="ClubHomepageServlet"><span>clubs</span></a></li>
 								<li><a class="btn btn-default" href="LoginServlet"><span>
 										
 											<%
