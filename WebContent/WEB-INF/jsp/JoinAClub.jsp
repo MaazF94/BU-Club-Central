@@ -25,6 +25,10 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+
+
+
+
   </head>
   <body>
     <!-- Page-->
@@ -67,25 +71,21 @@
                       </form>
                     </div>
                     <!-- RD Navbar Nav-->
-                    <ul class="rd-navbar-nav">
-                      <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                        
-                      <li><a href="EventServlet"><span>Events</span></a>
-                       
-                         
-                      <li><a href="#"><span>clubs</span></a>
-                       
-                         
-                      <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
-                      
-                      <li><a href="ContactUsServlet"><span>Contact Us</span></a>
-                      
-                        
-                      </li>
-                    </ul>
+                  <ul class="rd-navbar-nav">
+								<li class=""><a href="HomeServlet"><span>Home</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li class=""><a href="MeetTheAdminsServlet"><span>About
+											Us</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li><a href="EventServlet"><span>Events</span></a>
+								<li><a href="ClublistServlet"><span>clubs</span></a>
+								
+								<li><a href="LoginServlet"><span>Sign in</span></a>
+								
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+
+
+								</li>
                   </div>
                 </div>
                 <!--RD Navbar Search-->

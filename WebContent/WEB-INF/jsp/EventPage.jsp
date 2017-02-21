@@ -59,15 +59,14 @@
                     <ul class="rd-navbar-nav">
 								<li class=""><a href="HomeServlet"><span>Home</span><span
 										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								
+								<li><a href="EventServlet"><span>Events</span></a>
+								<li><a href="ClublistServlet"><span>clubs</span></a>
 								<li class=""><a href="MeetTheAdminsServlet"><span>About
 											Us</span><span
 										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="ClublistServlet"><span>clubs</span></a>
-								
-								<li><a href="LoginServlet"><span>Sign in</span></a>
-								
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								<li><a href="LoginServlet"><span>Sign in</span></a>
 
 
 								</li>
@@ -84,7 +83,7 @@
           <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
             <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
             <div data-speed="0" data-type="html" class="rd-parallax-layer">
-              <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
+              <div class="shell section-top-98   ">
                
               </div>
             </div>
@@ -203,53 +202,39 @@
         </div>
       </main>
       <!-- Page Footer-->
-      <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-        <div class="shell">
-          <div class="range range-sm-center text-lg-left">
-            <div class="cell-sm-12">
-              <div class="range range-xs-center">
-                <div class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-                  <!-- Twitter Feed-->
-                  <p class="text-uppercase text-spacing-60 text-bold text-center text-lg-left">Twitter Feed</p>
-                  <div class="offset-top-20">
-                          <div data-twitter-username="templatemonster" data-twitter-date-hours=" hours ago" data-twitter-date-minutes=" minutes ago" class="twitter">
-                            <div data-twitter-type="tweet" class="twitter-sm">
-                              <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                              </div>
-                              <div data-tweet="text" class="twitter-text"></div>
-                              <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                            </div>
-                            <div data-twitter-type="tweet" class="twitter-sm">
-                              <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                              </div>
-                              <div data-tweet="text" class="twitter-text"></div>
-                              <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                            </div>
-                          </div>
-                  </div>
-                </div>
-                
-               
-                <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img width='175' height='50' src='img/logo_benedictinetransparentwhite.png' alt=''/></a></div>
-                  <div class="offset-top-50 text-xs-center text-lg-left">
-                          <ul class="list-inline">
-                            <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-                            <li><a href="#" class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-                            <li><a href="#" class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-                            <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-                          </ul>
-                  </div>
-                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="#">Privacy Policy</a>
-                    <!-- {%FOOTER_LINK}-->
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+     <footer class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+		<div class="shell">
+			<div class="range range-sm-center text-lg-left">
+				<div class="cell-sm-12">
+					<div class="range range-xs-center">
+
+
+						<div
+							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+							<!-- Footer brand-->
+							<div class="offset-top-50 text-xs-center text-lg-left">
+								<ul class="list-inline">
+									<li><a href="#"
+										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="#"
+										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="#"
+										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="#"
+										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+								</ul>
+							</div>
+							<p class="text-darker offset-top-20">
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+									href="privacy.html">Privacy Policy</a>
+								<!-- {%FOOTER_LINK}-->
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
     </div>
     <!-- Global Mailform Output-->
     <div id="form-output-global" class="snackbars"></div>
