@@ -95,8 +95,12 @@
 
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="#"><span>clubs</span></a></li>
-								<li><a class="btn btn-default" href="LoginServlet"><span>
+								<li><a href="ClubListServlet"><span>clubs</span></a></li>
+								
+									<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
+								 <li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li><a class="" href="LoginServlet"><span>
 										
 											<%
 												if (session.getAttribute("user") == null) {
@@ -110,8 +114,6 @@
 
 
 									</span></a></li>
-								<li><a class="btn btn-default" href="LogoutServlet"><span>Logout</span></a></li>
-								 <li><a href="ContactUsServlet"><span>Contact Us</span></a>
 
 							</ul>
 						</div>
@@ -158,53 +160,16 @@
 		</div>
 		</section> </header>
 		<!-- Page Footer-->
-		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+		<footer class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
 					<div class="range range-xs-center">
-						<div
-							class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-							<!-- Twitter Feed-->
-							<h6
-								class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter
-								Feed</h6>
-							<div class="offset-top-20">
-								<div data-twitter-username="templatemonster"
-									data-twitter-date-hours=" hours ago"
-									data-twitter-date-minutes=" minutes ago" class="twitter">
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-								</div>
-							</div>
-						</div>
 
 
 						<div
 							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
 							<!-- Footer brand-->
-							<div class="footer-brand">
-								<a href="../index.html"><img src="img/kindlonSnowy.jpg"
-									width="238" height="30" alt=""
-									class="img-responsive reveal-inline-block"></a>
-							</div>
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
 									<li><a href="#"
@@ -218,7 +183,7 @@
 								</ul>
 							</div>
 							<p class="text-darker offset-top-20">
-								Intense &copy; <span id="copyright-year"></span> . <a
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
 								<!-- {%FOOTER_LINK}-->
 							</p>
