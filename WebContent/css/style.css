@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /**
 * Template Style
 *
@@ -2682,13 +2682,13 @@ fieldset[disabled] .pagination-classic > li > a {
     border-color: #985f0d; }
   .btn-warning:hover {
     color: #fff;
-    background-color: #ec971f;
+    background-color:#d58512;
     border-color: #d58512; }
   .btn-warning:active, .btn-warning.active,
   .open > .btn-warning.dropdown-toggle {
     color: #fff;
     background-color: #ec971f;
-    border-color: #d58512; }
+    border-color: #ef2b2b; }
     .btn-warning:active:hover, .btn-warning:active:focus, .btn-warning:active.focus, .btn-warning.active:hover, .btn-warning.active:focus, .btn-warning.active.focus,
     .open > .btn-warning.dropdown-toggle:hover,
     .open > .btn-warning.dropdown-toggle:focus,
