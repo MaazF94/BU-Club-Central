@@ -95,7 +95,7 @@
 
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="ClubListServlet"><span>clubs</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
 								
 									<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
