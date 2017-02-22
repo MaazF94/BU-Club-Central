@@ -26,6 +26,9 @@
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 
+
+
+
   </head>
   <body>
     <!-- Page-->
@@ -224,5 +227,4 @@
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
   </body>
->>>>>>> 6a07248455ec42ffab228455552389188599cce7
 </html>
