@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
-<%@ page import="edu.ben.bu_club_central.models.Club"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
-
   <head>
     <!-- Site Title-->
-    <title>Contact Us</title>
+    <title>Club Dashboard</title>
    
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -31,7 +26,7 @@
         <div class="rd-navbar-wrap">
           <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar container rd-navbar-floated rd-navbar-dark" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
             <div class="rd-navbar-inner">
-
+              <!-- RD Navbar Top Panel-->
               <!-- RD Navbar Panel -->
               <div class="rd-navbar-panel">
                 <!-- RD Navbar Toggle-->
@@ -39,7 +34,6 @@
                 <!-- RD Navbar Top Panel Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel" class="rd-navbar-top-panel-toggle"><span></span></button>
                 <!--Navbar Brand-->
-                 <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
                 
               </div>
               <div class="rd-navbar-menu-wrap">
@@ -59,34 +53,38 @@
                     </div>
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="ClublistServlet"><span>clubs</span></a>
-								
-								<li><a href="LoginServlet"><span>Sign in</span></a>
-								
-								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-
-
-								</li>
-							</ul>
+                        <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                        
+                      <li><a class = "active" href="EventServlet"><span>Events</span></a>
+                       
+                         
+                      <li><a href="#"><span>Clubs</span></a>
+                       
+                         
+                      <li><a class="" href="LoginServlet"><span>Sign out</span></a>
+                    </ul>
                   </div>
                 </div>
-               
-                              
+                <!--RD Navbar Search-->
+                <div class="rd-navbar-search rd-navbar-search-top-panel"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
+                  <form action="search-results.html" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
+                    <div class="form-group">
+                      <label for="rd-navbar-search-form-input" class="form-label">Type and hit enter...</label>
+                      <input id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off" class="rd-navbar-search-form-input form-control form-control-gray-lightest"/>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </nav>
         </div>
         <div class="context-dark">
           <!-- Modern Breadcrumbs-->
           <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-            <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
+            <div data-speed="0.2" data-type="media" data-url="img/BUSenate.jpg" class="rd-parallax-layer"></div>
             <div data-speed="0" data-type="html" class="rd-parallax-layer">
               <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-             <!--   <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>-->
+                <h2 class="veil reveal-md-block offset-top-30"><span class="big"><br> <br> </span></h2>
                 
               </div>
             </div>
@@ -95,94 +93,39 @@
       </header>
       <!-- Page Contents-->
       <main class="page-content">
-        <section class="section-top-98 section-md-top-110 text-lg-left">
+        <section id="welcome" class="section-98 section-sm-110">
           <div class="shell">
-            <div class="range range-xs-center range-xs-center">
-            
-               <!-- Put dashboard code here -->
-                <section>
-          <div class="shell">
-            <h1>Welcome (Teachers Name)</h1>
-          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
-            <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Add Club</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                    <p class="big text-bold"></p>
-                    <form id="addClub" data-form-output="form-output-global"
-								data-form-type="contact" method="POST" action = "AdminHome"
-								class="text-left offset-top-30">
-								<h1 style="color: white;">Join a Club</h1>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="idClub" placeholder="Club ID" type="text"
-											name="idClub" data-constraints="@Required"
-											class="form-control">
-									</div>
-								</div>
-								<div class="form-group offset-top-20">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="clubName" placeholder="Club Name" type="text"
-											name="clubName" data-constraints="@Required" class="form-control">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="clubIdNum" placeholder="Club identifier" type="text"
-											name="club_id_num" data-constraints="@Required"
-											class="form-control">
-									</div>
-								</div>
-								<div class="form-group offset-top-20">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="memberCount" placeholder="Number of Members" type="text"
-											name="memberCount" data-constraints="@Required" class="form-control">
-									</div>
-								</div>
-								
-
-								<button id="submit" type="submit"
-									class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
-									Submit <span
-										class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
-								</button>
-							</form>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
+            <h1>Welcome</h1>
+            <hr class="divider bg-red">
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-lg-8">
+                <p>Welcome to the Benedictine Senate homepage! From here you can:</p>
+              </div>
+            </div>
+            <div class="range offset-top-98">
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
+                <!-- Icon Box Type 5-->
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#sendModal"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-email"></span></a>
+                  <h4 class="text-danger offset-top-20">Send an E-mail</h4>
+                  <p></p>
+                </div>
+              </div>
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
+                <!-- Icon Box Type 5-->
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#deleteModal"><span class="icon icon-outlined icon-xs icon-dark-filled mdi mdi-account"></span></a>
+                  <h4 class="text-danger offset-top-20">Join the Club!</h4>
+                  <p></p>
+                </div>
+              </div>
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
+                <!-- Icon Box Type 5-->
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#createModal"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-calendar-check thumbnail:hover"></span> </a>
+                  <h4 class="text-danger offset-top-20">RSVP for an Event</h4>
+                  <p></p>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-              
-              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
-                
-          </div>
-          <div class="offset-top-98 offset-lg-top-124">
-           
         </section>
       </main>
     <!-- Page Footer-->
@@ -224,7 +167,7 @@
                       <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
                     </ul>
                   </div>
-                  <p class="text-darker offset-top-20">Intense &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                  <p class="text-darker offset-top-20">The F.I.R.M. &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->
                   </p>
                 </div>
@@ -271,6 +214,92 @@
         </div>
       </div>
     </div>
+<!-- delete Modal -->
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog" style="top:25%;">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span> Member ID</label>
+              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+            <div class="form-group">
+              <label for="email"><span class="glyphicon glyphicon-eye-open"></span> Member E-mail</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> Join</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+  <!-- send Modal -->
+  <div class="modal fade" id="sendModal" role="dialog">
+    <div class="modal-dialog" style="top:25%;">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group offset-top-20">
+                <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"> <i class="fa fa-commenting-o" style="font-size:19px"></i></span>
+                  <textarea style="height:100px;" id="comment" placeholder="Type your message here..." type="text" name="content"class="form-control"></textarea> 
+                </div>
+              </div>
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-email"></span> Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+<!-- create Modal -->
+  <div class="modal fade" id="createModal" role="dialog">
+    <div class="modal-dialog" style="top:25%;">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span>Event Date</label>
+              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+            <div class="form-group">
+              <label for="email"><span class="glyphicon glyphicon-eye-open"></span> Event Name</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span> Location</label>
+              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+            
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> RSVP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>   
+<script>
+$(document).ready(function(){
+        $("#deleteModal").modal();
+        $("#sendModal").modal();
+        $("#createModal").modal();
+    });
+</script>
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
