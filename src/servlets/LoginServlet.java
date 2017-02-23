@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user;
 		
+
 		if(!request.getParameter("username").equals(null) || !request.getParameter("password").equals(null)) {
 			if(!(loginUser(request.getParameter("username")) == null)) {
 				user = uDao.getUserByUsername(request.getParameter("username"));
@@ -61,8 +62,14 @@ public class LoginServlet extends HttpServlet {
 			}else {
 				response.sendRedirect("HomeServlet");
 			}
+
 		}else {
+<<<<<<< HEAD
 			response.sendRedirect("HomeServlet");
+=======
+			
+			response.sendRedirect("errorLogin");
+>>>>>>> Sprint3
 		}
 		
 		//Need to add if checks for where to long into when there are different roles. ie: user, admin, president

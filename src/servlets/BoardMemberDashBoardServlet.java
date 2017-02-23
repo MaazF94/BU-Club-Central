@@ -27,7 +27,12 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashBoard.jsp").forward(request, response);
+=======
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+>>>>>>> Sprint3
 	}
 
 	/**

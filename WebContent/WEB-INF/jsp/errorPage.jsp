@@ -1,82 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE HTML>
-
-
-<%@ page import="edu.ben.bu_club_central.models.User"%>
-<!--
-	Introspect by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-	<head>
-		<title>Introspect by TEMPLATED</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body>
-
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="index.html" class="logo">introspect</a>
-					<nav id="nav">
-						<a href="HomeServlet">Home</a>
-						<a href="generic.html">Clubs</a>
-						<a href="LoginServlet">
-							<%	if (session.getAttribute("user") == null) {
-									%> Sign In <%
-								} else {
-							%>
-							<%=((User) session.getAttribute("user")).getFirst_name()%>
-							<%
-								}
-							%>
-						
-						</a>
-					</nav>
-				</div>
-			</header>
-			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-
-		
-		
-		
-		  <div class="container col-lg-6" align="center" >
-    <form class="form-signin" method="POST" action="LoginServlet">       
-      <h2 class="form-signin-heading">Please login</h2>
-      <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
-      
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
-    </form>
-  </div>
-		
-		
-		<div class="container">
-			<div class="row">
-				<button>Register</button>
-			</div>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
-=======
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -101,7 +22,6 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
-
 </head>
 <body>
 	<!-- Page-->
@@ -192,36 +112,17 @@
 								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
 								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
 								<div>
-									<div class="offset-top-24 text-darker big text-bold">Login
-										to your account</div>
-									<p class="text-extra-small text-dark offset-top-4">Enter
-										your credentials below</p>
+									<div class="offset-top-24 text-darker big text-bold">Error logging in</div>
+									<p class="text-extra-small text-dark offset-top-4"> Click on login again to retry</p>
 								</div>
 								<!-- RD Mailform-->
 								<form data-form-output="form-output-global"
 									data-form-type="contact" method="post"
 									class="text-left offset-top-30">
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-login" placeholder="Your Username"
-												type="text" name="username" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
-												id="login-your-password" placeholder="Your Password"
-												type="password" name="password" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
+									
 									<button type="submit"
 										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
-										Sign In <span
+										Login Again<span
 											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
 									</button>
 
@@ -236,9 +137,7 @@
 									</div>
 									
 								</div>
-								<div name = "error">
-								<p class = "text-danger">${error} </p>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -300,6 +199,4 @@
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
-
->>>>>>> Sprint3
 </html>

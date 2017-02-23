@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.ClubDao;
-import edu.ben.bu_club_central.models.Club;
-
 /**
- * Servlet implementation class AdminHome
+ * Servlet implementation class errorLogin
  */
-@WebServlet("/AdminHome")
-public class AdminHomeServlet extends HttpServlet {
+@WebServlet("/errorLogin")
+public class errorLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminHomeServlet() {
+    public errorLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +27,7 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/errorPage.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,10 +35,7 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		ClubDao cDao = new ClubDao();
-		cDao.addClub(request.getParameter("clubName"),Integer.parseInt(request.getParameter("club_id_num")), Integer.parseInt(request.getParameter("memberCount")), 1);
-		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		response.sendRedirect("LoginServlet");
 	}
 
 }
