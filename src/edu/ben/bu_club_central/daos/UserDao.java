@@ -239,6 +239,7 @@ public class UserDao {
 			}else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				user.setRole_id(rs.getInt("role_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -50,13 +50,19 @@ public class LoginServlet extends HttpServlet {
 			if(!(loginUser(request.getParameter("username")) == null)) {
 				user = uDao.getUserByUsername(request.getParameter("username"));
 				request.getSession().setAttribute("user", user);
-//				request.getSession().setAttribute("signIn", user.getFirst_name());
-		        request.getRequestDispatcher("HomeServlet").forward(request, response);
+
+				if (user.getRole_id() == 1) {
+					response.sendRedirect("UserServlet");
+				} else if (user.getRole_id() == 2) {
+					response.sendRedirect("BoardMemberDashBoard");
+				} else {
+					response.sendRedirect("AdminHome");
+				}
 			}else {
-				response.sendRedirect("LoginServlet");
+				response.sendRedirect("HomeServlet");
 			}
 		}else {
-			response.sendRedirect("LoginServlet");
+			response.sendRedirect("HomeServlet");
 		}
 		
 		//Need to add if checks for where to long into when there are different roles. ie: user, admin, president
