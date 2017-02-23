@@ -69,23 +69,21 @@
                     </div>
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                      <li class=""><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                      <li><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
-                      <li class=""><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+                      <li><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
                         
                         
                       <li><a href="EventServlet"><span>Events</span></a>
                        
                          
-                      <li><a href="#"><span>clubs</span></a>
+                      <li><a href="ClubListServlet"><span>clubs</span></a>
+                      
+                      <li><a href="ContactUsServlet"><span>Contact Us</span></a></li>
                        
-                         
-                      <li><a class="btn btn-default" href="LoginServlet"><span>Sign in</span></a>
+                      <li><a href="LoginServlet"><span>Sign in</span></a>
                       
-                      <li><a href="ContactUsServlet"><span>Contact Us</span></a>
                       
-                        
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -235,4 +233,5 @@
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
   </body>
+
 </html>
