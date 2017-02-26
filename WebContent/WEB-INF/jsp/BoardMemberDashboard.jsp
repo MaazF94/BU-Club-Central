@@ -105,22 +105,22 @@
             <div class="range offset-top-98">
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
                 <!-- Icon Box Type 5-->
-                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#sendModal"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-email"></span></a>
-                  <h4 class="text-danger offset-top-20">Send an E-mail</h4>
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#sendModal"><span class="icon glyphicon glyphicon-warning-sign"></span></a>
+                  <h4 class="text-danger offset-top-20">Edit Club</h4>
                   <p></p>
                 </div>
               </div>
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
                 <!-- Icon Box Type 5-->
-                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#deleteModal"><span class="icon icon-outlined icon-xs icon-dark-filled mdi mdi-account"></span></a>
-                  <h4 class="text-danger offset-top-20">Join the Club!</h4>
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#deleteModal"><span class="icon glyphicon glyphicon-modal-window"></span></a>
+                  <h4 class="text-danger offset-top-20">Create a Post</h4>
                   <p></p>
                 </div>
               </div>
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
                 <!-- Icon Box Type 5-->
-                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#createModal"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-calendar-check thumbnail:hover"></span> </a>
-                  <h4 class="text-danger offset-top-20">RSVP for an Event</h4>
+                <div class="box-icon box-icon-bordered"><a data-toggle="modal" href="#createModal"><span class="icon glyphicon glyphicon-calendar"></span> </a>
+                  <h4 class="text-danger offset-top-20">Create an Event</h4>
                   <p></p>
                 </div>
               </div>
@@ -224,17 +224,17 @@
           
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
+          <form role="form" method="POST" action="CreatePostServlet">
             <div class="form-group">
-              <label for="id"><span class="glyphicon glyphicon-user"></span> Member ID</label>
-              <input type="text" class="form-control" id="id" placeholder="Enter ID">
+              <label for="id"><span class="glyphicon glyphicon-pushpin"></span> Post Title</label>
+              <input name="postTitle" type="text" class="form-control" id="id" placeholder="Enter Title">
             </div>
             <div class="form-group">
-              <label for="email"><span class="glyphicon glyphicon-eye-open"></span> Member E-mail</label>
-              <input type="text" class="form-control" id="email" placeholder="Enter email">
+              <label for=""><span class="glyphicon glyphicon-comment"></span> Post Description</label>
+              <textarea style="height:100px;" name="postDescription" id="comment" placeholder="Enter Description" type="text" class="form-control"></textarea> 
             </div>
             
-            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> Join</button>
+            <button type="submit" class="btn btn-danger center"><span class="glyphicon glyphicon-pencil"></span> Post</button>
           </form>
         </div>
       </div>
@@ -275,22 +275,22 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form" method="POST" action="CreateEventServlet">
           	<div class="form-group">
-              <label for="id"><span class="glyphicon glyphicon-user"></span>Event Title</label>
+              <label for="id"><span class="glyphicon glyphicon-pushpin"></span>Event Title</label>
               <input type="text" name="event_name" class="form-control" id="id" placeholder="Enter ID">
             </div>
             <div class="input-group input-group-sm">
-                  <label for="id"><span class="glyphicon glyphicon-user"></span>Description</label>
+                  <label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
                   <textarea name="description" style="height:100px;" id="comment" placeholder="Type your description here..." type="text" name="content"class="form-control"></textarea> 
             </div>
             <div class="form-group">
-              <label for=""><span class="glyphicon glyphicon-eye-open"></span> Location</label>
+              <label for=""><span class="glyphicon glyphicon-globe"></span> Location</label>
               <input name="location" type="text" class="form-control" id="location" placeholder="Location of Event">
             </div>
                 
             
             
             
-            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> RSVP</button>
+            <button type="submit" class="btn btn-danger center"><span class="icon icon-xxs mdi mdi-delete"></span> Create Event</button>
           </form>
         </div>
       </div>

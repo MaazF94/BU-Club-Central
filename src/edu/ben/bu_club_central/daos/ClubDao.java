@@ -50,7 +50,7 @@ public class ClubDao {
 			
 			while (cs.next()) {
 				
-				Club newClub = new Club( cs.getString("club_name"), cs.getInt("idClub"));
+				Club newClub = new Club( cs.getString("club_name"), cs.getInt("club_id_num"));
 				results.add(newClub);
 			}
 
@@ -61,6 +61,31 @@ public class ClubDao {
 		return results;
 	}
 
+	public Club getClubById(int clubId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Club club = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				club = new Club(rs.getString("club_name"), rs.getInt("club_id_num"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return club;
+	}
 	
 
 }

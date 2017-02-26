@@ -44,8 +44,8 @@ public class EventsDao {
 		}
 	}
 
-	public ArrayList<Events> getAllEvents() {
-		ArrayList<Events> results = new ArrayList<Events>();
+	public LinkedList<Events> getAllEvents() {
+		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 
@@ -55,9 +55,7 @@ public class EventsDao {
 
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getString("type_of_event"), cs.getString("date"),
-						cs.getString("funding"), cs.getInt("expected_count"), cs.getInt("length_of_event"),
-						cs.getInt("time"), cs.getInt("club_id_num"));
+						cs.getString("location"), cs.getInt("club_id_num"));
 				results.add(event);
 			}
 		} catch (SQLException e) {
