@@ -85,7 +85,7 @@
 								<li class=""><a href="HomeServlet"><span>Home</span><span
 										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
 								<li><a class="active" href="EventServlet"><span>Events</span></a>
-								<li><a href="#"><span>Clubs</span></a>
+								<li><a href="ClubHomepageServlet"><span>Club</span></a>
 								<li><a class="" href="LoginServlet"><span>Sign
 											out</span></a>
 							</ul>
@@ -167,14 +167,63 @@
 									<h3 class="panel-title"><%=eventList.get(eventListIndex).getEvent_name()%></h3>
 								</div>
 								<h4>Description:</h4>
-								<div class="panel-body text-left" style="background-color: #f1eaee"><%=eventList.get(eventListIndex).getDescription()%></div>
+								<div class="panel-body text-left"
+									style="background-color: #f1eaee"><%=eventList.get(eventListIndex).getDescription()%></div>
 								<h4>Location:</h4>
-								<div class="panel-body text-left" style="background-color: #f1eaee"><%=eventList.get(eventListIndex).getLocation()%></div>
+								<div class="panel-body text-left"
+									style="background-color: #f1eaee"><%=eventList.get(eventListIndex).getLocation()%></div>
+								<div class="panel-body text-left"
+									style="background-color: #f1eaee">
+									Number of people going:
+									<%=eventList.get(eventListIndex).getRsvp_count()%></div>
 								<div class="panel-body">
 									<form action="RSVPServlet" method="POST">
-										<button class="btn btn-default" type="submit">RSVP</button>
+
+										<button class="btn btn-default " type="submit" name="eventId"
+											value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP</button>
+									</form>
+									<form action="CommentServlet" method="POST">
+										<button class="btn btn-default " type="submit"
+											name="commentId">
+											<h4>Comment</h4>
+										</button>
+										<input name="comment" type="text">
 									</form>
 								</div>
+
+								<div class="container break-text ">
+									<div class="row">
+										<div class="panel panel-default">
+											<table class="table table-fixed ">
+												<tbody 
+													style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block">
+													<tr>
+														<td class="col-xs-2  " >
+															
+															<div class="panel panel-default  ">
+																<div class="panel-heading">Panel heading without
+																	title
+																</div>
+																<div class="panel-body">Panel cvfbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbontent</div>
+															</div>
+
+
+
+														</td>
+
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
 							</div>
 
 							<%
@@ -199,7 +248,7 @@
 								LinkedList<Post> postList = new LinkedList<Post>();
 
 								postList = postDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-										
+
 								//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
 								int postListSize = postList.size();
 								int postListIndex = 0;

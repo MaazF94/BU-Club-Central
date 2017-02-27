@@ -58,7 +58,7 @@
                       <li><a class = "active" href="EventServlet"><span>Events</span></a>
                        
                          
-                      <li><a href="#"><span>Clubs</span></a>
+                      <li><a href="ClubHomepageServlet"><span>Club</span></a>
                        
                          
                       <li><a class="" href="LoginServlet"><span>Sign out</span></a>

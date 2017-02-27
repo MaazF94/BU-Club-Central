@@ -2,6 +2,7 @@ package edu.ben.bu_club_central.models;
 
 public class Events {
 	
+	private int eventId;
 	private String event_name;
 	private String description;
 	private String location;
@@ -20,6 +21,24 @@ public class Events {
 	
 	
 	
+	public int getEventId() {
+		return eventId;
+	}
+
+
+
+
+
+
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
+	}
+
+
+
+
+
+
 	public String getEvent_name() {
 		return event_name;
 	}
@@ -49,6 +68,15 @@ public class Events {
 
 	public int getRsvp_count() {
 		return rsvp_count;
+	}
+
+
+
+
+
+
+	public void setRsvp_count(int rsvp_count) {
+		this.rsvp_count = rsvp_count;
 	}
 
 
