@@ -4,10 +4,13 @@
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="java.util.*"%>
 
 
@@ -184,7 +187,7 @@
 									</form>
 									<form action="CommentServlet" method="POST">
 										<button class="btn btn-default " type="submit"
-											name="commentId">
+											name="commentId_eventId" value="<%=eventList.get(eventListIndex).getEventId()%>">
 											<h4>Comment</h4>
 										</button>
 										<input name="comment" type="text">
@@ -197,21 +200,33 @@
 											<table class="table table-fixed ">
 												<tbody 
 													style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block">
-													<tr>
-														<td class="col-xs-2  " >
+													
+														
+														<%	UserDao userDao = new UserDao();
+															User user;
+															LinkedList<Comment> commentList = new LinkedList<Comment>(); 
+															CommentDao commentDao = new CommentDao(); 
+															commentList = commentDao.getCommentsByEventId(eventList.get(eventListIndex).getEventId()); 
+															int commentListIndex = 0; 
+															int commentListSize = commentList.size(); %>
 															
-															<div class="panel panel-default  ">
-																<div class="panel-heading">Panel heading without
-																	title
-																</div>
-																<div class="panel-body">Panel cvfbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbontent</div>
-															</div>
+														<%while(commentListIndex < commentListSize) { %>
+															<tr>	
+															<td class="col-lg-4  " >
+																<%user = userDao.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
+															
+																By: <%=user.getFirst_name() %><br>
+																<%=commentList.get(commentListIndex).getComment()%>
+															</td>
+															</tr>
+															<%commentListIndex++; %>
+														<%	} %>
+														
 
 
 
-														</td>
 
-													</tr>
+													
 
 												</tbody>
 											</table>

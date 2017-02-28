@@ -336,4 +336,45 @@ public class UserDao {
 		}
 		return false;
 	}
+	
+	
+	
+	public User getUserByIdNum(int id_num) {
+		User user = null;
+		String sql = "SELECT * FROM " + tableName + " WHERE id_num=" + id_num;
+
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
+		try {
+			if (!rs.next()) {
+				return null;
+			}else {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				user.setRole_id(rs.getInt("role_id"));
+				user.setClub_id_num(rs.getInt("club_id_num"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return user;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

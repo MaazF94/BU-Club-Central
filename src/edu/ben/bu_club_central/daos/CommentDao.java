@@ -23,6 +23,7 @@ public class CommentDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
