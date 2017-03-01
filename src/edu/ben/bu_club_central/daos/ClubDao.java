@@ -10,7 +10,7 @@ import edu.ben.bu_club_central.models.Club;
 
 
 public class ClubDao {
-	private String tableName = "bu_club_central.club";
+	private String tableName = "club";
 	
 	private Club clubObject;
 	private int enabled = 1;
