@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <%@ page import="edu.ben.bu_club_central.models.User"%>
-<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
@@ -34,32 +35,33 @@
 		<div class="rd-navbar-wrap">
 			<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
-				class="rd-navbar container rd-navbar-floated rd-navbar-dark"
+				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
-				<!-- RD Navbar Top Panel-->
-				<div class="rd-navbar-top-panel context-dark bg-danger"></div>
-				<!-- RD Navbar Panel -->
+				<!-- RD Navbar Panel-->
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
-					<!-- RD Navbar Top Panel Toggle-->
-					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel"
-						class="rd-navbar-top-panel-toggle">
-						<span></span>
-					</button>
 					<!--Navbar Brand-->
-
+					<div class="rd-navbar-brand">
+						<a href="index.html"><img class='img-responsive' width='40'
+							height='30' src='img/BURedTransparent.png' alt='' /></a>
+					</div>
 				</div>
+
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
-							<!--Navbar Brand Mobile-->
 
+							<!--Navbar Brand Mobile-->
+							<div class="rd-navbar-mobile-brand">
+								<a href="index.html"><img class='img-responsive' width='238'
+									height='30' src='img/BUred.png' alt='' /></a>
+							</div>
 							<div class="form-search-wrap">
 								<!-- RD Search Form-->
 								<form action="search-results.html" method="GET"
@@ -78,29 +80,31 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a class="active" href="EventServlet"><span>Events</span></a>
-								<li><a href="#"><span>Clubs</span></a>
-								<li><a class="btn btn-default" href="LoginServlet"><span>Sign
-											in</span></a>
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								<li><a class="" href="LoginServlet"><span> <%
+ 	if (session.getAttribute("user") == null) {
+ %> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%>
+											<%
+												}
+											%>
+
+
+									</span></a></li>
+
 							</ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-					<div class="rd-navbar-search rd-navbar-search-top-panel">
-						<a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search"
-							href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-						<form action="search-results.html" method="GET"
-							class="rd-navbar-search-form search-form-icon-right rd-search">
-							<div class="form-group">
-								<label for="rd-navbar-search-form-input" class="form-label">Type
-									and hit enter...</label> <input id="rd-navbar-search-form-input"
-									type="text" name="s" autocomplete="off"
-									class="rd-navbar-search-form-input form-control form-control-gray-lightest" />
-							</div>
-						</form>
-					</div>
+
 				</div>
 			</div>
 			</nav>

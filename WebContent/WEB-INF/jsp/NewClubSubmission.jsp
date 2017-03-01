@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
@@ -41,71 +46,216 @@
       <header class="page-head slider-menu-position">
         <!-- RD Navbar Transparent-->
         <div class="rd-navbar-wrap">
-          <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar rd-navbar-default rd-navbar-transparent" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
-            <div class="rd-navbar-inner">
-              <!-- RD Navbar Panel-->
-              <div class="rd-navbar-panel">
-                <!-- RD Navbar Toggle-->
-                <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
-                <!--Navbar Brand-->
-                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
+<nav data-md-device-layout="rd-navbar-fixed"
+				data-lg-device-layout="rd-navbar-static"
+				class="rd-navbar rd-navbar-default rd-navbar-transparent"
+				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
+				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
+			<div class="rd-navbar-inner">
+				<!-- RD Navbar Panel-->
+				<div class="rd-navbar-panel">
+					<!-- RD Navbar Toggle-->
+					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
+						class="rd-navbar-toggle">
+						<span></span>
+					</button>
+					<!--Navbar Brand-->
+					<div class="rd-navbar-brand">
+						<a href="index.html"><img class='img-responsive' width='40'
+							height='30' src='img/BURedTransparent.png' alt='' /></a>
+					</div>
+				</div>
+
+				<div class="rd-navbar-menu-wrap">
+					<div class="rd-navbar-nav-wrap">
+						<div class="rd-navbar-mobile-scroll">
+
+							<!--Navbar Brand Mobile-->
+							<div class="rd-navbar-mobile-brand">
+								<a href="index.html"><img class='img-responsive' width='238'
+									height='30' src='img/BUred.png' alt='' /></a>
+							</div>
+							<div class="form-search-wrap">
+								<!-- RD Search Form-->
+								<form action="search-results.html" method="GET"
+									class="form-search rd-search">
+									<div class="form-group">
+										<label for="rd-navbar-form-search-widget"
+											class="form-label form-search-label form-label-sm">Search</label>
+										<input id="rd-navbar-form-search-widget" type="text" name="s"
+											autocomplete="off"
+											class="form-search-input input-sm form-control form-control-gray-lightest input-sm" />
+									</div>
+									<button type="submit" class="form-search-submit">
+										<span class="mdi mdi-magnify"></span>
+									</button>
+								</form>
+							</div>
+							<!-- RD Navbar Nav-->
+							<ul class="rd-navbar-nav">
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
+								
+									
+									
+									
+							
+							
+							
+						</div>
+					</div>
+					<!--RD Navbar Search-->
+
+				</div>
+			</div>
+			</nav>
+		</div>
+		<div class="context-dark">
+			<!-- Modern Breadcrumbs-->
+			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+			<div data-speed="0.2" data-type="media"
+				data-url="images/background-04-1920x750.jpg"
+				class="rd-parallax-layer"></div>
+			<div data-speed="0" data-type="html" class="rd-parallax-layer">
+				<div class="shell    section-lg-top-110 "></div>
+			</div>
+			</section>
+		</div>
+		</header>
+      
+      <main class="page-content">
+        <section class="section-top-98 section-md-top-110 text-lg-left">
+          <div class="shell">
+            <div class="range range-xs-center range-xs-center">
+              <div class="cell-lg-4">
+                <div class="inset-lg-right-80">
+                  <h3 class="text-bold">How to Find us</h3>
+                  <hr class="divider hr-lg-left-0 bg-red">
+                  <p class="offset-top-41 offset-lg-top-50">We are located in the basement of Krasa.</p>
+                  <address class="contact-info offset-top-30 offset-lg-top-50">
+                    <div class="h6 text-uppercase text-bold text-danger letter-space-none offset-top-none">Club Central Office</div>
+                    <p></p>
+                    <dl class="offset-top-0">
+                      <dt>Telephone</dt>
+                      <dd><a href="callto:#">+1 800 603 6035</a></dd>
+                    </dl>
+                    <dl>
+                      <dt>E-mail:</dt>
+                      <dd><a href="mailto:#">mail@demolink.org</a></dd>
+                    </dl>
+                  </address>
+                  
+                </div>
               </div>
-               
-              <div class="rd-navbar-menu-wrap">
-                <div class="rd-navbar-nav-wrap">
-                  <div class="rd-navbar-mobile-scroll">
-                
-                    <!--Navbar Brand Mobile-->
-                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
-                    <div class="form-search-wrap">
-                      <!-- RD Search Form-->
-                      <form action="search-results.html" method="GET" class="form-search rd-search">
-                        <div class="form-group">
-                          <label for="rd-navbar-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
-                          <input id="rd-navbar-form-search-widget" type="text" name="s" autocomplete="off" class="form-search-input input-sm form-control form-control-gray-lightest input-sm"/>
-                        </div>
-                        <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
-                      </form>
+              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+                <h3 class="text-bold">New Club Submission Form</h3>
+                <hr class="divider hr-lg-left-0 bg-red">
+                <!-- RD Mailform-->
+                <form data-form-output="form-output-global" data-form-type="contact" method="post" action="NewClubSubmissionServlet" class="rd-mailform text-left offset-top-50">
+                  <div class="range">
+                    <div class="cell-lg-6">
+                      <div class="form-group">
+                        <label for="contact-us-name" class="form-label form-label-outside">Club Name:</label>
+                        <input id="contact-us-name" type="text" name="clubName"  placeholder="Club Name" data-constraints="@Required" class="form-control">
+                      </div>
                     </div>
-                    <!-- RD Navbar Nav-->
-                    <ul class="rd-navbar-nav">
-                      <li><a href="HomeServlet"><span>Home</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                      <li><a href="MeetTheAdminsServlet"><span>About Us</span><span class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-                        
-                        
-                      <li><a href="EventServlet"><span>Events</span></a>
-                       
-                         
-                      <li><a href="ClubListServlet"><span>clubs</span></a>
-                      
-                      <li><a href="ContactUsServlet"><span>Contact Us</span></a></li>
-                       
-                      <li><a href="LoginServlet"><span>Sign in</span></a>
-                      
-                      
-                    </ul>
+                    <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
+                      <div class="form-group">
+                        <label for="contact-us-email" class="form-label form-label-outside">E-Mail:</label>
+                        <input id="contact-us-email" type="email" name="petEmail" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
+                      </div>
+                    </div>
+                    <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
+                      <div class="form-group">
+                        <label for="contact-us-email" class="form-label form-label-outside">Advisor Name:</label>
+                        <input id="contact-us-email" type="text" name="advisorName" placeholder="Name of Advisor" data-constraints="@Required @Email" class="form-control">
+                      </div>
+                    </div>
+                    <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
+                      <div class="form-group">
+                        <label for="contact-us-email" class="form-label form-label-outside">Petitioner Name:</label>
+                        <input id="contact-us-email" type="text" name="petName" placeholder="The head petitioners name" data-constraints="@Required @Email" class="form-control">
+                      </div>
+                    </div>
+                    <div class="cell-lg-12 offset-top-20">
+                      <div class="form-group">
+                        <label for="contact-us-message" class="form-label form-label-outside">Club Description:</label>
+                        <textarea id="contact-us-message" name="clubDescription" placeholder="Write a quick description of the club here..." data-constraints="@Required" class="form-control"></textarea>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <!--RD Navbar Search-->
-                <div class="rd-navbar-search"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-                  <form action="search-results.html" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
-                    <div class="form-group">
-                      <label for="rd-navbar-search-form-input" class="form-label">Type and hit enter...</label>
-                      <input id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off" class="rd-navbar-search-form-input form-control form-control-gray-lightest"/>
-                    </div>
-                    <!--button(type="submit").rd-navbar-search-form-submit.mdi.mdi-magnify-->
-                  </form>
-                  <!--div.rd-navbar-live-search-results-->
-                  <!--button(data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-inner, .rd-navbar-live-search-results").rd-navbar-search-toggle-->
-                  <!--  span-->
-                </div>
+                  <div class="group-sm text-center text-lg-left offset-top-30">
+                    <button type="submit" class="btn btn-danger">Send</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                  </div>
+                </form>
               </div>
             </div>
-          </nav>
-        </div>
-        <!-- Welcome to Intense-->
-      </header>
+          </div>
+          <div class="offset-top-98 offset-lg-top-124">
+            
+            
+            </div>
+          </div>
+        </section>
+      </main>
+      <script>
+                      function hide() {
+                    	  var checkLetters =  /^[A-Za-z]/;
+                    	  if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
+                    		  alert("You must write your full name");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["email"].value.indexOf("@") == -1 || document.forms["myform"]["email"].value.indexOf(".com") == -1) {
+                    		  alert("You must write a valid email address");
+                    		  return false;
+                    	  } else if (document.forms["myform"]["comment"].value == "") {
+                    		  alert("You must write a comment");
+                    		  return false;
+                    	  }
+                    	  var r = confirm("Are you sure this information is correct?");
+                    	  if (r == true) {
+                    	      x = "Great, thanks for contacting us! You'll receive a reply from us soon.";
+                      	      document.getElementById("myform").innerHTML = x;
+                    	  } 
+                         }
+                      
+                      </script>
+      
+      
+      
+      
+      
       <!-- Page Footer-->
       <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
@@ -114,66 +264,13 @@
               <div class="range range-xs-center">
                
                 
-                <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  <!-- Footer brand-->
-                      <form name="myform" id="myform" data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-30">
-                      <h1 style="color: white;">New Club</h1>
-                        <div class="form-group">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><i class="material-icons" style="font-size:19px">people_outline</i></span>
-                            <input id="organizationname" placeholder="Organization Name" type="text" name="organizationname" data-constraints="@Required" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group offset-top-20">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
-                            <input id="fullname" placeholder="Your Full Name" type="text" name="fullname" data-constraints="@Required" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group offset-top-20">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"> <i class="material-icons" style="font-size:19px">email</i></span>
-                            <input id="emailaddress" placeholder="Your Email Address" type="text" name="email" data-constraints="@Required" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group offset-top-20">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
-                            <input id="advisorname" placeholder="Your Advisor's Name" type="text" name="advisorname" data-constraints="@Required" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group offset-top-20">
-                          <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"> <i class="fa fa-commenting-o" style="font-size:19px"></i></span>
-                            <textarea style="height:100px;" id="comment" placeholder="Tell Us About Your Club Idea Here..." type="text" name="comment" data-constraints="@Required" class="form-control"></textarea> 
-                          </div>
-                        </div>
-                        <button id="submit" onclick="hide()" type="button" class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">Submit <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
-                      </form>
+                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+                  
+                  
+                        
                       
-                      <script>
-                      function hide() {
-                    	  var checkLetters =  /^[A-Za-z]/;
-                    	  if (!checkLetters.test(document.forms["myform"]["organizationname"].value)) {
-                    		  alert("You must write the club/organization name");
-                    		  return false;
-                    	  } else if (!checkLetters.test(document.forms["myform"]["fullname"].value)) {
-                    		  alert("You must write your full name");
-                    		  return false;
-                    	  }  else if (document.forms["myform"]["email"].value.indexOf("@") == -1 || document.forms["myform"]["email"].value.indexOf(".com") == -1) {
-                    		  alert("You must write a valid email address");
-                    		  return false;
-                    	  } else if (!checkLetters.test(document.forms["myform"]["advisorname"].value)) {
-                    		  alert("You must write your Advisor's full name");
-                    		  return false;
-                    	  } else if (document.forms["myform"]["comment"].value == "") {
-                    		  alert("You must write a comment");
-                    		  return false;
-                    	  }
-                    	  var r = confirm("Are you sure this information is correct?");
-                    	  if (r == true) {
-                    	      x = "Great, thanks for submitting your new club idea! We'll get back to you shortly with our feedback";
-                      	      document.getElementById("myform").innerHTML = x;
-                    	  } 
-                         }
                       
-                      </script>
-                      
+  
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
@@ -192,46 +289,13 @@
         </div>
       </footer>
     </div>
-    <!-- Global Mailform Output-->
-    <div id="form-output-global" class="snackbars"></div>
-    <!-- PhotoSwipe Gallery-->
-    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-      <div class="pswp__bg"></div>
-      <div class="pswp__scroll-wrap">
-        <div class="pswp__container">
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-        </div>
-        <div class="pswp__ui pswp__ui--hidden">
-          <div class="pswp__top-bar">
-            <div class="pswp__counter"></div>
-            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
-            <button title="Share" class="pswp__button pswp__button--share"></button>
-            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
-            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-            <div class="pswp__preloader">
-              <div class="pswp__preloader__icn">
-                <div class="pswp__preloader__cut">
-                  <div class="pswp__preloader__donut"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-            <div class="pswp__share-tooltip"></div>
-          </div>
-          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
-          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
-          <div class="pswp__caption">
-            <div class="pswp__caption__center"></div>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
   </body>
 
 </html>
+      
+      
+      
+
