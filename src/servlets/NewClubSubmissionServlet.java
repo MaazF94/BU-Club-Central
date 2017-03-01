@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.ClubDao;
+
 /**
  * Servlet implementation class NewClubSubmissionServlet
  */
@@ -35,6 +37,9 @@ public class NewClubSubmissionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		ClubDao cDao = new ClubDao();
+		cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 1, request.getParameter("petEmail"),request.getParameter("advisorName") );
 		doGet(request, response);
 	}
 

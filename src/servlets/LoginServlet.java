@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 //				request.getSession().setAttribute("signIn", user.getFirst_name());
 		        request.getRequestDispatcher("HomeServlet").forward(request, response);
 			}else {
-				response.sendRedirect("LoginServlet");
+				response.sendRedirect("errorLogin");
 			}
 
 		}else {

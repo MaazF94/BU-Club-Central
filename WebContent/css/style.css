@@ -19997,6 +19997,9 @@ html .group-bottom > *, html .group-bottom > *:first-child {
   .box-comment-outboxed .box-comment-img {
     margin-top: 10px; }
   .box-comment-outboxed .media-body {
+<<<<<<< HEAD
+    padding: 20px;
+=======
     padding: 20px;
     border-radius: 3px;
     border: 1px solid #d9d9d9; }
@@ -34820,3 +34823,4 @@ a.pswp__share--download:hover {
   color: #fff; }
   .checkout-tabs .rd-material-tabs__list .rd-material-tab-active a:hover {
     color: #fff; }
+>>>>>>> Frank_Dev

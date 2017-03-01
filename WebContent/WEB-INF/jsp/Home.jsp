@@ -45,7 +45,7 @@
 		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
-			<nav data-md-device-layout="rd-navbar-fixed"
+		<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
 				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
@@ -96,26 +96,42 @@
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
 								<li><a href="ClublistServlet"><span>clubs</span></a></li>
-								
-									<li><a href="MeetTheAdminsServlet"><span>About
+
+								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
-								 <li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li><a class="" href="LoginServlet"><span>
-										
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
 											<%
-												if (session.getAttribute("user") == null) {
-											%> Sign In <%
-												} else {
+					}
 											%>
-											<%=((User) session.getAttribute("user")).getFirst_name()%>
-											<%
-												}
-											%>
-
-
-									</span></a></li>
-
-							</ul>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
+								
+									
+									
+									
+							
+							
+							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -147,7 +163,7 @@
 									<div class="group group-xl offset-top-41 offset-sm-top-30">
 
 										<a href="JoinAClubServlet" class="btn btn-danger">JOIN A
-											CLUB</a><a href="EventServlet" class="btn btn-danger">Find an
+											CLUB</a><a href="NewClubSubmissionServlet" class="btn btn-danger">Make your own club</a><a href="EventServlet" class="btn btn-danger">Find an
 											Event</a>
 
 									</div>
@@ -160,7 +176,8 @@
 		</div>
 		</section> </header>
 		<!-- Page Footer-->
-		<footer class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+		<footer
+			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
@@ -241,5 +258,8 @@
 	<script src="js/js/script.js"></script>
 </body>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> b8e5e673fbcc6da2df9057b94a6e5e0f9d1c0eab
 </html>
