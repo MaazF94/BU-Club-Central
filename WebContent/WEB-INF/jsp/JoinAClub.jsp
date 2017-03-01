@@ -26,9 +26,16 @@
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> Frank_Dev
+=======
+
+
+
+
+>>>>>>> b8e5e673fbcc6da2df9057b94a6e5e0f9d1c0eab
   </head>
   <body>
     <!-- Page-->
