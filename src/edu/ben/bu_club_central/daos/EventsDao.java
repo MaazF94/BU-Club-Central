@@ -35,11 +35,11 @@ public class EventsDao {
 	 */
 	public void addEvent(String event_name, String description, String location, int club_id_num) {
 		String sql = "INSERT INTO " + tableName
-				+ "(event_name, description, location,rsvp_count, club_id_num) VALUES ('" + event_name + "', '" + description + "', '" + location + "', '" + rsvpInitalCount + "', '"  + club_id_num + "')";
+				+ "(event_name, description, location, rsvp_count, club_id_num) VALUES ('" + event_name + "', '" + description + "', '" + location + "', '" + rsvpInitalCount + "', '"  + club_id_num + "')";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
