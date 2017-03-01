@@ -49,7 +49,7 @@ public class SearchPageServlet extends HttpServlet {
 				Connection con = new DatabaseConnection().getConn();
 
 				PreparedStatement ps = con
-						.prepareStatement("select * from event where event_name like '" + name + "%'");
+						.prepareStatement("select * from event where event_name like '%" + name + "%'");
 				ResultSet rs = ps.executeQuery();
 
 				if (!rs.isBeforeFirst()) {
