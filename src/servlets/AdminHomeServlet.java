@@ -40,7 +40,7 @@ public class AdminHomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		ClubDao cDao = new ClubDao();
-		cDao.addClub(request.getParameter("clubName"),Integer.parseInt(request.getParameter("club_id_num")), Integer.parseInt(request.getParameter("memberCount")), 1);
+		//cDao.addClub(request.getParameter("clubName"),Integer.parseInt(request.getParameter("club_id_num")), Integer.parseInt(request.getParameter("memberCount")), 1);
 		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 	}
 

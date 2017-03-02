@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Document Central</title>
+<title>Events</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -14,7 +18,6 @@
 <meta name="date" content="Dec 26">
 <link rel="icon" type="image/png" href="img/favicon-16x16.png"
 	sizes="16x16" />
-
 <!-- Stylesheets-->
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
@@ -27,20 +30,10 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
-		<div class="page-loader page-loader-variant-1">
-			<div>
-				<img class='img-responsive'
-					style='margin-top: -20px; margin-left: -18px;' width='280'
-					height='67' src='img/BURedTransparent.png' alt='' />
-				<div class="offset-top-41 text-center">
-					<div class="spinner"></div>
-				</div>
-			</div>
-		</div>
 		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
-			<nav data-md-device-layout="rd-navbar-fixed"
+					<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
 				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
@@ -87,174 +80,122 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="#"><span>clubs</span></a>
-								<li><a class="btn btn-default" href="LoginServlet"><span>Sign
-											in</span></a>
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-
-
-								</li>
-							</ul>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
+								
+									
+									
+									
+							
+							
+							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-					<div class="rd-navbar-search">
-						<a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search"
-							href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-						<form action="search-results.html" method="GET"
-							class="rd-navbar-search-form search-form-icon-right rd-search">
-							<div class="form-group">
-								<label for="rd-navbar-search-form-input" class="form-label">Type
-									and hit enter...</label> <input id="rd-navbar-search-form-input"
-									type="text" name="s" autocomplete="off"
-									class="rd-navbar-search-form-input form-control form-control-gray-lightest" />
-							</div>
-							<!--button(type="submit").rd-navbar-search-form-submit.mdi.mdi-magnify-->
-						</form>
-						<!--div.rd-navbar-live-search-results-->
-						<!--button(data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-inner, .rd-navbar-live-search-results").rd-navbar-search-toggle-->
-						<!--  span-->
-					</div>
+
 				</div>
 			</div>
 			</nav>
 		</div>
-		<!-- Welcome to Intense--> <section>
-		<div data-on="false" data-md-on="true"
-			class="bg-gray-base context-dark rd-parallax">
-			<div data-speed="0.3" data-type="html" data-md-fade="true"
-				class="rd-parallax-layer">
-				<div class="shell">
-					<div class="range">
-						<div
-							class="range range-xs-middle range-xs-center section-cover section-top-124 section-bottom-98 section-sm-top-110 section-sm-bottom-110 context-dark">
-							<div class="range range-xs-center">
-								<div class="cell-lg-12">
-									<div data-caption-animate="fadeInUp" data-caption-delay="300"
-										class="text-extra-big text-bold text-italic text-uppercase"
-										style="color: red">DOCUMENT CENTRAL</div>
-								</div>
-								<div class="cell-lg-9 offset-top-20">
-									<h5 data-caption-animate="fadeInUp" data-caption-delay="500"
-										class="hidden reveal-xs-block text-light"></h5>
-									<h6 style="font-size: 24px;">Below are all the necessary
-										documents that clubs will need.</h6>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div class="context-dark">
+			<!-- Modern Breadcrumbs-->
+			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+			<div data-speed="0.2" data-type="media"
+				data-url="images/background-04-1920x750.jpg"
+				class="rd-parallax-layer"></div>
+			<div data-speed="0" data-type="html" class="rd-parallax-layer">
+				<div class="shell    section-lg-top-110 "></div>
 			</div>
+			</section>
 		</div>
-		</section> </header>
+		</header>
+		<!-- Page Contents-->
+		<section>
+		
+		
+		
+	
 
-		<!-- First Grid -->
-		<div data-on="false" data-md-on="true"
-			class="bg-gray-base context-dark rd-parallax">
-			<div class="w3-content">
-				<TABLE BORDER="5" WIDTH="99%" CELLPADDING="10" CELLSPACING="2">
-					<TR>
-						<TH COLSPAN="2"><BR>
-						<H3 style="text-align: center;">Club Documents</H3></TH>
-					</TR>
-					<TR>
-						<TH style="text-align: center; color: red; width: 50%">File
-							Name</TH>
-						<TH style="text-align: center; color: red; width: 50%">File
-							Description</TH>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Event-Request-Form.docx"
-								download="Event Request Form">Event Request Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for
-							reserving rooms, equipment, etc.</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Fundraising-Event-Form.docx"
-								download="Fundraising Event Request Form">Fundraising Event
-									Request Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for trying
-							to raise funds for an event</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Funding-Review-Board.docx"
-								download="Funding Review Board Form">Funding Review Board
-									Form</a></u></TD>
-						<TD style="text-align: justify">This form is used to appeal
-							for funds from the Funding Review Board</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Food-Form.docx"
-								download="Food Request Form">Food Request Form</a></u></TD>
-						<TD style="text-align: justify">This form is used to request
-							for food at an event</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Event-Evaluation.docx"
-								download="Event Evaluation Form">Event Evaluation Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for
-							evaluating how an event went and providing feedback to
-							administrators</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/GBM-Sign-In-Sheet.doc"
-								download="GBM Sign In Form">General Body Meeting Sign In
-									Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for signing
-							in students at general body meetings</TD>
-					</TR>
-				</TABLE>
-			</div>
+		
+		</section>
+
+
+
+
+		<!-- Spaces page from footer-->
+		<div class="range range-xs-center offset-top-66">
+			<div class="cell-md-7"></div>
+
+
 		</div>
-
-		<!-- Page Footer-->
-		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-		<div class="shell">
-			<div class="range range-sm-center text-lg-left">
-				<div class="cell-sm-12">
-					<div class="range range-xs-center">
+	</div>
 
 
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
-							<div class="offset-top-50 text-xs-center text-lg-left">
-								<ul class="list-inline">
-									<li><a href="#"
-										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-								</ul>
-							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-									href="privacy.html">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</footer>
+
+
+	<!-- Page Footer -->
+	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+        <div class="shell">
+          <div class="range range-sm-center text-lg-left">
+            <div class="cell-sm-12">
+              <div class="range range-xs-center">
+               
+                
+                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+                  
+                  
+                        
+                      
+                      
+  
+                  <div class="offset-top-50 text-xs-center text-lg-left">
+                    <ul class="list-inline">
+                      <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+                      <li><a href="#" class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+                      <li><a href="#" class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+                      <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+                    </ul>
+                  </div>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                    <!-- {%FOOTER_LINK}-->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
 	</div>
 	<!-- Global Mailform Output-->
 	<div id="form-output-global" class="snackbars"></div>

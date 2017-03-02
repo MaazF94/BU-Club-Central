@@ -54,6 +54,7 @@ public class LoginServlet extends HttpServlet {
 			if (!(loginUser(request.getParameter("username")) == null)) {
 				user = uDao.getUserByUsername(request.getParameter("username"));
 				request.getSession().setAttribute("user", user);
+<<<<<<< HEAD
 
 				if (user.getRole_id() == 1) {
 					response.sendRedirect("UserServlet");
@@ -64,6 +65,12 @@ public class LoginServlet extends HttpServlet {
 				}
 			} else {
 				response.sendRedirect("HomeServlet");
+=======
+//				request.getSession().setAttribute("signIn", user.getFirst_name());
+		        request.getRequestDispatcher("HomeServlet").forward(request, response);
+			}else {
+				response.sendRedirect("errorLogin");
+>>>>>>> 5dbbb52ef3c6d2a01d2a840fb8632385e2601d1e
 			}
 
 		} else {

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
+    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
@@ -36,7 +42,7 @@
 		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
-			<nav data-md-device-layout="rd-navbar-fixed"
+		<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
 				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
@@ -67,32 +73,66 @@
 							</div>
 							<div class="form-search-wrap">
 								<!-- RD Search Form-->
-								
+								<form action="search-results.html" method="GET"
+									class="form-search rd-search">
+									<div class="form-group">
+										<label for="rd-navbar-form-search-widget"
+											class="form-label form-search-label form-label-sm">Search</label>
+										<input id="rd-navbar-form-search-widget" type="text" name="s"
+											autocomplete="off"
+											class="form-search-input input-sm form-control form-control-gray-lightest input-sm" />
+									</div>
+									<button type="submit" class="form-search-submit">
+										<span class="mdi mdi-magnify"></span>
+									</button>
+								</form>
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="ClublistServlet"><span>clubs</span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								
-								
-								
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
 								
-								<li><a href="LoginServlet"><span>Sign in</span></a>
-
-
-								</li>
-							</ul>
+								
+                      
+                          </ul>
+								
+									
+									
+									
+							
+							
+							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-					
+
 				</div>
 			</div>
 			</nav>
