@@ -10,6 +10,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.simplejavamail.email.Email;
+
 public class SendMail {
 	public static void email(String fromEmail, String username, String password, String toEmail, String subject,
 			String content) {
@@ -26,6 +28,8 @@ public class SendMail {
 			}
 		});
 		
+		
+		
 		try {
 	         // Create a default MimeMessage object.
 	         Message message = new MimeMessage(session);
@@ -40,7 +44,7 @@ public class SendMail {
 	         // Set Subject: header field
 	         message.setSubject(subject);
 
-	         // Now set the actual message
+	         // Now set the actual message use content not text because we're sending html
 	         message.setContent(content,"text/html");
 
 	         // Send message
