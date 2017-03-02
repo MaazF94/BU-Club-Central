@@ -10,7 +10,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.simplejavamail.*;
+import org.simplejavamail.util.*;
 import org.simplejavamail.email.Email;
+import org.simplejavamail.mailer.Mailer;
+import org.simplejavamail.mailer.config.TransportStrategy;
 
 public class SendMail {
 	public static void email(String fromEmail, String username, String password, String toEmail, String subject,
@@ -57,3 +61,14 @@ public class SendMail {
 	      }
 	}
 }
+//	public static void email(String fromEmail, String username, String password, String toEmail, String subject,
+//			String content) {
+//		Email email = new Email();
+//        email.setFromAddress(username, fromEmail);
+//        email.setSubject(subject);
+//        email.addRecipient(toEmail, toEmail, Message.RecipientType.TO);
+//        email.setTextHTML(content);
+//
+//        new Mailer("smtp.gmail.com", 587, username, password, TransportStrategy.SMTP_TLS).sendMail(email);
+//	}
+//}
