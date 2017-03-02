@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.EventsDao;
-
 /**
- * Servlet implementation class RSVPServlet
+ * Servlet implementation class EventDetailsServlet
  */
-@WebServlet("/RSVPServlet")
-public class RSVPServlet extends HttpServlet {
+@WebServlet("/EventDetailsServlet")
+public class EventDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RSVPServlet() {
+    public EventDetailsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,25 +26,16 @@ public class RSVPServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		addRSVP(Integer.parseInt(request.getParameter("eventId")));
-		response.sendRedirect("EventServlet");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
-	private void addRSVP(int eventId) {
-		EventsDao eDao = new EventsDao();
-		eDao.increaseRSVPCount(eventId);
-	}
-	
-	
-	
-	
-	
-	
 }

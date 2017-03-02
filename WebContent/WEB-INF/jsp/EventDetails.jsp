@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 
+
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
@@ -13,7 +14,6 @@
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="java.util.*"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
@@ -45,21 +45,15 @@
 		<div class="rd-navbar-wrap">
 			<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
-				class="rd-navbar container rd-navbar-floated rd-navbar-dark"
+				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
-
-				<!-- RD Navbar Panel -->
+				<!-- RD Navbar Panel-->
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
-						<span></span>
-					</button>
-					<!-- RD Navbar Top Panel Toggle-->
-					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel"
-						class="rd-navbar-top-panel-toggle">
 						<span></span>
 					</button>
 					<!--Navbar Brand-->
@@ -67,13 +61,17 @@
 						<a href="index.html"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
-
 				</div>
+
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
-							<!--Navbar Brand Mobile-->
 
+							<!--Navbar Brand Mobile-->
+							<div class="rd-navbar-mobile-brand">
+								<a href="index.html"><img class='img-responsive' width='238'
+									height='30' src='img/BUred.png' alt='' /></a>
+							</div>
 							<div class="form-search-wrap">
 								<!-- RD Search Form-->
 								<form action="search-results.html" method="GET"
@@ -92,18 +90,29 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="ClublistServlet"><span>clubs</span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								<li><a href="LoginServlet"><span>Sign in</span></a></li>
+								<li><a class="" href="LoginServlet"><span> <%
+ 	if (session.getAttribute("user") == null) {
+ %> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%> <%
+ 	}
+ %>
+
+
+									</span></a></li>
+
 							</ul>
 						</div>
 					</div>
+					<!--RD Navbar Search-->
 
 				</div>
 			</div>
@@ -121,98 +130,127 @@
 			</section>
 		</div>
 		</header>
-
-
-
-
-
+		<!-- End of header -->
 		<main class="page-content"> <!--  This is where the the page contents that you are adding should go -->
 
-		<!-- Page Contents-->
-		<div class="jumbotron" style="background-color: white">
-			<h1>Events Page</h1>
-
+		<div class="row">
+			<div class="jumbotron" style="background-color: white">
+				<%
+					ClubDao clubDao = new ClubDao();
+					EventsDao eventDao = new EventsDao();
+					Events event = eventDao.getEventByEventId(Integer.parseInt(request.getParameter("eventId")));
+				%>
+				<h1><%=event.getEvent_name()%></h1>
+			</div>
 		</div>
-		<div class="row" style="height: 500px">
+
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
+
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Location</th>
+							<th>People Going</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%=event.getDescription()%></td>
+							<td><%=event.getLocation()%></td>
+							<td><%=event.getRsvp_count()%></td>
+							<td>
+								<form action="RSVPServlet" method="POST">
+
+									<button class="btn btn-default " type="submit" name="eventId"
+										value="<%=Integer.parseInt(request.getParameter("eventId"))%>">RSVP</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-4"></div>
+				<div class="col-sm-4 well">
+					<form action="CommentServlet" method="POST">
+						<textarea class="form-control"
+							onkeyup="textCounter(this,'counter',250);" rows="4" cols="30"
+							name="comment"
+							placeholder="Enter your comment here... 250 Characters max"></textarea>
+
+						<button class="btn btn-Info " type="submit"
+							name="commentId_eventId"
+							value="<%=Integer.parseInt(request.getParameter("eventId"))%>">Comment
+						</button>
+						<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="250" id="counter">
+							Remaining
+						</h6>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="container" style="height:100px">
+				<div class="col-lg-12"></div>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="container">
 				<div class="col-lg-12">
-					<div class="jumbotron" style="background-color: white">
-						<h2>Search for an Event</h2>
-						<form name="vinform">
-							<input placeholder="Enter title of event" type="text" name="name"
-								onkeyup="searchInfo()">
-						</form>
+								<table class="table table-striped">
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block">
 
-						<span id="mylocation"></span>
-					</div>
-				</div>
+
+										<%
+											UserDao userDao = new UserDao();
+												User user;
+												LinkedList<Comment> commentList = new LinkedList<Comment>();
+												CommentDao commentDao = new CommentDao();
+												commentList = commentDao.getCommentsByEventId(Integer.parseInt(request.getParameter("eventId")));
+												int commentListIndex = 0;
+												int commentListSize = commentList.size();
+										%>
+
+										<%
+											while (commentListIndex < commentListSize) {
+										%>
+										<tr>
+											<td class="col-lg-12">
+												<%
+													user = userDao.getUserByIdNum(commentList.get(commentListIndex).getUserId());
+												%> By: <%=user.getFirst_name()%><br> <%=commentList.get(commentListIndex).getComment()%>
+											</td>
+										</tr>
+										<%
+											commentListIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+
+
+							</div>
+
+
+
+
+
 			</div>
 		</div>
-		<div class="row">
-			<h3>Event List</h3>
-			<div class="container col-lg-12">
-
-
-				<%
-					EventsDao eventDao = new EventsDao();
-					LinkedList<Events> eventList = new LinkedList<Events>();
-
-					eventList = eventDao.getAllEvents();
-					int eventListSize = eventList.size();
-					int eventListIndex = 0;
-					ClubDao cDao = new ClubDao();
-				%>
-				<%
-					while (eventListIndex < eventListSize) {
-				%>
-
-				<div class="container">
-
-					<div class="col-lg-3"></div>
-					<table class="table table-hover col-lg-6">
-						<thead>
-							<tr>
-								<th>Event Title</th>
-								<th>Event Location</th>
-								<th>People Going</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-
-								<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
-								<td><%=eventList.get(eventListIndex).getLocation()%></td>
-								<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
-								<td><form action="EventDetailsServlet" method="GET">
-
-										<button class="btn btn-default " type="submit" name="eventId"
-											value="<%=eventList.get(eventListIndex).getEventId()%>">More
-											Info</button>
-									</form></td>
-								<td>
-									<form action="RSVPServlet" method="POST">
-
-										<button class="btn btn-default " type="submit" name="eventId"
-											value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<div class="container" style="height: 50px"></div>
-
-			</div>
-
-			<%
-				eventListIndex++;
-			%>
-			<%
-				}
-			%>
 
 
 
@@ -222,7 +260,8 @@
 
 
 
-		</div>
+
+
 
 
 
@@ -235,6 +274,30 @@
 
 
 		</main>
+		<!--End of main page content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -244,7 +307,7 @@
 
 		<!-- Page Footer-->
 		<footer
-			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
@@ -253,7 +316,12 @@
 
 						<div
 							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
+
+
+
+
+
+
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
 									<li><a href="#"
@@ -278,70 +346,22 @@
 		</div>
 		</footer>
 	</div>
-	<!-- Global Mailform Output-->
-	<div id="form-output-global" class="snackbars"></div>
-	<!-- PhotoSwipe Gallery-->
-	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-		<div class="pswp__bg"></div>
-		<div class="pswp__scroll-wrap">
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
-			<div class="pswp__ui pswp__ui--hidden">
-				<div class="pswp__top-bar">
-					<div class="pswp__counter"></div>
-					<button title="Close (Esc)"
-						class="pswp__button pswp__button--close"></button>
-					<button title="Share" class="pswp__button pswp__button--share"></button>
-					<button title="Toggle fullscreen"
-						class="pswp__button pswp__button--fs"></button>
-					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-								<div class="pswp__preloader__donut"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div
-					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-					<div class="pswp__share-tooltip"></div>
-				</div>
-				<button title="Previous (arrow left)"
-					class="pswp__button pswp__button--arrow--left"></button>
-				<button title="Next (arrow right)"
-					class="pswp__button pswp__button--arrow--right"></button>
-				<div class="pswp__caption">
-					<div class="pswp__caption__center"></div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Java script-->
-	<script>
-		var request = new XMLHttpRequest();
-		function searchInfo() {
-			var name = document.vinform.name.value;
-			var url = "/Club-Central/SearchPageServlet?val=" + name;
 
-			try {
-				request.onreadystatechange = function() {
-					if (request.readyState == 4) {
-						var val = request.responseText;
-						document.getElementById('mylocation').innerHTML = val;
-					}
-				}//end of function  
-				request.open("GET", url, true);
-				request.send();
-			} catch (e) {
-				alert("Unable to connect to server");
+
+	<script>
+		function textCounter(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
 			}
 		}
 	</script>
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
+
 </html>

@@ -87,5 +87,32 @@ public class ClubDao {
 		return club;
 	}
 	
+	public LinkedList<Club> getAllClubs() {
+		String sql = "SELECT * FROM " + tableName;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Club club = null;
+		LinkedList<Club> clubList = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while (rs.next()) {
+				club = new Club(rs.getString("club_name"), rs.getInt("club_id_num"));
+				clubList.add(club);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return clubList;
+	}
+	
 
 }

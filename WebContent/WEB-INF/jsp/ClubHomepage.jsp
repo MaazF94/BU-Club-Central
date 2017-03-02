@@ -145,248 +145,189 @@
 
 
 
-		<div class="page-content" style="background-color: grey">
-			<div class="jumbotron" style="background-color: white">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4">
-							<h3>Events Feed</h3>
-							<%
-								EventsDao eventDao = new EventsDao();
+		<div class="row" style="background-color: white">
+			<div class="container">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4 ">
+					<h3>Post Feed</h3>
+					<%
+						PostDao postDao = new PostDao();
 
-								LinkedList<Events> eventList = new LinkedList<Events>();
+						LinkedList<Post> postList = new LinkedList<Post>();
 
-								eventList = eventDao.getAllEvents();
-								int eventListSize = eventList.size();
-								int eventListIndex = 0;
-							%>
+						postList = postDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
 
-							<%
-								while (eventListIndex < eventListSize) {
-							%>
+						//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
+						int postListSize = postList.size();
+						int postListIndex = 0;
+					%>
 
-							<div class="panel panel-default">
-								<div class="panel-heading" style="background-color: red">
-									<h3 class="panel-title"><%=eventList.get(eventListIndex).getEvent_name()%></h3>
-								</div>
-								<h4>Description:</h4>
-								<div class="panel-body text-left"
-									style="background-color: #f1eaee"><%=eventList.get(eventListIndex).getDescription()%></div>
-								<h4>Location:</h4>
-								<div class="panel-body text-left"
-									style="background-color: #f1eaee"><%=eventList.get(eventListIndex).getLocation()%></div>
-								<div class="panel-body text-left"
-									style="background-color: #f1eaee">
-									Number of people going:
-									<%=eventList.get(eventListIndex).getRsvp_count()%></div>
-								<div class="panel-body">
-									<form action="RSVPServlet" method="POST">
+					<%
+						while (postListIndex < postListSize) {
+					%>
 
-										<button class="btn btn-default " type="submit" name="eventId"
-											value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP</button>
-									</form>
-									<form action="CommentServlet" method="POST">
-										<button class="btn btn-default " type="submit"
-											name="commentId_eventId" value="<%=eventList.get(eventListIndex).getEventId()%>">
-											<h4>Comment</h4>
-										</button>
-										<input name="comment" type="text">
-									</form>
-								</div>
-
-								<div class="container break-text ">
-									<div class="row">
-										<div class="panel panel-default">
-											<table class="table table-fixed ">
-												<tbody 
-													style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block">
-													
-														
-														<%	UserDao userDao = new UserDao();
-															User user;
-															LinkedList<Comment> commentList = new LinkedList<Comment>(); 
-															CommentDao commentDao = new CommentDao(); 
-															commentList = commentDao.getCommentsByEventId(eventList.get(eventListIndex).getEventId()); 
-															int commentListIndex = 0; 
-															int commentListSize = commentList.size(); %>
-															
-														<%while(commentListIndex < commentListSize) { %>
-															<tr>	
-															<td class="col-lg-4  " >
-																<%user = userDao.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
-															
-																By: <%=user.getFirst_name() %><br>
-																<%=commentList.get(commentListIndex).getComment()%>
-															</td>
-															</tr>
-															<%commentListIndex++; %>
-														<%	} %>
-														
-
-
-
-
-													
-
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-
-
-
-
-
-							</div>
-
-							<%
-								eventListIndex++;
-							%>
-
-
-
-
-							<%
-								}
-							%>
-
-
+					<div class="panel panel-default">
+						<div class="panel-heading" style="background-color: light-grey">
+							<h3 class="panel-title"><%=postList.get(postListIndex).getTitle()%></h3>
 						</div>
-
-						<div class="col-lg-4">
-							<h3>Post Feed</h3>
-							<%
-								PostDao postDao = new PostDao();
-
-								LinkedList<Post> postList = new LinkedList<Post>();
-
-								postList = postDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-
-								//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
-								int postListSize = postList.size();
-								int postListIndex = 0;
-							%>
-
-							<%
-								while (postListIndex < postListSize) {
-							%>
-
-							<div class="panel panel-default">
-								<div class="panel-heading" style="background-color: red">
-									<h3 class="panel-title"><%=postList.get(postListIndex).getTitle()%></h3>
-								</div>
-								<div class="panel-body text-left"><%=postList.get(postListIndex).getContents()%></div>
-							</div>
-
-							<%
-								postListIndex++;
-							%>
-
-
-
-
-							<%
-								}
-							%>
-
-
-						</div>
-
-
-
+						<div class="panel-body text-left"><%=postList.get(postListIndex).getContents()%></div>
 					</div>
-				</div>
-			</div>
+
+					<%
+						postListIndex++;
+					%>
+					<%
+						}
+					%>
 
 
-
-
-
-
-
-
-
-
-
-		</div>
-		<!-- Page Footer-->
-		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-		<div class="shell">
-			<div class="range range-sm-center text-lg-left">
-				<div class="cell-sm-12">
-					<div class="range range-xs-center">
-						<div
-							class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-							<!-- Twitter Feed-->
-							<h6
-								class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter
-								Feed</h6>
-							<div class="offset-top-20">
-								<div data-twitter-username="templatemonster"
-									data-twitter-date-hours=" hours ago"
-									data-twitter-date-minutes=" minutes ago" class="twitter">
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
-							<div class="footer-brand">
-								<a href="../index.html"><img
-									src="img/logo_benedictinetransparentwhite.png" width="238"
-									height="30" alt="" class="img-responsive reveal-inline-block"></a>
-							</div>
-							<div class="offset-top-50 text-xs-center text-lg-left">
-								<ul class="list-inline">
-									<li><a href="#"
-										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="#"
-										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-								</ul>
-							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M. &copy; <span id="copyright-year"></span> . <a
-									href="privacy.html">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- Final div -->
 	</div>
+
+	<!-- Page Footer-->
+	<footer
+		class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+	<div class="shell">
+		<div class="range range-sm-center text-lg-left">
+			<div class="cell-sm-12">
+				<div class="range range-xs-center">
+					<div
+						class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
+						<!-- Twitter Feed-->
+						<h6
+							class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter
+							Feed</h6>
+						<div class="offset-top-20">
+							<div data-twitter-username="templatemonster"
+								data-twitter-date-hours=" hours ago"
+								data-twitter-date-minutes=" minutes ago" class="twitter">
+								<div data-twitter-type="tweet" class="twitter-sm">
+									<div class="twitter-date text-dark small">
+										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
+										<span data-date="text" class="text-middle"></span>
+									</div>
+									<div data-tweet="text" class="twitter-text"></div>
+									<div data-screen_name="text" class="twitter-name text-bold big"></div>
+								</div>
+								<div data-twitter-type="tweet" class="twitter-sm">
+									<div class="twitter-date text-dark small">
+										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
+										<span data-date="text" class="text-middle"></span>
+									</div>
+									<div data-tweet="text" class="twitter-text"></div>
+									<div data-screen_name="text" class="twitter-name text-bold big"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div
+						class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<!-- Footer brand-->
+						<div class="footer-brand">
+							<a href="../index.html"><img
+								src="img/logo_benedictinetransparentwhite.png" width="238"
+								height="30" alt="" class="img-responsive reveal-inline-block"></a>
+						</div>
+						<div class="offset-top-50 text-xs-center text-lg-left">
+							<ul class="list-inline">
+								<li><a href="#"
+									class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="#"
+									class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="#"
+									class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="#"
+									class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+							</ul>
+						</div>
+						<p class="text-darker offset-top-20">
+							The F.I.R.M. &copy; <span id="copyright-year"></span> . <a
+								href="privacy.html">Privacy Policy</a>
+							<!-- {%FOOTER_LINK}-->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</footer>
 
 
 
 	<!-- Java script-->
+	<script>
+		var request = new XMLHttpRequest();
+		function searchInfo() {
+			var name = document.vinform.name.value;
+			var url = "/Club-Central/SearchPageServlet?val=" + name;
+
+			try {
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						var val = request.responseText;
+						document.getElementById('mylocation').innerHTML = val;
+					}
+				}//end of function  
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Unable to connect to server");
+			}
+		}
+	</script>
+
+	<script>
+		function textCounter(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>

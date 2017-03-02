@@ -57,10 +57,16 @@ public class SearchPageServlet extends HttpServlet {
 				} else {
 					eventList = new LinkedList<Events>();
 					Events event;
+					
+					
 					while (rs.next()) {
 						event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
 						event.setRsvp_count(rs.getInt("rsvp_count"));
 						eventList.add(event);
+						
+						
+						
+						
 						response.getWriter().println(event.getEvent_name() + " " + event.getLocation());
 						response.getWriter().print("<br>");
 					}

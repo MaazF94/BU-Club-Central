@@ -5,7 +5,10 @@ package edu.ben.bu_club_central.daos;
 
 import java.sql.*;
 import java.util.*;
+
+import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Events;
+import javafx.event.Event;
 
 /**
  * @author raza The connector for the events table in the database
@@ -106,7 +109,33 @@ public class EventsDao {
 		
 	}
 
-	
+	public Events getEventByEventId(int eventId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE idevent=" + eventId;
+		
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Events event = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while (rs.next()) {
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+				event.setRsvp_count(rs.getInt("rsvp_count"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return event;
+		
+	}
 	
 	
 	
