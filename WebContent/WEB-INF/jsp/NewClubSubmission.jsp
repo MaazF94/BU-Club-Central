@@ -116,10 +116,7 @@
         <ul class="dropdown-menu">
         
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
-      
-        
-          
+
         </ul>
       </li>
 								
@@ -172,7 +169,7 @@
                     </dl>
                     <dl>
                       <dt>E-mail:</dt>
-                      <dd><a href="mailto:#">mail@demolink.org</a></dd>
+                      <dd><a href="mailto:#">BUClubCentral@gmail.com</a></dd>
                     </dl>
                   </address>
                   
