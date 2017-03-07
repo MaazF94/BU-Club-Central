@@ -31,9 +31,6 @@ public class SendMail {
 				return new PasswordAuthentication(username, password);
 			}
 		});
-		
-		
-		
 		try {
 	         // Create a default MimeMessage object.
 	         Message message = new MimeMessage(session);

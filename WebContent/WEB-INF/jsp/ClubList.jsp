@@ -99,27 +99,11 @@
 											<%
 					}
 											%>
-      
         <ul class="dropdown-menu">
-        
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
-      
-        
-          
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>          
         </ul>
       </li>
-								
-								
-                      
                           </ul>
-								
-									
-									
-									
-							
-							
-							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -149,8 +133,7 @@
 
 			int index = 0;
 		%>
-
-
+		
 		<section class="section-66 section-sm-top-110 section-lg-bottom-0">
 		<div class="shell">
 			<div class="range range-xs-center">
@@ -172,8 +155,6 @@
 							<div class="panel">
 								<div role="tab" id="headingOne"
 									class="panel-heading panel-lilac">
-
-
 									<div class="panel-title">
 										<a role="button" data-toggle="collapse"
 											data-parent="#accordion-1" href="#collapseOne"
@@ -183,17 +164,6 @@
 											%>
 										</a>
 									</div>
-
-									
-
-							
-
-
-
-
-
-
-
 							</div>
 						</div>
 						
@@ -205,36 +175,18 @@
 				</div>
 			</div>
 		</section>
-
-
-
-
 		<!-- Spaces page from footer-->
 		<div class="range range-xs-center offset-top-66">
 			<div class="cell-md-7"></div>
-
-
 		</div>
 	</div>
-
-
-
-
 	<!-- Page Footer -->
 	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">
             <div class="cell-sm-12">
               <div class="range range-xs-center">
-               
-                
                  <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  
-                  
-                        
-                      
-                      
-  
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
                       <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
