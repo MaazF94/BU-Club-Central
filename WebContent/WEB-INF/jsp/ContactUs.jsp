@@ -264,12 +264,5 @@
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
   </body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> Frank_Dev
-=======
-
->>>>>>> b8e5e673fbcc6da2df9057b94a6e5e0f9d1c0eab
 </html>

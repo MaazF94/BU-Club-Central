@@ -268,7 +268,7 @@
 
       <!-- Page Footer-->
      <footer class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
->>>>>>> 5dbbb52ef3c6d2a01d2a840fb8632385e2601d1e
+
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
