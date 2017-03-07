@@ -1,14 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="edu.ben.bu_club_central.models.User"%>
-<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
-<%@ page import="edu.ben.bu_club_central.models.Club"%>
-<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Events</title>
+<title>Club Dashboard</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -30,38 +24,35 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
-		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
 			<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
-				class="rd-navbar rd-navbar-default rd-navbar-transparent"
+				class="rd-navbar container rd-navbar-floated rd-navbar-dark"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
-				<!-- RD Navbar Panel-->
+				<!-- RD Navbar Top Panel-->
+				<!-- RD Navbar Panel -->
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
+					<!-- RD Navbar Top Panel Toggle-->
+					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel"
+						class="rd-navbar-top-panel-toggle">
+						<span></span>
+					</button>
 					<!--Navbar Brand-->
-					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
-							height='30' src='img/BURedTransparent.png' alt='' /></a>
-					</div>
-				</div>
 
+				</div>
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
-
 							<!--Navbar Brand Mobile-->
-							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
-									height='30' src='img/BUred.png' alt='' /></a>
-							</div>
+
 							<div class="form-search-wrap">
 								<!-- RD Search Form-->
 								<form action="search-results.html" method="GET"
@@ -80,459 +71,311 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-
-								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
-								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="ClublistServlet"><span>clubs</span></a></li>
-
-								<li><a href="MeetTheAdminsServlet"><span>About
-											Us</span></a></li>
-								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								<li><a class="" href="LoginServlet"><span> <%
- 	if (session.getAttribute("user") == null) {
- %> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%>
-											<%
-												}
-											%>
-
-
-									</span></a></li>
-
+								<li class=""><a href="HomeServlet"><span>Home</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li><a class="active" href="EventServlet"><span>Events</span></a>
+								<li><a href="ClubHomepageServlet"><span>Club</span></a>
+								<li><a class="" href="LoginServlet"><span>Sign
+											out</span></a>
 							</ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-
+					<div class="rd-navbar-search rd-navbar-search-top-panel">
+						<a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search"
+							href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
+						<form action="search-results.html" method="GET"
+							class="rd-navbar-search-form search-form-icon-right rd-search">
+							<div class="form-group">
+								<label for="rd-navbar-search-form-input" class="form-label">Type
+									and hit enter...</label> <input id="rd-navbar-search-form-input"
+									type="text" name="s" autocomplete="off"
+									class="rd-navbar-search-form-input form-control form-control-gray-lightest" />
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 			</nav>
 		</div>
-		<div class="context-dark"></div>
+		<div class="context-dark">
+			<!-- Modern Breadcrumbs-->
+			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+			<div data-speed="0.2" data-type="media" data-url="img/BUSenate.jpg"
+				class="rd-parallax-layer"></div>
+			<div data-speed="0" data-type="html" class="rd-parallax-layer">
+				<div
+					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
+					<h2 class="veil reveal-md-block offset-top-30">
+						<span class="big"><br> <br> </span>
+					</h2>
+
+				</div>
+			</div>
+			</section>
+		</div>
 		</header>
-
-		<div class="container">
-			<div class="row" style="height: 200px; background: black"></div>
-		</div>
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Control Panel</h1>
-						</div>
-						<div class="panel-body">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#users"
-									aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
-								<li role="presentation"><a href="#events"
-									aria-controls="events" role="tab" data-toggle="tab">Events</a></li>
-								<li role="presentation"><a href="#messages"
-									aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-								<li role="presentation"><a href="#email"
-									aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
-							</ul>
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="users">
-									<div>
-										<!-- Inner user tabs -->
-										<ul class="nav nav-tabs" role="tablist">
-											<li role="presentation" class="active"><a href="#tab1"
-												aria-controls="tab1" role="tab" data-toggle="tab">Edit
-													User Information</a></li>
-											<li role="presentation"><a href="#tab2"
-												aria-controls="tab2" role="tab" data-toggle="tab">Add/Remove
-													User from Club</a></li>
-										</ul>
-
-										<!-- Inner Tab panes -->
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane active" id="tab1">
-												<form action="BmEditUserInfoServlet" method="POST">
-													Old Email: <input type="text" name="oldEmail"><br>
-													New Email: <input type="text" name="newEmail"><br>
-													ID Number: <input type="text" name="id_num" > <br>
-													<button type="submit">Submit</button>
-												</form>
-
-											</div>
-											<div role="tabpanel" class="tab-pane" id="tab2">
-													<form method="POST" action="BoardMemberDashBoard">
-													ID Number: <input type="text" name="id_num"><br>
-
-													<input type="radio" name="add_removeButton" value="Add"> Add <br>
-													<input type="radio" name="add_removeButton" value="Remove"> Remove <br>
-													<button type="submit">Submit</button>
-												</form>
-											
-											</div>
-										</div>
-									</div>
-								</div>
-
-
-								<div role="tabpanel" class="tab-pane" id="events">
-
-									<div role="tabpanel" class="tab-pane active" id="events">
-
-										<!-- Inner user tabs -->
-										<ul class="nav nav-tabs" role="tablist">
-											<li role="presentation" class="active"><a href="#tab1"
-												aria-controls="tab1" role="tab" data-toggle="tab">
-													Create Events </a></li>
-											<li role="presentation"><a href="#tab2"
-												aria-controls="tab2" role="tab" data-toggle="tab"> edit
-													events </a></li>
-
-											<li role="presentation"><a href="#tab3"
-												aria-controls="tab3" role="tab" data-toggle="tab">
-													remove events </a></li>
-										</ul>
-
-										<!-- Inner Tab panes -->
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane active" id="tab1">
-												create events</div>
-											<div role="tabpanel" class="tab-pane" id="tab2">edit
-												events</div>
-
-											<div role="tabpanel" class="tab-pane" id="tab3">remove
-												events</div>
-										</div>
-
-
-									</div>
-									edit/create events
-								</div>
-
-
-
-								<div role="tabpanel" class="tab-pane" id="messages">
-
-									<div role="tabpanel" class="tab-pane active" id="messages">
-										<div>
-											<!-- Inner user tabs -->
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active"><a href="#tab1"
-													aria-controls="tab1" role="tab" data-toggle="tab">send
-														messages</a></li>
-
-											</ul>
-
-											<!-- Inner Tab panes -->
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active" id="tab1">
-													send messages to certain users/all</div>
-
-											</div>
-										</div>
-
-									</div>
-									send messages
-								</div>
-
-
-
-
-								<div role="tabpanel" class="tab-pane" id="email">
-
-
-									<div role="tabpanel" class="tab-pane active" id="email">
-										<div>
-											<!-- Inner user tabs -->
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active"><a href="#tab1"
-													aria-controls="tab1" role="tab" data-toggle="tab">send
-														emails</a></li>
-
-											</ul>
-
-											<!-- Inner Tab panes -->
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active" id="tab1">
-													send emails to user(s)</div>
-
-											</div>
-										</div>
-
-									</div>
-									send emails
-								</div>
-
-
-								<div role="tabpanel" class="tab-pane" id="club">
-
-
-									<div role="tabpanel" class="tab-pane active" id="club">
-										<div>
-											<!-- Inner user tabs -->
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active"><a href="#tab1"
-													aria-controls="tab1" role="tab" data-toggle="tab">edit
-														club info</a></li>
-
-											</ul>
-
-											<!-- Inner Tab panes -->
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active" id="tab1">
-													edit club</div>
-
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		<!-- Page Contents-->
+		<main class="page-content"> <section id="welcome"
+			class="section-98 section-sm-110">
+		<div class="shell">
+			<h1>Welcome</h1>
+			<hr class="divider bg-red">
+			<div class="range range-xs-center offset-top-66">
+				<div class="cell-lg-8">
+					<p>Welcome to the Benedictine Senate homepage! From here you
+						can:</p>
 				</div>
-
 			</div>
-		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6" style="height: 300px">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Class List</h1>
-						</div>
-						<div class="panel-body">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Email</th>
-									</tr>
-								</thead>
-
-								<!-- 	UserDao user = new UserDao(); %>
-								userList = user.getAllUsers(); %>
-								int index = 0;%>
-								String fname, lname, email; %>-->
-								<tbody>
-									<tr>
-										<!--  
-											while(index < userList.size()) {
-												fname = userList.get(index).getFirst_name();
-												lname = userList.get(index).getLast_name();
-												email = userList.get(index).getEmail();
-										%>-->
-										<td></td>
-										<td></td>
-										<td></td>
-										<!-- index++;%>
-										 } %>-->
-									</tr>
-								</tbody>
-							</table>
-						</div>
+			<div class="range offset-top-98">
+				<div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
+					<!-- Icon Box Type 5-->
+					<div class="box-icon box-icon-bordered">
+						<a data-toggle="modal" href="#sendModal"><span
+							class="icon glyphicon glyphicon-warning-sign"></span></a>
+						<h4 class="text-danger offset-top-20">Edit Club</h4>
+						<p></p>
 					</div>
 				</div>
-
-				<div class="col-lg-6" style="height: 300px">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Messages</h1>
-						</div>
-						<div class="panel-body"></div>
+				<div
+					class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
+					<!-- Icon Box Type 5-->
+					<div class="box-icon box-icon-bordered">
+						<a data-toggle="modal" href="#deleteModal"><span
+							class="icon glyphicon glyphicon-modal-window"></span></a>
+						<h4 class="text-danger offset-top-20">Create a Post</h4>
+						<p></p>
+					</div>
+				</div>
+				<div
+					class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
+					<!-- Icon Box Type 5-->
+					<div class="box-icon box-icon-bordered">
+						<a data-toggle="modal" href="#createModal"><span
+							class="icon glyphicon glyphicon-calendar"></span> </a>
+						<h4 class="text-danger offset-top-20">Create an Event</h4>
+						<p></p>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Upcoming Events</h1>
-						</div>
-						<div class="panel-body">
-							<div class="panel-group" id="accordion">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#collapse1">Event 1</a>
-										</h4>
+		</section> </main>
+		<!-- Page Footer-->
+		<footer
+			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+		<div class="shell">
+			<div class="range range-sm-center text-lg-left">
+				<div class="cell-sm-12">
+					<div class="range range-xs-center">
+						<div
+							class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
+							<!-- Twitter Feed-->
+							<h6
+								class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter
+								Feed</h6>
+							<div class="offset-top-20">
+								<div data-twitter-username="templatemonster"
+									data-twitter-date-hours=" hours ago"
+									data-twitter-date-minutes=" minutes ago" class="twitter">
+									<div data-twitter-type="tweet" class="twitter-sm">
+										<div class="twitter-date text-dark small">
+											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
+											<span data-date="text" class="text-middle"></span>
+										</div>
+										<div data-tweet="text" class="twitter-text"></div>
+										<div data-screen_name="text"
+											class="twitter-name text-bold big"></div>
 									</div>
-									<div id="collapse1" class="panel-collapse collapse in">
-										<div class="panel-body">event info</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#collapse2">Event 2</a>
-										</h4>
-									</div>
-									<div id="collapse2" class="panel-collapse collapse">
-										<div class="panel-body">event info</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#collapse3">Event 3</a>
-										</h4>
-									</div>
-									<div id="collapse3" class="panel-collapse collapse">
-										<div class="panel-body">event info</div>
+									<div data-twitter-type="tweet" class="twitter-sm">
+										<div class="twitter-date text-dark small">
+											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
+											<span data-date="text" class="text-middle"></span>
+										</div>
+										<div data-tweet="text" class="twitter-text"></div>
+										<div data-screen_name="text"
+											class="twitter-name text-bold big"></div>
 									</div>
 								</div>
 							</div>
+						</div>
+
+
+						<div
+							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+							<!-- Footer brand-->
+							<div class="footer-brand">
+								<a href="../index.html"><img
+									src="img/logo_benedictinetransparentwhite.png" width="238"
+									height="30" alt="" class="img-responsive reveal-inline-block"></a>
+							</div>
+							<div class="offset-top-50 text-xs-center text-lg-left">
+								<ul class="list-inline">
+									<li><a href="#"
+										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="#"
+										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="#"
+										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="#"
+										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+								</ul>
+							</div>
+							<p class="text-darker offset-top-20">
+								The F.I.R.M. &copy; <span id="copyright-year"></span> . <a
+									href="privacy.html">Privacy Policy</a>
+								<!-- {%FOOTER_LINK}-->
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Club Statistics</h1>
-						</div>
-						<div class="panel-body">
-							<div class="container">
-
-								<div class="col-lg-6">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h1>form</h1>
-										</div>
-									</div>
-									form to generate report on statistics
-								</div>
-
-
-								<div class="col-lg-6">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h1>report</h1>
-										</div>
-									</div>
-
-									cart where report will display
-								</div>
+		</footer>
+	</div>
+	<!-- Global Mailform Output-->
+	<div id="form-output-global" class="snackbars"></div>
+	<!-- PhotoSwipe Gallery-->
+	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+		<div class="pswp__bg"></div>
+		<div class="pswp__scroll-wrap">
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<div class="pswp__counter"></div>
+					<button title="Close (Esc)"
+						class="pswp__button pswp__button--close"></button>
+					<button title="Share" class="pswp__button pswp__button--share"></button>
+					<button title="Toggle fullscreen"
+						class="pswp__button pswp__button--fs"></button>
+					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button title="Previous (arrow left)"
+					class="pswp__button pswp__button--arrow--left"></button>
+				<button title="Next (arrow right)"
+					class="pswp__button pswp__button--arrow--right"></button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- delete Modal -->
+	<div class="modal fade" id="deleteModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
 
-
-
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form" method="POST" action="CreatePostServlet">
+						<div class="form-group">
+							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>
+								Post Title</label> <input name="postTitle" type="text"
+								class="form-control" id="id" placeholder="Enter Title">
+						</div>
+						<div class="form-group">
+							<label for=""><span class="glyphicon glyphicon-comment"></span>
+								Post Description</label>
+							<textarea style="height: 100px;" name="postDescription"
+								id="comment" placeholder="Enter Description" type="text"
+								class="form-control"></textarea>
 						</div>
 
-
-					</div>
+						<button type="submit" class="btn btn-danger center">
+							<span class="glyphicon glyphicon-pencil"></span> Post
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- send Modal -->
+	<div class="modal fade" id="sendModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- Page Footer-->
-	<footer
-		class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-	<div class="shell">
-		<div class="range range-sm-center text-lg-left">
-			<div class="cell-sm-12">
-				<div class="range range-xs-center">
-					<div
-						class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-						<!-- Twitter Feed-->
-						<p
-							class="text-uppercase text-spacing-60 text-bold text-center text-lg-left">Twitter
-							Feed</p>
-						<div class="offset-top-20">
-							<div data-twitter-username="templatemonster"
-								data-twitter-date-hours=" hours ago"
-								data-twitter-date-minutes=" minutes ago" class="twitter">
-								<div data-twitter-type="tweet" class="twitter-sm">
-									<div class="twitter-date text-dark small">
-										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-										<span data-date="text" class="text-middle"></span>
-									</div>
-									<div data-tweet="text" class="twitter-text"></div>
-									<div data-screen_name="text" class="twitter-name text-bold big"></div>
-								</div>
-								<div data-twitter-type="tweet" class="twitter-sm">
-									<div class="twitter-date text-dark small">
-										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-										<span data-date="text" class="text-middle"></span>
-									</div>
-									<div data-tweet="text" class="twitter-text"></div>
-									<div data-screen_name="text" class="twitter-name text-bold big"></div>
-								</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group offset-top-20">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon input-group-addon-inverse">
+									<i class="fa fa-commenting-o" style="font-size: 19px"></i>
+								</span>
+								<textarea style="height: 100px;" id="comment"
+									placeholder="Type your message here..." type="text"
+									name="content" class="form-control"></textarea>
 							</div>
 						</div>
-					</div>
-
-
-					<div
-						class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-						<!-- Footer brand-->
-						<div class="footer-brand">
-							<a href="../index.html"><img width='175' height='50'
-								src='img/logo_benedictinetransparentwhite.png' alt='' /></a>
-						</div>
-						<div class="offset-top-50 text-xs-center text-lg-left">
-							<ul class="list-inline">
-								<li><a href="#"
-									class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-								<li><a href="#"
-									class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-								<li><a href="#"
-									class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-								<li><a href="#"
-									class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-							</ul>
-						</div>
-						<p class="text-darker offset-top-20">
-							The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-								href="#">Privacy Policy</a>
-							<!-- {%FOOTER_LINK}-->
-						</p>
-					</div>
+						<button type="submit" class="btn btn-danger center">
+							<span class="icon icon-xxs mdi mdi-email"></span> Send
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	</footer>
+
+	<!-- create Modal -->
+	<div class="modal fade" id="createModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form" method="POST" action="CreateEventServlet">
+						<div class="form-group">
+							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>Event
+								Title</label> <input type="text" name="event_name" class="form-control"
+								id="id" placeholder="Enter ID">
+						</div>
+						<div class="input-group input-group-sm">
+							<label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
+							<textarea name="description" style="height: 100px;" id="comment"
+								placeholder="Type your description here..." type="text"
+								name="content" class="form-control"></textarea>
+						</div>
+						<div class="form-group">
+							<label for=""><span class="glyphicon glyphicon-globe"></span>
+								Location</label> <input name="location" type="text" class="form-control"
+								id="location" placeholder="Location of Event">
+						</div>
+
+
+
+
+						<button type="submit" class="btn btn-danger center">
+							<span class="icon icon-xxs mdi mdi-delete"></span> Create Event
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
-
+	<script>
+		$(document).ready(function() {
+			$("#deleteModal").modal();
+			$("#sendModal").modal();
+			$("#createModal").modal();
+		});
+	</script>
 	<!-- Java script-->
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>

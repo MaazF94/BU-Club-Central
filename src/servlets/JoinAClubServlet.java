@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.ben.bu_club_central.daos.UserDao;
+
 /**
  * Servlet implementation class JoinAClubServlet
  */
@@ -41,6 +43,12 @@ public class JoinAClubServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	public static void callUserJoinClub(String first_name, String last_name, int id_num, String email, int club_id_num) {
+		UserDao uDao = new UserDao();
+
+		uDao.userJoinClub(first_name, last_name, id_num, email, club_id_num);
+		System.out.println("User Joined Club");
 	}
 
 }

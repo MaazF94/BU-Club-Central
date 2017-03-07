@@ -2,33 +2,97 @@ package edu.ben.bu_club_central.models;
 
 public class Events {
 	
-	private int idevent;
+	private int eventId;
 	private String event_name;
 	private String description;
 	private String location;
-	private int expected_count;
-	private int length_of_event;
-	private String type_of_event;
-	private String date;
-	private int time;
-	private String funding;
+	private int rsvp_count;
 	private int club_id_num;
 	
-	public Events(String event_name, String description, String location, String type_of_event,
-			String date, String funding, int expected_count, int length_of_event, int time, int club_id_num){
+	public Events(String event_name, String description, String location, int club_id_num){
 		this.event_name = event_name;
 		this.description = description;
 		this.location = location;
-		this.type_of_event = type_of_event;
-		this.date = date;
-		this.funding = funding;
-		this.expected_count = expected_count;
-		this.length_of_event = length_of_event;
-		this.time = time;
 		this.club_id_num = club_id_num;
-		idevent = createID(event_name, date);
 	}
 	
+	
+	
+	
+	
+	
+	public int getEventId() {
+		return eventId;
+	}
+
+
+
+
+
+
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
+	}
+
+
+
+
+
+
+	public String getEvent_name() {
+		return event_name;
+	}
+
+
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+
+
+
+
+	public int getRsvp_count() {
+		return rsvp_count;
+	}
+
+
+
+
+
+
+	public void setRsvp_count(int rsvp_count) {
+		this.rsvp_count = rsvp_count;
+	}
+
+
+
+
+
+
+	public int getClub_id_num() {
+		return club_id_num;
+	}
+
+
+
+
+
+
 	/**
 	 * 
 	 * @param event_name
