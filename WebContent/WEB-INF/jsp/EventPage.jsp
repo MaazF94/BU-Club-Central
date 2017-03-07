@@ -172,7 +172,6 @@
 							<input placeholder="Enter title of event" type="text" name="name"
 								onkeyup="searchInfo()">
 						</form>
-
 						<span id="mylocation"></span>
 					</div>
 				</div>
