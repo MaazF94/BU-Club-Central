@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
+
+	pageEncoding="ISO-8859-1"%>
+
+
    <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
@@ -13,25 +15,30 @@
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="java.util.*"%>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
-  <head>
-    <!-- Site Title-->
-    <title>Events</title>
-   
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="keywords" content="intense web design multipurpose template">
-    <meta name="date" content="Dec 26">
-    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
-    <!-- Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
-    <link rel="stylesheet" href="css/style.css">
-		<!--[if lt IE 10]>
+<head>
+<!-- Site Title-->
+<title>Events</title>
+
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="keywords" content="intense web design multipurpose template">
+<meta name="date" content="Dec 26">
+<link rel="icon" type="image/png" href="img/favicon-16x16.png"
+	sizes="16x16" />
+<!-- Stylesheets-->
+<link rel="stylesheet" type="text/css"
+	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
+<link rel="stylesheet" href="css/style.css">
+<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+
   </head>
   <body>
     <!-- Page-->
@@ -47,22 +54,25 @@
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
 				<!-- RD Navbar Panel-->
+
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
+
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
 						<a href="index.html"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
-				</div>
+
 
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
+
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
@@ -258,6 +268,7 @@
 
       <!-- Page Footer-->
      <footer class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+>>>>>>> 5dbbb52ef3c6d2a01d2a840fb8632385e2601d1e
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
@@ -290,50 +301,57 @@
 			</div>
 		</div>
 		</footer>
-    </div>
-    <!-- Global Mailform Output-->
-    <div id="form-output-global" class="snackbars"></div>
-    <!-- PhotoSwipe Gallery-->
-    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-      <div class="pswp__bg"></div>
-      <div class="pswp__scroll-wrap">
-        <div class="pswp__container">
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-        </div>
-        <div class="pswp__ui pswp__ui--hidden">
-          <div class="pswp__top-bar">
-            <div class="pswp__counter"></div>
-            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
-            <button title="Share" class="pswp__button pswp__button--share"></button>
-            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
-            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-            <div class="pswp__preloader">
-              <div class="pswp__preloader__icn">
-                <div class="pswp__preloader__cut">
-                  <div class="pswp__preloader__donut"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-            <div class="pswp__share-tooltip"></div>
-          </div>
-          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
-          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
-          <div class="pswp__caption">
-            <div class="pswp__caption__center"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Java script-->
-    <script>
+
+	</div>
+	<!-- Global Mailform Output-->
+	<div id="form-output-global" class="snackbars"></div>
+	<!-- PhotoSwipe Gallery-->
+	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+		<div class="pswp__bg"></div>
+		<div class="pswp__scroll-wrap">
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<div class="pswp__counter"></div>
+					<button title="Close (Esc)"
+						class="pswp__button pswp__button--close"></button>
+					<button title="Share" class="pswp__button pswp__button--share"></button>
+					<button title="Toggle fullscreen"
+						class="pswp__button pswp__button--fs"></button>
+					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button title="Previous (arrow left)"
+					class="pswp__button pswp__button--arrow--left"></button>
+				<button title="Next (arrow right)"
+					class="pswp__button pswp__button--arrow--right"></button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Java script-->
+	<script>
 		var request = new XMLHttpRequest();
 		function searchInfo() {
 			var name = document.vinform.name.value;
-			var url = "/bu-club-central/SearchPageServlet?val=" + name;
+			var url = "/Club-Central/SearchPageServlet?val=" + name;
+
 
 			try {
 				request.onreadystatechange = function() {
@@ -349,7 +367,9 @@
 			}
 		}
 	</script>
-    <script src="js/js/core.min.js"></script>
-    <script src="js/js/script.js"></script>
-  </body>
+
+	<script src="js/js/core.min.js"></script>
+	<script src="js/js/script.js"></script>
+</body>
+
 </html>
