@@ -244,11 +244,15 @@
   
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
-                      <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-                    </ul>
+									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
+										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://twitter.com/BenU1887" target="_blank"
+										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
+										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
+										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+								</ul>
                   </div>
                   <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->
