@@ -103,7 +103,7 @@
           
         </ul>
       </li>
->>>>>>> Frank_Dev
+
 								
 								
                       
@@ -180,21 +180,29 @@
                 <h3 class="text-bold">Join A Club</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
-                          <form data-form-output="form-output-global" data-form-type="joinClub" method="post" action="bat/rd-mailform.php" class="rd-mailform text-left offset-top-50">
+                          <form data-form-output="form-output-global" data-form-type="contact" method="post" class="rd-mailform text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside">Name:</label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name" data-constraints="@Required" class="form-control">
+                        <label for="contact-us-first-name" class="form-label form-label-outside">First Name:</label>
+                        <input id="contact-us-first-name" type="text" name="first_name" placeholder="First Name" data-constraints="@Required" class="form-control">
                       </div>
                       
                     </div>
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside">Benedictine Id:</label>
-                        <input id="contact-us-name" type="text" name="Id"  placeholder="Benedictine Id Number" data-constraints="@Required" class="form-control">
+                        <label for="contact-us-last-name" class="form-label form-label-outside">Last Name:</label>
+                        <input id="contact-us-last-name" type="text" name="last_name" placeholder="Last Name" data-constraints="@Required" class="form-control">
                       </div>
                       
+                    </div>
+                    
+                    <div class="cell-lg-12 offset-top-20">
+                      <div class="form-group">
+                        
+                        <label for="contact-us-id" class="form-label form-label-outside">Benedictine ID:</label>
+                        <input id="contact-us-id" type="text" name="id_num" placeholder="Your Benedictine ID" data-constraints="@Required" class="form-control">
+                      </div>
                     </div>
                     
                     
@@ -202,7 +210,7 @@
                       <div class="form-group">
                         
                         <label for="contact-us-email" class="form-label form-label-outside">E-Mail:</label>
-                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
+                        <input id="contact-us-email" type="text" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -210,7 +218,6 @@
                     <button type="submit" class="btn btn-danger">Send</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                   </div>
-                
        
                 
               </div>
@@ -222,7 +229,7 @@
 							while (index < clubList.size()) {
 						%>
               
-              <label><input type="checkbox" name="club" value="" /> 	<%
+              <label><input type="checkbox" name="club_id_num" value=<%=clubList.get(index).getClub_id_num()%> /> 	<%
 												out.println(clubList.get(index).getClub_name());
 											%></label><br>
               
@@ -232,7 +239,7 @@
 									%>  
                 
               </div>
-       </form>
+                               </form>
               
             </div>
           </div>
@@ -266,11 +273,15 @@
   
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
-                      <li><a href="#" class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-                      <li><a href="#" class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-                    </ul>
+									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
+										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://twitter.com/BenU1887" target="_blank"
+										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
+										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
+										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+								</ul>
                   </div>
                   <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->

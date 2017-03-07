@@ -41,7 +41,7 @@ public class ClubDao {
 	 */
 	public void addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
 		String sql = "INSERT INTO " + tableName
-				+ " (club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES ('" + club_name + "', '"+ pet_name + "', '" + club_description + "', '"+
+				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES ('" + enabled + "', '" + club_name + "', '"+ pet_name + "', '" + club_description + "', '"+
 				 enabled + "','" + pet_email+"','"+advisor_name+ "')"; 
 	
 		PreparedStatement ps;
@@ -73,7 +73,7 @@ public class ClubDao {
 			
 			while (cs.next()) {
 				
-				Club newClub = new Club( cs.getString("club_name"), cs.getInt("idClub"));
+				Club newClub = new Club( cs.getString("club_name"), cs.getInt("club_id_num"));
 				results.add(newClub);
 			}
 
@@ -84,6 +84,58 @@ public class ClubDao {
 		return results;
 	}
 
+	public Club getClubById(int clubId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Club club = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				club = new Club(rs.getString("club_name"), rs.getInt("club_id_num"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return club;
+	}
+	
+	public LinkedList<Club> getAllClubs() {
+		String sql = "SELECT * FROM " + tableName;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Club club = null;
+		LinkedList<Club> clubList = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while (rs.next()) {
+				club = new Club(rs.getString("club_name"), rs.getInt("club_id_num"));
+				clubList.add(club);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return clubList;
+	}
 	
 
 }

@@ -18,60 +18,66 @@ import edu.ben.bu_club_central.models.User;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	public static HttpSession session;
+	// public static HttpSession session;
 	private UserDao uDao = new UserDao();
-	HttpSession session; 
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	HttpSession session;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		User user;
-		
 
-		if(!request.getParameter("username").equals(null) || !request.getParameter("password").equals(null)) {
-			if(!loginUser(request.getParameter("username")).equals(null)) {
+		if (!request.getParameter("username").equals(null) || !request.getParameter("password").equals(null)) {
+			if (!(loginUser(request.getParameter("username")) == null)) {
 				user = uDao.getUserByUsername(request.getParameter("username"));
 				request.getSession().setAttribute("user", user);
-//				request.getSession().setAttribute("signIn", user.getFirst_name());
-		        request.getRequestDispatcher("HomeServlet").forward(request, response);
-			}else {
-				response.sendRedirect("errorLogin");
-			}
 
-		}else {
+				if (user.getRole_id() == 1) {
+					response.sendRedirect("UserServlet");
+				} else if (user.getRole_id() == 2) {
+					response.sendRedirect("BoardMemberDashBoard");
+				} else {
+					response.sendRedirect("AdminHome");
+				}
+			} else {
+				response.sendRedirect("errorLogin");
 			
+			}
+		} else {
 			response.sendRedirect("errorLogin");
 		}
-		
-		//Need to add if checks for where to long into when there are different roles. ie: user, admin, president
 
-	}
 	
-	
+	}// Need to add if checks for where to long into when there are different
+		// roles. ie: user, admin, president
+
+
 	private User loginUser(String username) {
 		uDao = new UserDao();
 		return uDao.getUserByUsername(username);
 	}
-	
-	
 
 }

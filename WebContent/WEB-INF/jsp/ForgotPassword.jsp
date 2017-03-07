@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-	<%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Login</title>
+<title>Forgot Password</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -17,6 +15,8 @@
 <link rel="icon" type="image/png" href="img/favicon-16x16.png"
 	sizes="16x16" />
 <!-- Stylesheets-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,700,900%7CYesteryear">
 <link rel="stylesheet" href="css/style.css">
@@ -79,46 +79,25 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-
-								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
-								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="ClublistServlet"><span>clubs</span></a></li>
-
-								<li><a href="MeetTheAdminsServlet"><span>About
-											Us</span></a></li>
+								<li class=""><a href="HomeServlet"><span>Home</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li class=""><a href="MeetTheAdminsServlet"><span>About
+											Us</span><span
+										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
+								<li><a href="EventServlet"><span>Events</span></a>
+								<li><a href="ClublistServlet"><span>clubs</span></a>
+								
+								<li><a href="LoginServlet"><span>Sign in</span></a>
+								
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
-					if (session.getAttribute("user") == null) {
- 						%> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  <span class="caret"></span></a>
- 							
-											<%
-					}
-											%>
-      
-        <ul class="dropdown-menu">
-          <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
-          
-        </ul>
-      </li>
-								
-								
-                      
-                          </ul>
-								
-									
-									
-									
-							
-							
-							
+
+
+								</li>
+							</ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-
+				
 				</div>
 			</div>
 			</nav>
@@ -136,15 +115,14 @@
 								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
 								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
 								<div>
-									<div class="offset-top-24 text-darker big text-bold">Login
-										to your account</div>
-									<p class="text-extra-small text-dark offset-top-4">Enter
-										your credentials below</p>
+									<div class="offset-top-24 text-darker big text-bold">Forgot your password?</div>
+									<p class="text-extra-small text-dark offset-top-4">Fill out some information
+									below</p>
 								</div>
 								<!-- RD Mailform-->
 								<form data-form-output="form-output-global"
 									data-form-type="contact" method="post"
-									class="text-left offset-top-30">
+									class="text-left offset-top-20">
 									<div class="form-group">
 										<div class="input-group input-group-sm">
 											<span class="input-group-addon input-group-addon-inverse"><span
@@ -157,15 +135,32 @@
 									<div class="form-group offset-top-20">
 										<div class="input-group input-group-sm">
 											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span> <input
+												id="login-your-id" placeholder="Your BenU ID"
+												type="text" name="id_num" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><i class="material-icons" style="font-size:19px">email</i></span></span> <input
+												id="login-your-email" placeholder="Your Email"
+												type="text" name="email" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
 												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
-												id="login-your-password" placeholder="Your Password"
-												type="password" name="password" data-constraints="@Required"
+												id="login-your-new-password" placeholder="Your New Password"
+												type="password" name="passwrd" data-constraints="@Required"
 												class="form-control">
 										</div>
 									</div>
 									<button type="submit"
 										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
-										Sign In <span
+										Reset My Password <span
 											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
 									</button>
 
@@ -173,7 +168,7 @@
 								
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
-									<a href="ForgotPasswordServlet" class="text-picton-blue">Forgot your password?</a>
+									<a href="ForgotUsernameServlet" class="text-picton-blue">Forgot your username?</a>
 									<div class="offset-top-0">
 										Don't have an account? <a href="RegisterServlet"
 											class="text-picton-blue">Sign up here</a>.

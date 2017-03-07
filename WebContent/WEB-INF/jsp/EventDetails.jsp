@@ -1,14 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
+
+
 <%@ page import="edu.ben.bu_club_central.models.User"%>
-
-
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Club Central Home</title>
+<title>Events</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -18,8 +28,6 @@
 <meta name="date" content="Dec 26">
 <link rel="icon" type="image/png" href="img/favicon-16x16.png"
 	sizes="16x16" />
-
-
 <!-- Stylesheets-->
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
@@ -32,20 +40,10 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
-		<div class="page-loader page-loader-variant-1">
-			<div>
-				<img class='img-responsive'
-					style='margin-top: -20px; margin-left: -18px;' width='280'
-					height='67' src='img/BURedTransparent.png' alt='' />
-				<div class="offset-top-41 text-center">
-					<div class="spinner"></div>
-				</div>
-			</div>
-		</div>
 		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
-		<nav data-md-device-layout="rd-navbar-fixed"
+			<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
 				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
@@ -100,38 +98,18 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
-					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  <span class="caret"></span></a>
- 							
-											<%
-					}
-											%>
-      
-        <ul class="dropdown-menu">
-        
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
-      
-        
-          
-        </ul>
-      </li>
-								
-								
-                      
-                          </ul>
-								
-									
-									
-									
-							
-							
-							
+								<li><a class="" href="LoginServlet"><span> <%
+ 	if (session.getAttribute("user") == null) {
+ %> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%> <%
+ 	}
+ %>
+
+
+									</span></a></li>
+
+							</ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -140,44 +118,196 @@
 			</div>
 			</nav>
 		</div>
-		<!-- Welcome to Intense--> <section>
-		<div data-on="false" data-md-on="true"
-			class="bg-gray-base context-dark rd-parallax">
-			<div data-speed="0.45" data-type="media" data-url='img/snowyBU.jpg'
+		<div class="context-dark">
+			<!-- Modern Breadcrumbs-->
+			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+			<div data-speed="0.2" data-type="media"
+				data-url="images/background-04-1920x750.jpg"
 				class="rd-parallax-layer"></div>
-			<div data-speed="0.3" data-type="html" data-md-fade="true"
-				class="rd-parallax-layer">
-				<div class="shell">
-					<div class="range">
-						<div
-							class="range range-xs-middle range-xs-center section-cover section-top-124 section-bottom-98 section-sm-top-110 section-sm-bottom-110 context-dark">
-							<div class="range range-xs-center">
-								<div class="cell-lg-12">
-									<div data-caption-animate="fadeInUp" data-caption-delay="300"
-										class="text-extra-big text-bold text-italic text-uppercase">WELCOME
-										TO CLUB CENTRAL</div>
-								</div>
-								<div class="cell-lg-9 offset-top-20">
-									<h5 data-caption-animate="fadeInUp" data-caption-delay="500"
-										class="hidden reveal-xs-block text-light"></h5>
-									<div class="group group-xl offset-top-41 offset-sm-top-30">
+			<div data-speed="0" data-type="html" class="rd-parallax-layer">
+				<div class="shell section-top-98   "></div>
+			</div>
+			</section>
+		</div>
+		</header>
+		<!-- End of header -->
+		<main class="page-content"> <!--  This is where the the page contents that you are adding should go -->
 
-										<a href="JoinAClubServlet" class="btn btn-danger">JOIN A
-											CLUB</a><a href="NewClubSubmissionServlet" class="btn btn-danger">Make your own club</a><a href="EventServlet" class="btn btn-danger">Find an
-											Event</a>
+		<div class="row">
+			<div class="jumbotron" style="background-color: white">
+				<%
+					ClubDao clubDao = new ClubDao();
+					EventsDao eventDao = new EventsDao();
+					Events event = eventDao.getEventByEventId(Integer.parseInt(request.getParameter("eventId")));
+				%>
+				<h1><%=event.getEvent_name()%></h1>
+			</div>
+		</div>
 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
+
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Location</th>
+							<th>People Going</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%=event.getDescription()%></td>
+							<td><%=event.getLocation()%></td>
+							<td><%=event.getRsvp_count()%></td>
+							<td>
+								<form action="RSVPServlet" method="POST">
+
+									<button class="btn btn-default " type="submit" name="eventId"
+										value="<%=Integer.parseInt(request.getParameter("eventId"))%>">RSVP</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-4"></div>
+				<div class="col-sm-4 well">
+					<form action="CommentServlet" method="POST">
+						<textarea class="form-control"
+							onkeyup="textCounter(this,'counter',250);" rows="4" cols="30"
+							name="comment"
+							placeholder="Enter your comment here... 250 Characters max"></textarea>
+
+						<button class="btn btn-Info " type="submit"
+							name="commentId_eventId"
+							value="<%=Integer.parseInt(request.getParameter("eventId"))%>">Comment
+						</button>
+						<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="250" id="counter">
+							Remaining
+						</h6>
+					</form>
 				</div>
 			</div>
 		</div>
-		</section> </header>
+		
+		<div class="row">
+			<div class="container" style="height:100px">
+				<div class="col-lg-12"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-12">
+								<table class="table table-striped">
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block">
+
+
+										<%
+											UserDao userDao = new UserDao();
+												User user;
+												LinkedList<Comment> commentList = new LinkedList<Comment>();
+												CommentDao commentDao = new CommentDao();
+												commentList = commentDao.getCommentsByEventId(Integer.parseInt(request.getParameter("eventId")));
+												int commentListIndex = 0;
+												int commentListSize = commentList.size();
+										%>
+
+										<%
+											while (commentListIndex < commentListSize) {
+										%>
+										<tr>
+											<td class="col-lg-12">
+												<%
+													user = userDao.getUserByIdNum(commentList.get(commentListIndex).getUserId());
+												%> By: <%=user.getFirst_name()%><br> <%=commentList.get(commentListIndex).getComment()%>
+											</td>
+										</tr>
+										<%
+											commentListIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+
+
+							</div>
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</main>
+		<!--End of main page content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- Page Footer-->
 		<footer
-			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
@@ -186,7 +316,12 @@
 
 						<div
 							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
+
+
+
+
+
+
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
@@ -211,52 +346,22 @@
 		</div>
 		</footer>
 	</div>
-	<!-- Global Mailform Output-->
-	<div id="form-output-global" class="snackbars"></div>
-	<!-- PhotoSwipe Gallery-->
-	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-		<div class="pswp__bg"></div>
-		<div class="pswp__scroll-wrap">
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
-			<div class="pswp__ui pswp__ui--hidden">
-				<div class="pswp__top-bar">
-					<div class="pswp__counter"></div>
-					<button title="Close (Esc)"
-						class="pswp__button pswp__button--close"></button>
-					<button title="Share" class="pswp__button pswp__button--share"></button>
-					<button title="Toggle fullscreen"
-						class="pswp__button pswp__button--fs"></button>
-					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-								<div class="pswp__preloader__donut"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div
-					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-					<div class="pswp__share-tooltip"></div>
-				</div>
-				<button title="Previous (arrow left)"
-					class="pswp__button pswp__button--arrow--left"></button>
-				<button title="Next (arrow right)"
-					class="pswp__button pswp__button--arrow--right"></button>
-				<div class="pswp__caption">
-					<div class="pswp__caption__center"></div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Java script-->
+
+
+	<script>
+		function textCounter(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
-
 
 </html>

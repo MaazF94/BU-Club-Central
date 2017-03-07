@@ -35,7 +35,83 @@ public class UserDao {
 		}
 				
 	}
+	/**
+	 * This method will allow a user to change their password, used when they click 'forget password'
+	 * @param username
+	 * @param passwrd the new password that the user wants
+	 * @param id_num
+	 * @param email
+	 * @return false if not able to change password
+	 */
+	public boolean userPasswordChange(String username, String passwrd, int id_num, String email) {
+		String sql = "UPDATE " + tableName + " SET passwrd='" + passwrd + "'" + " WHERE username='" + username + "'" + "and id_num='" + id_num + "'" + "and email='"
+		+ email + "'";
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	/**
+	 * This method will allow a user to change their username, used when they click 'forgot username'
+	 * @param first_name
+	 * @param last_name
+	 * @param id_num
+	 * @param email
+	 * @param username
+	 * @return false if not able to change username
+	 */
+	public boolean userUsernameChange(String first_name, String last_name, int id_num, String email, String username) {
+		String sql = "UPDATE " + tableName + " SET username='" + username + "'" + " WHERE first_name='" + first_name + "'" 
+	     + "and last_name='" + last_name + "'" + "and id_num='" + id_num + "'" + "and email='" + email + "'";
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
+	/**
+	 * This method will allow a user to "join" a club. Implemented on the Join A Club page.
+	 * @param first_name
+	 * @param last_name
+	 * @param id_num
+	 * @param email
+	 * @param club_id_num
+	 * @return false if not able to join
+	 */
+	public boolean userJoinClub(String first_name, String last_name, int id_num, String email, int club_id_num) {
+		String sql;
+		sql = "UPDATE " + tableName + " SET club_id_num='" + club_id_num + "'" + " WHERE first_name='" + first_name + "'" 
+			     + "and last_name='" + last_name + "'" + "and id_num='" + id_num + "'" + "and email='" + email + "'";
+				
+				PreparedStatement ps;
+				try {
+					ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
+					return true;
+				} catch (SQLException e) {
+					System.out.println("Did not update");
+					e.printStackTrace();
+				}
+				
+		return false;
+	}
+	
+	
 	/**
 	 * Checks to make sure username only contains letters and numbers
 	 * 
@@ -228,6 +304,8 @@ public class UserDao {
 			}else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				user.setRole_id(rs.getInt("role_id"));
+				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -323,4 +401,45 @@ public class UserDao {
 		}
 		return false;
 	}
+	
+	
+	
+	public User getUserByIdNum(int id_num) {
+		User user = null;
+		String sql = "SELECT * FROM " + tableName + " WHERE id_num=" + id_num;
+
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
+		try {
+			if (!rs.next()) {
+				return null;
+			}else {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				user.setRole_id(rs.getInt("role_id"));
+				user.setClub_id_num(rs.getInt("club_id_num"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return user;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
