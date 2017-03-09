@@ -50,7 +50,7 @@
                 <!-- RD Navbar Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
                 <!--Navbar Brand-->
-                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
+                <div class="rd-navbar-brand"><a href="HomeServlet"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
               </div>
                
               <div class="rd-navbar-menu-wrap">
@@ -58,7 +58,7 @@
                   <div class="rd-navbar-mobile-scroll">
                 
                     <!--Navbar Brand Mobile-->
-                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
+                    <div class="rd-navbar-mobile-brand"><a href="HomeServlet"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
                     <div class="form-search-wrap">
                       <!-- RD Search Form-->
                       <form action="search-results.html" method="GET" class="form-search rd-search">
