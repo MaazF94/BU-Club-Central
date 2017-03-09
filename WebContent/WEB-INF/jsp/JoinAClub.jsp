@@ -184,15 +184,15 @@
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-first-name" class="form-label form-label-outside">First Name:</label>
-                        <input id="contact-us-first-name" type="text" name="first_name" placeholder="First Name" data-constraints="@Required" class="form-control">
+                        <label for="input-styles-3" class="form-label form-label-outside"><strong>First Name:</strong></label>
+                        <input id="input-styles-3" type="text" name="first_name" placeholder="First Name" data-constraints="@Required" class="form-control form-control-impressed">
                       </div>
                       
                     </div>
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-last-name" class="form-label form-label-outside">Last Name:</label>
-                        <input id="contact-us-last-name" type="text" name="last_name" placeholder="Last Name" data-constraints="@Required" class="form-control">
+                        <label for="input-styles-3" class="form-label form-label-outside"><strong>Last Name:</strong></label>
+                        <input id="input-styles-3" type="text" name="last_name" placeholder="Last Name" data-constraints="@Required" class="form-control form-control-impressed">
                       </div>
                       
                     </div>
@@ -200,8 +200,8 @@
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
                         
-                        <label for="contact-us-id" class="form-label form-label-outside">Benedictine ID:</label>
-                        <input id="contact-us-id" type="text" name="id_num" placeholder="Your Benedictine ID" data-constraints="@Required" class="form-control">
+                        <label for="input-styles-3" class="form-label form-label-outside"><strong>Benedictine ID:<span></strong></label>
+                        <input id="input-styles-3" type="text" name="id_num" placeholder="Your Benedictine ID" data-constraints="@Required" class="form-control form-control-impressed">
                       </div>
                     </div>
                     
@@ -209,8 +209,8 @@
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
                         
-                        <label for="contact-us-email" class="form-label form-label-outside">E-Mail:</label>
-                        <input id="contact-us-email" type="text" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
+                        <label for="input-styles-3" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
+                        <input id="input-styles-3" type="text" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
                       </div>
                     </div>
                   </div>

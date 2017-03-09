@@ -169,20 +169,20 @@
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside">Name:</label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name" data-constraints="@Required" class="form-control">
+                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
+                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name" data-constraints="@Required" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside">E-Mail:</label>
-                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
+                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
+                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
-                        <label for="contact-us-message" class="form-label form-label-outside">Message:</label>
-                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." data-constraints="@Required" class="form-control"></textarea>
+                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
+                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." data-constraints="@Required" class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
                   </div>
