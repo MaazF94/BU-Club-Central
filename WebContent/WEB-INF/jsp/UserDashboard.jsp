@@ -79,13 +79,39 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a class="active" href="EventServlet"><span>Events</span></a>
-								<li><a href="#"><span>Clubs</span></a>
-								<li><a class="btn btn-default" href="LoginServlet"><span>Sign
-											in</span></a>
-							</ul>
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
