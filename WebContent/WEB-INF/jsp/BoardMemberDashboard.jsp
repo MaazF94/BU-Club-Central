@@ -1,5 +1,19 @@
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="java.util.*"%>
+
+
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
@@ -150,7 +164,7 @@
 			<hr class="divider bg-red">
 			<div class="range range-xs-center offset-top-66">
 				<div class="cell-lg-8">
-					<p>Welcome to the Benedictine Senate homepage! From here you
+					<p>Welcome to the homepage! From here you
 						can:</p>
 				</div>
 			</div>
@@ -186,6 +200,192 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="container">
+				<div class="container" style="height: 100px"></div>
+				<div class="col-lg-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#editEvents"
+							aria-controls="editEvents" role="tab" data-toggle="tab">Edit
+								Events</a></li>
+						<li role="presentation"><a href="#editComments"
+							aria-controls="editComments" role="tab" data-toggle="tab">Edit
+								Comments</a></li>
+						<li role="presentation"><a href="#editPosts"
+							aria-controls="editPosts" role="tab" data-toggle="tab">Edit
+								Posts</a></li>
+
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="editEvents">
+							<div class="container">
+								<%
+									LinkedList<Events> eventList = new LinkedList<Events>();
+									EventsDao eDao = new EventsDao();
+									eventList = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+									int eventListIndex = 0;
+									int eventListSize = eventList.size();
+								%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Event ID</th>
+											<th>Event Name</th>
+											<th>Location</th>
+											<th>RSVP Count</th>
+											<th>Club ID Number</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (eventListIndex < eventListSize) {
+										%>
+										<tr>
+											<td><%=eventList.get(eventListIndex).getEventId()%></td>
+											<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
+											<td><%=eventList.get(eventListIndex).getLocation()%></td>
+											<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
+											<td><%=eventList.get(eventListIndex).getClub_id_num()%></td>
+											<td><form action="EditEventServlet" method="GET">
+													<button class="btn btn-default " type="submit"
+														name="editEventId"
+														value="<%=eventList.get(eventListIndex).getEventId()%>">Edit</button>
+												</form></td>
+										</tr>
+
+										<%
+											eventListIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="editComments">
+							<div class="container">
+								<%
+									LinkedList<Events> eventList2 = new LinkedList<Events>();
+									EventsDao eDao2 = new EventsDao();
+									eventList2 = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+									int eventListIndex2 = 0;
+									int eventListSize2 = eventList.size();
+								%>
+								
+								<%
+									while (eventListIndex2 < eventListSize2) {
+								%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Event ID: <%=eventList2.get(eventListIndex2).getEventId()%></th>
+											<th>Event Name: <%=eventList2.get(eventListIndex2).getEvent_name()%></th>
+											<th>Club ID Number: <%=eventList2.get(eventListIndex2).getClub_id_num()%></th>
+											
+										</tr>
+										
+										<tr>
+											<th>Comment ID</th>
+											<th>Comment</th>
+											<th>Event ID</th>
+											<th>By:</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: ">
+										<%CommentDao cDao = new CommentDao();
+											LinkedList<Comment> commentList = new LinkedList<Comment>();
+											commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
+											UserDao uDao = new UserDao();
+											User u;
+											
+											int commentListIndex = 0;
+											int commentListSize = commentList.size();
+										
+										%>
+										
+										<%while(commentListIndex < commentListSize) { %>
+										
+										<tr>
+											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
+											<td><%=commentList.get(commentListIndex).getComment()%></td>
+											<td><%=commentList.get(commentListIndex).getEventId()%></td>
+											<td><%u = uDao.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
+												<%=u.getFirst_name() + " " + u.getLast_name()%>
+											</td>
+											<td>
+												<form action="EditCommentServlet">
+													<button class="btn btn-default " type="submit"
+														name="editCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>">Edit</button>
+												
+												</form>
+											
+											</td>
+										</tr>
+										
+
+
+										<% 
+										commentListIndex++;
+										%>
+										<%} %>
+										
+										<%
+											eventListIndex2++;
+										%>
+										<div class="container" style="height:100px"></div>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+						<div role="tabpanel" class="tab-pane" id="editPosts">post
+							edit</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		</section> </main>
 		<!-- Page Footer-->
 		<footer
@@ -237,13 +437,19 @@
 							</div>
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
-									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
+									<li><a
+										href="https://www.facebook.com/BenedictineUniversity/"
+										target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
 										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
+									<li><a
+										href="https://plus.google.com/106737408889171586664"
+										target="_blank"
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
+									<li><a
+										href="https://www.linkedin.com/edu/benedictine-university-18245"
+										target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
 							</div>
