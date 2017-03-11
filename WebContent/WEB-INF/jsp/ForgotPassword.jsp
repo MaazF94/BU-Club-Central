@@ -134,6 +134,7 @@
 								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
 								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
 								<div>
+								<p>${message}</p>
 									<div class="offset-top-24 text-darker big text-bold">Forgot your password?</div>
 									<p class="text-extra-small text-dark offset-top-4">Fill out some information
 									below</p>
@@ -184,7 +185,6 @@
 									</button>
 
 								</form>
-								
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
 									<a href="ForgotUsernameServlet" class="text-picton-blue">Forgot your username?</a>

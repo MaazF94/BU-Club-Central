@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
+import javax.swing.JOptionPane;
 
 import edu.ben.bu_club_central.models.User;
 
@@ -46,6 +46,7 @@ public class UserDao {
 		SendMail.email("BUclubcentral@gmail.com", username, "thefirm123", email, subject, content);
 		
 	}
+	
 	/**
 	 * This method will allow a user to change their password, used when they click 'forget password'
 	 * @param username
@@ -61,8 +62,11 @@ public class UserDao {
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
 			return true;
+			} else {
+				throw new SQLException();
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
@@ -85,8 +89,11 @@ public class UserDao {
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
 			return true;
+			} else {
+				throw new SQLException();
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
@@ -112,8 +119,11 @@ public class UserDao {
 				PreparedStatement ps;
 				try {
 					ps = conn.prepareStatement(sql);
-					ps.executeUpdate();
+					if (ps.executeUpdate() == 1) {
 					return true;
+					} else {
+						throw new SQLException();
+					}
 				} catch (SQLException e) {
 					System.out.println("Did not update");
 					e.printStackTrace();

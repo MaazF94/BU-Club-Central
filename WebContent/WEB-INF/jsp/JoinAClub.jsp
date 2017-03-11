@@ -173,10 +173,11 @@
 			int index = 0;
 		%>
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+              <p>${message}</p>
                 <h3 class="text-bold">Join A Club</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
-                          <form data-form-output="form-output-global" data-form-type="contact" method="post" class="rd-mailform text-left offset-top-50">
+                          <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
@@ -206,7 +207,7 @@
                       <div class="form-group">
                         
                         <label for="input-styles-3" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
-                        <input id="input-styles-3" type="text" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
+                        <input id="input-styles-3" type="text" name="email" placeholder="Your Email Address" data-constraints="@Required" class="form-control form-control-impressed">
                       </div>
                     </div>
                   </div>
