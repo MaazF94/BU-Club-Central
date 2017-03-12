@@ -1,6 +1,7 @@
 package edu.ben.bu_club_central.models;
 
 public class Post {
+	private int idpost;
 	private String title;
 	private String contents;
 	private int club_id_num;
@@ -12,6 +13,23 @@ public class Post {
 		this.club_id_num = club_id_num;
 		this.user_id_num = user_id_num;
 	}
+
+	
+	
+	
+	public int getIdpost() {
+		return idpost;
+	}
+
+
+
+
+	public void setIdpost(int idpost) {
+		this.idpost = idpost;
+	}
+
+
+
 
 	public String getTitle() {
 		return title;

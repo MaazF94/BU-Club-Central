@@ -330,7 +330,7 @@
 												<%=u.getFirst_name() + " " + u.getLast_name()%>
 											</td>
 											<td>
-												<form action="EditCommentServlet">
+												<form action="EditCommentServlet" method="GET">
 													<button class="btn btn-default " type="submit"
 														name="editCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>">Edit</button>
 												
@@ -359,8 +359,52 @@
 						</div>
 
 
-						<div role="tabpanel" class="tab-pane" id="editPosts">post
-							edit</div>
+						<div role="tabpanel" class="tab-pane" id="editPosts">
+							<%PostDao pDao = new PostDao();
+								LinkedList<Post> postList = new LinkedList<Post>();
+								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+								
+								int postListIndex = 0;
+								int postListSize = postList.size();
+								
+							%>
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Post ID</th>
+											<th>Post Title</th>
+											<th>Contents</th>
+											<th>Club ID Number</th>
+											<th>Posted by</th>
+											<th></th>
+										</tr>
+									</thead>
+							<%while (postListIndex < postListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td><%=postList.get(postListIndex).getIdpost()%></td>
+											<td><%=postList.get(postListIndex).getTitle()%></td>
+											<td><%=postList.get(postListIndex).getContents()%></td>
+											<td><%=postList.get(postListIndex).getClub_id_num()%></td>
+											<td><%=postList.get(postListIndex).getUser_id_num()%></td>
+											<td>
+												<form action="EditPostServlet" method="GET">
+													<%int postId = postList.get(postListIndex).getIdpost();%>
+													<button class="btn btn-default" type="submit" name="editPostId" value="<%=postId%>">Edit</button>
+												
+												</form>
+											
+											</td>
+										</tr>
+									</tbody>
+							
+							<%postListIndex++; %>
+							<% }%>
+							</table>
+						</div>
+						
 					</div>
 
 
