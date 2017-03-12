@@ -159,19 +159,13 @@
 		<div class="jumbotron" style="background-color: #f1eaee">
 			<h1>
 				<div class="container">
-					<%
-						ClubDao cDao = new ClubDao();
-						Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-						String clubName = clubObject.getClub_name();
-						out.print(clubName);
-					%>
+					<h1> ${clubName} </h1>
 				</div>
 			</h1>
+			<h5> Number of Club Members: ${clubMembers} </h5>
 		</div>
 
-
-
-		<div class="row" style="background-color: white">
+		<%--div class="row" style="background-color: white">
 			<div class="container">
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4 ">
@@ -209,9 +203,7 @@
 
 				</div>
 			</div>
-		</div>
-
-
+		</div> --%>
 
 
 
