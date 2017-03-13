@@ -33,6 +33,8 @@
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/js/sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
@@ -163,7 +165,7 @@
 							%>
 
 					<p>
-					<form action="EditEventServlet" method="POST">
+					<form action="EditEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to edit this event.');">
 						Event Id: <%=event.getEventId()%><br><br>
 					
 						Event Name: <input name="eventName" type="text" value="<%=event.getEvent_name()%>"><br><br>
@@ -175,11 +177,14 @@
 					
 						Number of people coming: <input name="rsvp_count" type="text" value="<%=event.getRsvp_count() %>"><br><br>
 						
-						<button class="btn btn-default " type="submit" name="eventID" 
+						<button  class="btn btn-default " type="submit" name="eventID" 
 														value="<%=event.getEventId()%>">Edit</button>
 					</form>
-					<form action="DeleteEventServlet" method="POST">
-						<button class="btn btn-danger" type="submit" name="eventID" 
+					
+					<br><br>
+					
+					<form action="DeleteEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this event.');">
+						<button   class="btn btn-danger" type="submit" name="eventID" 
 														value="<%=event.getEventId()%>">Delete</button>
 					
 					</form>
@@ -272,6 +277,44 @@
 		</footer>
 	</div>
 	<!-- Java script-->
+	<script type="text/javascript">
+		function editEvent() {
+			confirm("Are you sure you want to edit this event.")
+		}
+	</script>	
+	
+	<script type="text/javascript">
+		function deleteEvent() {
+			confirm("Are you sure you want to delete this event.")
+		}	
+	</script>
+	
+	
+	<script type="text/javascript">
+	function deleteEventSweetAlert() {
+		swal({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+			}).then(function () {
+			  swal(
+			    'Deleted!',
+			    'Your file has been deleted.',
+			    'success'
+			  ).then(function () {
+				  swal()
+			  
+					  
+			  }) 
+			})
+	}
+	
+	</script>
+	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
