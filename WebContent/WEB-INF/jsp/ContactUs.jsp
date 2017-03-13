@@ -162,10 +162,11 @@
                 </div>
               </div>
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+              ${message}
                 <h3 class="text-bold">Get in touch</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
-                <form data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" class="rd-mailform text-left offset-top-50">
+                <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">

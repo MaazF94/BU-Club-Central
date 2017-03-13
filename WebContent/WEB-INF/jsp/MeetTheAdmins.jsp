@@ -191,7 +191,7 @@
                     </div>
                     <p class="offset-lg-top-0 text-muted">Hi, my name is Danny Turano and I'm the
 					Director of Student Life.</p>
-                    <a href="#" class="btn btn-danger">get in touch</a>
+                    <a href="ContactUsServlet" class="btn btn-danger">get in touch</a>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
                     <!-- Box Member-->
@@ -208,7 +208,7 @@
                     </div>
                     <p class="offset-lg-top-0 text-muted">Hi, my name is Joan Henehan and I am the
 					Director of Student Engagement and Leadership Development.</p>
-                    <a href="#" class="btn btn-danger">get in touch</a>
+                    <a href="ContactUsServlet" class="btn btn-danger">get in touch</a>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
                     <!-- Box Member-->
