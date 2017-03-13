@@ -31,12 +31,14 @@
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/js/sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 </head>
-<body>
+<body onload="loggedIn()">
 	<!-- Page-->
 	<div class="page text-center">
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
@@ -349,7 +351,7 @@
 										<%
 											eventListIndex2++;
 										%>
-										<div class="container" style="height:100px"></div>
+										<div class="container" style="height:50px"></div>
 										<%
 											}
 										%>
@@ -412,7 +414,15 @@
 			</div>
 		</div>
 
-
+		
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-8">
+				
+				</div>
+			
+			</div>
+		</div>
 
 
 
@@ -559,7 +569,7 @@
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;"></div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form" method="POST" action="CreatePostServlet">
+					<form role="form" method="POST" action="CreatePostServlet" onsubmit="return confirm('Are you sure you want create this post.');">
 						<div class="form-group">
 							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>
 								Post Title</label> <input name="postTitle" type="text"
@@ -617,7 +627,7 @@
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;"></div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form" method="POST" action="CreateEventServlet">
+					<form role="form" method="POST" action="CreateEventServlet" onsubmit="return confirm('Are you sure you want create this event.');">
 						<div class="form-group">
 							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>Event
 								Title</label> <input type="text" name="event_name" class="form-control"
@@ -654,6 +664,32 @@
 		});
 	</script>
 	<!-- Java script-->
+	<script type="text/javascript">
+		
+		function loggedIn() {
+			var calledOnced = '<%=session.getAttribute("loggedIn") %>';
+			if (calledOnced == 0) {
+				<%request.getSession().setAttribute("loggedIn", 1); %>
+				calledOnce = 1;
+				swal({
+					  title: 'Logged In Successfully!',
+					  text: 'This window will close in 4 seconds.',
+					  timer: 4000
+					}).then(
+					  function () {},
+					  // handling the promise rejection
+					  function (dismiss) {
+					    if (dismiss === 'timer') {
+					      console.log('I was closed by the timer')
+					    }
+					  }
+					)
+			}
+			
+		}
+	</script>
+	
+	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>

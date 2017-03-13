@@ -34,6 +34,8 @@
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/js/sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
@@ -168,7 +170,7 @@
       <div class="row">
       	<div class="container" style="height:500px">
       		<div class="col-lg-12">
-      			<form action="EditCommentServlet" method="POST">
+      			<form action="EditCommentServlet" method="POST" onsubmit="return confirm('Are you sure you want to edit this Comment.');">
       				Event: <%=event.getEvent_name() %> <br><br>
       			
       				Comment Id: <%=comment.getIdcomment()%> <br><br>
@@ -179,7 +181,7 @@
 														value="<%=comment.getIdcomment()%>">Edit</button>
       				
       			</form>
-      			<form action="DeleteCommentServlet" method="POST">
+      			<form action="DeleteCommentServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment.');">
 						<button class="btn btn-danger" type="submit" name="commentid" 
 														value="<%=comment.getIdcomment()%>">Delete</button>
 					
