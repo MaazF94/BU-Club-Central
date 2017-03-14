@@ -390,14 +390,44 @@
 		
 		<div class="row">
 			<div class="container">
-				<div class="col-lg-8">
-				
+				<div class="col-lg-12" style="height:100px">
 				</div>
-			
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-3" ></div>
+				
+				<div class="col-lg-6">
+					<h3>Filter Events</h3>
+					
+					<form onclick="sortInfo()" name="vinform" >
+						<input type="radio" name="name" value="rsvpIncreasing">Number of People Coming(increasing order) <br>
+						<input type="radio" name="name" value="rsvpDecreasing">Number of People Coming(decreasing order) <br>
+					</form>
+					
+					<div class="col-4-lg">
+							<table class="table table-hover" >
+								<thead>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>Event name <span class="glyphicon glyphicon-calendar"></span></td>
+										<td>People Coming <span class="glyphicon glyphicon-user"></span></td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody id="sortLocation">
 
+								</tbody>
+
+							</table>
+						</div>
+					
+				</div>
+			</div>
+		</div>
 
 
 
@@ -662,6 +692,26 @@
 		}
 	</script>
 	
+	<script>
+		var request = new XMLHttpRequest();
+		function sortInfo() {
+			var name = document.vinform.name.value;
+			var url = "/bu-club-central/SortPageServlet?val=" + name;
+
+			try {
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						var val = request.responseText;
+						document.getElementById('sortLocation').innerHTML = val;
+					}
+				}//end of function  
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Unable to connect to server");
+			}
+		}
+	</script>
 	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
