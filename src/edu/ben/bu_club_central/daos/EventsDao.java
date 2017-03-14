@@ -128,11 +128,71 @@ public class EventsDao {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
+				event.setEventId(rs.getInt("idevent"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return event;
 	}
-
+	public LinkedList<Events> getAllEventsByClubId(int clubId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
+		
+		
+		LinkedList<Events> list = new LinkedList<Events>();
+		Events event = null;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			while(rs.next()) {
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+				event.setRsvp_count(rs.getInt("rsvp_count"));
+				event.setEventId(rs.getInt("idevent"));
+				
+				list.add(event);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	public void editEvent(int idevent, String eventName, String description, String location, int rsvp_count) {
+		String sql = "UPDATE " + tableName + " SET event_name='" + eventName + "', description='" + description + "', location='" + location + "', rsvp_count=" + rsvp_count + " WHERE idevent=" + idevent ;
+	
+		PreparedStatement ps;
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void deleteEventByEventId(int eventId) {
+		String sql = "DELETE FROM " + tableName + " WHERE idevent=" + eventId;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -59,5 +59,62 @@ public class CommentDao {
 	}
 	
 	
+	public Comment getCommentByCommentId(int commentId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE idcomments=" + commentId;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Comment comment = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+			try {
+				rs.next();
+				comment = new Comment(rs.getInt("idcomments"), rs.getString("comment"), rs.getInt("eventId"), rs.getInt("userId"));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return comment;
+		
+	}
+	
+	
+	public void editComment(int commentId, String comment) {
+		String sql = "UPDATE " + tableName + " SET comment='" + comment + "' WHERE idcomments=" + commentId;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteComment(int commentId) {
+		String sql = "DELETE FROM " + tableName + " WHERE idcomments=" + commentId;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 }

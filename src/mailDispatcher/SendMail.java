@@ -44,9 +44,9 @@ public class SendMail {
 
 	         // Set Subject: header field
 	         message.setSubject(subject);
-
-	         // Now set the actual message use content not text because we're sending html
-	         message.setContent(content,"text/html");
+	         
+	         // Now set the actual message
+	         message.setContent(content, "text/html");
 
 	         // Send message
 	         Transport.send(message);

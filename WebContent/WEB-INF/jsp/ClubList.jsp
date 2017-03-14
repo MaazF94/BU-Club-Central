@@ -48,7 +48,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -142,7 +142,8 @@
 						alt="" class="veil reveal-lg-inline-block">
 				</div>
 				<div class="cell-sm-9 cell-lg-6 offset-top-0">
-					<h1 class="text-darker text-lg-left">Bendictine Clubs</h1>
+					<h1 class="text-darker text-lg-left">Benedictine Clubs</h1>
+					<h6 class="text-darker text-lg-left">Click on a club to check out their homepage!</h6>
 					<hr class="divider bg-red hr-lg-left-0">
 					<div class="offset-top-41 offset-lg-top-66">
 						<!-- Bootstrap Accordion-->
@@ -156,9 +157,7 @@
 								<div role="tab" id="headingOne"
 									class="panel-heading panel-lilac">
 									<div class="panel-title">
-										<a role="button" data-toggle="collapse"
-											data-parent="#accordion-1" href="#collapseOne"
-											aria-expanded="true" class="collapsed">
+										<a href="ClubHomepageServlet?bu_club_id=<%=(clubList.get(index).getClub_id_num())%>">
 											<%
 												out.println(clubList.get(index).getClub_name());
 											%>

@@ -1,29 +1,25 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.LinkedList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import edu.ben.bu_club_central.daos.ClubDao;
-import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.daos.EventsDao;
 
 /**
- * Servlet implementation class ClublistServlet
+ * Servlet implementation class EditEventServlet
  */
-@WebServlet("/ClublistServlet")
-public class ClublistServlet extends HttpServlet {
+@WebServlet("/EditEventServlet")
+public class EditEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClublistServlet() {
+    public EditEventServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +29,24 @@ public class ClublistServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ClubDao cDao = new ClubDao(); 
-		LinkedList<Club> clubList = new LinkedList<Club>();
-		clubList =cDao.displayClub(); 
-				
-		request.getSession().setAttribute("clubs", clubList);
-		
-		
-		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/EditEvent.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		editEvent(Integer.parseInt(request.getParameter("eventID")), request.getParameter("eventName"), request.getParameter("description"), request.getParameter("location"), Integer.parseInt(request.getParameter("rsvp_count")));
+		response.sendRedirect("BoardMemberDashBoard");
+		
 	}
 
+	private void editEvent(int idevent, String event_name, String description, String location, int rsvp_count) {
+		EventsDao eDao = new EventsDao();
+		eDao.editEvent(idevent, event_name, description, location, rsvp_count);
+		
+		
+	}
+	
+	
 }
