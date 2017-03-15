@@ -101,38 +101,7 @@ public class UserDao {
 		
 		return false;
 	}
-
-	/**
-	 * This method will allow a user to "join" a club. Implemented on the Join A Club page.
-	 * @param first_name
-	 * @param last_name
-	 * @param id_num
-	 * @param email
-	 * @param club_id_num
-	 * @return false if not able to join
-	 */
-	public boolean userJoinClub(String first_name, String last_name, int id_num, String email, int club_id_num) {
-		String sql;
-		sql = "UPDATE " + tableName + " SET club_id_num='" + club_id_num + "'" + " WHERE first_name='" + first_name + "'" 
-			     + "and last_name='" + last_name + "'" + "and id_num='" + id_num + "'" + "and email='" + email + "'";
-				
-				PreparedStatement ps;
-				try {
-					ps = conn.prepareStatement(sql);
-					if (ps.executeUpdate() == 1) {
-					return true;
-					} else {
-						throw new SQLException();
-					}
-				} catch (SQLException e) {
-					System.out.println("Did not update");
-					e.printStackTrace();
-				}
-				
-		return false;
-	}
-	
-	
+		
 	/**
 	 * Checks to make sure username only contains letters and numbers
 	 * 
@@ -452,6 +421,44 @@ public class UserDao {
 		}
 
 		return user;
+	}
+	
+	/**
+	 * Get's the IDUser of the user based on first name, last name, and email
+	 * @param first_name
+	 * @param last_name
+	 * @param id_num
+	 * @param email
+	 * @return the id of the user
+	 */
+	public int getIDUser(String first_name, String last_name, int id_num, String email) {
+		String sql = "";
+		int userID = 0;
+		
+		sql = "SELECT iduser FROM " + tableName + " WHERE first_name = '" + first_name + "' " + " AND last_name = '" 
+		+ last_name + "' " + " AND id_num = '" + id_num + "' " + " AND email = '" + email + "'";
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		
+		try {
+			if (!rs.next()) {
+				return 0;
+			} else {
+				userID = rs.getInt("iduser");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userID;
 	}
 	
 	

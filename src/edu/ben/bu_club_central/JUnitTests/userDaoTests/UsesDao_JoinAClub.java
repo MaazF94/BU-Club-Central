@@ -2,62 +2,78 @@ package edu.ben.bu_club_central.JUnitTests.userDaoTests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
+import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.UserDao;
+import edu.ben.bu_club_central.models.ClubMembership;
 
 public class UsesDao_JoinAClub {
 
-	private UserDao uDao = new UserDao();
+	private ClubMembershipDao cmDao = new ClubMembershipDao();
+	List<ClubMembership> memberships = new ArrayList<ClubMembership>();
+	UserDao uDao = new UserDao();
 
-	@Test
-	public void UserJoinsClubSuccessTest() {
-		boolean expected = true;
-		boolean actual = uDao.userJoinClub("Maaz", "Fitter", 2180100, "maazfitter@gmail.com", 2);
-		assertEquals(expected, actual);
-	}
 	
 	@Test
-	public void UserJoinsClubSuccessTest2() {
-		boolean expected = true;
-		boolean actual = uDao.userJoinClub("maaz", "Fitter", 2180100, "maazfitter@gmail.com", 2);
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	public void UserJoinsClubSuccessTest3() {
-		boolean expected = true;
-		boolean actual = uDao.userJoinClub("Maaz", "fitter", 2180100, "maazfitter@gmail.com", 2);
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	public void UserJoinsClubSuccessTest4() {
-		boolean expected = true;
-		boolean actual = uDao.userJoinClub("Maaz", "Fitter", 2180100, "MaazFitter@gmail.com", 2);
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	public void UserJoinsClubFailureTest1() {
+	public void UserJoinsClubTest() {
+		
+		ClubMembership m = new ClubMembership(2, 1, 1, true);
+		memberships.add(m);
+				
 		boolean expected = false;
-		boolean actual = uDao.userJoinClub("Maaaz", "Fitter", 2180100, "maazfitter@gmail.com", 2);
+		boolean actual = cmDao.addUserToClubs(memberships);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void UserJoinsClubFailureTest2() {
+	public void UserJoinsClubTest2() {
+		
+		ClubMembership m = new ClubMembership(5, 1, 1, true);
+		memberships.add(m);
+				
 		boolean expected = false;
-		boolean actual = uDao.userJoinClub("Maaz", "Fittter", 2180100, "maazfitter@gmail.com", 2);
+		boolean actual = cmDao.addUserToClubs(memberships);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void UserJoinsClubFailureTest3() {
+	public void UserJoinsMultipleClubsTest() {
+		ClubMembership m = new ClubMembership(3, 1, 1, true);
+		memberships.add(m);
+		m = new ClubMembership(4, 1, 1, true);
+		memberships.add(m);
+		
 		boolean expected = false;
-		boolean actual = uDao.userJoinClub("Maaz", "Fitter", 2180100, "maaazfitter@gmail.com", 2);
+		boolean actual = cmDao.addUserToClubs(memberships);
 		assertEquals(expected, actual);
 	}
-
+	
+	@Test
+	public void UserJoinsMultipleClubsTest2() {
+		ClubMembership m = new ClubMembership(6, 1, 1, true);
+		memberships.add(m);
+		m = new ClubMembership(7, 1, 1, true);
+		memberships.add(m);
+		
+		boolean expected = false;
+		boolean actual = cmDao.addUserToClubs(memberships);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void UserJoinsSameClubsTest() {
+		ClubMembership m = new ClubMembership(3, 1, 1, true);
+		memberships.add(m);
+		m = new ClubMembership(4, 1, 1, true);
+		memberships.add(m);
+		
+		boolean expected = false;
+		boolean actual = cmDao.addUserToClubs(memberships);
+		assertEquals(expected, actual);
+	}
 
 }
