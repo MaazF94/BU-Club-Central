@@ -581,9 +581,13 @@
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-comment"></span>
 								Post Description</label>
-							<textarea style="height: 100px;" name="postDescription"
+							<textarea onkeyup="textCounter(this,'counter',250);" style="height: 100px;" name="postDescription"
 								id="comment" placeholder="Enter Description" type="text"
 								class="form-control"></textarea>
+							<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counter">
+							Remaining
+						</h6>
 						</div>
 
 						<button type="submit" class="btn btn-danger center">
@@ -609,7 +613,7 @@
 								<span class="input-group-addon input-group-addon-inverse">
 									<i class="fa fa-commenting-o" style="font-size: 19px"></i>
 								</span>
-								<textarea style="height: 100px;" id="comment"
+								<textarea  style="height: 100px;" id="comment"
 									placeholder="Type your message here..." type="text"
 									name="content" class="form-control"></textarea>
 							</div>
@@ -638,9 +642,13 @@
 						</div>
 						<div class="input-group input-group-sm">
 							<label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
-							<textarea name="description" style="height: 100px;" id="comment"
+							<textarea onkeyup="textCounter(this,'counter',500);" name="description" style="height: 100px;" id="comment"
 								placeholder="Type your description here..." type="text"
 								name="content" class="form-control"></textarea>
+								<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counter">
+							Remaining
+						</h6>
 						</div>
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-globe"></span>
@@ -713,6 +721,17 @@
 		}
 	</script>
 	
+	<script>
+		function textCounter(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
