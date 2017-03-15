@@ -417,14 +417,44 @@
 		
 		<div class="row">
 			<div class="container">
-				<div class="col-lg-8">
-				
+				<div class="col-lg-12" style="height:100px">
 				</div>
-			
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-3" ></div>
+				
+				<div class="col-lg-6">
+					<h3>Filter Events</h3>
+					
+					<form onclick="sortInfo()" name="vinform" >
+						<input type="radio" name="name" value="rsvpIncreasing">Number of People Coming(increasing order) <br>
+						<input type="radio" name="name" value="rsvpDecreasing">Number of People Coming(decreasing order) <br>
+					</form>
+					
+					<div class="col-4-lg">
+							<table class="table table-hover" >
+								<thead>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>Event name <span class="glyphicon glyphicon-calendar"></span></td>
+										<td>People Coming <span class="glyphicon glyphicon-user"></span></td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody id="sortLocation">
 
+								</tbody>
+
+							</table>
+						</div>
+					
+				</div>
+			</div>
+		</div>
 
 
 
@@ -578,9 +608,13 @@
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-comment"></span>
 								Post Description</label>
-							<textarea style="height: 100px;" name="postDescription"
+							<textarea onkeyup="textCounter(this,'counter',250);" style="height: 100px;" name="postDescription"
 								id="comment" placeholder="Enter Description" type="text"
 								class="form-control"></textarea>
+							<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counter">
+							Remaining
+						</h6>
 						</div>
 
 						<button type="submit" class="btn btn-danger center">
@@ -606,7 +640,7 @@
 								<span class="input-group-addon input-group-addon-inverse">
 									<i class="fa fa-commenting-o" style="font-size: 19px"></i>
 								</span>
-								<textarea style="height: 100px;" id="comment"
+								<textarea  style="height: 100px;" id="comment"
 									placeholder="Type your message here..." type="text"
 									name="content" class="form-control"></textarea>
 							</div>
@@ -635,9 +669,13 @@
 						</div>
 						<div class="input-group input-group-sm">
 							<label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
-							<textarea name="description" style="height: 100px;" id="comment"
+							<textarea onkeyup="textCounter(this,'counter',500);" name="description" style="height: 100px;" id="comment"
 								placeholder="Type your description here..." type="text"
 								name="content" class="form-control"></textarea>
+								<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counter">
+							Remaining
+						</h6>
 						</div>
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-globe"></span>
@@ -689,7 +727,38 @@
 		}
 	</script>
 	
+	<script>
+		var request = new XMLHttpRequest();
+		function sortInfo() {
+			var name = document.vinform.name.value;
+			var url = "/bu-club-central/SortPageServlet?val=" + name;
+
+			try {
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						var val = request.responseText;
+						document.getElementById('sortLocation').innerHTML = val;
+					}
+				}//end of function  
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Unable to connect to server");
+			}
+		}
+	</script>
 	
+	<script>
+		function textCounter(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>

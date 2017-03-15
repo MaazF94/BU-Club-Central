@@ -182,7 +182,7 @@
 				<div class="col-sm-4 well">
 					<form action="CommentServlet" method="POST">
 						<textarea class="form-control"
-							onkeyup="textCounter(this,'counter',250);" rows="4" cols="30"
+							onkeyup="textCounter(this,'counter',500);" rows="4" cols="30"
 							name="comment"
 							placeholder="Enter your comment here... 250 Characters max"></textarea>
 
