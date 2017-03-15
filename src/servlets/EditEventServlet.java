@@ -6,20 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import edu.ben.bu_club_central.daos.EventsDao;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class EditEventServlet
  */
-@WebServlet("")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/EditEventServlet")
+public class EditEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public EditEventServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +29,24 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
-		
-		session.setAttribute("signIn", "Sign In");
-		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/EditEvent.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		editEvent(Integer.parseInt(request.getParameter("eventID")), request.getParameter("eventName"), request.getParameter("description"), request.getParameter("location"), Integer.parseInt(request.getParameter("rsvp_count")));
+		response.sendRedirect("BoardMemberDashBoard");
+		
 	}
 
+	private void editEvent(int idevent, String event_name, String description, String location, int rsvp_count) {
+		EventsDao eDao = new EventsDao();
+		eDao.editEvent(idevent, event_name, description, location, rsvp_count);
+		
+		
+	}
+	
+	
 }

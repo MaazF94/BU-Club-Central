@@ -33,6 +33,8 @@
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/js/sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
@@ -62,7 +64,7 @@
 
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="HomeServlet"><img class='img-responsive' width='40'
+						<a href="index.html"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 
@@ -74,7 +76,7 @@
 
 								<!--Navbar Brand Mobile-->
 								<div class="rd-navbar-mobile-brand">
-									<a href="HomeServlet"><img class='img-responsive'
+									<a href="index.html"><img class='img-responsive'
 										width='238' height='30' src='img/BUred.png' alt='' /></a>
 								</div>
 								<div class="form-search-wrap">
@@ -98,18 +100,19 @@
 
 									<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 									<li><a href="EventServlet"><span>Events</span></a></li>
-									<li><a href="ClublistServlet"><span>Clubs</span></a></li>
+									<li><a href="ClublistServlet"><span>clubs</span></a></li>
 
 									<li><a href="MeetTheAdminsServlet"><span>About
 												Us</span></a></li>
 									<li><a href="ContactUsServlet"><span>Contact Us</span></a>
 									<li class="dropdown"><a class="dropdown-toggle"
-										data-toggle="dropdown" href="LoginSevlet"> <%
- 	if (session.getAttribute("user") == null) {
- %> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%>
-											<span class="caret"></span>
+										data-toggle="dropdown" href="LoginSevlet">
+											<%
+												if (session.getAttribute("user") == null) {
+											%> Sign In <%
+												} else {
+											%> <%=((User) session.getAttribute("user")).getFirst_name()%> <span
+											class="caret"></span>
 									</a> <%
  	}
  %>
@@ -149,127 +152,52 @@
 			</section>
 		</div>
 		</header>
-
+		<!-- End of header -->
 		<main class="page-content"> <!--  This is where the the page contents that you are adding should go -->
+		<div class="row">
+			<div class="container" style="height: 500px">
+				<div class="col-lg-12">
+					
+							<%
+								Events event;
+								EventsDao eDao = new EventsDao();
+								event = eDao.getEventByEventId(Integer.parseInt(request.getParameter("editEventId")));
+							%>
 
-		<!-- Page Contents-->
-		<div class="jumbotron" style="background-color: white">
-			<!-- Page Contents-->
-			<div class="jumbotron" style="background-color: white">
-				<h1>Events Page</h1>
-
-			</div>
-			<div class="row" style="height: 500px">
-				<div class="container">
-					<div class="col-lg-12">
-						<div class="jumbotron" style="background-color: white">
-							<h2>Search for an Event</h2>
-							<form name="vinform">
-								<input placeholder="Enter title of event" type="text"
-									name="name" onkeyup="searchInfo()">
-							</form>
-
-
-						</div>
-					</div>
+					<p>
+					<form action="EditEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to edit this event.');">
+						Event Id: <%=event.getEventId()%><br><br>
+					
+						Event Name: <input name="eventName" type="text" value="<%=event.getEvent_name()%>"><br><br>
+					
+						Description:<br>
+						<textarea name="description" rows="5" cols="50"><%=event.getDescription() %></textarea><br><br>
+					
+						Location: <input name="location" type="text" value="<%=event.getLocation()%>"><br><br>
+					
+						Number of people coming: <input name="rsvp_count" type="text" value="<%=event.getRsvp_count() %>"><br><br>
+						
+						<button  class="btn btn-default " type="submit" name="eventID" 
+														value="<%=event.getEventId()%>">Edit</button>
+					</form>
+					
+					<br><br>
+					
+					<form action="DeleteEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this event.');">
+						<button   class="btn btn-danger" type="submit" name="eventID" 
+														value="<%=event.getEventId()%>">Delete</button>
+					
+					</form>
+					
+					
+					
+					
+					
+					</p>
+							
 				</div>
-
-				<div class="row">
-					<div class="container">
-						<div class="col-4-lg"></div>
-
-						<div class="col-4-lg">
-							<table class="table table-hover" >
-								<thead>
-									<tr>
-										<td></td>
-										<td></td>
-										<td>Event name <span class="glyphicon glyphicon-calendar"></span></td>
-										<td>Event Location <span class="glyphicon glyphicon-globe"></span></td>
-										<td></td>
-									</tr>
-								</thead>
-								<tbody id="mylocation">
-
-								</tbody>
-
-							</table>
-						</div>
-
-					</div>
-				</div>
-
-
-
-
-
-
 			</div>
-			<div class="row">
-				<h3>Event List</h3>
-				<div class="container col-lg-12">
-
-
-					<%
-						EventsDao eventDao = new EventsDao();
-						LinkedList<Events> eventList = new LinkedList<Events>();
-
-						eventList = eventDao.getAllEvents();
-						int eventListSize = eventList.size();
-						int eventListIndex = 0;
-						ClubDao cDao = new ClubDao();
-					%>
-					<%
-						while (eventListIndex < eventListSize) {
-					%>
-
-					<div class="container">
-
-						<div class="col-lg-3"></div>
-						<table class="table table-hover col-lg-6">
-							<thead>
-								<tr>
-									<th>Event Title</th>
-									<th>Event Location</th>
-									<th>People Going</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-
-									<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
-									<td><%=eventList.get(eventListIndex).getLocation()%></td>
-									<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
-									<td><form action="EventDetailsServlet" method="GET">
-
-											<button class="btn btn-default " type="submit" name="eventId"
-												value="<%=eventList.get(eventListIndex).getEventId()%>">More
-												Info</button>
-										</form></td>
-									<td>
-										<form action="RSVPServlet" method="POST">
-
-											<button class="btn btn-default " type="submit" name="eventId"
-												value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP</button>
-										</form>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-					<div class="container" style="height: 50px"></div>
-
-				</div>
-
-				<%
-					eventListIndex++;
-				%>
-				<%
-					}
-				%>
+		</div>
 
 
 
@@ -278,15 +206,38 @@
 
 
 
-
-			</div>
 		</main>
+		<!--End of main page content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		<!-- Page Footer-->
 		<footer
-			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
-
+			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
@@ -295,100 +246,75 @@
 
 						<div
 							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
+
+
+
+
+
+
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
-									<li><a
-										href="https://www.facebook.com/BenedictineUniversity/"
-										target="_blank"
-
+									<li><a href="#"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://twitter.com/BenU1887" target="_blank"
+									<li><a href="#"
 										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a
-										href="https://plus.google.com/106737408889171586664"
-										target="_blank"
+									<li><a href="#"
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a
-										href="https://www.linkedin.com/edu/benedictine-university-18245"
-										target="_blank"
+									<li><a href="#"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-                  </div>
-                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
-                    <!-- {%FOOTER_LINK}-->
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-	</div>
-	<!-- Global Mailform Output-->
-	<div id="form-output-global" class="snackbars"></div>
-	<!-- PhotoSwipe Gallery-->
-	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-		<div class="pswp__bg"></div>
-		<div class="pswp__scroll-wrap">
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
-			<div class="pswp__ui pswp__ui--hidden">
-				<div class="pswp__top-bar">
-					<div class="pswp__counter"></div>
-					<button title="Close (Esc)"
-						class="pswp__button pswp__button--close"></button>
-					<button title="Share" class="pswp__button pswp__button--share"></button>
-					<button title="Toggle fullscreen"
-						class="pswp__button pswp__button--fs"></button>
-					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-								<div class="pswp__preloader__donut"></div>
 							</div>
+							<p class="text-darker offset-top-20">
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+									href="privacy.html">Privacy Policy</a>
+								<!-- {%FOOTER_LINK}-->
+							</p>
 						</div>
 					</div>
 				</div>
-				<div
-					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-					<div class="pswp__share-tooltip"></div>
-				</div>
-				<button title="Previous (arrow left)"
-					class="pswp__button pswp__button--arrow--left"></button>
-				<button title="Next (arrow right)"
-					class="pswp__button pswp__button--arrow--right"></button>
-				<div class="pswp__caption">
-					<div class="pswp__caption__center"></div>
-				</div>
 			</div>
 		</div>
+		</footer>
 	</div>
 	<!-- Java script-->
-	<script>
-		var request = new XMLHttpRequest();
-		function searchInfo() {
-			var name = document.vinform.name.value;
-			var url = "/bu-club-central/SearchPageServlet?val=" + name;
-
-			try {
-				request.onreadystatechange = function() {
-					if (request.readyState == 4) {
-						var val = request.responseText;
-						document.getElementById('mylocation').innerHTML = val;
-					}
-				}//end of function  
-				request.open("GET", url, true);
-				request.send();
-			} catch (e) {
-				alert("Unable to connect to server");
-			}
+	<script type="text/javascript">
+		function editEvent() {
+			confirm("Are you sure you want to edit this event.")
 		}
+	</script>	
+	
+	<script type="text/javascript">
+		function deleteEvent() {
+			confirm("Are you sure you want to delete this event.")
+		}	
 	</script>
-
+	
+	
+	<script type="text/javascript">
+	function deleteEventSweetAlert() {
+		swal({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+			}).then(function () {
+			  swal(
+			    'Deleted!',
+			    'Your file has been deleted.',
+			    'success'
+			  ).then(function () {
+				  swal()
+			  
+					  
+			  }) 
+			})
+	}
+	
+	</script>
+	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>

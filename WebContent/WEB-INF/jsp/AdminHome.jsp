@@ -20,12 +20,14 @@
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/js/sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
   </head>
-  <body>
+  <body onload="loggedIn()">
     <!-- Page-->
     <div class="page text-center">
      <header class="page-head slider-menu-position">
@@ -46,7 +48,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -57,7 +59,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -286,51 +288,73 @@
           </div>
         </div>
       </footer>
-	</div>
-	<!-- Global Mailform Output-->
-	<div id="form-output-global" class="snackbars"></div>
-	<!-- PhotoSwipe Gallery-->
-	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-		<div class="pswp__bg"></div>
-		<div class="pswp__scroll-wrap">
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
-			<div class="pswp__ui pswp__ui--hidden">
-				<div class="pswp__top-bar">
-					<div class="pswp__counter"></div>
-					<button title="Close (Esc)"
-						class="pswp__button pswp__button--close"></button>
-					<button title="Share" class="pswp__button pswp__button--share"></button>
-					<button title="Toggle fullscreen"
-						class="pswp__button pswp__button--fs"></button>
-					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-								<div class="pswp__preloader__donut"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div
-					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-					<div class="pswp__share-tooltip"></div>
-				</div>
-				<button title="Previous (arrow left)"
-					class="pswp__button pswp__button--arrow--left"></button>
-				<button title="Next (arrow right)"
-					class="pswp__button pswp__button--arrow--right"></button>
-				<div class="pswp__caption">
-					<div class="pswp__caption__center"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Java script-->
-	<script src="js/js/core.min.js"></script>
-	<script src="js/js/script.js"></script>
-</body>
+
+    </div>
+    <!-- Global Mailform Output-->
+    <div id="form-output-global" class="snackbars"></div>
+    <!-- PhotoSwipe Gallery-->
+    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
+            <button title="Share" class="pswp__button pswp__button--share"></button>
+            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
+            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
+          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Java script-->
+    <script type="text/javascript">
+		
+		function loggedIn() {
+			var calledOnced = '<%=session.getAttribute("loggedIn") %>';
+			if (calledOnced == 0) {
+				<%request.getSession().setAttribute("loggedIn", 1); %>
+				calledOnce = 1;
+				swal({
+					  title: 'Logged In Successfully!',
+					  text: 'This window will close in 4 seconds.',
+					  timer: 4000
+					}).then(
+					  function () {},
+					  // handling the promise rejection
+					  function (dismiss) {
+					    if (dismiss === 'timer') {
+					      console.log('I was closed by the timer')
+					    }
+					  }
+					)
+			}
+			
+		}
+	</script>
+    
+    <script src="js/js/core.min.js"></script>
+    <script src="js/js/script.js"></script>
+  </body>
+
 </html>

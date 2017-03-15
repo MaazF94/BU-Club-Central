@@ -53,6 +53,7 @@ public class PostDao {
 		try {
 			while(rs.next()) {
 				newPost = new Post(rs.getString("title"), rs.getString("contents"), rs.getInt("club_id_num"), rs.getInt("id_num_of_user"));
+				newPost.setIdpost(rs.getInt("idpost"));
 				postList.add(newPost);
 				
 			}
@@ -81,6 +82,7 @@ public class PostDao {
 		try {
 			while(rs.next()) {
 				newPost = new Post(rs.getString("title"), rs.getString("contents"), rs.getInt("club_id_num"), rs.getInt("id_num_of_user"));
+				newPost.setIdpost(rs.getInt("idpost"));
 				postList.add(newPost);
 				
 			}
@@ -90,5 +92,60 @@ public class PostDao {
 		
 		return postList;
 	}
+	
+	public Post getPostByPostId(int idPost) {
+		String sql = "SELECT * FROM " + tableName + " WHERE idpost=" + idPost;
+		
+		Post post = null;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			rs.next();
+			post = new Post(rs.getString("title"), rs.getString("contents"), rs.getInt("club_id_num"), rs.getInt("id_num_of_user"));
+			post.setIdpost(rs.getInt("idpost"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return post;
+	}
+	
+	
+	public void editPost(int idpost, String title, String contents) {
+		String sql = "UPDATE " + tableName + " SET title='" + title + "', contents='" + contents + "' WHERE idpost=" + idpost;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deletePost(int idpost) {
+		String sql = "DELETE FROM " + tableName + " WHERE idpost=" + idpost;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 }

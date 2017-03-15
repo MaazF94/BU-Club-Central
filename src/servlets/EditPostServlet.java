@@ -6,20 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import edu.ben.bu_club_central.daos.PostDao;
+import edu.ben.bu_club_central.models.Post;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class EditPostServlet
  */
-@WebServlet("")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/EditPostServlet")
+public class EditPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public EditPostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +29,24 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
-		
-		session.setAttribute("signIn", "Sign In");
-		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/EditPost.jsp").forward(request, response);
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		editPost(Integer.parseInt(request.getParameter("postid")), request.getParameter("postTitle"), request.getParameter("postContents"));
+		response.sendRedirect("BoardMemberDashBoard");
+
+	}
+	
+	
+	private void editPost(int idpost, String title, String contents) {
+		PostDao pDao = new PostDao();
+		pDao.editPost(idpost, title, contents);
+		
 	}
 
 }

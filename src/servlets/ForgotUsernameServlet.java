@@ -43,20 +43,64 @@ public class ForgotUsernameServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		try {
-		callUserUsernameChange(request.getParameter("first_name"), request.getParameter("last_name"),
-				Integer.parseInt(request.getParameter("id_num")), request.getParameter("email"), request.getParameter("username"));
-		
-		response.sendRedirect("HomeServlet");
+		if (callUserUsernameChange(request.getParameter("first_name"), request.getParameter("last_name"),
+				Integer.parseInt(request.getParameter("id_num")), request.getParameter("email"), request.getParameter("username"))) {
+			
+			String message = 	"<!DOCTYPE html>\r\n" + 
+					"<html>\r\n" +
+					"<head>\r\n" +
+					"<title>Mileage</title>\r\n" +
+					"<style> \r\n" +
+					".isa_success {\r\n" +
+					"color: #4F8A10;\r\n" +
+					"background-color: #DFF2BF;\r\n" +
+					"}\r\n" +
+					"</style>\r\n" +
+					"</head>\r\n<body>\r\n" +
+					"<div class=isa_success>\r\n" +
+					"<i class=fa fa-check></i>\r\n" +
+					"You successfully changed your username.\r\n" +
+					"\t\t</div>\r\n" +
+					"</body>\r\n" +
+					"</html>";
+request.setAttribute("message", message);
+request.getRequestDispatcher("/WEB-INF/jsp/ForgotUsername.jsp").forward(request, response);
+		} else {
+			throw new Exception();
+		}		
 		} catch (Exception e) {
-		response.sendRedirect("ForgotUsernameServlet");
+			String message = 	"<!DOCTYPE html>\r\n" + 
+					"<html>\r\n" +
+					"<head>\r\n" +
+					"<title>Mileage</title>\r\n" +
+					"<style> \r\n" +
+					".isa_error {\r\n" +
+					"color: #D8000C;\r\n" +
+					"background-color: #FFBABA;\r\n" +
+					"}\r\n" +
+					"</style>\r\n" +
+					"</head>\r\n<body>\r\n" +
+					"<div class=isa_error>\r\n" +
+					"<i class=fa fa-times-circle></i>\r\n" +
+					"You entered some information incorrectly, please try again.\r\n" +
+					"\t\t</div>\r\n" +
+					"</body>\r\n" +
+					"</html>";
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("/WEB-INF/jsp/ForgotUsername.jsp").forward(request, response);
 		}
 	}
 
-	public static void callUserUsernameChange(String first_name, String last_name, int id_num, String email, String username) {
+	public static boolean callUserUsernameChange(String first_name, String last_name, int id_num, String email, String username) {
 		UserDao uDao = new UserDao();
 
-		uDao.userUsernameChange(first_name, last_name, id_num, email, username);
+		if (uDao.userUsernameChange(first_name, last_name, id_num, email, username)) {
 		System.out.println("Updated User Username");
+		return true;
+		} else {
+			System.out.println("Username not updated");
+		}
+		return false;
 	}
 
 }

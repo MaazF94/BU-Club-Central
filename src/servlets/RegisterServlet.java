@@ -48,10 +48,47 @@ public class RegisterServlet extends HttpServlet {
 			callRegisterUser(request.getParameter("first_name"), request.getParameter("last_name"),
 					request.getParameter("username"), request.getParameter("passwrd"),
 					Integer.parseInt(request.getParameter("id_num")), request.getParameter("email"));
-			response.sendRedirect("HomeServlet");
+			
+			String message = 	"<!DOCTYPE html>\r\n" + 
+					"<html>\r\n" +
+					"<head>\r\n" +
+					"<title>Mileage</title>\r\n" +
+					"<style> \r\n" +
+					".isa_success {\r\n" +
+					"color: #4F8A10;\r\n" +
+					"background-color: #DFF2BF;\r\n" +
+					"}\r\n" +
+					"</style>\r\n" +
+					"</head>\r\n<body>\r\n" +
+					"<div class=isa_success>\r\n" +
+					"<i class=fa fa-check></i>\r\n" +
+					"You successfully registered.\r\n" +
+					"\t\t</div>\r\n" +
+					"</body>\r\n" +
+					"</html>";
+request.setAttribute("message", message);
+request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, response);
 		} else {
 			System.out.println("user error checking failed");
-			response.sendRedirect("RegisterServlet");
+			String message = 	"<!DOCTYPE html>\r\n" + 
+					"<html>\r\n" +
+					"<head>\r\n" +
+					"<title>Mileage</title>\r\n" +
+					"<style> \r\n" +
+					".isa_error {\r\n" +
+					"color: #D8000C;\r\n" +
+					"background-color: #FFBABA;\r\n" +
+					"}\r\n" +
+					"</style>\r\n" +
+					"</head>\r\n<body>\r\n" +
+					"<div class=isa_error>\r\n" +
+					"<i class=fa fa-times-circle></i>\r\n" +
+					"You entered some information incorrectly, please try again.\r\n" +
+					"\t\t</div>\r\n" +
+					"</body>\r\n" +
+					"</html>";
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, response);
 		}
 
 	}

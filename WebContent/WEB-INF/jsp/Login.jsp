@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-	<%@ page import="edu.ben.bu_club_central.models.User"%>
+
+<%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
@@ -20,13 +20,15 @@
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,700,900%7CYesteryear">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/js/sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 
 </head>
-<body>
+<body >
 	<!-- Page-->
 	<div class="page text-center">
 		<!-- Page Head-->
@@ -47,7 +49,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -58,7 +60,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -87,34 +89,31 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
-					if (session.getAttribute("user") == null) {
- 						%> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  <span class="caret"></span></a>
- 							
-											<%
-					}
-											%>
-      
-        <ul class="dropdown-menu">
-          <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
-          
-        </ul>
-      </li>
-								
-								
-                      
-                          </ul>
-								
-									
-									
-									
-							
-							
-							
+								<li class="dropdown"><a class="dropdown-toggle"
+									data-toggle="dropdown" href="LoginSevlet"> <%
+ 	if (session.getAttribute("user") == null) {
+ %> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%>
+										<span class="caret"></span>
+								</a> <%
+ 	}
+ %>
+
+									<ul class="dropdown-menu">
+										<li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+									</ul></li>
+
+
+
+							</ul>
+
+
+
+
+
+
+
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -170,18 +169,19 @@
 									</button>
 
 								</form>
-								
+
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
-									<a href="ForgotPasswordServlet" class="text-picton-blue">Forgot your password?</a>
+									<a href="ForgotPasswordServlet" class="text-picton-blue">Forgot
+										your password?</a>
 									<div class="offset-top-0">
 										Don't have an account? <a href="RegisterServlet"
 											class="text-picton-blue">Sign up here</a>.
 									</div>
-									
+
 								</div>
-								<div name = "error">
-								<p class = "text-danger">${error} </p>
+								<div name="error">
+									<p class="text-danger">${error}</p>
 								</div>
 							</div>
 						</div>
@@ -190,6 +190,18 @@
 			</div>
 			</section>
 			<div class="one-page-footer">
+			<div class="offset-top-50 text-xs-center text-lg-left">
+								<ul class="list-inline">
+									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
+										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://twitter.com/BenU1887" target="_blank"
+										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
+										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
+										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+								</ul>
+							</div>
 				<p style="color: rgba(255, 255, 255, 0.3)" class="small">
 					The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 						href="privacy.html">Privacy Policy</a>
@@ -241,6 +253,27 @@
 		</div>
 	</div>
 	<!-- Java script-->
+	<script type="text/javascript">
+		var something = (function() abc {
+			var executed = false;
+			return function() {
+				if (!executed) {
+					executed = true;
+					alert("Logged in successfully");
+				}
+			};
+		})();
+	</script>
+
+
+	
+	<script>
+		function loginMessage() {
+
+			alert("Logged in successfully");
+		}
+	</script>
+
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>

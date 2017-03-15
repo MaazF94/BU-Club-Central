@@ -6,20 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import edu.ben.bu_club_central.daos.PostDao;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class DeletePostServlet
  */
-@WebServlet("")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/DeletePostServlet")
+public class DeletePostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public DeletePostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +28,19 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
-		
-		session.setAttribute("signIn", "Sign In");
-		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		deletePost(Integer.parseInt(request.getParameter("postid")));
+		response.sendRedirect("BoardMemberDashBoard");
+	}
+	
+	private void deletePost(int idpost) {
+		PostDao pDao = new PostDao();
+		pDao.deletePost(idpost);
 	}
 
 }

@@ -50,7 +50,7 @@
                 <!-- RD Navbar Toggle-->
                 <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
                 <!--Navbar Brand-->
-                <div class="rd-navbar-brand"><a href="index.html"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
+                <div class="rd-navbar-brand"><a href="HomeServlet"><img class='img-responsive' width='40' height='30' src='img/BURedTransparent.png' alt=''/></a></div>
               </div>
                
               <div class="rd-navbar-menu-wrap">
@@ -58,7 +58,7 @@
                   <div class="rd-navbar-mobile-scroll">
                 
                     <!--Navbar Brand Mobile-->
-                    <div class="rd-navbar-mobile-brand"><a href="index.html"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
+                    <div class="rd-navbar-mobile-brand"><a href="HomeServlet"><img class='img-responsive' width='238' height='30' src='img/BUred.png' alt=''/></a></div>
                     <div class="form-search-wrap">
                       <!-- RD Search Form-->
                       <form action="search-results.html" method="GET" class="form-search rd-search">
@@ -70,14 +70,11 @@
                       </form>
                     </div>
                     <!-- RD Navbar Nav-->
-                  <ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="ClublistServlet"><span>clubs</span></a>
+							<ul class="rd-navbar-nav">
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
 
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
@@ -103,7 +100,6 @@
           
         </ul>
       </li>
-
 								
 								
                       
@@ -177,10 +173,11 @@
 			int index = 0;
 		%>
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+              <p>${message}</p>
                 <h3 class="text-bold">Join A Club</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
-                          <form data-form-output="form-output-global" data-form-type="contact" method="post" class="rd-mailform text-left offset-top-50">
+                          <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
@@ -210,7 +207,9 @@
                       <div class="form-group">
                         
                         <label for="input-styles-3" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
+
                         <input id="input-styles-3" type="text" name="email" placeholder="Your Email Address" data-constraints=" @Required" class="form-control form-control-impressed">
+
                       </div>
                     </div>
                   </div>

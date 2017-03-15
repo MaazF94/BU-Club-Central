@@ -57,7 +57,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -191,7 +191,7 @@
                     </div>
                     <p class="offset-lg-top-0 text-muted">Hi, my name is Danny Turano and I'm the
 					Director of Student Life.</p>
-                    <a href="#" class="btn btn-danger">get in touch</a>
+                    <a href="ContactUsServlet" class="btn btn-danger">get in touch</a>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
                     <!-- Box Member-->
@@ -208,7 +208,7 @@
                     </div>
                     <p class="offset-lg-top-0 text-muted">Hi, my name is Joan Henehan and I am the
 					Director of Student Engagement and Leadership Development.</p>
-                    <a href="#" class="btn btn-danger">get in touch</a>
+                    <a href="ContactUsServlet" class="btn btn-danger">get in touch</a>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
                     <!-- Box Member-->

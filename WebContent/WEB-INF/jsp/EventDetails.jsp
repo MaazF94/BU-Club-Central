@@ -58,7 +58,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -182,7 +182,7 @@
 				<div class="col-sm-4 well">
 					<form action="CommentServlet" method="POST">
 						<textarea class="form-control"
-							onkeyup="textCounter(this,'counter',250);" rows="4" cols="30"
+							onkeyup="textCounter(this,'counter',500);" rows="4" cols="30"
 							name="comment"
 							placeholder="Enter your comment here... 250 Characters max"></textarea>
 

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
+import javax.swing.JOptionPane;
 
 import edu.ben.bu_club_central.models.User;
 
@@ -35,17 +35,18 @@ public class UserDao {
 		}
 		// send email to a newly registered user
 		//come back later to this and use html in your email to make it look better and expand the message some more.
-		String subject = "Thank You for Registering " + first_name + "!";
-		String content = "Hello <h1>" + first_name + "</h1>,\n";
-		content += "\n\n";
-		content += "We'd like to thank you for registering for Club Central! There are multiple things you can do here at\n";
-		content += "Club Central, such as, RSVP for events, join a club, get notified of events you're RSVP'ed to. And much more!\n";
-		content += "\nWe hope you enjoy using the website!\n";
-		content += "\n\nRegards,";
-		content += "\n BU Club Central";
-		SendMail.email("BUclubcentral@gmail.com", username, "thefirm123", email, subject, content);
+//		String subject = "Thank You for Registering " + first_name + "!";
+//		String content = "Hello <h1>" + first_name + "</h1>,\n";
+//		content += "\n\n";
+//		content += "We'd like to thank you for registering for Club Central! There are multiple things you can do here at\n";
+//		content += "Club Central, such as, RSVP for events, join a club, get notified of events you're RSVP'ed to. And much more!\n";
+//		content += "\nWe hope you enjoy using the website!\n";
+//		content += "\n\nRegards,";
+//		content += "\n BU Club Central";
+//		SendMail.email("BUclubcentral@gmail.com", username, "thefirm123", email, subject, content);
 		
 	}
+	
 	/**
 	 * This method will allow a user to change their password, used when they click 'forget password'
 	 * @param username
@@ -61,8 +62,11 @@ public class UserDao {
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
 			return true;
+			} else {
+				throw new SQLException();
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
@@ -85,8 +89,11 @@ public class UserDao {
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
 			return true;
+			} else {
+				throw new SQLException();
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
@@ -94,35 +101,7 @@ public class UserDao {
 		
 		return false;
 	}
-
-	/**
-	 * This method will allow a user to "join" a club. Implemented on the Join A Club page.
-	 * @param first_name
-	 * @param last_name
-	 * @param id_num
-	 * @param email
-	 * @param club_id_num
-	 * @return false if not able to join
-	 */
-	public boolean userJoinClub(String first_name, String last_name, int id_num, String email, int club_id_num) {
-		String sql;
-		sql = "UPDATE " + tableName + " SET club_id_num='" + club_id_num + "'" + " WHERE first_name='" + first_name + "'" 
-			     + "and last_name='" + last_name + "'" + "and id_num='" + id_num + "'" + "and email='" + email + "'";
-				
-				PreparedStatement ps;
-				try {
-					ps = conn.prepareStatement(sql);
-					ps.executeUpdate();
-					return true;
-				} catch (SQLException e) {
-					System.out.println("Did not update");
-					e.printStackTrace();
-				}
-				
-		return false;
-	}
-	
-	
+		
 	/**
 	 * Checks to make sure username only contains letters and numbers
 	 * 
@@ -499,8 +478,46 @@ public class UserDao {
 	
 	
 
+	
+	
+	/**
+	 * Get's the IDUser of the user based on first name, last name, and email
+	 * @param first_name
+	 * @param last_name
+	 * @param id_num
+	 * @param email
+	 * @return the id of the user
+	 */
+	public int getIDUser(String first_name, String last_name, int id_num, String email) {
+		String sql = "";
+		int userID = 0;
 		
+		sql = "SELECT iduser FROM " + tableName + " WHERE first_name = '" + first_name + "' " + " AND last_name = '" 
+		+ last_name + "' " + " AND id_num = '" + id_num + "' " + " AND email = '" + email + "'";
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		
+		try {
+			if (!rs.next()) {
+				return 0;
+			} else {
+				userID = rs.getInt("iduser");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userID;
 	}
+}
 	
 	
 	
