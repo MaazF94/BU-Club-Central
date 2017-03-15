@@ -255,7 +255,7 @@
 											<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
 											<td><%=eventList.get(eventListIndex).getClub_id_num()%></td>
 											<td><form action="EditEventServlet" method="GET">
-													<button class="btn btn-default " type="submit"
+													<button class="btn btn-warning" type="submit"
 														name="editEventId"
 														value="<%=eventList.get(eventListIndex).getEventId()%>">Edit</button>
 												</form></td>
@@ -333,7 +333,7 @@
 											</td>
 											<td>
 												<form action="EditCommentServlet" method="GET">
-													<button class="btn btn-default " type="submit"
+													<button class="btn btn-warning" type="submit"
 														name="editCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>">Edit</button>
 												
 												</form>
@@ -394,7 +394,7 @@
 											<td>
 												<form action="EditPostServlet" method="GET">
 													<%int postId = postList.get(postListIndex).getIdpost();%>
-													<button class="btn btn-default" type="submit" name="editPostId" value="<%=postId%>">Edit</button>
+													<button class="btn btn-warning" type="submit" name="editPostId" value="<%=postId%>">Edit</button>
 												
 												</form>
 											
@@ -608,18 +608,20 @@
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-comment"></span>
 								Post Description</label>
-							<textarea onkeyup="textCounter(this,'counter',250);" style="height: 100px;" name="postDescription"
+							<textarea onkeyup="textCounterPost(this,'counterPost',250);" style="height: 100px;" name="postDescription"
 								id="comment" placeholder="Enter Description" type="text"
 								class="form-control"></textarea>
 							<h6 class="pull-right">
-							<input disabled maxlength="1" size="1" value="500" id="counter">
+							<input disabled maxlength="1" size="1" value="250" id="counterPost">
 							Remaining
 						</h6>
 						</div>
 
-						<button type="submit" class="btn btn-danger center">
+						<button type="submit" class="btn btn-success center">
 							<span class="glyphicon glyphicon-pencil"></span> Post
 						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Cancel </button>
 					</form>
 				</div>
 			</div>
@@ -663,17 +665,17 @@
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form" method="POST" action="CreateEventServlet" onsubmit="return confirm('Are you sure you want create this event.');">
 						<div class="form-group">
-							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>Event
+							<label for="id"><span class="glyphicon glyphicon-calendar"></span> Event
 								Title</label> <input type="text" name="event_name" class="form-control"
-								id="id" placeholder="Enter ID">
+								id="id" placeholder="Enter Event Title">
 						</div>
 						<div class="input-group input-group-sm">
-							<label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
-							<textarea onkeyup="textCounter(this,'counter',500);" name="description" style="height: 100px;" id="comment"
-								placeholder="Type your description here..." type="text"
+							<label for="id"><span class="glyphicon glyphicon-comment"></span> Description</label>
+							<textarea onkeyup="textCounterEvent(this,'counterEvent',500);" name="description" style="height: 100px;" id="comment"
+								placeholder="Type your description of the event here..." type="text"
 								name="content" class="form-control"></textarea>
 								<h6 class="pull-right">
-							<input disabled maxlength="1" size="1" value="500" id="counter">
+							<input disabled maxlength="1" size="1" value="500" id="counterEvent">
 							Remaining
 						</h6>
 						</div>
@@ -686,9 +688,12 @@
 
 
 
-						<button type="submit" class="btn btn-danger center">
-							<span class="icon icon-xxs mdi mdi-delete"></span> Create Event
+						<button type="submit" class="btn btn-success center">
+							<span class="glyphicon glyphicon-ok-circle"></span> Create Event
 						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Cancel </button>
+            
 					</form>
 				</div>
 			</div>
@@ -749,7 +754,19 @@
 	</script>
 	
 	<script>
-		function textCounter(field, field2, maxlimit) {
+		function textCounterPost(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
+	
+	<script>
+		function textCounterEvent(field, field2, maxlimit) {
 			var countfield = document.getElementById(field2);
 			if (field.value.length > maxlimit) {
 				field.value = field.value.substring(0, maxlimit);

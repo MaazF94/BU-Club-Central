@@ -13,6 +13,7 @@ public class UserDao {
 	private String tableName = "bu_club_central.user";
 	private int enabled = 1;
 	private int disabled = 0;
+	private int default_user_id = 1;
 
 	private DatabaseConnection dbc = new DatabaseConnection();
 	private Connection conn = dbc.getConn();
@@ -21,8 +22,8 @@ public class UserDao {
 	public void registerUser(String first_name, String last_name, String username, String passwrd, int id_num,
 			String email) {
 		String sql = "INSERT INTO " + tableName
-				+ " (first_name, last_name, username, passwrd, id_num, email, enabled) VALUES ('" + first_name + "', '"
-				+ last_name + "', '" + username + "', '" + passwrd + "', '" + id_num + "', '" + email + "', '" + enabled
+				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name + "', '"
+				+ last_name + "', '" + username + "', '" + passwrd + "', '" + id_num + "', '" + email + "', '" + default_user_id + "', '" + enabled
 				+ "')";
 
 		PreparedStatement ps;
