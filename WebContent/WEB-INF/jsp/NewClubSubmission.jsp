@@ -61,7 +61,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -185,33 +185,35 @@
                 <form data-form-output="form-output-global" data-form-type="contact" method="post" action="NewClubSubmissionServlet" class="rd-mailform text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">
-                      <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside">Club Name:</label>
-                        <input id="contact-us-name" type="text" name="clubName"  placeholder="Club Name" data-constraints="@Required" class="form-control">
+                      <div  class="form-group">
+                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Club Name:</strong></label>
+                        <input id="contact-us-name" type="text" name="clubName"  placeholder="Club Name" data-constraints="@Required" class="form-control form-control-impressed">
+                     <br/>
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside">E-Mail:</label>
-                        <input id="contact-us-email" type="email" name="petEmail" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
+                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
+                        <input id="contact-us-email" type="email" name="petEmail" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside">Advisor Name:</label>
-                        <input id="contact-us-email" type="text" name="advisorName" placeholder="Name of Advisor" data-constraints="@Required @Email" class="form-control">
+                        <label for="contact-us-email" class="form-label form-label-outside"><strong>Advisor Name:</strong></label>
+                        <input id="contact-us-email" type="text" name="advisorName" placeholder="Name of Advisor" data-constraints="@Required @Email" class="form-control form-control-impressed">
+                      	<br/>
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside">Petitioner Name:</label>
-                        <input id="contact-us-email" type="text" name="petName" placeholder="The head petitioners name" data-constraints="@Required @Email" class="form-control">
+                        <label for="contact-us-email" class="form-label form-label-outside"><strong>Petitioner Name:</strong></label>
+                        <input id="contact-us-email" type="text" name="petName" placeholder="The head petitioners name" data-constraints="@Required @Email" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
-                        <label for="contact-us-message" class="form-label form-label-outside">Club Description:</label>
-                        <textarea id="contact-us-message" name="clubDescription" placeholder="Write a quick description of the club here..." data-constraints="@Required" class="form-control"></textarea>
+                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Club Description:</strong></label>
+                        <textarea id="contact-us-message" name="clubDescription" placeholder="Write a quick description of the club here..." data-constraints="@Required" class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
                   </div>

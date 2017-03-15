@@ -44,7 +44,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -162,27 +162,28 @@
                 </div>
               </div>
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+              ${message}
                 <h3 class="text-bold">Get in touch</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
-                <form data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" class="rd-mailform text-left offset-top-50">
+                <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside">Name:</label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name" data-constraints="@Required" class="form-control">
+                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
+                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name" data-constraints="@Required" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside">E-Mail:</label>
-                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control">
+                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
+                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
-                        <label for="contact-us-message" class="form-label form-label-outside">Message:</label>
-                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." data-constraints="@Required" class="form-control"></textarea>
+                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
+                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." data-constraints="@Required" class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
                   </div>

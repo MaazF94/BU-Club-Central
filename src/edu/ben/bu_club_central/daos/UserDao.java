@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
+import javax.swing.JOptionPane;
 
 import edu.ben.bu_club_central.models.User;
 
@@ -35,17 +35,18 @@ public class UserDao {
 		}
 		// send email to a newly registered user
 		//come back later to this and use html in your email to make it look better and expand the message some more.
-		String subject = "Thank You for Registering " + first_name + "!";
-		String content = "Hello <h1>" + first_name + "</h1>,\n";
-		content += "\n\n";
-		content += "We'd like to thank you for registering for Club Central! There are multiple things you can do here at\n";
-		content += "Club Central, such as, RSVP for events, join a club, get notified of events you're RSVP'ed to. And much more!\n";
-		content += "\nWe hope you enjoy using the website!\n";
-		content += "\n\nRegards,";
-		content += "\n BU Club Central";
-		SendMail.email("BUclubcentral@gmail.com", username, "thefirm123", email, subject, content);
+//		String subject = "Thank You for Registering " + first_name + "!";
+//		String content = "Hello <h1>" + first_name + "</h1>,\n";
+//		content += "\n\n";
+//		content += "We'd like to thank you for registering for Club Central! There are multiple things you can do here at\n";
+//		content += "Club Central, such as, RSVP for events, join a club, get notified of events you're RSVP'ed to. And much more!\n";
+//		content += "\nWe hope you enjoy using the website!\n";
+//		content += "\n\nRegards,";
+//		content += "\n BU Club Central";
+//		SendMail.email("BUclubcentral@gmail.com", username, "thefirm123", email, subject, content);
 		
 	}
+	
 	/**
 	 * This method will allow a user to change their password, used when they click 'forget password'
 	 * @param username
@@ -61,8 +62,11 @@ public class UserDao {
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
 			return true;
+			} else {
+				throw new SQLException();
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
@@ -85,8 +89,11 @@ public class UserDao {
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
 			return true;
+			} else {
+				throw new SQLException();
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
@@ -112,8 +119,11 @@ public class UserDao {
 				PreparedStatement ps;
 				try {
 					ps = conn.prepareStatement(sql);
-					ps.executeUpdate();
+					if (ps.executeUpdate() == 1) {
 					return true;
+					} else {
+						throw new SQLException();
+					}
 				} catch (SQLException e) {
 					System.out.println("Did not update");
 					e.printStackTrace();

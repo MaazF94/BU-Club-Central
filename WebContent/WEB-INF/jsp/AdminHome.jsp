@@ -48,7 +48,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -145,18 +145,20 @@
       <main class="page-content">
         <section class="section-top-98 section-md-top-110 text-lg-left">
           <div class="shell">
+         
             <div class="range range-xs-center range-xs-center">
-            
+             <h1>Welcome (Teachers Name)</h1>
                <!-- Put dashboard code here -->
                 <section>
+                 
           <div class="shell">
-            <h1>Welcome (Teachers Name)</h1>
+           
           <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
             <div class="offset-sm-top-66 text-left">
               <!-- Responsive-tabs-->
               <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
                 <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Add Club</li>
+                  <li>Current Clubs</li>
                   <li></li>
                   <li></li>
                   <li></li>
@@ -164,49 +166,47 @@
                 <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
                   <div>
                   <!-- First toolbar tab -->
-                    <p class="big text-bold"></p>
-                    <form id="addClub" data-form-output="form-output-global"
-								data-form-type="contact" method="POST" action = "AdminHome"
-								class="text-left offset-top-30">
-								<h1 style="color: white;">Join a Club</h1>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="idClub" placeholder="Club ID" type="text"
-											name="idClub" data-constraints="@Required"
-											class="form-control">
-									</div>
-								</div>
-								<div class="form-group offset-top-20">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="clubName" placeholder="Club Name" type="text"
-											name="clubName" data-constraints="@Required" class="form-control">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="clubIdNum" placeholder="Club identifier" type="text"
-											name="club_id_num" data-constraints="@Required"
-											class="form-control">
-									</div>
-								</div>
-								<div class="form-group offset-top-20">
-									<div class="input-group input-group-sm">
-										<span class="input-group-addon input-group-addon-inverse"></span> <input
-											id="memberCount" placeholder="Number of Members" type="text"
-											name="memberCount" data-constraints="@Required" class="form-control">
-									</div>
-								</div>
-								
-
-								<button id="submit" type="submit"
-									class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
-									Submit <span
-										class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
-								</button>
-							</form>
+                   <!--  <div class="shell">-->
+           
+            <div class="range offset-sm-top-66">
+            
+              <div class="8">
+                <!-- Classic Responsive Table-->
+                <table data-responsive="true" class="table table-custom">
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>E-mail</th>
+                  </tr>
+                  <tr>
+                    <td>Sergey Gaponov</td>
+                    <td>Gap0n</td>
+                    <td>**********</td>
+                    <td>haponov.serhii@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td>Eugene Gusarov</td>
+                    <td>Diversant</td>
+                    <td>*******</td>
+                    <td>stmechanus@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td>Vladislav Gnatovsky</td>
+                    <td>Mason</td>
+                    <td>*********</td>
+                    <td>vgtsky@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td>Rafael Shayvolodyan</td>
+                    <td>Raffa</td>
+                    <td>********</td>
+                    <td>mnatis.rafael@gmail.com</td>
+                  </tr>
+                </table>
+              </div>
+            <!-- </div> -->
+          </div>
                   </div>
                   <!-- Second toolbar tab -->
                   <div>

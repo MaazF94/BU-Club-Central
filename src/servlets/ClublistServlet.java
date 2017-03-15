@@ -36,9 +36,7 @@ public class ClublistServlet extends HttpServlet {
 		ClubDao cDao = new ClubDao(); 
 		LinkedList<Club> clubList = new LinkedList<Club>();
 		clubList =cDao.displayClub(); 
-		
-
-		
+				
 		request.getSession().setAttribute("clubs", clubList);
 		
 		

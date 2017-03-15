@@ -62,7 +62,7 @@
 
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 
@@ -74,7 +74,7 @@
 
 								<!--Navbar Brand Mobile-->
 								<div class="rd-navbar-mobile-brand">
-									<a href="index.html"><img class='img-responsive'
+									<a href="HomeServlet"><img class='img-responsive'
 										width='238' height='30' src='img/BUred.png' alt='' /></a>
 								</div>
 								<div class="form-search-wrap">
@@ -98,7 +98,7 @@
 
 									<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 									<li><a href="EventServlet"><span>Events</span></a></li>
-									<li><a href="ClublistServlet"><span>clubs</span></a></li>
+									<li><a href="ClublistServlet"><span>Clubs</span></a></li>
 
 									<li><a href="MeetTheAdminsServlet"><span>About
 												Us</span></a></li>

@@ -85,13 +85,39 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a class="active" href="EventServlet"><span>Events</span></a>
-								<li><a href="ClubHomepageServlet"><span>Club</span></a>
-								<li><a class="" href="LoginServlet"><span>Sign
-											out</span></a>
-							</ul>
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -133,19 +159,13 @@
 		<div class="jumbotron" style="background-color: #f1eaee">
 			<h1>
 				<div class="container">
-					<%
-						ClubDao cDao = new ClubDao();
-						Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-						String clubName = clubObject.getClub_name();
-						out.print(clubName);
-					%>
+					<h1> ${clubName} </h1>
 				</div>
 			</h1>
+			<h5> Number of Club Members: ${clubMembers} </h5>
 		</div>
 
-
-
-		<div class="row" style="background-color: white">
+		<%--div class="row" style="background-color: white">
 			<div class="container">
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4 ">
@@ -183,9 +203,7 @@
 
 				</div>
 			</div>
-		</div>
-
-
+		</div> --%>
 
 
 

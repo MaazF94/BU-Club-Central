@@ -1,3 +1,4 @@
+<%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,7 +56,7 @@
 					</button>
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
-						<a href="index.html"><img class='img-responsive' width='40'
+						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
 				</div>
@@ -66,7 +67,7 @@
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
-								<a href="index.html"><img class='img-responsive' width='238'
+								<a href="HomeServlet"><img class='img-responsive' width='238'
 									height='30' src='img/BUred.png' alt='' /></a>
 							</div>
 							<div class="form-search-wrap">
@@ -87,20 +88,39 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-								<li class=""><a href="HomeServlet"><span>Home</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li class=""><a href="MeetTheAdminsServlet"><span>About
-											Us</span><span
-										class="rd-navbar-label text-middle label-custom label-danger label-xs-custom label-rounded-custom label"></span></a>
-								<li><a href="EventServlet"><span>Events</span></a>
-								<li><a href="#"><span>clubs</span></a>
-								<li><a class="btn btn-default" href="LoginServlet"><span>Sign
-											in</span></a>
+
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-
-
-								</li>
-							</ul>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
