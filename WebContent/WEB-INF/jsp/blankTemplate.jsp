@@ -1,26 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%@ page import="edu.ben.bu_club_central.models.User"%>
+
+	pageEncoding="ISO-8859-1"%>
+
+
+   <%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="java.util.*"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
-  <head>
-    <!-- Site Title-->
-    <title>Events</title>
-   
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="keywords" content="intense web design multipurpose template">
-    <meta name="date" content="Dec 26">
-    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
-    <!-- Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
-    <link rel="stylesheet" href="css/style.css">
-		<!--[if lt IE 10]>
+<head>
+<!-- Site Title-->
+<title>Events</title>
+
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="keywords" content="intense web design multipurpose template">
+<meta name="date" content="Dec 26">
+<link rel="icon" type="image/png" href="img/favicon-16x16.png"
+	sizes="16x16" />
+<!-- Stylesheets-->
+<link rel="stylesheet" type="text/css"
+	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
+<link rel="stylesheet" href="css/style.css">
+<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+
   </head>
   <body>
     <!-- Page-->
@@ -29,29 +47,32 @@
       <header class="page-head slider-menu-position">
         <!-- RD Navbar Transparent-->
         <div class="rd-navbar-wrap">
-          <nav data-md-device-layout="rd-navbar-fixed"
+		<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
 				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
 				<!-- RD Navbar Panel-->
+
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
+
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
 						<a href="index.html"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
-				</div>
+
 
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
+
 
 							<!--Navbar Brand Mobile-->
 							<div class="rd-navbar-mobile-brand">
@@ -80,26 +101,38 @@
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
 								<li><a href="ClublistServlet"><span>clubs</span></a></li>
-								
-									<li><a href="MeetTheAdminsServlet"><span>About
+
+								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
-								 <li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li><a class="" href="LoginServlet"><span>
-										
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
 											<%
-												if (session.getAttribute("user") == null) {
-											%> Sign In <%
-												} else {
+					}
 											%>
-											<%=((User) session.getAttribute("user")).getFirst_name()%>
-											<%
-												}
-											%>
-
-
-									</span></a></li>
-
-							</ul>
+      
+        <ul class="dropdown-menu">
+          <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+          
+        </ul>
+      </li>
+								
+								
+                      
+                          </ul>
+								
+									
+									
+									
+							
+							
+							
 						</div>
 					</div>
 					<!--RD Navbar Search-->

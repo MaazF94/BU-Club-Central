@@ -282,6 +282,7 @@
 			</div>
 		</main>
 
+
 		<!-- Page Footer-->
 		<footer
 			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
@@ -300,6 +301,7 @@
 									<li><a
 										href="https://www.facebook.com/BenedictineUniversity/"
 										target="_blank"
+
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
 										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
@@ -312,19 +314,16 @@
 										target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-									href="privacy.html">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</footer>
-
+                  </div>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                    <!-- {%FOOTER_LINK}-->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
 	</div>
 	<!-- Global Mailform Output-->
 	<div id="form-output-global" class="snackbars"></div>

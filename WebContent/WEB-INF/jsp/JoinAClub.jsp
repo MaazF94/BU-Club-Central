@@ -182,14 +182,14 @@
                     <div class="cell-lg-6">
                       <div class="form-group">
                         <label for="input-styles-3" class="form-label form-label-outside"><strong>First Name:</strong></label>
-                        <input id="input-styles-3" type="text" name="first_name" placeholder="First Name" data-constraints="@Required" class="form-control form-control-impressed">
+                        <input id="input-styles-3" type="text" name="first_name" placeholder="First Name"  class="form-control form-control-impressed">
                       </div>
                       
                     </div>
                     <div class="cell-lg-6">
                       <div class="form-group">
                         <label for="input-styles-3" class="form-label form-label-outside"><strong>Last Name:</strong></label>
-                        <input id="input-styles-3" type="text" name="last_name" placeholder="Last Name" data-constraints="@Required" class="form-control form-control-impressed">
+                        <input id="input-styles-3" type="text" name="last_name" placeholder="Last Name"  class="form-control form-control-impressed">
                       </div>
                       
                     </div>
@@ -198,7 +198,7 @@
                       <div class="form-group">
                         
                         <label for="input-styles-3" class="form-label form-label-outside"><strong>Benedictine ID:<span></strong></label>
-                        <input id="input-styles-3" type="text" name="id_num" placeholder="Your Benedictine ID" data-constraints="@Required" class="form-control form-control-impressed">
+                        <input id="input-styles-3" type="text" name="id_num" placeholder="Your Benedictine ID"  class="form-control form-control-impressed">
                       </div>
                     </div>
                     
@@ -207,7 +207,9 @@
                       <div class="form-group">
                         
                         <label for="input-styles-3" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
-                        <input id="input-styles-3" type="text" name="email" placeholder="Your Email Address" data-constraints="@Required" class="form-control form-control-impressed">
+
+                        <input id="input-styles-3" type="text" name="email" placeholder="Your Email Address" data-constraints=" @Required" class="form-control form-control-impressed">
+
                       </div>
                     </div>
                   </div>
