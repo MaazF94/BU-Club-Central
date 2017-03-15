@@ -145,10 +145,21 @@
           <div class="shell">
          
             <div class="range range-xs-center range-xs-center">
-             <h1>Welcome (Teachers Name)</h1>
+             <h1>Welcome (
+             <% if (session.getAttribute("user") == null) {
+ 						%> <a> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  </a>
+ 							
+											<%
+					}
+											%>)</h1>
+			
                <!-- Put dashboard code here -->
+               
                 <section>
-                 
+                 <hr class="divider text-center bg-red">
           <div class="shell">
            
           <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
@@ -170,37 +181,45 @@
             
               <div class="8">
                 <!-- Classic Responsive Table-->
+                
+                 <%
+			ClubDao cDao = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao.displayClub();
+
+			int index = 0;
+		%>
                 <table data-responsive="true" class="table table-custom">
+              
                   <tr>
-                    <th>Full Name</th>
-                    <th>Name</th>
-                    <th>Password</th>
+                    <th>Club Name</th>
+                    <th>Advisor Name</th>
+                    <th>Petioner Name</th>
                     <th>E-mail</th>
+                    <th></th>
                   </tr>
+                  
+                    <%
+							while (index < clubList.size()) {
+						%>
                   <tr>
-                    <td>Sergey Gaponov</td>
-                    <td>Gap0n</td>
-                    <td>**********</td>
-                    <td>haponov.serhii@gmail.com</td>
+             
+                    <td><%out.println(clubList.get(index).getClub_name());%></td>
+                    <td><%out.println(clubList.get(index).getAdvisor_name());%></td>
+                     <td><%out.println(clubList.get(index).getPet_name());%></td>
+                    <td><%out.println(clubList.get(index).getPet_email());%></td>
+                    <form action = "deleteClubServlet" method = "post">
+                    
+                     <td><button type = "submit" name= "clubID" value = "<%out.println(clubList.get(index).getClub_id_num());%>" class="btn btn-warning">Delete</a></td>
+                 	</form>
                   </tr>
-                  <tr>
-                    <td>Eugene Gusarov</td>
-                    <td>Diversant</td>
-                    <td>*******</td>
-                    <td>stmechanus@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td>Vladislav Gnatovsky</td>
-                    <td>Mason</td>
-                    <td>*********</td>
-                    <td>vgtsky@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td>Rafael Shayvolodyan</td>
-                    <td>Raffa</td>
-                    <td>********</td>
-                    <td>mnatis.rafael@gmail.com</td>
-                  </tr>
+                 
+                  <%
+										index++;
+										}
+									%>
+									
+                  
                 </table>
               </div>
             <!-- </div> -->
@@ -231,37 +250,21 @@
            
         </section>
       </main>
-    <!-- Page Footer-->
-      <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+    <!-- Page Footer -->
+	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">
             <div class="cell-sm-12">
               <div class="range range-xs-center">
-                <div class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-                  <!-- Twitter Feed-->
-                  <h6 class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter Feed</h6>
-                  <div class="offset-top-20">
-                    <div data-twitter-username="templatemonster" data-twitter-date-hours=" hours ago" data-twitter-date-minutes=" minutes ago" class="twitter">
-                      <div data-twitter-type="tweet" class="twitter-sm">
-                        <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                        </div>
-                        <div data-tweet="text" class="twitter-text"></div>
-                        <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                      </div>
-                      <div data-twitter-type="tweet" class="twitter-sm">
-                        <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                        </div>
-                        <div data-tweet="text" class="twitter-text"></div>
-                        <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                
                 
-                <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img src="img/logo_benedictinetransparentwhite.png" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
+                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+                  
+                  
+                        
+                      
+                      
+  
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
@@ -272,9 +275,9 @@
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-					</ul>
+								</ul>
                   </div>
-                  <p class="text-darker offset-top-20">Intense &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->
                   </p>
                 </div>
@@ -283,46 +286,51 @@
           </div>
         </div>
       </footer>
-    </div>
-    <!-- Global Mailform Output-->
-    <div id="form-output-global" class="snackbars"></div>
-    <!-- PhotoSwipe Gallery-->
-    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
-      <div class="pswp__bg"></div>
-      <div class="pswp__scroll-wrap">
-        <div class="pswp__container">
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-        </div>
-        <div class="pswp__ui pswp__ui--hidden">
-          <div class="pswp__top-bar">
-            <div class="pswp__counter"></div>
-            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
-            <button title="Share" class="pswp__button pswp__button--share"></button>
-            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
-            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
-            <div class="pswp__preloader">
-              <div class="pswp__preloader__icn">
-                <div class="pswp__preloader__cut">
-                  <div class="pswp__preloader__donut"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-            <div class="pswp__share-tooltip"></div>
-          </div>
-          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
-          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
-          <div class="pswp__caption">
-            <div class="pswp__caption__center"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Java script-->
-    <script src="js/js/core.min.js"></script>
-    <script src="js/js/script.js"></script>
-  </body>
+	</div>
+	<!-- Global Mailform Output-->
+	<div id="form-output-global" class="snackbars"></div>
+	<!-- PhotoSwipe Gallery-->
+	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+		<div class="pswp__bg"></div>
+		<div class="pswp__scroll-wrap">
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<div class="pswp__counter"></div>
+					<button title="Close (Esc)"
+						class="pswp__button pswp__button--close"></button>
+					<button title="Share" class="pswp__button pswp__button--share"></button>
+					<button title="Toggle fullscreen"
+						class="pswp__button pswp__button--fs"></button>
+					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button title="Previous (arrow left)"
+					class="pswp__button pswp__button--arrow--left"></button>
+				<button title="Next (arrow right)"
+					class="pswp__button pswp__button--arrow--right"></button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Java script-->
+	<script src="js/js/core.min.js"></script>
+	<script src="js/js/script.js"></script>
+</body>
 </html>

@@ -443,6 +443,64 @@ public class UserDao {
 
 		return user;
 	}
+	public void deleteUser(String id_num) {
+		
+			String sql = "SELECT * FROM " + tableName;
+			
+			try {
+				PreparedStatement query = conn.prepareStatement(sql);
+				ResultSet rs = query.executeQuery();
+
+				if (rs.next()) {
+					PreparedStatement ps;
+					
+					ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE id_num = " + "'"+id_num+"'");
+
+					System.out.println(ps);
+
+					ps.executeUpdate();
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
+	public LinkedList<User> getAllUsersForClub() {
+		User user;
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = 1" ;
+		System.out.println(sql);
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
+	
+	
+
+		
+	}
 	
 	
 	
@@ -453,4 +511,5 @@ public class UserDao {
 	
 	
 	
-}
+	
+

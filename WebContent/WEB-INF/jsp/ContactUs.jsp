@@ -170,7 +170,7 @@
                     <div class="cell-lg-6">
                       <div class="form-group">
                         <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name" data-constraints="@Required" class="form-control form-control-impressed">
+                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name"  class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
@@ -182,7 +182,7 @@
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
                         <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
-                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." data-constraints="@Required" class="form-control form-control-impressed"></textarea>
+                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
                   </div>

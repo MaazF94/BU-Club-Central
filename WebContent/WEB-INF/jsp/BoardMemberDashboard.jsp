@@ -1,5 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
+
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
+
+
 <head>
 <!-- Site Title-->
 <title>Club Dashboard</title>
@@ -157,9 +164,97 @@
 						<p></p>
 					</div>
 				</div>
+				<div class="range range-xs-center offset-top-66">
+				 <section>
+                 
+          <div class="shell">
+           
+          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
+            <div class="offset-sm-top-66 text-left">
+              <!-- Responsive-tabs-->
+              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
+                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
+                  <li>Current Members</li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
+                  <div>
+                  <!-- First toolbar tab -->
+                   <!--  <div class="shell">-->
+           
+            <div class="range offset-sm-top-66">
+            
+              <div class="8">
+                <!-- Classic Responsive Table-->
+                  <%
+			UserDao uDao = new UserDao();
+			LinkedList<User> userList = new LinkedList<User>();
+			userList = uDao.getAllUsersForClub();
+
+			int index = 0;
+		%>
+             
+                <table data-responsive="true" class="table table-custom">
+              
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID Number</th>
+                    <th>E-mail</th>
+                    <th></th>
+                  </tr>
+                  
+                  <%
+							while (index < userList.size()) {
+						%>
+                  <tr>
+             
+                    <td><%out.println(userList.get(index).getFirst_name());%></td>
+                    <td><%out.println(userList.get(index).getLast_name());%></td>
+                     <td><%out.println(userList.get(index).getId_num());%></td>
+                    <td><%out.println(userList.get(index).getEmail());%></td>
+                    <form action = "DeleteUserServlet" method = "post">
+                    
+                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
+                 	</form>
+                  </tr>
+                  <%
+										index++;
+										}
+									%>
+                  
+									
+                  
+                </table>
+              </div>
+            <!-- </div> -->
+          </div>
+                  </div>
+                  <!-- Second toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Third toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Fourth toolbar tab -->
+                  <div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+				</div>
+				
 			</div>
-		</div>
-		</section> </main>
+		
+		
+           </main>
 		<!-- Page Footer-->
 		<footer
 			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
@@ -368,6 +463,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<script>
 		$(document).ready(function() {
