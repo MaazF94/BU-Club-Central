@@ -36,7 +36,7 @@ public class CommentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		addComment(request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
-		response.sendRedirect("ClubHomepageServlet");
+		response.sendRedirect("EventServlet");
 	
 	}
 	
