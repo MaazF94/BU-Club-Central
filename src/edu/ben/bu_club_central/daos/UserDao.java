@@ -487,7 +487,7 @@ public class UserDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName;
+		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1";
 		
 			
 
