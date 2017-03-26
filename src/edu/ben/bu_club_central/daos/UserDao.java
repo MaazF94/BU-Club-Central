@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
+import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
 
 public class UserDao {
@@ -475,6 +476,36 @@ public class UserDao {
 		}
 		
 		return userList;
+	}
+	
+	/**
+	 * Display club gets the list of current clubs and adds them to a linked list. This allows them to be displayed in a JSP 
+	 * @return the linked list of the current clubs.
+	 */
+	public LinkedList<User> displayUsers() {
+	 LinkedList<User> results = new LinkedList<User>();
+		String sql;
+		
+		
+		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1";
+		
+			
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+			
+			while (cs.next()) {
+				
+				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"));
+				results.add(newUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return results;
 	}
 	
 	
