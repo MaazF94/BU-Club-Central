@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
-<%@ page import="edu.ben.bu_club_central.models.Events"%>
-<%@ page import="edu.ben.bu_club_central.models.Club"%>
-<%@ page import="edu.ben.bu_club_central.models.Comment"%>
-<%@ page import="edu.ben.bu_club_central.models.Post"%>
-<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
-<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
-<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
-<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
-<%@ page import="java.util.*"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 
@@ -107,10 +100,12 @@
 					}
 											%>
       
-        <ul class="dropdown-menu">
+       <ul class="dropdown-menu">
         
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
+ 							   
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
       
         
           
@@ -118,7 +113,7 @@
       </li>
 								
 								
-                      
+                      <li><a href="#"><span></span></a></li>
                           </ul>
 								
 									
@@ -154,126 +149,108 @@
           <div class="shell">
          
             <div class="range range-xs-center range-xs-center">
-             <h1>Admin Dashboard</h1>
+             <h1>Welcome (
+             <% if (session.getAttribute("user") == null) {
+ 						%> <a> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  </a>
+ 							
+											<%
+					}
+											%>)</h1>
 			
                <!-- Put dashboard code here -->
                
                 <section>
+                 <hr class="divider text-center bg-red">
           <div class="shell">
            
-         		<div class="row">
-			<div class="container">
-				<div class="container" style="height: 100px"></div>
-				<div class="col-lg-12">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#viewClub"
-							aria-controls="viewClub" role="tab" data-toggle="tab">View Clubs</a></li>
-						<li role="presentation"><a href="#viewUser"
-							aria-controls="viewUsers" role="tab" data-toggle="tab">View Users</a></li>
-
-					</ul>
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="viewClub">
-							<div class="container">
-								<%
+          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
+            <div class="offset-sm-top-66 text-left">
+              <!-- Responsive-tabs-->
+              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
+                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
+                  <li>Current Clubs</li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
+                  <div>
+                  <!-- First toolbar tab -->
+                   <!--  <div class="shell">-->
+           
+            <div class="range offset-sm-top-66">
+            
+              <div class="8">
+                <!-- Classic Responsive Table-->
+                
+                 <%
 			ClubDao cDao = new ClubDao();
 			LinkedList<Club> clubList = new LinkedList<Club>();
 			clubList = cDao.displayClub();
 
 			int index = 0;
 		%>
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Club Name</th>
-											<th>Advisor Name</th>
-											<th>Petitioner Name</th>
-											<th>Email</th>
-										</tr>
-									</thead>
-									<tbody
-										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
-										<%
-											while (index < clubList.size()) {
-										%>
-										<tr>
-											<td><%=clubList.get(index).getClub_name()%></td>
-											<td><%=clubList.get(index).getAdvisor_name()%></td>
-											<td><%=clubList.get(index).getPet_name()%></td>
-											<td><%=clubList.get(index).getPet_email()%></td>
-											<td><form action="deleteClubServlet" method="post">
-													<button class="btn btn-warning" type="submit"
-														name="clubID"
-														value="<%=clubList.get(index).getClub_id_num()%>">Delete</button>
-												</form></td>
-										</tr>
-
-										<%
-											index++;
-										%>
-										<%
-											}
-										%>
-									</tbody>
-								</table>
-							</div>
-						</div>
-
-
-
-
-
-
-
-						<div role="tabpanel" class="tab-pane" id="viewUser">
-							<%			UserDao uDao = new UserDao();
-							LinkedList<User> userList = new LinkedList<User>();
-							userList = uDao.displayUsers();
-
-							int index2 = 0;
-							%>
-							
-							<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>ID Number</th>
-											<th>Email</th>
-										</tr>
-									</thead>
-							<%while (index2 < userList.size()) { %>
-								
-									<tbody>
-										<tr>
-											<td><%=userList.get(index2).getFirst_name()%></td>
-											<td><%=userList.get(index2).getLast_name()%></td>
-											<td><%=userList.get(index2).getId_num()%></td>
-											<td><%=userList.get(index2).getEmail()%></td>
-											
-										</tr>
-									</tbody>
-							
-							<%index2++; %>
-							<% }%>
-							</table>
-						</div>
-						
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-         
+                <table data-responsive="true" class="table table-custom">
+              
+                  <tr>
+                    <th>Club Name</th>
+                    <th>Advisor Name</th>
+                    <th>Petioner Name</th>
+                    <th>E-mail</th>
+                    <th></th>
+                  </tr>
+                  
+                    <%
+							while (index < clubList.size()) {
+						%>
+                  <tr>
+             
+                    <td><%out.println(clubList.get(index).getClub_name());%></td>
+                    <td><%out.println(clubList.get(index).getAdvisor_name());%></td>
+                     <td><%out.println(clubList.get(index).getPet_name());%></td>
+                    <td><%out.println(clubList.get(index).getPet_email());%></td>
+                    <form action = "deleteClubServlet" method = "post">
+                    
+                     <td><button type = "submit" name= "clubID" value = "<%out.println(clubList.get(index).getClub_id_num());%>" class="btn btn-warning">Delete</a></td>
+                 	</form>
+                  </tr>
+                 
+                  <%
+										index++;
+										}
+									%>
+									
+                  
+                </table>
+              </div>
+            <!-- </div> -->
+          </div>
+                  </div>
+                  <!-- Second toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Third toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Fourth toolbar tab -->
+                  <div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
               
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
                 
           </div>
+          <div class="offset-top-98 offset-lg-top-124">
            
         </section>
       </main>
