@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.UserDao;
+import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
 
 /**
@@ -57,6 +59,14 @@ public class LoginServlet extends HttpServlet {
 				user = uDao.getUserByUsername(request.getParameter("username"));
 				request.getSession().setAttribute("user", user);
 				request.getSession().setAttribute("loggedIn", 0);
+				
+				
+//				int club_id_num = user.getClub_id_num(); 
+//				ClubDao cDao = new ClubDao();
+//				Club clubObject = cDao.getClubById(club_id_num);
+//				request.getSession().setAttribute("clubObject", clubObject);
+				
+				
 				if (user.getRole_id() == 1) {
 					response.sendRedirect("UserServlet");
 				} else if (user.getRole_id() == 2) {

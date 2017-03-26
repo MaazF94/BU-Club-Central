@@ -113,9 +113,9 @@
 											%>
       
         <ul class="dropdown-menu">
-        
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
+        						<li><a href="ClubHomepageServlet"><span class="text-danger">Club Homepage</span> </a></li>
+ 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a></li>
+ 								
       
         
           

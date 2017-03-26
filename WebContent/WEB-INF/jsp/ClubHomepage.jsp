@@ -93,31 +93,27 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
-					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  <span class="caret"></span></a>
- 							
-											<%
-					}
-											%>
-      
-        <ul class="dropdown-menu">
-        
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
-      
-        
-          
-        </ul>
-      </li>
-								
-								
-                      
-                          </ul>
+								<li class="dropdown"><a class="dropdown-toggle"
+									data-toggle="dropdown" href="LoginSevlet">
+										<%
+											if (session.getAttribute("user") == null) {
+										%> <a href="LoginServlet"> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%> <span
+											class="caret"></span></a> <%
+ 	}
+ %>
+
+										<ul class="dropdown-menu">
+											<li><a href="ClubHomepageServlet"><span
+													class="text-danger">Club Homepage</span> </a></li>
+											<li><a href="LogoutServlet"><span
+													class="text-danger">logout</span></a>
+										</ul></li>
+
+
+
+							</ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -141,8 +137,7 @@
 		<div class="context-dark">
 			<!-- Modern Breadcrumbs-->
 			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-			<div data-speed="0.2" data-type="media" data-url="img/BUSenate.jpg"
-				class="rd-parallax-layer"></div>
+
 			<div data-speed="0" data-type="html" class="rd-parallax-layer">
 				<div
 					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
@@ -159,10 +154,10 @@
 		<div class="jumbotron" style="background-color: #f1eaee">
 			<h1>
 				<div class="container">
-					<h1> ${clubName} </h1>
+					<h1>${clubName}</h1>
 				</div>
 			</h1>
-			<h5> Number of Club Members: ${clubMembers} </h5>
+			<h5>Number of Club Members: ${clubMembers}</h5>
 		</div>
 
 		<%--div class="row" style="background-color: white">
@@ -208,6 +203,137 @@
 
 
 
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-12">
+					<h1>Home Page</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container" style="height: 100px"></div>
+		</div>
+
+
+
+		<div class="row">
+
+
+
+			<div class="container">
+				<div class="col-lg-6">
+					<%
+						EventsDao eDao = new EventsDao();
+						LinkedList<Events> eventList = new LinkedList<Events>();
+						eventList = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+						int eventListIndex = 0;
+						int eventListSize = eventList.size();
+					%>
+
+
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Event Name</th>
+								<th>Location</th>
+								<th>RSVP</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								while (eventListIndex < eventListSize) {
+							%>
+							<tr>
+								<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
+								<td><%=eventList.get(eventListIndex).getLocation()%></td>
+								<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
+								<td>
+									<form action="EventDetailsServlet" method="GET">
+										<%
+											int eventId = eventList.get(eventListIndex).getEventId();
+										%>
+										<button class="btn" type="submit" name="eventId"
+											value="<%=eventId%>">
+											<span class="glyphicon glyphicon-calendar"
+												style="font-size: 40px"></span>
+										</button>
+
+									</form>
+
+
+								</td>
+							</tr>
+
+							<%
+								eventListIndex++;
+							%>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+
+
+
+				</div>
+
+				<div class="col-lg-6">
+				
+							<%PostDao pDao = new PostDao();
+								LinkedList<Post> postList = new LinkedList<Post>();
+								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+								
+								int postListIndex = 0;
+								int postListSize = postList.size();
+								
+							%>
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Post Title</th>
+											<th>Contents</th>
+											<th></th>
+										</tr>
+									</thead>
+							<%while (postListIndex < postListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td><%=postList.get(postListIndex).getTitle()%></td>
+											<td><%=postList.get(postListIndex).getContents()%></td>
+											<td>
+												<form action="#" method="GET">
+													<%int postId = postList.get(postListIndex).getIdpost();%>
+													<button class="btn" type="submit" name="editPostId" value="<%=postId%>">
+														<span class="glyphicon glyphicon-comment" style="font-size: 40px"></span></button>
+												
+												</form>
+											
+											</td>
+										</tr>
+									</tbody>
+							
+							<%postListIndex++; %>
+							<% }%>
+							</table>
+				
+
+			</div>
+				
+
+
+		</div>
+		
+		
+		
+		
+
+
+
+	</div>
 
 
 
@@ -236,9 +362,7 @@
 
 
 
-
-
-		<!-- Final div -->
+	<!-- Final div -->
 	</div>
 
 	<!-- Page Footer-->
@@ -289,15 +413,20 @@
 						</div>
 						<div class="offset-top-50 text-xs-center text-lg-left">
 							<ul class="list-inline">
-									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
-										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://twitter.com/BenU1887" target="_blank"
-										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
-										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
-										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-								</ul>
+								<li><a
+									href="https://www.facebook.com/BenedictineUniversity/"
+									target="_blank"
+									class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="https://twitter.com/BenU1887" target="_blank"
+									class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="https://plus.google.com/106737408889171586664"
+									target="_blank"
+									class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a
+									href="https://www.linkedin.com/edu/benedictine-university-18245"
+									target="_blank"
+									class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+							</ul>
 						</div>
 						<p class="text-darker offset-top-20">
 							The F.I.R.M. &copy; <span id="copyright-year"></span> . <a

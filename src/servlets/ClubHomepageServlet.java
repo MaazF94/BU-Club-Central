@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.User;
 
 /**
  * Servlet implementation class ClubHomepageServlet
@@ -33,16 +34,8 @@ public class ClubHomepageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String clubIdNum = (String) request.getParameter("bu_club_id");
-		int club_id_num = Integer.parseInt(clubIdNum);
+		
 
-		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(club_id_num);
-		String clubName = clubObject.getClub_name();
-		request.setAttribute("clubName", clubName);
-
-		int clubMemberCount = callClubMemberCount(club_id_num);
-		request.setAttribute("clubMembers", clubMemberCount);
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubHomepage.jsp").forward(request, response);
 	}
 
