@@ -131,89 +131,72 @@
 		</div>
 		</header>
 		<!-- End of header -->
-		<main class="page-content"> <!--  This is where the the page contents that you are adding should go -->
+	
 
-		<div class="row">
-			<div class="jumbotron" style="background-color: white">
-				<%
+
+
+
+<!-- Page Content-->
+      <main class="page-content section-98 section-sm-110">
+        <div class="shell">
+          <div class="range range-xs-center">
+            <div class="cell-md-8 cell-md-push-2">
+              <div class="inset-md-left-20">
+                <!-- Classic Thumbnail-->
+                <!-- Classic Gallery Carousel-->
+                <!-- Classic Thumbnail-->
+                <!-- Embed Video-->
+                <!-- Classic Soundcloud Player-->
+                <!-- Blog Default Single-->
+                <section>
+                <%
 					ClubDao clubDao = new ClubDao();
 					EventsDao eventDao = new EventsDao();
 					Events event = eventDao.getEventByEventId(Integer.parseInt(request.getParameter("eventId")));
 				%>
-				<h1><%=event.getEvent_name()%></h1>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-2"></div>
-			<div class="col-lg-8">
-
-
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Description</th>
-							<th>Location</th>
-							<th>People Going</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><%=event.getDescription()%></td>
-							<td><%=event.getLocation()%></td>
-							<td><%=event.getRsvp_count()%></td>
-							<td>
-								<form action="RSVPServlet" method="POST">
+                                  <!-- Post Wide-->
+                                  <article class="post post-default text-left">
+                                    <!-- Post Header-->
+                                    <div class="header post-header">
+                                      <!-- Post Meta-->
+                                      <ul class="post-controls list-inline list-inline-sm p text-dark">
+                                        
+                                        <li><span class="text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot">&nbsp;</span><%=event.getRsvp_count()%><span class="text-middle small"></span></li>
+                                        
+                                        
+                                        <li><span class="text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=event.getLocation()%></span></a></li>
+                                      </ul>
+                                      <!-- Post Meta-->
+                                      <h3 class="post-title"><a href="#"><%=event.getEvent_name()%></a></h3>
+                                      <!-- Post Media-->
+                                      <div class="post-media offset-top-34">
+                                        
+                                      </div>
+                                    </div>
+                                    <!-- PostContent-->
+                                    <section class="post-content offset-top-41">
+                                      <p><%=event.getDescription()%></p>
+                                      
+                                    </section>
+                                  </article>
+                  <footer class="offset-top-50 text-sm-left clearfix">
+                    <h6 class="pull-sm-left">Please Join Us:</h6>
+                    <ul class="list-inline small pull-sm-right p offset-top-0 text-sm-right">
+                      <li><form action="RSVPServlet" method="POST">
 
 									<button class="btn btn-default " type="submit" name="eventId"
 										value="<%=Integer.parseInt(request.getParameter("eventId"))%>">RSVP</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="container">
-				<div class="col-lg-4"></div>
-				<div class="col-sm-4 well">
-					<form action="CommentServlet" method="POST">
-						<textarea class="form-control"
-							onkeyup="textCounter(this,'counter',500);" rows="4" cols="30"
-							name="comment"
-							placeholder="Enter your comment here... 250 Characters max"></textarea>
-
-						<button class="btn btn-Info " type="submit"
-							name="commentId_eventId"
-							value="<%=Integer.parseInt(request.getParameter("eventId"))%>">Comment
-						</button>
-						<h6 class="pull-right">
-							<input disabled maxlength="1" size="1" value="250" id="counter">
-							Remaining
-						</h6>
-					</form>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="container" style="height:100px">
-				<div class="col-lg-12"></div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="container">
-				<div class="col-lg-12">
-								<table class="table table-striped">
-									<tbody
-										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block">
-
-
-										<%
+								</form></li>
+                      
+                    </ul>
+                  </footer>
+                  
+                  
+                  <div id="comments"></div>
+                  <hr class="offset-top-66">
+                  <h4 class="offset-top-66 text-uppercase text-spacing-120 text-left text-bold">Comments</h4>
+                  <div class="offset-top-41">
+                      <%
 											UserDao userDao = new UserDao();
 												User user;
 												LinkedList<Comment> commentList = new LinkedList<Comment>();
@@ -225,61 +208,88 @@
 
 										<%
 											while (commentListIndex < commentListSize) {
-										%>
-										<tr>
-											<td class="col-lg-12">
-												<%
+										%>              
+                                                     
+                                    <!-- Box Comment-->
+                                    <div class="box-comment text-left box-comment-outboxed">
+                                      <div class="media">
+                                        
+                                        <div class="media-body">
+                                          <header class="box-comment-header unit unit-vertical unit-spacing-xxs unit-md unit-md-horizontal unit-md-inverse unit-md-middle unit-md-align-right">
+                                            <div class="unit-left unit-grow-1">
+                                              <ul class="box-comment-meta list-inline list-inline-sm text-dark">
+                                                <li><span class="box-comment-icon mdi mdi-clock"></span>
+                                                  <time datetime="2016-01-01">Feb 17, 7:34</time>
+                                                </li>
+                                                <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
+                                                <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
+                                              </ul>
+                                            </div>
+                                            <div class="unit-body">
+                                              <h6 class="box-comment-title"><%
 													user = userDao.getUserByIdNum(commentList.get(commentListIndex).getUserId());
-												%> By: <%=user.getFirst_name()%><br> <%=commentList.get(commentListIndex).getComment()%>
-											</td>
-										</tr>
-										<%
+												%> By: <%=user.getFirst_name()%></h6>
+                                            </div>
+                                          </header>
+                                          <section class="box-comment-body">
+                                            <p><%=commentList.get(commentListIndex).getComment()%></p>
+                                          </section>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <%
 											commentListIndex++;
 										%>
 										<%
 											}
 										%>
-									</tbody>
-								</table>
+                  </div>
+                  <h4 class="offset-top-34 text-uppercase text-spacing-120 text-left text-bold">Leave a comment</h4>
+                  <form data-form-output="form-contact-me" data-form-type="contact" method="post" action="bat/rd-mailform.php" class="rd-mailform offset-top-10 text-left">
+                    <div class="form-group">
+                      <label for="comment-message" class="form-label form-label-outside">Message:</label>
+                      <textarea id="comment-message" data-constraints="@Required" style="height: 170px" class="form-control"></textarea>
+                    </div>
+                    <div class="group-sm text-center text-lg-left offset-top-30">
+                      <button type="submit" class="btn btn-md btn-primary">comment</button>
+                    </div>
+                  </form>
+                </section>
+              </div>
+            </div>
+            <div class="cell-md-4 cell-md-push-1 offset-top-66 offset-md-top-0">
+               <!-- Section Blog Modern-->
+              <aside class="text-left">
+                
+               
+                <div class="range offset-top-41">
+                  <div class="cell-xs-6 cell-md-12">
+                    <!-- Category-->
+                    <h6 class="text-uppercase text-spacing-60">Clubs</h6>
+                    <div class="text-subline"></div>
+                    <ul class="list list-marked offset-top-30">
+                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+                <!-- Search Form-->
+                <h6 class="text-uppercase text-spacing-60">Search</h6>
+                <div class="text-subline"></div>
+                <div class="offset-top-34">
+                                <!-- RD Search Form-->
+                               <form name="vinform">
+								<input placeholder="Enter title of event" type="text"
+									name="name" onkeyup="searchInfo()">
+							</form>
 
-
-							</div>
-
-
-
-
-
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</main>
-		<!--End of main page content -->
-
-
-
-
-
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </main>
 
 
 

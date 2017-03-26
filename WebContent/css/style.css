@@ -1392,7 +1392,7 @@ mark,
 
 blockquote.quote .text-primary,
 .text-primary {
-  color: #ffce25; }
+  color: #840000; }
 
 a.text-primary:hover,
 a.text-primary:focus {
@@ -1898,7 +1898,9 @@ input[type="checkbox"] {
   line-height: normal; }
 
 input[type="file"] {
-  display: block; }
+  display: inline;
+  float: left; }
+  
 
 input[type="range"] {
   display: block;
@@ -1923,7 +1925,8 @@ output {
   color: #262627; }
 
 .form-control {
-  display: block;
+  display: inline;
+  float: left;
   width: 100%;
   height: 50px;
   padding: 9px 26px;
