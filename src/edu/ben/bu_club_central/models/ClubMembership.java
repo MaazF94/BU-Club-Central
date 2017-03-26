@@ -7,7 +7,8 @@ public class ClubMembership {
 	private int user_ID;
 	private int role_ID;
 	private boolean active;
-
+	private String club_name;
+	
 	/**
 	 * Constructor
 	 * 
@@ -16,11 +17,12 @@ public class ClubMembership {
 	 * @param role_ID
 	 * @param active
 	 */
-	public ClubMembership(int club_ID, int user_ID, int role_ID, boolean active) {
+	public ClubMembership(int club_ID, int user_ID, int role_ID, boolean active, String club_name) {
 		this.club_ID = club_ID;
 		this.user_ID = user_ID;
 		this.role_ID = role_ID;
 		this.active = active;
+		this.club_name = club_name;
 	}
 
 	/**
@@ -57,6 +59,14 @@ public class ClubMembership {
 	 */
 	public int getClubID() {
 		return club_ID;
+	}
+	
+	public String getClub_name() {
+		return club_name;
+	}
+
+	public void setClub_name(String club_name) {
+		this.club_name = club_name;
 	}
 
 	/**

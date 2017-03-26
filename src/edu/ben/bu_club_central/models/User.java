@@ -11,12 +11,12 @@ public class User {
 	private int role_id;
 	private int enabled;
 	private int club_id_num;
-	
-	
-
+	private int user_id;
 	
 
-	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id) {
+	
+
+	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id, int user_id) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -24,6 +24,7 @@ public class User {
 		this.id_num = id_num;
 		this.email = email;
 		this.role_id = role_id;
+		this.user_id = user_id;
 	}
 
 	public String getFirst_name() {
@@ -96,6 +97,14 @@ public class User {
 
 	public void setClub_id_num(int club_id_num) {
 		this.club_id_num = club_id_num;
+	}
+	
+	public int getUser_id() {
+		return user_id;
+	}
+	
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 	
 	

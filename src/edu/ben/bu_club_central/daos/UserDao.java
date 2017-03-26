@@ -329,7 +329,7 @@ public class UserDao {
 				return null;
 			}else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -359,7 +359,7 @@ public class UserDao {
 		try {
 			while(rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -448,7 +448,7 @@ public class UserDao {
 				return null;
 			}else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -502,7 +502,7 @@ public class UserDao {
 		try {
 			while(rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -531,7 +531,7 @@ public class UserDao {
 			
 			while (cs.next()) {
 				
-				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"));
+				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
 				results.add(newUser);
 			}
 
