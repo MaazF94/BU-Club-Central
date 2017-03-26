@@ -16,13 +16,14 @@ public class User {
 
 	
 
-	public User(String first_name, String last_name, String username, String password, int id_num, String email) {
+	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
 		this.password = password;
 		this.id_num = id_num;
 		this.email = email;
+		this.role_id = role_id;
 	}
 
 	public String getFirst_name() {

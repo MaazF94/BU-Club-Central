@@ -235,7 +235,7 @@
 
 							int index2 = 0;
 							%>
-							
+							<form action="AdminHome" method="post">
 							<table class="table table-hover">
 									<thead>
 										<tr>
@@ -243,23 +243,41 @@
 											<th>Last Name</th>
 											<th>ID Number</th>
 											<th>Email</th>
+											<th>Role ID</th>
 										</tr>
 									</thead>
 							<%while (index2 < userList.size()) { %>
-								
+								<%
+								String role = "";
+								if (userList.get(index2).getRole_id() == 1) {
+									role = "Regular User";
+								} else if (userList.get(index2).getRole_id() == 2) {
+									role = "Board Member";
+								} else if (userList.get(index2).getRole_id() == 3) {
+									role = "Admin";
+								} 
+								%>
 									<tbody>
 										<tr>
-											<td><%=userList.get(index2).getFirst_name()%></td>
-											<td><%=userList.get(index2).getLast_name()%></td>
-											<td><%=userList.get(index2).getId_num()%></td>
-											<td><%=userList.get(index2).getEmail()%></td>
-											
+											<td><input type="hidden" name="first_name" value=<%=userList.get(index2).getFirst_name()%>> <%out.println(userList.get(index2).getFirst_name());%></td>
+											<td><input type="hidden" name="last_name" value=<%=userList.get(index2).getLast_name()%>> <%out.println(userList.get(index2).getLast_name());%></td>
+											<td><input type="hidden" name="id_num" value=<%=userList.get(index2).getId_num()%>> <%out.println(userList.get(index2).getId_num());%></td>
+											<td><input type="hidden" name="email" value=<%=userList.get(index2).getEmail()%>> <%out.println(userList.get(index2).getEmail());%></td>
+											<td><select 
+											name="role_id" onchange="this.form.submit()">
+  <option selected="selected" value=<%=userList.get(index2).getRole_id()%>> <%=role%> </option>											
+  <option value="1">Regular User </option> 
+  <option value="2">Board Member</option>
+  <option value="3">Admin</option>
+</select></td>
+										
 										</tr>
 									</tbody>
 							
 							<%index2++; %>
 							<% }%>
 							</table>
+							</form>
 						</div>
 						
 					</div>
