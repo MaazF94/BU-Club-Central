@@ -322,20 +322,55 @@
 				
 
 			</div>
-				
-
-
 		</div>
-		
-		
-		
-		
-
-
-
 	</div>
 
 
+	<div class="row">
+		<div class="container">
+			<div class="col-lg-12">
+				<%UserDao uDao = new UserDao();
+					LinkedList<User> userList = new LinkedList<User>();
+					userList = uDao.getUsersByClub(((User)session.getAttribute("user")).getClub_id_num());
+				
+					int userListIndex = 0;
+					int userListSize = userList.size();
+				%>
+				
+				
+				<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>User Name</th>
+											<th>Email</th>
+											<th>Role</th>
+										</tr>
+									</thead>
+							<%while (userListIndex < userListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td><%=userList.get(userListIndex).getFirst_name() + " " + userList.get(userListIndex).getLast_name()%></td>
+											<td><%=userList.get(userListIndex).getUsername()%></td>
+											<td><%=userList.get(userListIndex).getEmail()%></td>
+											
+											<%if(userList.get(userListIndex).getRole_id() == 1) { %>
+												<td>General Member</td>
+											
+											<%} else { %>
+												<td>Board Member</td>
+											<%} %>
+										</tr>
+									</tbody>
+							
+							<%userListIndex++; %>
+							<% }%>
+							</table>
+				
+			</div>
+		</div>
+	</div>
 
 
 

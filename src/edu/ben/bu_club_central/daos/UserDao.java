@@ -325,6 +325,8 @@ public class UserDao {
 			while(rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				user.setRole_id(rs.getInt("role_id"));
+				user.setEnabled(rs.getInt("enabled"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -447,6 +449,37 @@ public class UserDao {
 		}
 	
 	
+	public void disableUser(int userIdNum) {
+		String sql = "UPDATE " + tableName + " SET enabled = 0 WHERE id_num = " + userIdNum;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void enableUser(int userIdNum) {
+		String sql = "UPDATE " + tableName + " SET enabled = 1 WHERE id_num = " + userIdNum;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public LinkedList<User> getAllUsersForClub() {
 		User user;
 		LinkedList<User> userList = new LinkedList<User>();
@@ -478,6 +511,44 @@ public class UserDao {
 	}
 	
 	
+	public LinkedList<User> getUsersByClub(int clubId) {
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num =" + clubId;
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		User user;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			while(rs.next()) {
+				if (rs.getInt("enabled") == 1) {
+					user = new User (rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+					user.setRole_id(rs.getInt("role_id"));
+					userList.add(user);
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
 
 	
 	

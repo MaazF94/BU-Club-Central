@@ -124,7 +124,7 @@ public class ClubDao {
 		PreparedStatement ps;
 		ResultSet rs = null;
 		Club club = null;
-		LinkedList<Club> clubList = null;
+		LinkedList<Club> clubList =  new LinkedList<Club>();
 		
 		try {
 			ps = conn.prepareStatement(sql);

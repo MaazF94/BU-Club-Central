@@ -828,7 +828,7 @@
 	
 	<script>
 		var request = new XMLHttpRequest();
-		function sortInfo() {
+		function deleteEvent() {
 			var name = document.vinform.name.value;
 			var url = "/bu-club-central/SortPageServlet?val=" + name;
 

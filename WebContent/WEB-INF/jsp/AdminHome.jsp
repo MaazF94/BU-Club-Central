@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
-<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
-<%@ page import="java.util.LinkedList"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 
@@ -147,109 +154,352 @@
           <div class="shell">
          
             <div class="range range-xs-center range-xs-center">
-             <h1>Welcome (
-             <% if (session.getAttribute("user") == null) {
- 						%> <a> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  </a>
- 							
-											<%
-					}
-											%>)</h1>
+             <h1>Welcome</h1>
 			
                <!-- Put dashboard code here -->
                
-                <section>
-                 <hr class="divider text-center bg-red">
-          <div class="shell">
-           
-          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
-            <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Current Clubs</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                   <!--  <div class="shell">-->
-           
-            <div class="range offset-sm-top-66">
-            
-              <div class="8">
-                <!-- Classic Responsive Table-->
-                
-                 <%
-			ClubDao cDao = new ClubDao();
-			LinkedList<Club> clubList = new LinkedList<Club>();
-			clubList = cDao.displayClub();
+               
+				<div class="row">
+			<div class="container">
+				<div class="container" style="height: 100px"></div>
+				<div class="col-lg-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#editClubs"
+							aria-controls="editClubs" role="tab" data-toggle="tab">Edit
+								Clubs</a></li>
+						<li role="presentation" ><a href="#editEvents"
+							aria-controls="editEvents" role="tab" data-toggle="tab">Edit
+								Events</a></li>
+						<li role="presentation"><a href="#editComments"
+							aria-controls="editComments" role="tab" data-toggle="tab">Edit
+								Comments</a></li>
+						<li role="presentation"><a href="#editPosts"
+							aria-controls="editPosts" role="tab" data-toggle="tab">Edit
+								Posts</a></li>
+						<li role="presentation" ><a href="#editUsers"
+							aria-controls="editUsers" role="tab" data-toggle="tab">Edit
+								Users</a></li>
 
-			int index = 0;
-		%>
-                <table data-responsive="true" class="table table-custom">
-              
-                  <tr>
-                    <th>Club Name</th>
-                    <th>Advisor Name</th>
-                    <th>Petioner Name</th>
-                    <th>E-mail</th>
-                    <th></th>
-                  </tr>
-                  
-                    <%
-							while (index < clubList.size()) {
-						%>
-                  <tr>
-             
-                    <td><%out.println(clubList.get(index).getClub_name());%></td>
-                    <td><%out.println(clubList.get(index).getAdvisor_name());%></td>
-                     <td><%out.println(clubList.get(index).getPet_name());%></td>
-                    <td><%out.println(clubList.get(index).getPet_email());%></td>
-                    <form action = "deleteClubServlet" method = "post">
-                    
-                     <td><button type = "submit" name= "clubID" value = "<%out.println(clubList.get(index).getClub_id_num());%>" class="btn btn-warning">Delete</a></td>
-                 	</form>
-                  </tr>
-                 
-                  <%
-										index++;
-										}
-									%>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="editClubs">
+					<div class="container">
+							<%ClubDao clubDao = new ClubDao();
+								LinkedList<Club> clubList = new LinkedList<Club>();
+								//clubList = clubDao.getAllClubs();
+								
+								int clubListIndex = 0;
+								int clubListSize = clubList.size();
+							%>
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club ID Number</th>
+											<th>Club Name</th>
+											<th>Member count</th>
+											<th></th>
+										</tr>
+									</thead>
+							<%while (clubListIndex < clubListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td> </td>
+											<td> </td>
+											<td> </td>
+											<td> </td>
+											<td>
+												<form action="AdminDeletePostServlet" method="POST">
+													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>
+													<button class="btn btn-danger" type="submit" name="deletePostId" value="<%=clubId%>">Delete</button>
+												
+												</form>
+											
+											</td>
+										</tr>
+									</tbody>
+							
+							<%clubListIndex++; %>
+							<% }%>
+							</table>
+						</div>
+					</div>
+					
+						<div role="tabpanel" class="tab-pane " id="editEvents">
+							<div class="container">
+								<%
+									LinkedList<Events> eventList = new LinkedList<Events>();
+									EventsDao eDao = new EventsDao();
+									eventList = eDao.getAllEvents();
+									int eventListIndex = 0;
+									int eventListSize = eventList.size();
+								%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Event ID</th>
+											<th>Event Name</th>
+											<th>Location</th>
+											<th>RSVP Count</th>
+											<th>Club ID Number</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (eventListIndex < eventListSize) {
+										%>
+										<tr>
+											<td><%=eventList.get(eventListIndex).getEventId()%></td>
+											<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
+											<td><%=eventList.get(eventListIndex).getLocation()%></td>
+											<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
+											<td><%=eventList.get(eventListIndex).getClub_id_num()%></td>
+											<td><form action="AdminDeleteEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this event.');">
+													<button class="btn btn-danger" type="submit"
+														name="deleteEventId"
+														value="<%=eventList.get(eventListIndex).getEventId()%>">Delete</button>
+												</form></td>
+										</tr>
+
+										<%
+											eventListIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+
+						<div role="tabpanel" class="tab-pane" id="editComments">
+							<div class="container">
+								<%
+									LinkedList<Events> eventList2 = new LinkedList<Events>();
+									EventsDao eDao2 = new EventsDao();
+									eventList2 = eDao.getAllEvents();
+									int eventListIndex2 = 0;
+									int eventListSize2 = eventList.size();
+								%>
+								
+								<%
+									while (eventListIndex2 < eventListSize2) {
+								%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Event ID: <%=eventList2.get(eventListIndex2).getEventId()%></th>
+											<th>Event Name: <%=eventList2.get(eventListIndex2).getEvent_name()%></th>
+											<th>Club ID Number: <%=eventList2.get(eventListIndex2).getClub_id_num()%></th>
+											
+										</tr>
+										
+										<tr>
+											<th>Comment ID</th>
+											<th>Comment</th>
+											<th>Event ID</th>
+											<th>By:</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: ">
+										<%CommentDao cDao = new CommentDao();
+											LinkedList<Comment> commentList = new LinkedList<Comment>();
+											commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
+											UserDao uDao2 = new UserDao();
+											User u;
+											
+											int commentListIndex = 0;
+											int commentListSize = commentList.size();
+										
+										%>
+										
+										<%while(commentListIndex < commentListSize) { %>
+										
+										<tr>
+											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
+											<td><%=commentList.get(commentListIndex).getComment()%></td>
+											<td><%=commentList.get(commentListIndex).getEventId()%></td>
+											<td><%u = uDao2.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
+												<%=u.getFirst_name() + " " + u.getLast_name()%>
+											</td>
+											<td>
+												<form action="AdminDeleteCommentServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this event.');">
+													<button class="btn btn-danger" type="submit"
+														name="deleteCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>">Delete</button>
+												
+												</form>
+											
+											</td>
+										</tr>
+										
+
+
+										<% 
+										commentListIndex++;
+										%>
+										<%} %>
+										
+										<%
+											eventListIndex2++;
+										%>
+										<div class="container" style="height:50px"></div>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+						<div role="tabpanel" class="tab-pane" id="editPosts">
+							<%PostDao pDao = new PostDao();
+								LinkedList<Post> postList = new LinkedList<Post>();
+								postList = pDao.getAllPosts();
+								
+								int postListIndex = 0;
+								int postListSize = postList.size();
+								
+							%>
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Post ID</th>
+											<th>Post Title</th>
+											<th>Contents</th>
+											<th>Club ID Number</th>
+											<th>Posted by</th>
+											<th></th>
+										</tr>
+									</thead>
+							<%while (postListIndex < postListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td><%=postList.get(postListIndex).getIdpost()%></td>
+											<td><%=postList.get(postListIndex).getTitle()%></td>
+											<td><%=postList.get(postListIndex).getContents()%></td>
+											<td><%=postList.get(postListIndex).getClub_id_num()%></td>
+											<td><%=postList.get(postListIndex).getUser_id_num()%></td>
+											<td>
+												<form action="AdminDeletePostServlet" method="POST">
+													<%int postId = postList.get(postListIndex).getIdpost();%>
+													<button class="btn btn-danger" type="submit" name="deletePostId" value="<%=postId%>">Delete</button>
+												
+												</form>
+											
+											</td>
+										</tr>
+									</tbody>
+							
+							<%postListIndex++; %>
+							<% }%>
+							</table>
+						</div>
+						
+						
+						<div role="tabpanel" class="tab-pane " id="editUsers">
+							<div class="container">
+								<%LinkedList<User> userList = new LinkedList<User>();
+									UserDao uDao = new UserDao();
+									userList = uDao.getAllUsers();
 									
-                  
-                </table>
-              </div>
-            <!-- </div> -->
-          </div>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-              
-              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
-                
-          </div>
-          <div class="offset-top-98 offset-lg-top-124">
-           
+									int userListIndex = 0;
+									int userListSize = userList.size();
+								
+								%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>User Name</th>
+											<th>ID Number</th>
+											<th>Email</th>
+											<th>Role ID</th>
+											<th>Enabled/Disabled</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (userListIndex < userListSize) {
+										%>
+										<tr>
+											<td><%=userList.get(userListIndex).getFirst_name() + " " + userList.get(userListIndex).getLast_name()%></td>
+											<td><%=userList.get(userListIndex).getUsername() %></td>
+											<td><%=userList.get(userListIndex).getId_num() %></td>
+											<td><%=userList.get(userListIndex).getEmail() %></td>
+											<td><%=userList.get(userListIndex).getRole_id() %></td>
+											<td><%=userList.get(userListIndex).getEnabled() %></td>
+											
+											<td><form action="AdminDeleteUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to disable this user.');">
+													<button class="btn btn-danger" type="submit" name="deleteUserId"
+														<%int userId = userList.get(userListIndex).getId_num();%> value="<%=userId %>">Delete</button>
+													
+												</form>
+												
+												<form action="AdminEnableUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to enable this user.');">
+													<button class="btn btn-warning" type="submit" name="enableUserId"
+														<%int userId2 = userList.get(userListIndex).getId_num();%> value="<%=userId2 %>">Enable</button>
+													
+												</form>
+												
+											</td>
+											
+										</tr>
+
+										<%
+											userListIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
         </section>
       </main>
     <!-- Page Footer -->
@@ -352,6 +602,8 @@
 			
 		}
 	</script>
+	
+	
     
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
