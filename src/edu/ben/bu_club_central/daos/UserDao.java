@@ -86,18 +86,20 @@ public class UserDao {
 	 * @param role_id
 	 * @return true or false
 	 */
-	public boolean userRoleChanges(String first_name, String last_name, int id_num, String email, int role_id) {
-		String sql = "UPDATE " + tableName + " SET role_id=" + role_id + " WHERE first_name='" 
-	+ first_name + "'" + "and last_name='" + last_name + "'" + "and id_num=" + id_num + " and email='" + email + "'";
+	public boolean userRoleChanges(int user_id, int role_id) {
+		boolean didUpdate = false;
+		String sql = "UPDATE " + tableName + " SET role_id=" + role_id + " WHERE iduser=" + user_id;
 		
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				int user_id = getIDUser(first_name, last_name, id_num, email);
+				didUpdate = true;
 				sql = "UPDATE bu_club_central.club_membership" + " SET role_id=" + role_id + " WHERE user_id=" 
 						+ user_id;
-				if (ps.executeUpdate() == 1) {
+				if (didUpdate == true) {
+					ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
 					return true;
 				}
 			} else {
@@ -521,7 +523,7 @@ public class UserDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1";
+		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1 and role_id <> 3";
 		
 			
 
