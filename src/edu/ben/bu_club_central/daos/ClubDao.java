@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import edu.ben.bu_club_central.models.Club;
 
 
+
 public class ClubDao {
 	private String tableName = "club";
 	
@@ -29,6 +30,8 @@ public class ClubDao {
 	 * connects to the database
 	 */
 	private Connection conn = dbc.getConn();
+	
+	public int clubID =0;
 
 	/**
 	 * Adds a new club to the database table
@@ -41,7 +44,7 @@ public class ClubDao {
 	 */
 	public void addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
 		String sql = "INSERT INTO " + tableName
-				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES ('" + enabled + "', '" + club_name + "', '"+ pet_name + "', '" + club_description + "', '"+
+				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES ('" + ++clubID + "', '" + club_name + "', '"+ pet_name + "', '" + club_description + "', '"+
 				 enabled + "','" + pet_email+"','"+advisor_name+ "')"; 
 	
 		PreparedStatement ps;
@@ -73,7 +76,7 @@ public class ClubDao {
 			
 			while (cs.next()) {
 				
-				Club newClub = new Club( cs.getString("club_name"), cs.getInt("club_id_num"));
+				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name") );
 				results.add(newClub);
 			}
 
@@ -101,7 +104,7 @@ public class ClubDao {
 		
 		try {
 			while(rs.next()) {
-				club = new Club(rs.getString("club_name"), rs.getInt("club_id_num"));
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,7 +130,7 @@ public class ClubDao {
 		
 		try {
 			while (rs.next()) {
-				club = new Club(rs.getString("club_name"), rs.getInt("club_id_num"));
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name") );
 				clubList.add(club);
 			}
 		} catch (SQLException e) {
@@ -136,6 +139,43 @@ public class ClubDao {
 		
 		return clubList;
 	}
+
+//	public void deleteClub( String club_name) {
+//		String sql = "DELETE FROM" + tableName + "WHERE club_name ="+ "'"+ club_name +"'"; 
+//	
+//		PreparedStatement ps;  
+//		try {
+//			ps = conn.prepareStatement(sql);
+//			ps.executeUpdate();
+//		} catch (SQLException e) {
+//			System.out.println("Did not update");
+//			e.printStackTrace();
+//		}
+//		
+//	}
+//	
+	public void deleteClub(String club_id_num) {
+		String sql = "SELECT * FROM " + tableName;
+		
+		try {
+			PreparedStatement query = conn.prepareStatement(sql);
+			ResultSet rs = query.executeQuery();
+
+			if (rs.next()) {
+				PreparedStatement ps;
+				
+				ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE club_id_num = " + "'"+club_id_num+"'");
+
+				System.out.println(ps);
+
+				ps.executeUpdate();
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 
 }

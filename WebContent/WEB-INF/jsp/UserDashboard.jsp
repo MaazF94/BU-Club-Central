@@ -1,68 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
-
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
+<%@ page import="edu.ben.bu_club_central.models.ClubMembership"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
-<head>
-<!-- Site Title-->
-<title>Events</title>
 
-<meta name="format-detection" content="telephone=no">
-<meta name="viewport"
-	content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="keywords" content="intense web design multipurpose template">
-<meta name="date" content="Dec 26">
-<link rel="icon" type="image/png" href="img/favicon-16x16.png"
-	sizes="16x16" />
-<!-- Stylesheets-->
-<link rel="stylesheet" type="text/css"
-	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
-<link rel="stylesheet" href="css/style.css">
-<script src="js/js/sweetalert2.js"></script>
+  <head>
+    <!-- Site Title-->
+    <title>User Dashboard</title>
+   
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="intense web design multipurpose template">
+    <meta name="date" content="Dec 26">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/js/sweetalert2.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
-<!--[if lt IE 10]>
+		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
-</head>
-<body onload="loggedIn()">
-	<!-- Page-->
-	<div class="page text-center">
-		<!-- Page Head-->
-		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
-		<div class="rd-navbar-wrap">
-			<nav data-md-device-layout="rd-navbar-fixed"
+  </head>
+  <body onload="loggedIn()">
+    <!-- Page-->
+    <div class="page text-center">
+     <header class="page-head slider-menu-position">
+        <!-- RD Navbar Transparent-->
+        <div class="rd-navbar-wrap">
+          				<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
-				class="rd-navbar container rd-navbar-floated rd-navbar-dark"
+				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
-				<!-- RD Navbar Top Panel-->
-				<div class="rd-navbar-top-panel context-dark bg-danger"></div>
-				<!-- RD Navbar Panel -->
+				<!-- RD Navbar Panel-->
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
-					<!-- RD Navbar Top Panel Toggle-->
-					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel"
-						class="rd-navbar-top-panel-toggle">
-						<span></span>
-					</button>
 					<!--Navbar Brand-->
-
+					<div class="rd-navbar-brand">
+						<a href="HomeServlet"><img class='img-responsive' width='40'
+							height='30' src='img/BURedTransparent.png' alt='' /></a>
+					</div>
 				</div>
+
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
-							<!--Navbar Brand Mobile-->
 
+							<!--Navbar Brand Mobile-->
+							<div class="rd-navbar-mobile-brand">
+								<a href="HomeServlet"><img class='img-responsive' width='238'
+									height='30' src='img/BUred.png' alt='' /></a>
+							</div>
 							<div class="form-search-wrap">
 								<!-- RD Search Form-->
 								<form action="search-results.html" method="GET"
@@ -114,226 +122,138 @@
 								
                       
                           </ul>
+								
+									
+									
+									
+							
+							
+							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-					<div class="rd-navbar-search rd-navbar-search-top-panel">
-						<a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search"
-							href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-						<form action="search-results.html" method="GET"
-							class="rd-navbar-search-form search-form-icon-right rd-search">
-							<div class="form-group">
-								<label for="rd-navbar-search-form-input" class="form-label">Type
-									and hit enter...</label> <input id="rd-navbar-search-form-input"
-									type="text" name="s" autocomplete="off"
-									class="rd-navbar-search-form-input form-control form-control-gray-lightest" />
-							</div>
-						</form>
-					</div>
+
 				</div>
 			</div>
 			</nav>
-		</div>
-		<div class="context-dark"></div>
-		</header>
+        </div>
+        <div class="context-dark">
+          <!-- Modern Breadcrumbs-->
+          <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+            <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
+            <div data-speed="0" data-type="html" class="rd-parallax-layer">
+              <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
+             <!--   <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>-->
+                
+              </div>
+            </div>
+          </section>
+        </div>
+      </header>
+      <!-- Page Contents-->
+      <main class="page-content">
+        <section class="section-top-98 section-md-top-110 text-lg-left">
+          <div class="shell">
+         
+            <div class="range range-xs-center range-xs-center">
+             <h1>User Dashboard</h1>
+			
+               <!-- Put dashboard code here -->
+               
+                <section>
+          <div class="shell">
+           
+         		<div class="row">
+			<div class="container">
+				<div class="container" style="height: 100px"></div>
+				<div class="col-lg-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#viewClub"
+							aria-controls="viewClub" role="tab" data-toggle="tab">View Clubs</a></li>
 
-		<div class="container">
-			<div class="row" style="height: 200px; background: black"></div>
-		</div>
+					</ul>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12" style="height: 500px">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="viewClub">
+							<div class="container">
+								<%
+			ClubMembershipDao cmDao = new ClubMembershipDao();
+			LinkedList<ClubMembership> clubMembershipList = new LinkedList<ClubMembership>();
+			clubMembershipList = cmDao.displayUserClubInfo(((User) session.getAttribute("user")).getUser_id());
 
-						</ol>
+			int index = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (index < clubMembershipList.size()) {
+										%>
+										<tr>
+											<td><%=clubMembershipList.get(index).getClub_name()%></td>
+											<td><form action="UserLeavesClubServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="clubID"
+														value="<%=clubMembershipList.get(index).getClubID()%>">Delete</button>
+												</form></td>
+										</tr>
 
-						<h1>Upcoming Events</h1>
-
-						<!-- Wrapper for slides -->
-						<div class="carousel-inner" role="listbox">
-							<div class="item active">
-								<img src="img/snowBU2.jpg" alt="Chania">
+										<%
+											index++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
 							</div>
-
-							<div class="item">
-								<img src="img/kindlonSnowy.jpg" alt="Chania">
-							</div>
-
-							<div class="item">
-								<img src="img/snowyBU.jpg" alt="Flower">
-							</div>
-
-
 						</div>
 
-						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel" role="button"
-							data-slide="prev"> <span
-							class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a> <a class="right carousel-control" href="#myCarousel"
-							role="button" data-slide="next"> <span
-							class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
+
+
+
+
+
+						
 					</div>
 
 
 				</div>
 			</div>
 		</div>
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col" style="height: 300px"></div>
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Messages</h1>
-						</div>
-						<div class="panel-body"></div>
-						<div>
-
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#inbox"
-									aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
-								<li role="presentation"><a href="#sent"
-									aria-controls="sent" role="tab" data-toggle="tab">Sent</a></li>
-
-							</ul>
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="inbox">
-									inbox that displays all messages</div>
-								<div role="tabpanel" class="tab-pane" id="sent">send
-									messages to other users</div>
-
-							</div>
-
-						</div>
-
-
-
-					</div>
-				</div>
-
-
-				<div class="col-lg-4">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h1>Club Central</h1>
-						</div>
-						<div class="panel-body"></div>
-						<div>
-
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#activeClubs"
-									aria-controls="activeClubs" role="tab" data-toggle="tab">Active Clubs</a></li>
-								<li role="presentation"><a href="#editClubs"
-									aria-controls="editClubs" role="tab" data-toggle="tab">Edit Clubs</a></li>
-								
-							</ul>
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="activeClubs">
-									Display clubs that you are in
-								</div>
-								<div role="tabpanel" class="tab-pane" id="editClubs">
-									tab to where you request to join club or leave club
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- Page Footer-->
-		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-		<div class="shell">
-			<div class="range range-sm-center text-lg-left">
-				<div class="cell-sm-12">
-					<div class="range range-xs-center">
-						<div
-							class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-							<!-- Twitter Feed-->
-							<p
-								class="text-uppercase text-spacing-60 text-bold text-center text-lg-left">Twitter
-								Feed</p>
-							<div class="offset-top-20">
-								<div data-twitter-username="templatemonster"
-									data-twitter-date-hours=" hours ago"
-									data-twitter-date-minutes=" minutes ago" class="twitter">
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
-							<div class="footer-brand">
-								<a href="../index.html"><img width='175' height='50'
-									src='img/logo_benedictinetransparentwhite.png' alt='' /></a>
-							</div>
-							<div class="offset-top-50 text-xs-center text-lg-left">
-								<ul class="list-inline">
+         
+        </section>
+              
+              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+                
+          </div>
+           
+        </section>
+      </main>
+    <!-- Page Footer -->
+	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+        <div class="shell">
+          <div class="range range-sm-center text-lg-left">
+            <div class="cell-sm-12">
+              <div class="range range-xs-center">
+               
+                
+                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+                  
+                  
+                        
+                      
+                      
+  
+                  <div class="offset-top-50 text-xs-center text-lg-left">
+                    <ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
@@ -343,24 +263,57 @@
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-									href="#">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</footer>
-	</div>
+                  </div>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                    <!-- {%FOOTER_LINK}-->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
 
-
-
-	<!-- Java script-->
-	<script type="text/javascript">
+    </div>
+    <!-- Global Mailform Output-->
+    <div id="form-output-global" class="snackbars"></div>
+    <!-- PhotoSwipe Gallery-->
+    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
+            <button title="Share" class="pswp__button pswp__button--share"></button>
+            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
+            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
+          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Java script-->
+    <script type="text/javascript">
 		
 		function loggedIn() {
 			var calledOnced = '<%=session.getAttribute("loggedIn") %>';
@@ -384,8 +337,9 @@
 			
 		}
 	</script>
-	
-	<script src="js/js/core.min.js"></script>
-	<script src="js/js/script.js"></script>
-</body>
+    
+    <script src="js/js/core.min.js"></script>
+    <script src="js/js/script.js"></script>
+  </body>
+
 </html>

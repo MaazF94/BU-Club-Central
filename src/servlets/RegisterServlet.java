@@ -67,7 +67,8 @@ public class RegisterServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, response);
+response.sendRedirect("");
+
 		} else {
 			System.out.println("user error checking failed");
 			String message = 	"<!DOCTYPE html>\r\n" + 
@@ -88,7 +89,7 @@ request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, respo
 					"</body>\r\n" +
 					"</html>";
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, response);
+		response.sendRedirect("RegisterServlet");
 		}
 
 	}
@@ -251,26 +252,32 @@ request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, respo
 								return true;
 							} else {
 								request.setAttribute("message", "Email is not in the correct format");
+								System.out.println("email failed");
 								return false;
 							}
 						} else {
 							request.setAttribute("message", "ID number must only contain numbers");
+							System.out.println("id num failed");
 							return false;
 						}
 					} else {
 						request.setAttribute("message", "Passwords do not match");
+						System.out.println("passwords failed");
 						return false;
 					}
 				} else {
 					request.setAttribute("message", "Username already exists");
+					System.out.println("username failed");
 					return false;
 				}
 			} else {
 				request.setAttribute("message", "Username must only have letters and numbers");
+				System.out.println("username 2 failed");
 				return false;
 			}
 		} else {
 			request.setAttribute("message", "First or Last name is incorrect");
+			System.out.println("first/last name failed");
 			return false;
 		}
 	}

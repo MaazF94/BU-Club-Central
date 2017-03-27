@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
-<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
-<%@ page import="java.util.LinkedList"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 
@@ -26,6 +33,18 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+		<style>
+		#myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+		</style>
   </head>
   <body onload="loggedIn()">
     <!-- Page-->
@@ -147,123 +166,163 @@
           <div class="shell">
          
             <div class="range range-xs-center range-xs-center">
-             <h1>Welcome (Teachers Name)</h1>
+             <h1>Admin Dashboard</h1>
+			
                <!-- Put dashboard code here -->
+               
                 <section>
-                 
           <div class="shell">
            
-          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
-            <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Current Clubs</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                   <!--  <div class="shell">-->
-           
-            <div class="range offset-sm-top-66">
-            
-              <div class="8">
-                <!-- Classic Responsive Table-->
-                <table data-responsive="true" class="table table-custom">
-                  <tr>
-                    <th>Full Name</th>
-                    <th>Name</th>
-                    <th>Password</th>
-                    <th>E-mail</th>
-                  </tr>
-                  <tr>
-                    <td>Sergey Gaponov</td>
-                    <td>Gap0n</td>
-                    <td>**********</td>
-                    <td>haponov.serhii@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td>Eugene Gusarov</td>
-                    <td>Diversant</td>
-                    <td>*******</td>
-                    <td>stmechanus@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td>Vladislav Gnatovsky</td>
-                    <td>Mason</td>
-                    <td>*********</td>
-                    <td>vgtsky@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td>Rafael Shayvolodyan</td>
-                    <td>Raffa</td>
-                    <td>********</td>
-                    <td>mnatis.rafael@gmail.com</td>
-                  </tr>
-                </table>
-              </div>
-            <!-- </div> -->
-          </div>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         		<div class="row">
+			<div class="container">
+				<div class="container" style="height: 100px"></div>
+				<div class="col-lg-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#viewClub"
+							aria-controls="viewClub" role="tab" data-toggle="tab">View Clubs</a></li>
+						<li role="presentation"><a href="#viewUser"
+							aria-controls="viewUsers" role="tab" data-toggle="tab">View Users</a></li>
+
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="viewClub">
+							<div class="container">
+								<%
+			ClubDao cDao = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao.displayClub();
+
+			int index = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+											<th>Advisor Name</th>
+											<th>Petitioner Name</th>
+											<th>Email</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (index < clubList.size()) {
+										%>
+										<tr>
+											<td><%=clubList.get(index).getClub_name()%></td>
+											<td><%=clubList.get(index).getAdvisor_name()%></td>
+											<td><%=clubList.get(index).getPet_name()%></td>
+											<td><%=clubList.get(index).getPet_email()%></td>
+											<td><form action="deleteClubServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="clubID"
+														value="<%=clubList.get(index).getClub_id_num()%>">Delete</button>
+												</form></td>
+										</tr>
+
+										<%
+											index++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="viewUser">
+							<%			UserDao uDao = new UserDao();
+							LinkedList<User> userList = new LinkedList<User>();
+							userList = uDao.displayUsers();
+
+							int index2 = 0;
+							%>
+							<form action="AdminHome" method="post">
+							<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
+							<table id="myTable" class="table table-hover">
+									<thead>
+										<tr>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>ID Number</th>
+											<th>Email</th>
+											<th>Role ID</th>
+										</tr>
+									</thead>
+							<%while (index2 < userList.size()) { %>
+								<%
+								String role = "";
+								if (userList.get(index2).getRole_id() == 1) {
+									role = "Regular User";
+								} else if (userList.get(index2).getRole_id() == 2) {
+									role = "Board Member";
+								} else if (userList.get(index2).getRole_id() == 3) {
+									role = "Admin";
+								} 
+								%>
+									<tbody>
+										<tr>
+											<td><input type="hidden" name="first_name" value=<%=userList.get(index2).getFirst_name()%>> <%out.println(userList.get(index2).getFirst_name());%></td>
+											<td><input type="hidden" name="last_name" value=<%=userList.get(index2).getLast_name()%>> <%out.println(userList.get(index2).getLast_name());%></td>
+											<td><input type="hidden" name="id_num" value=<%=userList.get(index2).getId_num()%>> <%out.println(userList.get(index2).getId_num());%></td>
+											<td><input type="hidden" name="email" value=<%=userList.get(index2).getEmail()%>> <%out.println(userList.get(index2).getEmail());%></td>
+											<td><select 
+											name="role_id" onchange="this.form.submit()">
+  <option selected="selected" value=<%=userList.get(index2).getRole_id()%>> <%=role%> </option>											
+  <option value="1">Regular User </option> 
+  <option value="2">Board Member</option>
+  <option value="3">Admin</option>
+</select></td>
+										
+										</tr>
+									</tbody>
+							
+							<%index2++; %>
+							<% }%>
+							</table>
+							</form>
+						</div>
+						
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+         
         </section>
               
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
                 
           </div>
-          <div class="offset-top-98 offset-lg-top-124">
            
         </section>
       </main>
-    <!-- Page Footer-->
-      <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+    <!-- Page Footer -->
+	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">
             <div class="cell-sm-12">
               <div class="range range-xs-center">
-                <div class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-                  <!-- Twitter Feed-->
-                  <h6 class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter Feed</h6>
-                  <div class="offset-top-20">
-                    <div data-twitter-username="templatemonster" data-twitter-date-hours=" hours ago" data-twitter-date-minutes=" minutes ago" class="twitter">
-                      <div data-twitter-type="tweet" class="twitter-sm">
-                        <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                        </div>
-                        <div data-tweet="text" class="twitter-text"></div>
-                        <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                      </div>
-                      <div data-twitter-type="tweet" class="twitter-sm">
-                        <div class="twitter-date text-dark small"><span class="icon icon-xxs mdi mdi-twitter text-middle"></span> <span data-date="text" class="text-middle"></span>
-                        </div>
-                        <div data-tweet="text" class="twitter-text"></div>
-                        <div data-screen_name="text" class="twitter-name text-bold big"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                
                 
-                <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  <!-- Footer brand-->
-                  <div class="footer-brand"><a href="../index.html"><img src="img/logo_benedictinetransparentwhite.png" width="238" height="30" alt="" class="img-responsive reveal-inline-block"></a></div>
+                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+                  
+                  
+                        
+                      
+                      
+  
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
@@ -274,9 +333,9 @@
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-					</ul>
+								</ul>
                   </div>
-                  <p class="text-darker offset-top-20">Intense &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
                     <!-- {%FOOTER_LINK}-->
                   </p>
                 </div>
@@ -285,6 +344,7 @@
           </div>
         </div>
       </footer>
+
     </div>
     <!-- Global Mailform Output-->
     <div id="form-output-global" class="snackbars"></div>
@@ -348,8 +408,32 @@
 			
 		}
 	</script>
+	
+	<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
     
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
   </body>
+
 </html>

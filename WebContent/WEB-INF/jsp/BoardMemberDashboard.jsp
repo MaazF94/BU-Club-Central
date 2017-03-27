@@ -1,6 +1,7 @@
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
@@ -14,7 +15,10 @@
 <%@ page import="java.util.*"%>
 
 
+
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
+
+
 <head>
 <!-- Site Title-->
 <title>Club Dashboard</title>
@@ -200,7 +204,95 @@
 						<p></p>
 					</div>
 				</div>
+				<div class="range range-xs-center offset-top-66">
+				 <section>
+                 
+          <div class="shell">
+           
+          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
+            <div class="offset-sm-top-66 text-left">
+              <!-- Responsive-tabs-->
+              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
+                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
+                  <li>Current Members</li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
+                  <div>
+                  <!-- First toolbar tab -->
+                   <!--  <div class="shell">-->
+           
+            <div class="range offset-sm-top-66">
+            
+              <div class="8">
+                <!-- Classic Responsive Table-->
+                  <%
+			UserDao uDao = new UserDao();
+			LinkedList<User> userList = new LinkedList<User>();
+			userList = uDao.getAllUsersForClub();
+
+			int index = 0;
+		%>
+             
+                <table data-responsive="true" class="table table-custom">
+              
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID Number</th>
+                    <th>E-mail</th>
+                    <th></th>
+                  </tr>
+                  
+                  <%
+							while (index < userList.size()) {
+						%>
+                  <tr>
+             
+                    <td><%out.println(userList.get(index).getFirst_name());%></td>
+                    <td><%out.println(userList.get(index).getLast_name());%></td>
+                     <td><%out.println(userList.get(index).getId_num());%></td>
+                    <td><%out.println(userList.get(index).getEmail());%></td>
+                    <form action = "DeleteUserServlet" method = "post">
+                    
+                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
+                 	</form>
+                  </tr>
+                  <%
+										index++;
+										}
+									%>
+                  
+									
+                  
+                </table>
+              </div>
+            <!-- </div> -->
+          </div>
+                  </div>
+                  <!-- Second toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Third toolbar tab -->
+                  <div>
+                    <p></p>
+                  </div>
+                  <!-- Fourth toolbar tab -->
+                  <div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+				</div>
+				
 			</div>
+
 		</div>
 
 		<div class="row">
@@ -255,7 +347,7 @@
 											<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
 											<td><%=eventList.get(eventListIndex).getClub_id_num()%></td>
 											<td><form action="EditEventServlet" method="GET">
-													<button class="btn btn-default " type="submit"
+													<button class="btn btn-warning" type="submit"
 														name="editEventId"
 														value="<%=eventList.get(eventListIndex).getEventId()%>">Edit</button>
 												</form></td>
@@ -314,7 +406,7 @@
 										<%CommentDao cDao = new CommentDao();
 											LinkedList<Comment> commentList = new LinkedList<Comment>();
 											commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
-											UserDao uDao = new UserDao();
+											UserDao uDao2 = new UserDao();
 											User u;
 											
 											int commentListIndex = 0;
@@ -333,7 +425,7 @@
 											</td>
 											<td>
 												<form action="EditCommentServlet" method="GET">
-													<button class="btn btn-default " type="submit"
+													<button class="btn btn-warning" type="submit"
 														name="editCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>">Edit</button>
 												
 												</form>
@@ -394,7 +486,7 @@
 											<td>
 												<form action="EditPostServlet" method="GET">
 													<%int postId = postList.get(postListIndex).getIdpost();%>
-													<button class="btn btn-default" type="submit" name="editPostId" value="<%=postId%>">Edit</button>
+													<button class="btn btn-warning" type="submit" name="editPostId" value="<%=postId%>">Edit</button>
 												
 												</form>
 											
@@ -417,10 +509,42 @@
 		
 		<div class="row">
 			<div class="container">
-				<div class="col-lg-8">
-				
+				<div class="col-lg-12" style="height:100px">
 				</div>
-			
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-3" ></div>
+				
+				<div class="col-lg-6">
+					<h3>Filter Events</h3>
+					
+					<form onclick="sortInfo()" name="vinform" >
+						<input type="radio" name="name" value="rsvpIncreasing">Number of People Coming(increasing order) <br>
+						<input type="radio" name="name" value="rsvpDecreasing">Number of People Coming(decreasing order) <br>
+					</form>
+					
+					<div class="col-4-lg">
+							<table class="table table-hover" >
+								<thead>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>Event name <span class="glyphicon glyphicon-calendar"></span></td>
+										<td>People Coming <span class="glyphicon glyphicon-user"></span></td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody id="sortLocation">
+
+								</tbody>
+
+							</table>
+						</div>
+					
+				</div>
 			</div>
 		</div>
 
@@ -438,9 +562,8 @@
 
 
 
-
-
 		</section> </main>
+
 		<!-- Page Footer-->
 		<footer
 			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
@@ -578,14 +701,20 @@
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-comment"></span>
 								Post Description</label>
-							<textarea style="height: 100px;" name="postDescription"
+							<textarea onkeyup="textCounterPost(this,'counterPost',250);" style="height: 100px;" name="postDescription"
 								id="comment" placeholder="Enter Description" type="text"
 								class="form-control"></textarea>
+							<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="250" id="counterPost">
+							Remaining
+						</h6>
 						</div>
 
-						<button type="submit" class="btn btn-danger center">
+						<button type="submit" class="btn btn-success center">
 							<span class="glyphicon glyphicon-pencil"></span> Post
 						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Cancel </button>
 					</form>
 				</div>
 			</div>
@@ -606,7 +735,7 @@
 								<span class="input-group-addon input-group-addon-inverse">
 									<i class="fa fa-commenting-o" style="font-size: 19px"></i>
 								</span>
-								<textarea style="height: 100px;" id="comment"
+								<textarea  style="height: 100px;" id="comment"
 									placeholder="Type your message here..." type="text"
 									name="content" class="form-control"></textarea>
 							</div>
@@ -629,15 +758,19 @@
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form" method="POST" action="CreateEventServlet" onsubmit="return confirm('Are you sure you want create this event.');">
 						<div class="form-group">
-							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>Event
+							<label for="id"><span class="glyphicon glyphicon-calendar"></span> Event
 								Title</label> <input type="text" name="event_name" class="form-control"
-								id="id" placeholder="Enter ID">
+								id="id" placeholder="Enter Event Title">
 						</div>
 						<div class="input-group input-group-sm">
-							<label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
-							<textarea name="description" style="height: 100px;" id="comment"
-								placeholder="Type your description here..." type="text"
+							<label for="id"><span class="glyphicon glyphicon-comment"></span> Description</label>
+							<textarea onkeyup="textCounterEvent(this,'counterEvent',500);" name="description" style="height: 100px;" id="comment"
+								placeholder="Type your description of the event here..." type="text"
 								name="content" class="form-control"></textarea>
+								<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counterEvent">
+							Remaining
+						</h6>
 						</div>
 						<div class="form-group">
 							<label for=""><span class="glyphicon glyphicon-globe"></span>
@@ -648,13 +781,17 @@
 
 
 
-						<button type="submit" class="btn btn-danger center">
-							<span class="icon icon-xxs mdi mdi-delete"></span> Create Event
+						<button type="submit" class="btn btn-success center">
+							<span class="glyphicon glyphicon-ok-circle"></span> Create Event
 						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Cancel </button>
+            
 					</form>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<script>
 		$(document).ready(function() {
@@ -689,7 +826,50 @@
 		}
 	</script>
 	
+	<script>
+		var request = new XMLHttpRequest();
+		function sortInfo() {
+			var name = document.vinform.name.value;
+			var url = "/bu-club-central/SortPageServlet?val=" + name;
+
+			try {
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						var val = request.responseText;
+						document.getElementById('sortLocation').innerHTML = val;
+					}
+				}//end of function  
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Unable to connect to server");
+			}
+		}
+	</script>
 	
+	<script>
+		function textCounterPost(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
+	
+	<script>
+		function textCounterEvent(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
