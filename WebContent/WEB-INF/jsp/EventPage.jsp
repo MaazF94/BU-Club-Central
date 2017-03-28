@@ -37,6 +37,18 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+		<style>
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
+</style>
 
 </head>
 <body>
@@ -192,10 +204,10 @@
                                       <!-- Post Meta-->
                                       <ul class="post-controls list-inline list-inline-sm p text-dark">
                                         
-                                        <li><span class="text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot">&nbsp;</span><%=eventList.get(eventListIndex).getRsvp_count()%><span class="text-middle small"></span></li>
+                                        <li><a href="#" class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot " title="Number of people coming">&nbsp;</a><%=eventList.get(eventListIndex).getRsvp_count()%><span class="text-middle small"></span></li>
                                         
                                         
-                                        <li><span class="text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=eventList.get(eventListIndex).getLocation()%></span></a></li>
+                                        <li><span class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot" title="Location of the event">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=eventList.get(eventListIndex).getLocation()%></span></a></li>
                                       </ul>
                                       <!-- Post Meta-->
                                       <h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3>
@@ -387,6 +399,29 @@
 
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
+	 <script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
 </body>
 
 </html>

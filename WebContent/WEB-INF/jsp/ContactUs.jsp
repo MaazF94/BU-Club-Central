@@ -17,10 +17,23 @@
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+<style>
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
+</style>
   </head>
   <body>
     <!-- Page-->
@@ -170,20 +183,21 @@
                   <div class="range">
                     <div class="cell-lg-6">
                       <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name"  class="form-control form-control-impressed">
+                      
+                        <a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
+                        <input id="contact-us-name"  type="text" name="name"  class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
-                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
+                        <a href="#" title="Enter your E-mail address" class="masterTooltip"><strong>E-Mail:</strong></a>
+                        <input id="contact-us-email" type="email" name="email"  data-constraints="@Required @Email" class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-12 offset-top-20">
                       <div class="form-group">
-                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
-                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." class="form-control form-control-impressed"></textarea>
+                         <a href="#" title="Write Your Message Here..." class="masterTooltip"><strong>Message:</strong></a>
+                        <textarea id="contact-us-message" name="message"  class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
                   </div>
@@ -268,6 +282,29 @@
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
   </body>
 
 </html>
