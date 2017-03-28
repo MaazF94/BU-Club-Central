@@ -527,9 +527,9 @@
 									<tbody>
 										<tr>
 											<td> 
-											<textarea cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+											<textarea onkeypress="enableUpdateButton()" cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
 											<br>
-											<button class="btn btn-warning" type="submit">Save Changes</button>
+											<button id="button" disabled class="btn btn-warning" type="submit">Save Changes</button>
 											</td>
 										</tr>
 									</tbody>
@@ -864,6 +864,14 @@
 			}
 			
 		}
+	</script>
+	
+	<script>
+	function enableUpdateButton() {
+
+	    document.getElementById("button").disabled = false;
+
+	}
 	</script>
 	
 	<script>
