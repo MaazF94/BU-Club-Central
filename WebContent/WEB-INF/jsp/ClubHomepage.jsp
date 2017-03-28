@@ -107,8 +107,10 @@
       
         <ul class="dropdown-menu">
         
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
+ 							   
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
       
         
           
@@ -116,7 +118,7 @@
       </li>
 								
 								
-                      
+                      <li><a href="#"><span></span></a></li>
                           </ul>
 						</div>
 					</div>
