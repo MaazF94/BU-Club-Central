@@ -312,6 +312,9 @@
 						<li role="presentation"><a href="#editPosts"
 							aria-controls="editPosts" role="tab" data-toggle="tab">Edit
 								Posts</a></li>
+						<li role="presentation"><a href="#editDescription"
+							aria-controls="editDescription" role="tab" data-toggle="tab">Edit
+								Description</a></li>
 
 					</ul>
 
@@ -499,6 +502,43 @@
 							<%postListIndex++; %>
 							<% }%>
 							</table>
+						</div>
+						
+						
+						
+						
+						
+						
+						<div role="tabpanel" class="tab-pane" id="editDescription">
+							<%ClubDao cDao = new ClubDao();
+								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
+								String clubDescription = clubObject.getClub_description();								
+								
+							%>
+							
+							<form  action="EditClubDescriptionServlet" method="post">
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Description</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+										<tr>
+											<td> 
+											<textarea cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+											<br>
+											<button class="btn btn-warning" type="submit">Save Changes</button>
+											</td>
+										</tr>
+									</tbody>
+							
+							</table>
+							</form>
+							
 						</div>
 						
 					</div>

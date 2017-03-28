@@ -26,6 +26,18 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+		<style>
+		#myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+		</style>
   </head>
   <body onload="loggedIn()">
     <!-- Page-->
@@ -193,58 +205,111 @@
 
 			int index = 0;
 		%>
-                <table data-responsive="true" class="table table-custom">
-              
-                  <tr>
-                    <th>Club Name</th>
-                    <th>Advisor Name</th>
-                    <th>Petioner Name</th>
-                    <th>E-mail</th>
-                    <th></th>
-                  </tr>
-                  
-                    <%
-							while (index < clubList.size()) {
-						%>
-                  <tr>
-             
-                    <td><%out.println(clubList.get(index).getClub_name());%></td>
-                    <td><%out.println(clubList.get(index).getAdvisor_name());%></td>
-                     <td><%out.println(clubList.get(index).getPet_name());%></td>
-                    <td><%out.println(clubList.get(index).getPet_email());%></td>
-                    <form action = "deleteClubServlet" method = "post">
-                    
-                     <td><button type = "submit" name= "clubID" value = "<%out.println(clubList.get(index).getClub_id_num());%>" class="btn btn-warning">Delete</a></td>
-                 	</form>
-                  </tr>
-                 
-                  <%
-										index++;
-										}
-									%>
-									
-                  
-                </table>
-              </div>
-            <!-- </div> -->
-          </div>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+											<th>Advisor Name</th>
+											<th>Petitioner Name</th>
+											<th>Email</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (index < clubList.size()) {
+										%>
+										<tr>
+											<td><%=clubList.get(index).getClub_name()%></td>
+											<td><%=clubList.get(index).getAdvisor_name()%></td>
+											<td><%=clubList.get(index).getPet_name()%></td>
+											<td><%=clubList.get(index).getPet_email()%></td>
+											<td><form action="deleteClubServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="clubID"
+														value="<%=clubList.get(index).getClub_id_num()%>">Delete</button>
+												</form></td>
+										</tr>
+
+										<%
+											index++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="viewUser">
+							<%			UserDao uDao = new UserDao();
+							LinkedList<User> userList = new LinkedList<User>();
+							userList = uDao.displayUsers();
+
+							int index2 = 0;
+							%>
+							<form action="AdminHome" method="post">
+							<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
+							<table id="myTable" class="table table-hover">
+									<thead>
+										<tr>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>ID Number</th>
+											<th>Email</th>
+											<th>Role ID</th>
+										</tr>
+									</thead>
+							<%while (index2 < userList.size()) { %>
+								<%
+								String role = "";
+								if (userList.get(index2).getRole_id() == 1) {
+									role = "Regular User";
+								} else if (userList.get(index2).getRole_id() == 2) {
+									role = "Board Member";
+								} else if (userList.get(index2).getRole_id() == 3) {
+									role = "Admin";
+								} 
+								%>
+									<tbody>
+										<tr>
+											<td><input type="hidden" name="first_name" value=<%=userList.get(index2).getFirst_name()%>> <%out.println(userList.get(index2).getFirst_name());%></td>
+											<td><input type="hidden" name="last_name" value=<%=userList.get(index2).getLast_name()%>> <%out.println(userList.get(index2).getLast_name());%></td>
+											<td><input type="hidden" name="id_num" value=<%=userList.get(index2).getId_num()%>> <%out.println(userList.get(index2).getId_num());%></td>
+											<td><input type="hidden" name="email" value=<%=userList.get(index2).getEmail()%>> <%out.println(userList.get(index2).getEmail());%></td>
+											<td><select
+											name="role_id" onchange="this.form.submit()">
+  <option selected="selected" disabled="disabled"><%=role%></option>											
+  <option value="1, <%=userList.get(index2).getUser_id()%>">Regular User </option> 
+  <option value="2, <%=userList.get(index2).getUser_id()%>">Board Member</option>
+</select>
+</td>										
+										</tr>
+									</tbody>
+							
+							<%index2++;
+							%>
+							<% }%>
+							</table>
+							</form>
+						</div>
+						
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+         
+
         </section>
               
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
@@ -354,6 +419,29 @@
 			
 		}
 	</script>
+	
+	<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
     
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>

@@ -75,6 +75,42 @@ public class UserDao {
 		}
 		return false;
 	}
+	
+	
+	/**
+	 * This method will allow the admin to change the user role ID
+	 * @param first_name
+	 * @param last_name
+	 * @param id_num
+	 * @param email
+	 * @param role_id
+	 * @return true or false
+	 */
+	public boolean userRoleChanges(int user_id, int role_id) {
+		boolean didUpdate = false;
+		String sql = "UPDATE " + tableName + " SET role_id=" + role_id + " WHERE iduser=" + user_id;
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				didUpdate = true;
+				sql = "UPDATE bu_club_central.club_membership" + " SET role_id=" + role_id + " WHERE user_id=" 
+						+ user_id;
+				if (didUpdate == true) {
+					ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
+					return true;
+				}
+			} else {
+				throw new SQLException();
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
 	/**
 	 * This method will allow a user to change their username, used when they click 'forgot username'
 	 * @param first_name
@@ -295,7 +331,7 @@ public class UserDao {
 				return null;
 			}else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -325,7 +361,7 @@ public class UserDao {
 		try {
 			while(rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -414,7 +450,7 @@ public class UserDao {
 				return null;
 			}else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -468,7 +504,7 @@ public class UserDao {
 		try {
 			while(rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -487,7 +523,7 @@ public class UserDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1";
+		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1 and role_id <> 3";
 		
 			
 
@@ -497,7 +533,7 @@ public class UserDao {
 			
 			while (cs.next()) {
 				
-				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"));
+				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
 				results.add(newUser);
 			}
 
