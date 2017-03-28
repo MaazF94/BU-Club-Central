@@ -165,100 +165,106 @@
 		</div>
 		</header>
 		<!-- Page Contents-->
-		<main class="page-content"> <section id="welcome"
-			class="section-98 section-sm-110">
-		<div class="shell">
-			<h1>Welcome</h1>
-			<hr class="divider bg-red">
-			<div class="range range-xs-center offset-top-66">
-				<div class="cell-lg-8">
-					<p>Welcome to the homepage! From here you
-						can:</p>
-				</div>
-			</div>
-			<div class="range offset-top-98">
-				<div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
-					<!-- Icon Box Type 5-->
-					<div class="box-icon box-icon-bordered">
-						<a data-toggle="modal" href="#sendModal"><span
-							class="icon glyphicon glyphicon-warning-sign"></span></a>
-						<h4 class="text-danger offset-top-20">Edit Club</h4>
-						<p></p>
-					</div>
-				</div>
-				<div
-					class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
-					<!-- Icon Box Type 5-->
-					<div class="box-icon box-icon-bordered">
-						<a data-toggle="modal" href="#deleteModal"><span
-							class="icon glyphicon glyphicon-modal-window"></span></a>
-						<h4 class="text-danger offset-top-20">Create a Post</h4>
-						<p></p>
-					</div>
-				</div>
-				<div
-					class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
-					<!-- Icon Box Type 5-->
-					<div class="box-icon box-icon-bordered">
-						<a data-toggle="modal" href="#createModal"><span
-							class="icon glyphicon glyphicon-calendar"></span> </a>
-						<h4 class="text-danger offset-top-20">Create an Event</h4>
-						<p></p>
-					</div>
-				</div>
-				<div class="range range-xs-center offset-top-66">
-				 <section>
-                 
+		<main class="page-content"> <section class="offset-top-98 offset-md-top-110">
           <div class="shell">
-           
-          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
+            <h1>Welcome</h1>
+			<hr class="divider bg-red">
             <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Current Members</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+              <!-- Bootstrap Tabs-->
+              <div class="nav-stacked-container">
+                <ul role="tablist" id="tabs-3" class="tabs nav nav-pills nav-stacked text-center text-md-left">
+                  <li role="presentation" class="active "><a href="#tab001" role="tab">Edit Club</a></li>
+                  <li role="presentation"><a href="#tab002" role="tab">Create a Post</a></li>
+                  <li role="presentation"><a href="#tab003" role="tab">Create an Event</a></li>
                 </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                   <!--  <div class="shell">-->
-           
-            <div class="range offset-sm-top-66">
-            
-              <div class="8">
-                <!-- Classic Responsive Table-->
-                  
-             
-               
-              </div>
-            <!-- </div> -->
-          </div>
+                <div class="tab-content tab-conten-vert offset-top-30 text-md-left">
+                  <div role="tabpanel" id="tab001" class="tab-pane fade active in">
+					<form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-50">
+                  <div class="range">
+                    <div class="cell-lg-6">
+                      <div class="form-group">
+                      
+                        
+                      </div>
+                    </div>
+                    <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
+                      <div class="form-group">
+                       
+                      </div>
+                    </div>
+                    <div class="cell-lg-12 offset-top-20">
+                      <div class="form-group">
+                         <a href="#" title="Write Your Message Here..." class="masterTooltip"><strong>Message:</strong></a>
+                        <textarea  style="height: 100px;" id="comment"
+									placeholder="Type your message here..." type="text"
+									name="content" class="form-control"></textarea>
+                      </div>
+                    </div>
                   </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
+                  <div class="group-sm text-center text-lg-left offset-top-30">
+                    <button type="submit" class="btn btn-danger">Send</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
                   </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
+                </form>
+				</div>
+                  <div role="tabpanel" id="tab002" class="tab-pane fade"><p><form role="form" method="POST" action="CreatePostServlet" onsubmit="return confirm('Are you sure you want create this post.');">
+						<div class="form-group">
+							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>
+								Post Title</label> <input name="postTitle" type="text"
+								class="form-control" id="id" placeholder="Enter Title">
+						</div>
+						<div class="form-group">
+							<label for=""><span class="glyphicon glyphicon-comment"></span>
+								Post Description</label>
+							<textarea onkeyup="textCounter(this,'counter',250);" style="height: 100px;" name="postDescription"
+								id="comment" placeholder="Enter Description" type="text"
+								class="form-control"></textarea>
+							<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counter">
+							Remaining
+						</h6>
+						</div>
+
+						<button type="submit" class="btn btn-danger center">
+							<span class="glyphicon glyphicon-pencil"></span> Post
+						</button>
+					</form></p></div>
+                  <div role="tabpanel" id="tab003" class="tab-pane fade"><p><form role="form" method="POST" action="CreateEventServlet" onsubmit="return confirm('Are you sure you want create this event.');">
+						<div class="form-group">
+							<label for="id"><span class="glyphicon glyphicon-pushpin"></span>Event
+								Title</label> <input type="text" name="event_name" class="form-control"
+								id="id" placeholder="Enter ID">
+						</div>
+						<div class="input-group input-group-sm">
+							<label for="id"><span class="glyphicon glyphicon-comment"></span>Description</label>
+							<textarea onkeyup="textCounter(this,'counter',500);" name="description" style="height: 100px;" id="comment"
+								placeholder="Type your description here..." type="text"
+								name="content" class="form-control"></textarea>
+								<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" value="500" id="counter">
+							Remaining
+						</h6>
+						</div>
+						<div class="form-group">
+							<label for=""><span class="glyphicon glyphicon-globe"></span>
+								Location</label> <input name="location" type="text" class="form-control"
+								id="location" placeholder="Location of Event">
+						</div>
+
+
+
+
+						<button type="submit" class="btn btn-danger center">
+							<span class="icon icon-xxs mdi mdi-delete"></span> Create Event
+						</button>
+					</form></p></div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-				</div>
-				
-			</div>
-
-		</div>
+        </section><section id="welcome"
+			class="section-98 section-sm-110">
+		
 
 		<div class="row">
 			<div class="container">
@@ -279,7 +285,7 @@
 							aria-controls="editDescription" role="tab" data-toggle="tab">Edit
 								Description</a></li>
 										Posts</a></li>
-						<li role="presentation"><a href="#editDescription"
+						<li role="presentation"><a href="#viewClubMembers"
 							aria-controls="editDescription" role="tab" data-toggle="tab">Current Members</a></li>
 
 					</ul>
@@ -334,7 +340,38 @@
 								</table>
 							</div>
 						</div>
-
+						
+<div role="tabpanel" class="tab-pane" id="editDescription">
+							<%ClubDao cDao = new ClubDao();
+								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
+								String clubDescription = clubObject.getClub_description();								
+								
+							%>
+							
+							<form  action="EditClubDescriptionServlet" method="post">
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Description</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+										<tr>
+											<td> 
+											<textarea cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+											<br>
+											<button class="btn btn-warning" type="submit">Save Changes</button>
+											</td>
+										</tr>
+									</tbody>
+							
+							</table>
+							</form>
+							
+						</div>
 
 
 
@@ -374,9 +411,9 @@
 									</thead>
 									<tbody
 										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display: ">
-										<%CommentDao cDao = new CommentDao();
+										<%CommentDao cDao2 = new CommentDao();
 											LinkedList<Comment> commentList = new LinkedList<Comment>();
-											commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
+											commentList = cDao2.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
 											UserDao uDao2 = new UserDao();
 											User u;
 											
@@ -475,38 +512,8 @@
 						
 						
 						
-						<div role="tabpanel" class="tab-pane" id="editDescription">
-							<%ClubDao cDao = new ClubDao();
-								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-								String clubDescription = clubObject.getClub_description();								
-								
-							%>
-							
-							<form  action="EditClubDescriptionServlet" method="post">
-							
-							<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Club Description</th>
-											<th></th>
-										</tr>
-									</thead>
-								
-									<tbody>
-										<tr>
-											<td> 
-											<textarea cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
-											<br>
-											<button class="btn btn-warning" type="submit">Save Changes</button>
-											</td>
-										</tr>
-									</tbody>
-							
-							</table>
-							</form>
-							
-						</div>
-						<div role="tabpanel" class="tab-pane" id="editDescription">
+						
+						<div role="tabpanel" class="tab-pane" id="viewClubMembers">
 							<%
 			UserDao uDao = new UserDao();
 			LinkedList<User> userList = new LinkedList<User>();
