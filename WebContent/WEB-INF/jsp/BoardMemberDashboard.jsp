@@ -230,46 +230,9 @@
             
               <div class="8">
                 <!-- Classic Responsive Table-->
-                  <%
-			UserDao uDao = new UserDao();
-			LinkedList<User> userList = new LinkedList<User>();
-			userList = uDao.getAllUsersForClub();
-
-			int index = 0;
-		%>
+                  
              
-                <table data-responsive="true" class="table table-custom">
-              
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>ID Number</th>
-                    <th>E-mail</th>
-                    <th></th>
-                  </tr>
-                  
-                  <%
-							while (index < userList.size()) {
-						%>
-                  <tr>
-             
-                    <td><%out.println(userList.get(index).getFirst_name());%></td>
-                    <td><%out.println(userList.get(index).getLast_name());%></td>
-                     <td><%out.println(userList.get(index).getId_num());%></td>
-                    <td><%out.println(userList.get(index).getEmail());%></td>
-                    <form action = "DeleteUserServlet" method = "post">
-                    
-                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
-                 	</form>
-                  </tr>
-                  <%
-										index++;
-										}
-									%>
-                  
-									
-                  
-                </table>
+               
               </div>
             <!-- </div> -->
           </div>
@@ -315,6 +278,9 @@
 						<li role="presentation"><a href="#editDescription"
 							aria-controls="editDescription" role="tab" data-toggle="tab">Edit
 								Description</a></li>
+										Posts</a></li>
+						<li role="presentation"><a href="#editDescription"
+							aria-controls="editDescription" role="tab" data-toggle="tab">Current Members</a></li>
 
 					</ul>
 
@@ -425,7 +391,7 @@
 											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
 											<td><%=commentList.get(commentListIndex).getComment()%></td>
 											<td><%=commentList.get(commentListIndex).getEventId()%></td>
-											<td><%u = uDao.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
+											<td><%u = uDao2.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
 												<%=u.getFirst_name() + " " + u.getLast_name()%>
 											</td>
 											<td>
@@ -540,6 +506,53 @@
 							</form>
 							
 						</div>
+						<div role="tabpanel" class="tab-pane" id="editDescription">
+							<%
+			UserDao uDao = new UserDao();
+			LinkedList<User> userList = new LinkedList<User>();
+			userList = uDao.getAllUsersForClub();
+
+			int index = 0;
+		%>
+							
+							<form  action="EditClubDescriptionServlet" method="post">
+							
+							 <table data-responsive="true" class="table table-custom">
+              
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID Number</th>
+                    <th>E-mail</th>
+                    <th></th>
+                  </tr>
+                  
+                  <%
+							while (index < userList.size()) {
+						%>
+                  <tr>
+             
+                    <td><%out.println(userList.get(index).getFirst_name());%></td>
+                    <td><%out.println(userList.get(index).getLast_name());%></td>
+                     <td><%out.println(userList.get(index).getId_num());%></td>
+                    <td><%out.println(userList.get(index).getEmail());%></td>
+                    <form action = "DeleteUserServlet" method = "post">
+                    
+                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
+                 	</form>
+                  </tr>
+                  <%
+										index++;
+										}
+									%>
+                  
+									
+                  
+                </table>
+							</form>
+							
+						</div>
+						
 						
 					</div>
 

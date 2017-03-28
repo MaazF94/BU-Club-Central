@@ -62,45 +62,48 @@
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
 				<!-- RD Navbar Panel-->
+
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
+
 					<!--Navbar Brand-->
 					<div class="rd-navbar-brand">
 						<a href="HomeServlet"><img class='img-responsive' width='40'
 							height='30' src='img/BURedTransparent.png' alt='' /></a>
 					</div>
-				</div>
 
-				<div class="rd-navbar-menu-wrap">
-					<div class="rd-navbar-nav-wrap">
-						<div class="rd-navbar-mobile-scroll">
 
-							<!--Navbar Brand Mobile-->
-							<div class="rd-navbar-mobile-brand">
-								<a href="HomeServlet"><img class='img-responsive' width='238'
-									height='30' src='img/BUred.png' alt='' /></a>
-							</div>
-							<div class="form-search-wrap">
-								<!-- RD Search Form-->
-								<form action="search-results.html" method="GET"
-									class="form-search rd-search">
-									<div class="form-group">
-										<label for="rd-navbar-form-search-widget"
-											class="form-label form-search-label form-label-sm">Search</label>
-										<input id="rd-navbar-form-search-widget" type="text" name="s"
-											autocomplete="off"
-											class="form-search-input input-sm form-control form-control-gray-lightest input-sm" />
-									</div>
-									<button type="submit" class="form-search-submit">
-										<span class="mdi mdi-magnify"></span>
-									</button>
-								</form>
-							</div>
-							<!-- RD Navbar Nav-->
+					<div class="rd-navbar-menu-wrap">
+						<div class="rd-navbar-nav-wrap">
+							<div class="rd-navbar-mobile-scroll">
+
+
+								<!--Navbar Brand Mobile-->
+								<div class="rd-navbar-mobile-brand">
+									<a href="HomeServlet"><img class='img-responsive'
+										width='238' height='30' src='img/BUred.png' alt='' /></a>
+								</div>
+								<div class="form-search-wrap">
+									<!-- RD Search Form-->
+									<form action="search-results.html" method="GET"
+										class="form-search rd-search">
+										<div class="form-group">
+											<label for="rd-navbar-form-search-widget"
+												class="form-label form-search-label form-label-sm">Search</label>
+											<input id="rd-navbar-form-search-widget" type="text" name="s"
+												autocomplete="off"
+												class="form-search-input input-sm form-control form-control-gray-lightest input-sm" />
+										</div>
+										<button type="submit" class="form-search-submit">
+											<span class="mdi mdi-magnify"></span>
+										</button>
+									</form>
+								</div>
+								<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
 
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
@@ -143,10 +146,10 @@
 							
 						</div>
 					</div>
-					<!--RD Navbar Search-->
+						<!--RD Navbar Search-->
 
+					</div>
 				</div>
-			</div>
 			</nav>
 		</div>
 		<div class="context-dark">
@@ -161,6 +164,7 @@
 			</section>
 		</div>
 		</header>
+
 		<!-- End of header -->
 	
 
