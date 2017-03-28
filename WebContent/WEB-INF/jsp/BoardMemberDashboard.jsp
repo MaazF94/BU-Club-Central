@@ -210,83 +210,6 @@
           <div class="shell">
            
           <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
-            <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Current Members</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                   <!--  <div class="shell">-->
-           
-            <div class="range offset-sm-top-66">
-            
-              <div class="8">
-                <!-- Classic Responsive Table-->
-                  <%
-			UserDao uDao = new UserDao();
-			LinkedList<User> userList = new LinkedList<User>();
-			userList = uDao.getAllUsersForClub();
-
-			int index = 0;
-		%>
-             
-                <table data-responsive="true" class="table table-custom">
-              
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>ID Number</th>
-                    <th>E-mail</th>
-                    <th></th>
-                  </tr>
-                  
-                  <%
-							while (index < userList.size()) {
-						%>
-                  <tr>
-             
-                    <td><%out.println(userList.get(index).getFirst_name());%></td>
-                    <td><%out.println(userList.get(index).getLast_name());%></td>
-                     <td><%out.println(userList.get(index).getId_num());%></td>
-                    <td><%out.println(userList.get(index).getEmail());%></td>
-                    <form action = "DeleteUserServlet" method = "post">
-                    
-                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
-                 	</form>
-                  </tr>
-                  <%
-										index++;
-										}
-									%>
-                  
-									
-                  
-                </table>
-              </div>
-            <!-- </div> -->
-          </div>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 				</div>
@@ -313,11 +236,62 @@
 						<li role="presentation"><a href="#editDescription"
 							aria-controls="editDescription" role="tab" data-toggle="tab">Edit
 								Description</a></li>
+						<li role="presentation"><a href="#viewMember"
+							aria-controls="viewMember" role="tab" data-toggle="tab">View Club Members</a></li>
 
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
+											<div role="tabpanel" class="tab-pane" id="viewMember">
+							<div class="container">
+                  <%
+			UserDao uDao = new UserDao();
+			LinkedList<User> userList = new LinkedList<User>();
+			userList = uDao.getAllUsersForClub();
+
+			int index = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID Number</th>
+                    <th>E-mail</th>
+                    <th></th>
+                  </tr>
+									</thead>
+									                  <%
+							while (index < userList.size()) {
+						%>
+                  <tr>
+             
+                    <td><%out.println(userList.get(index).getFirst_name());%></td>
+                    <td><%out.println(userList.get(index).getLast_name());%></td>
+                     <td><%out.println(userList.get(index).getId_num());%></td>
+                    <td><%out.println(userList.get(index).getEmail());%></td>
+                    <form action = "DeleteUserServlet" method = "post">
+                    
+                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
+                 	</form>
+                  </tr>
+                  <%
+										index++;
+										}
+									%>
+								</table>
+							</div>
+						</div>
+					
+					
+					
+					
+					
+					
+					
+					
 						<div role="tabpanel" class="tab-pane active" id="editEvents">
 							<div class="container">
 								<%
