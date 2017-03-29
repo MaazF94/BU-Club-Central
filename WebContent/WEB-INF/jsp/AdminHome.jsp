@@ -172,6 +172,7 @@
                
                 <section>
           <div class="shell">
+                        ${message}
            
          		<div class="row">
 			<div class="container">
