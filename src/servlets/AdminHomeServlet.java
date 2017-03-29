@@ -60,7 +60,7 @@ public class AdminHomeServlet extends HttpServlet {
 					"</head>\r\n<body>\r\n" +
 					"<div class=isa_success>\r\n" +
 					"<i class=fa fa-check></i>\r\n" +
-					"You successfully changed your password.\r\n" +
+					"You successfully changed the user's role.\r\n" +
 					"\t\t</div>\r\n" +
 					"</body>\r\n" +
 					"</html>";
@@ -83,7 +83,7 @@ doGet(request, response);
 								"</head>\r\n<body>\r\n" +
 								"<div class=isa_error>\r\n" +
 								"<i class=fa fa-times-circle></i>\r\n" +
-								"You entered some information incorrectly, please try again.\r\n" +
+								"An error occurred, please try again.\r\n" +
 								"\t\t</div>\r\n" +
 								"</body>\r\n" +
 								"</html>";
