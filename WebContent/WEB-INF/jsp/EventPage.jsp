@@ -12,6 +12,7 @@
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventRSVPListDao"%>
 <%@ page import="java.util.*"%>
 
 
@@ -248,13 +249,34 @@
 												value="<%=eventList.get(eventListIndex).getEventId()%>">More
 												Info</button>
 										</form></td>
-									<td>
+									
+									<%EventRSVPListDao rsvpDao = new EventRSVPListDao(); 
+										
+										boolean rsvpBoolean = rsvpDao.checkUserRsvpForEvent(eventList.get(eventListIndex).getEventId(), ((User)session.getAttribute("user")).getId_num());
+									%>
+									
+									<%if(!rsvpBoolean) { %>
+										<td>
 										<form action="RSVPServlet" method="POST">
 
 											<button class="btn btn-default " type="submit" name="eventId"
-												value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP</button>
+												value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP For Event</button>
 										</form>
-									</td>
+										</td>
+									
+									
+									<%}else { %>
+										<td>
+											<form action="RSVPServlet" method="POST">
+
+											<button disabled class="btn btn-default" type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">Already Going</button>
+										</form>
+										
+										</td>
+									
+									<%} %>
+									
 								</tr>
 							</tbody>
 						</table>

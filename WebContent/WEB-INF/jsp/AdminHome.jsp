@@ -189,7 +189,7 @@
 					<div class="container">
 							<%ClubDao clubDao = new ClubDao();
 								LinkedList<Club> clubList = new LinkedList<Club>();
-								//clubList = clubDao.getAllClubs();
+								clubList = clubDao.getAllClubs();
 								
 								int clubListIndex = 0;
 								int clubListSize = clubList.size();
@@ -201,6 +201,7 @@
 											<th>Club ID Number</th>
 											<th>Club Name</th>
 											<th>Member count</th>
+											<th>Enabled (1)/Disabled (0)</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -208,16 +209,22 @@
 								
 									<tbody>
 										<tr>
-											<td> </td>
-											<td> </td>
-											<td> </td>
-											<td> </td>
+											<td><%=clubList.get(clubListIndex).getClub_id_num() %></td>
+											<td><%=clubList.get(clubListIndex).getClub_name() %> </td>
+											<td><%=clubList.get(clubListIndex).getMemeber_count() %> </td>
+											<td><%=clubList.get(clubListIndex).getEnabled() %> </td>
 											<td>
-												<form action="AdminDeletePostServlet" method="POST">
+												<form action="AdminDeleteClubServlet" method="POST" onsubmit="return confirm('Are you sure you want to disable this club.');">
 													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>
-													<button class="btn btn-danger" type="submit" name="deletePostId" value="<%=clubId%>">Delete</button>
+													<button class="btn btn-danger" type="submit" name="disableClubId" value="<%=clubId%>">Disable</button>
 												
 												</form>
+												<form action="AdminEnableClubServlet" method="POST" onsubmit="return confirm('Are you sure you want to enable this club.');">
+													<%int clubId2 = clubList.get(clubListIndex).getClub_id_num();%>
+													<button class="btn btn-warning" type="submit" name="enableClubId" value="<%=clubId2%>">Enable</button>
+												
+												</form>
+											
 											
 											</td>
 										</tr>

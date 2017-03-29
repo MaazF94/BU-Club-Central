@@ -145,11 +145,21 @@
 			</div>
 			</nav>
 		</div>
-		<div class="context-dark">
+		<div class="context-dark" style="max-height:100px">
+		
 			<!-- Modern Breadcrumbs-->
 			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-			<div data-speed="0.2" data-type="media" data-url="img/BUSenate.jpg"
-				class="rd-parallax-layer"></div>
+			
+				
+			
+			
+			
+			<div data-speed="0.2" data-type="media" 
+				class="rd-parallax-layer">
+				
+					
+					
+			</div>
 			<div data-speed="0" data-type="html" class="rd-parallax-layer">
 				<div
 					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
@@ -160,140 +170,15 @@
 				</div>
 			</div>
 			</section>
+			
+			
+			
 		</div>
 		</header>
 		<!-- Page Contents-->
 		<main class="page-content"> <section id="welcome"
 			class="section-98 section-sm-110">
-		<div class="shell">
-			<h1>Welcome</h1>
-			<hr class="divider bg-red">
-			<div class="range range-xs-center offset-top-66">
-				<div class="cell-lg-8">
-					<p>Welcome to the homepage! From here you
-						can:</p>
-				</div>
-			</div>
-			<div class="range offset-top-98">
-				<div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
-					<!-- Icon Box Type 5-->
-					<div class="box-icon box-icon-bordered">
-						<a data-toggle="modal" href="#sendModal"><span
-							class="icon glyphicon glyphicon-warning-sign"></span></a>
-						<h4 class="text-danger offset-top-20">Edit Club</h4>
-						<p></p>
-					</div>
-				</div>
-				<div
-					class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
-					<!-- Icon Box Type 5-->
-					<div class="box-icon box-icon-bordered">
-						<a data-toggle="modal" href="#deleteModal"><span
-							class="icon glyphicon glyphicon-modal-window"></span></a>
-						<h4 class="text-danger offset-top-20">Create a Post</h4>
-						<p></p>
-					</div>
-				</div>
-				<div
-					class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
-					<!-- Icon Box Type 5-->
-					<div class="box-icon box-icon-bordered">
-						<a data-toggle="modal" href="#createModal"><span
-							class="icon glyphicon glyphicon-calendar"></span> </a>
-						<h4 class="text-danger offset-top-20">Create an Event</h4>
-						<p></p>
-					</div>
-				</div>
-				<div class="range range-xs-center offset-top-66">
-				 <section>
-                 
-          <div class="shell">
-           
-          <hr class="resp-tabs-list tabs-1 text-center tabs-group-default">
-            <div class="offset-sm-top-66 text-left">
-              <!-- Responsive-tabs-->
-              <div data-type="horizontal" class="responsive-tabs responsive-tabs-classic">
-                <ul data-group="tabs-group-default" class="resp-tabs-list tabs-1 text-center tabs-group-default">
-                  <li>Current Members</li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <div data-group="tabs-group-default" class="resp-tabs-container text-left tabs-group-default">
-                  <div>
-                  <!-- First toolbar tab -->
-                   <!--  <div class="shell">-->
-           
-            <div class="range offset-sm-top-66">
-            
-              <div class="8">
-                <!-- Classic Responsive Table-->
-                  <%
-			UserDao uDao = new UserDao();
-			LinkedList<User> userList = new LinkedList<User>();
-			userList = uDao.getAllUsersForClub();
-
-			int index = 0;
-		%>
-             
-                <table data-responsive="true" class="table table-custom">
-              
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>ID Number</th>
-                    <th>E-mail</th>
-                    <th></th>
-                  </tr>
-                  
-                  <%
-							while (index < userList.size()) {
-						%>
-                  <tr>
-             
-                    <td><%out.println(userList.get(index).getFirst_name());%></td>
-                    <td><%out.println(userList.get(index).getLast_name());%></td>
-                     <td><%out.println(userList.get(index).getId_num());%></td>
-                    <td><%out.println(userList.get(index).getEmail());%></td>
-                    <form action = "DeleteUserServlet" method = "post">
-                    
-                     <td><button type = "submit" name= "UserID" value = "<%out.println(userList.get(index).getId_num());%>" class="btn btn-warning">Delete</a></td>
-                 	</form>
-                  </tr>
-                  <%
-										index++;
-										}
-									%>
-                  
-									
-                  
-                </table>
-              </div>
-            <!-- </div> -->
-          </div>
-                  </div>
-                  <!-- Second toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Third toolbar tab -->
-                  <div>
-                    <p></p>
-                  </div>
-                  <!-- Fourth toolbar tab -->
-                  <div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-				</div>
-				
-			</div>
-
-		</div>
+		
 
 		<div class="row">
 			<div class="container">
@@ -324,6 +209,14 @@
 									int eventListIndex = 0;
 									int eventListSize = eventList.size();
 								%>
+								
+								<div class="box-icon box-icon-bordered">
+						<a data-toggle="modal" href="#createModal"><span
+							class="icon glyphicon glyphicon-calendar"></span> </a>
+						<h4 class="text-danger offset-top-20">Create an Event</h4>
+						<p></p>
+					</div>
+								
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -420,7 +313,7 @@
 											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
 											<td><%=commentList.get(commentListIndex).getComment()%></td>
 											<td><%=commentList.get(commentListIndex).getEventId()%></td>
-											<td><%u = uDao.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
+											<td><%u = uDao2.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
 												<%=u.getFirst_name() + " " + u.getLast_name()%>
 											</td>
 											<td>
@@ -462,6 +355,13 @@
 								int postListSize = postList.size();
 								
 							%>
+							
+							<div class="box-icon box-icon-bordered">
+						<a data-toggle="modal" href="#deleteModal"><span
+							class="icon glyphicon glyphicon-modal-window"></span></a>
+						<h4 class="text-danger offset-top-20">Create a Post</h4>
+						<p></p>
+					</div>
 							
 							<table class="table table-hover">
 									<thead>
@@ -555,7 +455,7 @@
 
 
 
-
+		
 
 
 

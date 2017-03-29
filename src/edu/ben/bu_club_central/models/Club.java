@@ -7,6 +7,8 @@ public class Club {
 	private int club_id_num;
 	private String pet_email;
 	private String advisor_name;
+	private int memeber_count;
+	private int enabled;
 	
 	
 	public Club (int club_id_num, String club_name, String pet_name, String club_description, String pet_email, String advisor_name) {
@@ -20,6 +22,30 @@ public class Club {
 
 	
 	
+	public int getEnabled() {
+		return enabled;
+	}
+
+
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
+
+
+	public int getMemeber_count() {
+		return memeber_count;
+	}
+
+
+
+	public void setMemeber_count(int memeber_count) {
+		this.memeber_count = memeber_count;
+	}
+
+
+
 	public String getClub_name() {
 		return club_name;
 	}

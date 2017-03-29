@@ -589,6 +589,45 @@ public class UserDao {
 		
 		return userID;
 	}
+	
+	
+	public LinkedList<User> getAllBoardMembersForEachClub(int club_id_num) {
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num = " + club_id_num + " AND role_id = 2";
+		
+		LinkedList<User> userList = new LinkedList<User>();
+		User user;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"));
+				
+				userList.add(user);
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userList;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 	
 	
