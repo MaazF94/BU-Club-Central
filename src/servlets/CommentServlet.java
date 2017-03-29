@@ -68,7 +68,7 @@ public class CommentServlet extends HttpServlet {
 		String password = "thefirm123";
 		String toEmail; 
 		String name = u.getFirst_name() + " " + u.getLast_name();
-		String subject = "A new user plans on going to your event!!!";
+		String subject = "A new comment has been posted on an event!!!";
 		String content = name + " has just left a comment on an event\n"
 				+ "Comment: " + comment;
 		
