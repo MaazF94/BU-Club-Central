@@ -28,9 +28,6 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/js/sweetalert2.js"></script>
-    <script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
-<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
-    
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -175,6 +172,7 @@
                
                 <section>
           <div class="shell">
+                        ${message}
            
          		<div class="row">
 			<div class="container">
@@ -196,43 +194,45 @@
 								<%
 			ClubDao cDao = new ClubDao();
 			LinkedList<Club> clubList = new LinkedList<Club>();
-			clubList = cDao.displayClub();
+			clubList = cDao.displayClubForAdmin();
 
-			int index = 0;
+			int clubListIndex = 0;
 		%>
 								<table class="table table-hover sortable">
 									<thead>
 										<tr>
+											<th>Club ID Number</th>
 											<th>Club Name</th>
-											<th>Advisor Name</th>
-											<th>Petitioner Name</th>
-											<th>Email</th>
+											<th>Member count</th>
+											<th>Enabled (1)/Disabled (0)</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tbody
-										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
-										<%
-											while (index < clubList.size()) {
-										%>
+									<%while (clubListIndex < clubList.size()) { %>
+									<tbody>
 										<tr>
-											<td><%=clubList.get(index).getClub_name()%></td>
-											<td><%=clubList.get(index).getAdvisor_name()%></td>
-											<td><%=clubList.get(index).getPet_name()%></td>
-											<td><%=clubList.get(index).getPet_email()%></td>
-											<td><form action="deleteClubServlet" method="post">
-													<button class="btn btn-warning" type="submit"
-														name="clubID"
-														value="<%=clubList.get(index).getClub_id_num()%>">Delete</button>
-												</form></td>
+											<td><%=clubList.get(clubListIndex).getClub_id_num() %></td>
+											<td><%=clubList.get(clubListIndex).getClub_name() %> </td>
+											<td><%=clubList.get(clubListIndex).getMember_count() %> </td>
+											<td><%=clubList.get(clubListIndex).getEnabled() %> </td>
+											<td>
+												<form action="AdminDeleteClubServlet" method="POST" onsubmit="return confirm('Are you sure you want to disable this club.');">
+													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>
+													<button class="btn btn-danger" type="submit" name="disableClubId" value=<%=clubId%>>Disable</button>
+												
+												</form>
+												<form action="AdminEnableClubServlet" method="POST" onsubmit="return confirm('Are you sure you want to enable this club.');">
+													<%int clubId2 = clubList.get(clubListIndex).getClub_id_num();%>
+													<button class="btn btn-warning" type="submit" name="enableClubId" value=<%=clubId2%>>Enable</button>
+												
+												</form>
+											
+											
+											</td>
 										</tr>
-
-										<%
-											index++;
-										%>
-										<%
-											}
-										%>
 									</tbody>
+									<%clubListIndex++; %>
+							<% }%>
 								</table>
 							</div>
 						</div>
@@ -413,6 +413,29 @@
 	</script>
 	
 	<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+
+<script>
 function myFunction() {
   // Declare variables 
   var input, filter, table, tr, td, i;
@@ -751,11 +774,9 @@ sorttable = {
   }
 }
 
-/* ******************************************************************
-   Supporting functions: bundled here to avoid depending on a library
-   ****************************************************************** */
 
-// Dean Edwards/Matthias Miller/John Resig
+
+
 
 /* for Mozilla/Opera9 */
 if (document.addEventListener) {
