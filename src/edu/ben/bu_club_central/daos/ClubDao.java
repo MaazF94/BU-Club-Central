@@ -222,17 +222,21 @@ public class ClubDao {
 	 * @param club_description
 	 * @param club_id_num
 	 */
-	public void editClubDescription(String club_description, int club_id_num) {
+	public boolean editClubDescription(String club_description, int club_id_num) {
 		String sql = "UPDATE " + tableName + " SET club_description = '" + club_description + "'" + 
 						" WHERE club_id_num = " + club_id_num;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			if (ps.executeUpdate() == 1) {
+				return true;
+			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		
+		return false;
 	}
 	
 	public void disableClub(int club_id_num) {

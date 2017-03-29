@@ -39,18 +39,65 @@ public class EditClubDescriptionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
-		int club_id_num = clubObject.getClub_id_num();
-		
-		callEditClubDescription(request.getParameter("editDescription"), club_id_num);
-		doGet(request, response);
+		try {
+			ClubDao cDao = new ClubDao();
+			Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			int club_id_num = clubObject.getClub_id_num();
+			
+			
+		if (callEditClubDescription(request.getParameter("editDescription"), club_id_num)) {
+			String message = 	"<!DOCTYPE html>\r\n" + 
+					"<html>\r\n" +
+					"<head>\r\n" +
+					"<title>Mileage</title>\r\n" +
+					"<style> \r\n" +
+					".isa_success {\r\n" +
+					"color: #4F8A10;\r\n" +
+					"background-color: #DFF2BF;\r\n" +
+					"}\r\n" +
+					"</style>\r\n" +
+					"</head>\r\n<body>\r\n" +
+					"<div class=isa_success>\r\n" +
+					"<i class=fa fa-check></i>\r\n" +
+					"You successfully changed your club's description.\r\n" +
+					"\t\t</div>\r\n" +
+					"</body>\r\n" +
+					"</html>";
+request.setAttribute("message", message);
+doGet(request, response);
+		} else {
+			throw new Exception();
+		}
+		} catch (Exception e) {
+			String message = 	"<!DOCTYPE html>\r\n" + 
+								"<html>\r\n" +
+								"<head>\r\n" +
+								"<title>Mileage</title>\r\n" +
+								"<style> \r\n" +
+								".isa_error {\r\n" +
+								"color: #D8000C;\r\n" +
+								"background-color: #FFBABA;\r\n" +
+								"}\r\n" +
+								"</style>\r\n" +
+								"</head>\r\n<body>\r\n" +
+								"<div class=isa_error>\r\n" +
+								"<i class=fa fa-times-circle></i>\r\n" +
+								"An error occurred with trying to change the description.\r\n" +
+								"\t\t</div>\r\n" +
+								"</body>\r\n" +
+								"</html>";
+					request.setAttribute("message", message);
+					request.getRequestDispatcher("AdminHome").forward(request, response);
+		}
 	}
 	
-	public static void callEditClubDescription(String club_description, int club_id_num) {
+	public static boolean callEditClubDescription(String club_description, int club_id_num) {
 		ClubDao cDao = new ClubDao();
-		cDao.editClubDescription(club_description, club_id_num);
+		if (cDao.editClubDescription(club_description, club_id_num)) {		
+			return true;
+		}
 		
+		return false;
 	}
 
 }

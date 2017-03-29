@@ -152,6 +152,7 @@
 		</div>
 
 		<div class="row">
+				${message}
 			<div class="container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
