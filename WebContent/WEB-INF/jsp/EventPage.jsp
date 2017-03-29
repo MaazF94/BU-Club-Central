@@ -38,6 +38,18 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
+		<style>
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
+</style>
 
 </head>
 <body>
@@ -95,43 +107,48 @@
 									</form>
 								</div>
 								<!-- RD Navbar Nav-->
-								<ul class="rd-navbar-nav">
+							<ul class="rd-navbar-nav">
 
-									<li class=""><a href="HomeServlet"><span>Home</span></a></li>
-									<li><a href="EventServlet"><span>Events</span></a></li>
-									<li><a href="ClublistServlet"><span>Clubs</span></a></li>
+								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
+								<li><a href="EventServlet"><span>Events</span></a></li>
+								<li><a href="ClublistServlet"><span>clubs</span></a></li>
 
-									<li><a href="MeetTheAdminsServlet"><span>About
-												Us</span></a></li>
-									<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-									<li class="dropdown"><a class="dropdown-toggle"
-										data-toggle="dropdown" href="LoginSevlet"> <%
- 	if (session.getAttribute("user") == null) {
- %> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%>
-											<span class="caret"></span>
-									</a> <%
- 	}
- %>
-
-										<ul class="dropdown-menu">
-											<li><a href="LogoutServlet"><span
-													class="text-danger">logout</span></a>
-										</ul></li>
-
-
-
-								</ul>
-
-
-
-
-
-
-
-							</div>
+								<li><a href="MeetTheAdminsServlet"><span>About
+											Us</span></a></li>
+								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+         <ul class="dropdown-menu">
+        
+ 							   
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      <li><a href="#"><span></span></a></li>
+                          </ul>
+									
+							
+							
+							
 						</div>
+					</div>
 						<!--RD Navbar Search-->
 
 					</div>
@@ -151,67 +168,25 @@
 		</div>
 		</header>
 
-		<main class="page-content"> <!--  This is where the the page contents that you are adding should go -->
-
-		<!-- Page Contents-->
-		<div class="jumbotron" style="background-color: white">
-			<!-- Page Contents-->
-			<div class="jumbotron" style="background-color: white">
-				<h1>Events Page</h1>
-
-			</div>
-			<div class="row" style="height: 500px">
-				<div class="container">
-					<div class="col-lg-12">
-						<div class="jumbotron" style="background-color: white">
-							<h2>Search for an Event</h2>
-							<form name="vinform">
-								<input placeholder="Enter title of event" type="text"
-									name="name" onkeyup="searchInfo()">
-							</form>
-
-
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="container">
-						<div class="col-4-lg"></div>
-
-						<div class="col-4-lg">
-							<table class="table table-hover" >
-								<thead>
-									<tr>
-										<td></td>
-										<td></td>
-										<td>Event name <span class="glyphicon glyphicon-calendar"></span></td>
-										<td>Event Location <span class="glyphicon glyphicon-globe"></span></td>
-										<td></td>
-									</tr>
-								</thead>
-								<tbody id="mylocation">
-
-								</tbody>
-
-							</table>
-						</div>
-
-					</div>
-				</div>
-
-
-
-
-
-
-			</div>
-			<div class="row">
-				<h3>Event List</h3>
-				<div class="container col-lg-12">
-
-
-					<%
+		
+		<!-- Page Content-->
+      <main class="page-content section-98 section-sm-110">
+        <div class="shell">
+          <div class="range range-xs-center">
+            <div class="cell-md-8 cell-md-push-2">
+              <div class="inset-md-left-20">
+                <!-- Classic Thumbnail-->
+                <!-- Classic Gallery Carousel-->
+                <!-- Classic Thumbnail-->
+                <!-- Embed Video-->
+                <!-- Classic Soundcloud Player-->
+                <!-- Blog Default Single-->
+                
+                <section>
+                
+                <h2 class="text-bold">Upcoming Events</h2>
+                <hr class="divider  bg-red">
+                <%
 						EventsDao eventDao = new EventsDao();
 						LinkedList<Events> eventList = new LinkedList<Events>();
 
@@ -223,29 +198,29 @@
 					<%
 						while (eventListIndex < eventListSize) {
 					%>
-
-					<div class="container">
-
-						<div class="col-lg-3"></div>
-						<table class="table table-hover col-lg-6">
-							<thead>
-								<tr>
-									<th>Event Title</th>
-									<th>Event Location</th>
-									<th>People Going</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-
-									<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
-									<td><%=eventList.get(eventListIndex).getLocation()%></td>
-									<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
-									<td><form action="EventDetailsServlet" method="GET">
-
-											<button class="btn btn-default " type="submit" name="eventId"
+                                  <!-- Post Wide-->
+                                  <article class="post post-default text-left">
+                                    <!-- Post Header-->
+                                    <div class="header post-header">
+                                      <!-- Post Meta-->
+                                      <ul class="post-controls list-inline list-inline-sm p text-dark">
+                                        
+                                        <li><a href="#" class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot " title="Number of people coming">&nbsp;</a><%=eventList.get(eventListIndex).getRsvp_count()%><span class="text-middle small"></span></li>
+                                        
+                                        
+                                        <li><span class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot" title="Location of the event">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=eventList.get(eventListIndex).getLocation()%></span></a></li>
+                                      </ul>
+                                      <!-- Post Meta-->
+                                      <h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3>
+                                      <!-- Post Media-->
+                                      
+                                    </div>
+                                    <!-- PostContent-->
+                                    <section class="post-content offset-top-41">
+                                    <p><%= eventList.get(eventListIndex).getDescription() %></p>
+                                  
+                                      <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-default text-red-gray" type="submit" name="eventId"
 												value="<%=eventList.get(eventListIndex).getEventId()%>">More
 												Info</button>
 										</form></td>
@@ -287,22 +262,62 @@
 				</div>
 
 				<%
-					eventListIndex++;
+										
+						}
 				%>
-				<%
-					}
-				%>
+				
+                  
+                  
+                 
+                  <div class="offset-top-66">
+                                    <!-- Bootstrap Pagination-->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true" class="mdi mdi-chevron-double-left"></span></a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#" aria-label="Next"><span aria-hidden="true" class="mdi mdi-chevron-double-right"></span></a></li>
+                                      </ul>
+                                    </nav>
+                  </div>
+                </section>
+              </div>
+            </div>
+    <div class="cell-md-4 cell-md-push-1 offset-top-66 offset-md-top-0">
+              <!-- Section Blog Modern-->
+              <aside class="text-left">
+                
+               
+                <div class="range offset-top-41">
+                  <div class="cell-xs-6 cell-md-12">
+                    <!-- Category-->
+                    <h6 class="text-uppercase text-spacing-60">Clubs</h6>
+                    <div class="text-subline"></div>
+                    <ul class="list list-marked offset-top-30">
+                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                      
+                    </ul>
+                  </div>
+                  
+                </div>
+                <!-- Search Form-->
+                <h6 class="text-uppercase text-spacing-60">Search</h6>
+                <div class="text-subline"></div>
+                <div class="offset-top-34">
+                                <!-- RD Search Form-->
+                               <form name="vinform">
+								<input placeholder="Enter title of event" type="text"
+									name="name" onkeyup="searchInfo()">
+							</form>
 
-
-
-
-
-
-
-
-
-			</div>
-		</main>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </main>
 
 
 		<!-- Page Footer-->
@@ -413,6 +428,29 @@
 
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
+	 <script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
 </body>
 
 </html>

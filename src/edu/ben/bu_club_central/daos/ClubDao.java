@@ -196,7 +196,24 @@ public class ClubDao {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
+	}
 	
+	/**
+	 * allow board member to edit club description from dashboard
+	 * @param club_description
+	 * @param club_id_num
+	 */
+	public void editClubDescription(String club_description, int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET club_description = '" + club_description + "'" + 
+						" WHERE club_id_num = " + club_id_num;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
 	}
 
 	

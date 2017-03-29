@@ -99,7 +99,7 @@ public class JoinAClubServlet extends HttpServlet {
 		List<ClubMembership> memberships = new ArrayList<ClubMembership>();
 
 		for (int i = 0; i < clubIdList.length; i++) {
-			ClubMembership m = new ClubMembership(Integer.parseInt(clubIdList[i]), userID, 1, true);
+			ClubMembership m = new ClubMembership(Integer.parseInt(clubIdList[i]), userID, 1, true, "");
 			if (m != null) {
 				memberships.add(m);
 			}

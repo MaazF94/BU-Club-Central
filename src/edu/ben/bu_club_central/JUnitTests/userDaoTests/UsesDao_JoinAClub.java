@@ -21,7 +21,7 @@ public class UsesDao_JoinAClub {
 	@Test
 	public void UserJoinsClubTest() {
 		
-		ClubMembership m = new ClubMembership(2, 1, 1, true);
+		ClubMembership m = new ClubMembership(2, 1, 1, true, "");
 		memberships.add(m);
 				
 		boolean expected = false;
@@ -32,7 +32,7 @@ public class UsesDao_JoinAClub {
 	@Test
 	public void UserJoinsClubTest2() {
 		
-		ClubMembership m = new ClubMembership(5, 1, 1, true);
+		ClubMembership m = new ClubMembership(5, 1, 1, true, "");
 		memberships.add(m);
 				
 		boolean expected = false;
@@ -42,9 +42,9 @@ public class UsesDao_JoinAClub {
 	
 	@Test
 	public void UserJoinsMultipleClubsTest() {
-		ClubMembership m = new ClubMembership(3, 1, 1, true);
+		ClubMembership m = new ClubMembership(3, 1, 1, true, "");
 		memberships.add(m);
-		m = new ClubMembership(4, 1, 1, true);
+		m = new ClubMembership(4, 1, 1, true, "");
 		memberships.add(m);
 		
 		boolean expected = false;
@@ -54,9 +54,9 @@ public class UsesDao_JoinAClub {
 	
 	@Test
 	public void UserJoinsMultipleClubsTest2() {
-		ClubMembership m = new ClubMembership(6, 1, 1, true);
+		ClubMembership m = new ClubMembership(6, 1, 1, true, "");
 		memberships.add(m);
-		m = new ClubMembership(7, 1, 1, true);
+		m = new ClubMembership(7, 1, 1, true, "");
 		memberships.add(m);
 		
 		boolean expected = false;
@@ -66,9 +66,9 @@ public class UsesDao_JoinAClub {
 	
 	@Test
 	public void UserJoinsSameClubsTest() {
-		ClubMembership m = new ClubMembership(3, 1, 1, true);
+		ClubMembership m = new ClubMembership(3, 1, 1, true, "");
 		memberships.add(m);
-		m = new ClubMembership(4, 1, 1, true);
+		m = new ClubMembership(4, 1, 1, true, "");
 		memberships.add(m);
 		
 		boolean expected = false;

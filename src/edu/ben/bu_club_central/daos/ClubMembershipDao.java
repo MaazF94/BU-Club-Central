@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import edu.ben.bu_club_central.models.ClubMembership;
+import edu.ben.bu_club_central.models.Post;
 
 public class ClubMembershipDao {
 
@@ -124,6 +126,42 @@ public class ClubMembershipDao {
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Used to display which clubs a user is in on dashboard
+	 * @param user_id
+	 * @return list of clubs user is in
+	 */
+	public LinkedList<ClubMembership> displayUserClubInfo(int user_id) {
+		LinkedList<ClubMembership> ClubMembershipList = new LinkedList<ClubMembership>();
+		String sql = "";
+		
+		sql = "SELECT * from " + tableName + " CM inner join club C, user U"
+				+ " where C.club_id_num = CM.club_ID and CM.user_ID = U.iduser and CM.user_ID = " + user_id + " and active = 1";
+		
+		PreparedStatement ps;
+		ResultSet rs = null;;
+		ClubMembership newClubMembership;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				newClubMembership = new ClubMembership(rs.getInt("club_ID"), rs.getInt("user_ID"), rs.getInt("role_ID"), rs.getBoolean("active"), rs.getString("club_name"));
+				ClubMembershipList.add(newClubMembership);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ClubMembershipList;
 	}
 
 }

@@ -41,9 +41,13 @@ public class CommentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println(request.getParameter("comment"));
+		//System.out.println(request.getParameter("commentId_eventId"));
+		//System.out.println(((User) request.getSession().getAttribute("user")).getId_num());
+		
 		addComment(request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
 		sendEmailNotificationComment(((User)request.getSession().getAttribute("user")), request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")));
-		response.sendRedirect("ClubHomepageServlet");
+		response.sendRedirect("EventServlet");
 	
 	}
 	

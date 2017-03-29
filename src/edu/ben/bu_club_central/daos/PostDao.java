@@ -38,7 +38,6 @@ public class PostDao {
 	public LinkedList<Post> getAllPostsByClubId(int club_id_num) {
 		LinkedList<Post> postList = new LinkedList<Post>();
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + club_id_num;
-		
 		PreparedStatement ps;
 		ResultSet rs = null;
 		Post newPost;
@@ -60,7 +59,6 @@ public class PostDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return postList;
 	}
 	

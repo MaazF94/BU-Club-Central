@@ -93,27 +93,35 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="LoginSevlet">
-										<%
-											if (session.getAttribute("user") == null) {
-										%> <a href="LoginServlet"> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%> <span
-											class="caret"></span></a> <%
- 	}
- %>
-
-										<ul class="dropdown-menu">
-											<li><a href="ClubHomepageServlet"><span
-													class="text-danger">Club Homepage</span> </a></li>
-											<li><a href="LogoutServlet"><span
-													class="text-danger">logout</span></a>
-										</ul></li>
-
-
 
 							</ul>
+								 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
+											<%
+					}
+											%>
+      
+        <ul class="dropdown-menu">
+        
+ 							   
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      
+        
+          
+        </ul>
+      </li>
+								
+								
+                      <li><a href="#"><span></span></a></li>
+                          </ul>
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -158,7 +166,47 @@
 				</div>
 			</h1>
 			<h5>Number of Club Members: ${clubMembers}</h5>
+			<hr>
+			<p><b>Number of club members:</b> ${clubMembers}
+			<br>
+			   <b>Description:</b>
+			   <br>
+			   ${clubDescription}
+			 </p>
+			<div class="range range-xs-left range-xs-left">
+              <div class="cell-sm-6">
+              ${message}
+                <h6 style="align:left; padding-left:1px;">Contact a Board Member:</h6>
+                <!-- RD Mailform-->
+                <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-20">
+                    <div style="width: 75%" class="cell-lg-2">
+                      <div class="form-group">
+                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
+                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name"  class="form-control form-control-impressed">
+                      </div>
+                    </div>
+                    <div style="padding: 10px; width: 75%" class="cell-lg-2 offset-top-20">
+                      <div class="form-group">
+                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
+                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
+                      </div>
+                    </div>
+                    <div style="padding: 10px; width: 75%" class="cell-lg-6 offset-top-20">
+                      <div class="form-group">
+                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
+                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." class="form-control form-control-impressed"></textarea>
+                      </div>
+                    </div>
+                  <div class="group-sm text-center text-lg-center offset-top-30">
+                    <button type="submit" class="btn btn-danger">Send</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                  </div>
+                </form>
+              </div>
+            </div>
 		</div>
+		
+		            
 
 		<%--div class="row" style="background-color: white">
 			<div class="container">
