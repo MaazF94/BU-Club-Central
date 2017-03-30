@@ -16,7 +16,7 @@ public class User {
 
 	
 
-	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id, int user_id) {
+	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id, int user_id, int enabled) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -25,6 +25,7 @@ public class User {
 		this.email = email;
 		this.role_id = role_id;
 		this.user_id = user_id;
+		this.enabled = enabled;
 	}
 
 	public String getFirst_name() {
