@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.User;
 
 
 
@@ -230,6 +231,35 @@ public class ClubDao {
 		e.printStackTrace();
 	}
 	
+	}
+	
+	public int countMemebers(int club_id_num) {
+		LinkedList<User> list = new LinkedList<User>();
+		User user;
+		String sql = "SELECT * FROM  bu_club_central.user WHERE club_id_num = " + club_id_num; 
+		int size = 0;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("enabled"));
+				list.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		size = list.size();
+		
+		return size;
 	}
 	
 

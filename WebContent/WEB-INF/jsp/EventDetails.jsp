@@ -13,6 +13,7 @@
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventRSVPListDao"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
@@ -187,6 +188,9 @@
 					ClubDao clubDao = new ClubDao();
 					EventsDao eventDao = new EventsDao();
 					Events event = eventDao.getEventByEventId(Integer.parseInt(request.getParameter("eventId")));
+					
+					EventRSVPListDao rsvpDao = new EventRSVPListDao();
+					LinkedList<User> userList = rsvpDao.getAllUsersForEvent(Integer.parseInt(request.getParameter("eventId")));
 				%>
                                   <!-- Post Wide-->
                                   <article class="post post-default text-left">
@@ -318,6 +322,8 @@
                     </ul>
                   </div>
                   
+                  
+                  
                 </div>
                 <!-- Search Form-->
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
@@ -334,7 +340,40 @@
             </div>
           </div>
         </div>
+        
+          <div class="row">
+          	<div class="container">
+          		<div class="col-lg-12">
+          			<table>
+                  	<thead>
+                  		<tr>
+                  			<th><h1>Users Going</h1></th>
+                  		</tr>
+                  	</thead>
+                  	<tbody>
+                  		<% int rsvpIndex = 0;
+                  			int rsvpListSize = userList.size();
+                  		
+                  		%>
+                  		<%while(rsvpIndex < rsvpListSize) { %>
+                  		<tr>
+                  			<td><%=userList.get(rsvpIndex).getFirst_name() + " " + userList.get(rsvpIndex).getLast_name() %> </td>
+                  		</tr>
+                  		
+                  		<%rsvpIndex++; %>
+						<%} %>                  		
+                  		
+                  	</tbody>
+                  
+                  
+                  </table>
+          		</div>
+          	</div>
+          </div>
+        
       </main>
+      
+     
 
 
 

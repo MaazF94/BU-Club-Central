@@ -108,7 +108,6 @@
 											%>
       
         <ul class="dropdown-menu">
-        
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
  							
       
@@ -189,7 +188,7 @@
 					<div class="container">
 							<%ClubDao clubDao = new ClubDao();
 								LinkedList<Club> clubList = new LinkedList<Club>();
-								//clubList = clubDao.getAllClubs();
+								clubList = clubDao.getAllClubs();
 								
 								int clubListIndex = 0;
 								int clubListSize = clubList.size();
@@ -208,10 +207,9 @@
 								
 									<tbody>
 										<tr>
-											<td> </td>
-											<td> </td>
-											<td> </td>
-											<td> </td>
+											<td><%=clubList.get(clubListIndex).getClub_id_num() %> </td>
+											<td><%=clubList.get(clubListIndex).getClub_name() %> </td>
+											<td><%=clubList.get(clubListIndex).getMemeber_count() %> </td>
 											<td>
 												<form action="AdminDeletePostServlet" method="POST">
 													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>

@@ -165,14 +165,27 @@
 					<h1>${clubName}</h1>
 				</div>
 			</h1>
-			<h5>Number of Club Members: ${clubMembers}</h5>
-			<hr>
-			<p><b>Number of club members:</b> ${clubMembers}
+			<%ClubDao numMembers = new ClubDao();
+				int size = numMembers.countMemebers(((User)session.getAttribute("user")).getClub_id_num());
+			
+			
+			%>
+			<h5>Number of Club Members: <%=size %></h5>
+
 			<br>
 			   <b>Description:</b>
 			   <br>
-			   ${clubDescription}
+			   <%ClubDao daoC = new ClubDao();
+			   	Club c = daoC.getClubById(((User)session.getAttribute("user")).getClub_id_num());
+			   %>
+			   <%=c.getClub_description() %>
 			 </p>
+			 
+			 <br>
+			   <b>Advisor: </b>
+			   <br>
+			   <%=c.getAdvisor_name() %>
+			   
 			<div class="range range-xs-left range-xs-left">
               <div class="cell-sm-6">
               ${message}
@@ -379,8 +392,9 @@
 			<div class="col-lg-12">
 				<%UserDao uDao = new UserDao();
 					LinkedList<User> userList = new LinkedList<User>();
-					userList = uDao.getUsersByClub(((User)session.getAttribute("user")).getClub_id_num());
 				
+					userList = uDao.getUsersByClub(((User)session.getAttribute("user")).getClub_id_num());
+					
 					int userListIndex = 0;
 					int userListSize = userList.size();
 				%>
@@ -422,9 +436,15 @@
 
 
 
+	
 
-
-
+	<div class="row">
+		<div class="container" style="height:500px">
+			<div class="col-lg-12">
+			
+			</div>
+		</div>	
+	</div>
 
 
 

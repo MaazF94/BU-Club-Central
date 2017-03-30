@@ -523,7 +523,6 @@ public class UserDao {
 		LinkedList<User> userList = new LinkedList<User>();
 		
 		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = 1" ;
-//		System.out.println(sql);
 		
 		PreparedStatement ps;
 		ResultSet rs = null;
