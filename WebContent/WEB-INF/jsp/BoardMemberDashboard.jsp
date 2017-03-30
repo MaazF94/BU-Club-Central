@@ -184,8 +184,7 @@
                   <%
 			UserDao uDao = new UserDao();
 			LinkedList<User> userList = new LinkedList<User>();
-			userList = uDao.getAllUsersForClub();
-			
+			userList = uDao.getAllUsersForClub(((User) session.getAttribute("user")).getClub_id_num());
 			int index = 0;
 		%>
 								<table class="table table-hover sortable">

@@ -518,11 +518,12 @@ public class UserDao {
 	}
 	
 	
-	public LinkedList<User> getAllUsersForClub() {
+	public LinkedList<User> getAllUsersForClub(int club_id_num) {
 		User user;
 		LinkedList<User> userList = new LinkedList<User>();
 		
-		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = 1" ;
+		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = " + club_id_num;
+		System.out.println(sql);
 		
 		PreparedStatement ps;
 		ResultSet rs = null;
@@ -659,7 +660,6 @@ public class UserDao {
 		return userID;
 	}
 	
-	
 	public LinkedList<User> getAllBoardMembersForEachClub(int club_id_num) {
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num = " + club_id_num + " AND role_id = 2";
 		
@@ -690,13 +690,6 @@ public class UserDao {
 		return userList;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
 	
