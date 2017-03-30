@@ -103,7 +103,7 @@ public class ClubDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName;
+		sql = "SELECT * FROM " + tableName + " where enabled = 1";
 		
 			
 
