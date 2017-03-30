@@ -89,7 +89,7 @@ response.sendRedirect("");
 					"</body>\r\n" +
 					"</html>";
 		request.setAttribute("message", message);
-		response.sendRedirect("RegisterServlet");
+		response.sendRedirect("");
 		}
 
 	}

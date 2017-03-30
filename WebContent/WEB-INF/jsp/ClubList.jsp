@@ -154,24 +154,32 @@
 						<div role="tablist" aria-multiselectable="true" id="accordion-1"
 							class="panel-group accordion offset-top-0 text-left">
 							<div class="panel">
-								<div role="tab" id="headingOne"
-									class="panel-heading panel-lilac">
-									<div class="panel-title">
-										<a href="ClubHomepageServlet?bu_club_id=<%=(clubList.get(index).getClub_id_num())%>">
-											<%
+							 <div class="panel panel-default">
+                    <div role="tab" id="headingOne" class="panel-heading">
+                      <div class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" href="#collapseOne" aria-expanded="true" class="collapsed"><%
 												out.println(clubList.get(index).getClub_name());
+											%></a></div>
+                    </div>
+                    <div role="tabpanel" aria-labelledby="headingOne" id="collapseOne" class="panel-collapse collapse">
+                      <div class="panel-body"><%
+												out.println(clubList.get(index).getClub_description());
 											%>
-										</a>
-									</div>
-							</div>
+											</br>
+											<a type="button" class="btn btn-info" href="ClubHomepageServlet?bu_club_id=<%=(clubList.get(index).getClub_id_num())%>">More Info</a>
+																			
+										
+                      </div>
+                    </div>
+                  </div>
 						</div>
 						
 					</div>
-					<%
+					
+				</div>
+				<%
 										index++;
 										}
 									%>
-				</div>
 			</div>
 		</section>
 		<!-- Spaces page from footer-->

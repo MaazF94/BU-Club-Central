@@ -42,7 +42,8 @@ public class CreateEventServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		createEvent(request.getParameter("event_name"), request.getParameter("description"),
-				request.getParameter("location"), ((User) request.getSession().getAttribute("user")).getClub_id_num());
+				request.getParameter("location"), 
+				((User) request.getSession().getAttribute("user")).getClub_id_num());
 		response.sendRedirect("BoardMemberDashBoard");
 
 	}

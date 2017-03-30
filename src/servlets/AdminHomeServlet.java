@@ -43,9 +43,12 @@ public class AdminHomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-		if (callSetUserRoleID(request.getParameter("first_name"), request.getParameter("last_name"), 
-				Integer.parseInt(request.getParameter("id_num")), request.getParameter("email"), 
-				Integer.parseInt(request.getParameter("role_id")))) {
+			String value = request.getParameter("role_id").trim();
+			String role_id = value.substring(0, 1);
+			String user_id = value.substring(2).trim();
+			int iduser = Integer.parseInt(user_id);
+			int roleid = Integer.parseInt(role_id);
+		if (callSetUserRoleID(iduser, roleid)) {
 			String message = 	"<!DOCTYPE html>\r\n" + 
 					"<html>\r\n" +
 					"<head>\r\n" +
@@ -59,12 +62,12 @@ public class AdminHomeServlet extends HttpServlet {
 					"</head>\r\n<body>\r\n" +
 					"<div class=isa_success>\r\n" +
 					"<i class=fa fa-check></i>\r\n" +
-					"You successfully changed your password.\r\n" +
+					"You successfully changed the user's role.\r\n" +
 					"\t\t</div>\r\n" +
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+doGet(request, response);
 		} else {
 			throw new Exception();
 		}
@@ -82,7 +85,7 @@ request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, resp
 								"</head>\r\n<body>\r\n" +
 								"<div class=isa_error>\r\n" +
 								"<i class=fa fa-times-circle></i>\r\n" +
-								"You entered some information incorrectly, please try again.\r\n" +
+								"An error occurred, please try again.\r\n" +
 								"\t\t</div>\r\n" +
 								"</body>\r\n" +
 								"</html>";
@@ -95,10 +98,10 @@ request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, resp
 		//request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 	}
 	
-	public static boolean callSetUserRoleID(String first_name, String last_name, int id_num, String email, int role_id) {
+	public static boolean callSetUserRoleID(int user_id, int role_id) {
 		UserDao uDao = new UserDao();
 		
-		if (uDao.userRoleChanges(first_name, last_name, id_num, email, role_id)) {
+		if (uDao.userRoleChanges(user_id, role_id)) {
 			return true;
 		}
 		

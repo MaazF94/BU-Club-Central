@@ -11,6 +11,7 @@ import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.User;
 import mailDispatcher.SendMail;
 
 /**
@@ -36,15 +37,14 @@ public class ClubHomepageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String clubIdNum = (String) request.getParameter("bu_club_id");
-		int club_id_num = Integer.parseInt(clubIdNum);
-
+		
+		
 		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(club_id_num);
+		Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
 		String clubName = clubObject.getClub_name();
 		request.setAttribute("clubName", clubName);
 
-		int clubMemberCount = callClubMemberCount(club_id_num);
+		int clubMemberCount = callClubMemberCount(((User) request.getSession().getAttribute("user")).getClub_id_num());
 		request.setAttribute("clubMembers", clubMemberCount);
 		
 		String clubDescription = clubObject.getClub_description();

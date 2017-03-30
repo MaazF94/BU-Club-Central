@@ -109,10 +109,12 @@
 					}
 											%>
       
-        <ul class="dropdown-menu">
+      <ul class="dropdown-menu">
         
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
+ 							   
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
       
         
           
@@ -120,7 +122,7 @@
       </li>
 								
 								
-                      
+                      <li><a href="#"><span></span></a></li>
                           </ul>
 								
 									
@@ -201,7 +203,7 @@
 											<td><form action="UserLeavesClubServlet" method="post">
 													<button class="btn btn-warning" type="submit"
 														name="clubID"
-														value="<%=clubMembershipList.get(index).getClubID()%>">Delete</button>
+														value="<%=clubMembershipList.get(index).getClubID()%>">Leave Club</button>
 												</form></td>
 										</tr>
 

@@ -55,6 +55,7 @@ public class EventsDao {
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
 		sql = "SELECT * FROM " + tableName;
+		
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -195,4 +196,5 @@ public class EventsDao {
 			e.printStackTrace();
 		}
 	}
+
 }

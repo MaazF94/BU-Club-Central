@@ -37,7 +37,6 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDao uDao = new UserDao();
-		
 		if(uDao.checkNumericOnly(request.getParameter("id_num"))) {
 			if(add_removeUserFromClub(request.getParameter("add_removeButton"), request.getParameter("id_num"))) {
 				response.sendRedirect("BoardMemberDashBoard");

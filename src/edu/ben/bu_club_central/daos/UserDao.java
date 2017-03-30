@@ -74,18 +74,20 @@ public class UserDao {
 	 * @param role_id
 	 * @return true or false
 	 */
-	public boolean userRoleChanges(String first_name, String last_name, int id_num, String email, int role_id) {
-		String sql = "UPDATE " + tableName + " SET role_id=" + role_id + " WHERE first_name='" 
-	+ first_name + "'" + "and last_name='" + last_name + "'" + "and id_num=" + id_num + " and email='" + email + "'";
+	public boolean userRoleChanges(int user_id, int role_id) {
+		boolean didUpdate = false;
+		String sql = "UPDATE " + tableName + " SET role_id=" + role_id + " WHERE iduser=" + user_id;
 		
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				int user_id = getIDUser(first_name, last_name, id_num, email);
+				didUpdate = true;
 				sql = "UPDATE bu_club_central.club_membership" + " SET role_id=" + role_id + " WHERE user_id=" 
 						+ user_id;
-				if (ps.executeUpdate() == 1) {
+				if (didUpdate == true) {
+					ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
 					return true;
 				}
 			} else {
@@ -316,8 +318,12 @@ public class UserDao {
 			if (!rs.next()) {
 				return null;
 			}else {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+//						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+				
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -346,8 +352,11 @@ public class UserDao {
 		
 		try {
 			while(rs.next()) {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+						
+//				user.setRole_id(rs.getInt("role_id"));
+//				user.setEnabled(rs.getInt("enabled"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -435,8 +444,11 @@ public class UserDao {
 			if (!rs.next()) {
 				return null;
 			}else {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+//						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -470,11 +482,42 @@ public class UserDao {
 		}
 	
 	
-	public LinkedList<User> getAllUsersForClub() {
+	public void disableUser(int userIdNum) {
+		String sql = "UPDATE " + tableName + " SET enabled = 0 WHERE id_num = " + userIdNum;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void enableUser(int userIdNum) {
+		String sql = "UPDATE " + tableName + " SET enabled = 1 WHERE id_num = " + userIdNum;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public LinkedList<User> getAllUsersForClub(int club_id_num) {
 		User user;
 		LinkedList<User> userList = new LinkedList<User>();
 		
-		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = 1" ;
+		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = " + club_id_num;
 		System.out.println(sql);
 		
 		PreparedStatement ps;
@@ -489,8 +532,11 @@ public class UserDao {
 		
 		try {
 			while(rs.next()) {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+//						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -509,17 +555,21 @@ public class UserDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1";
+		sql = "SELECT * FROM " + tableName + " WHERE enabled = 1 and role_id <> 3";
 		
 			
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet cs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			
-			while (cs.next()) {
+			while (rs.next()) {
 				
-				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
+//				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
+				User newUser = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+				
+				
 				results.add(newUser);
 			}
 
@@ -531,6 +581,49 @@ public class UserDao {
 	}
 	
 	
+	public LinkedList<User> getUsersByClub(int clubId) {
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num =" + clubId;
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		User user;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			while(rs.next()) {
+				if (rs.getInt("enabled") == 1) {
+//					user = new User (rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+//							rs.getInt("role_id"), rs.getInt("enabled"));
+					
+					user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+							rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+					
+//					user.setRole_id(rs.getInt("role_id"));
+					userList.add(user);
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
 
 	
 	
@@ -571,6 +664,41 @@ public class UserDao {
 		
 		return userID;
 	}
+	
+	public LinkedList<User> getAllBoardMembersForEachClub(int club_id_num) {
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num = " + club_id_num + " AND role_id = 2";
+		
+		LinkedList<User> userList = new LinkedList<User>();
+		User user;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+//						rs.getInt("role_id"), rs.getInt("enabled"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+				
+				userList.add(user);
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userList;
+		
+	}
+	
 }
 	
 	

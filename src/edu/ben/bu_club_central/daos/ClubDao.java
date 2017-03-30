@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.User;
 
 
 
@@ -66,7 +67,7 @@ public class ClubDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName;
+		sql = "SELECT * FROM " + tableName + " where enabled = 1";
 		
 			
 
@@ -76,7 +77,41 @@ public class ClubDao {
 			
 			while (cs.next()) {
 				
-				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name") );
+				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
+						cs.getInt("member_count"), cs.getInt("enabled") );
+				results.add(newClub);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return results;
+	}
+	
+	/**
+	 * Display club gets the list of current clubs and adds them to a linked list. This allows them to be displayed in a JSP 
+	 * @return the linked list of the current clubs.
+	 */
+	public LinkedList<Club> displayClubForAdmin() {
+	 LinkedList<Club> results = new LinkedList<Club>();
+		String sql;
+		
+		
+		sql = "SELECT * FROM " + tableName + " where enabled = 1";
+		
+			
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+			
+			while (cs.next()) {
+				
+				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
+						cs.getInt("member_count"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
 
@@ -104,7 +139,7 @@ public class ClubDao {
 		
 		try {
 			while(rs.next()) {
-				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name") );
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("member_count"), rs.getInt("enabled") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -119,7 +154,7 @@ public class ClubDao {
 		PreparedStatement ps;
 		ResultSet rs = null;
 		Club club = null;
-		LinkedList<Club> clubList = null;
+		LinkedList<Club> clubList =  new LinkedList<Club>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -130,7 +165,7 @@ public class ClubDao {
 		
 		try {
 			while (rs.next()) {
-				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name") );
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("member_count"), rs.getInt("enabled") );
 				clubList.add(club);
 			}
 		} catch (SQLException e) {
@@ -175,7 +210,97 @@ public class ClubDao {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	/**
+	 * allow board member to edit club description from dashboard
+	 * @param club_description
+	 * @param club_id_num
+	 */
+	public boolean editClubDescription(String club_description, int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET club_description = '" + club_description + "'" + 
+						" WHERE club_id_num = " + club_id_num;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public void disableClub(int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET enabled = 0 WHERE club_id_num = " + club_id_num;
+		
+	PreparedStatement ps;
+	ResultSet rs;
+	
+	try {
+		ps = conn.prepareStatement(sql);
+		ps.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	}
 
+	
+	
+
+	
+	public void enableClub(int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET enabled = 1 WHERE club_id_num = " + club_id_num;
+		
+	PreparedStatement ps;
+	ResultSet rs;
+	
+	try {
+		ps = conn.prepareStatement(sql);
+		ps.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	}
+	
+	public int countMemebers(int club_id_num) {
+		LinkedList<User> list = new LinkedList<User>();
+		User user;
+		String sql = "SELECT * FROM  bu_club_central.user WHERE club_id_num = " + club_id_num; 
+		int size = 0;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+//						rs.getInt("role_id"), rs.getInt("enabled"));
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+				
+				list.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		size = list.size();
+		
+		return size;
+	}
 	
 
 }
