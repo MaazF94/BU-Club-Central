@@ -13,7 +13,7 @@ import edu.ben.bu_club_central.models.Post;
 /**
  * Servlet implementation class EditPostServlet
  */
-@WebServlet("/EditPostServlet")
+@WebServlet("/user/EditPostServlet")
 public class EditPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,7 +12,7 @@ import edu.ben.bu_club_central.daos.EventsDao;
 /**
  * Servlet implementation class EditEventServlet
  */
-@WebServlet("/EditEventServlet")
+@WebServlet("/user/EditEventServlet")
 public class EditEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

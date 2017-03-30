@@ -7,14 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.UserDao;
-import edu.ben.bu_club_central.models.Club;
 
 /**
  * Servlet implementation class AdminHome
  */
-@WebServlet("/AdminHome")
+@WebServlet("/user/AdminHome")
 public class AdminHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +29,12 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		Integer roleID = Integer.parseInt(request.getParameter("role_id"));
+		if (roleID == 3){
+			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		}else{
+			request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+		}
 	}
 
 	/**

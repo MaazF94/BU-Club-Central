@@ -12,7 +12,7 @@ import edu.ben.bu_club_central.daos.UserDao;
 /**
  * Servlet implementation class BoardMemberDashBoardServlet
  */
-@WebServlet("/BoardMemberDashBoard")
+@WebServlet("/user//BoardMemberDashBoard")
 public class BoardMemberDashBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
