@@ -28,15 +28,16 @@ public class AdminDeleteClubServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		disableClub(Integer.parseInt(request.getParameter("disableClubId")));
-		response.sendRedirect("AdminHome");
-	}
+		disableClub(Integer.parseInt(request.getParameter("deleteClubId")));
+doGet(request, response);
+}
 	
 	private void disableClub(int club_id_num) {
 		ClubDao clubDao = new ClubDao();
