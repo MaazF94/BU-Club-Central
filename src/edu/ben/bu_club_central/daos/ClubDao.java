@@ -48,19 +48,38 @@ public class ClubDao {
 	 * @param pet_email the head petitioners email
 	 * @param advisor_name the name of the clubs advisor
 	 */
-	public void addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
-		String sql = "INSERT INTO " + tableName
-				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES ('" + ++clubID + "', '" + club_name + "', '"+ pet_name + "', '" + club_description + "', '"+
-				 enabled + "','" + pet_email+"','"+advisor_name+ "')"; 
+	public boolean addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
+		String sql = "SELECT max(club_id_num) from " + tableName + ""; 
 	
-		PreparedStatement ps;
 		try {
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+			
+			while (cs.next()) {
+				
+				clubID = cs.getInt("max(club_id_num)");
+				++clubID;
+			}
+
 		} catch (SQLException e) {
-			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		
+		sql = "INSERT INTO " + tableName
+				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES (" + clubID + ", '" + club_name + "', '"+ pet_name + "', '" + club_description + "', "+
+				 enabled + ",'" + pet_email+"','"+advisor_name+ "')"; 
+	
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+			return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+		}
+		
+		return false;
 	}
 	
 	/**
