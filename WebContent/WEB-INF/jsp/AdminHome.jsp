@@ -6,6 +6,8 @@
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
+<%@ page import="edu.ben.bu_club_central.models.ClubMembership"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
@@ -208,6 +210,11 @@
 								
 								int clubListIndex = 0;
 								int clubListSize = clubList.size();
+								
+							%>
+							
+							<%
+							ClubMembershipDao cmDao = new ClubMembershipDao();
 							%>
 							
 							<table class="table table-hover sortable">
@@ -219,13 +226,16 @@
 											<th></th>
 										</tr>
 									</thead>
-							<%while (clubListIndex < clubListSize) { %>
+							<%while (clubListIndex < clubListSize) { 
+							  int memberCount = cmDao.countClubMembers(clubList.get(clubListIndex).getClub_id_num());
+
+							%>
 								
 									<tbody>
 										<tr>
 											<td><%=clubList.get(clubListIndex).getClub_id_num() %> </td>
 											<td><%=clubList.get(clubListIndex).getClub_name() %> </td>
-											<td><%=clubList.get(clubListIndex).getMember_count() %> </td>
+											<td><%=memberCount%> </td>
 											<td>
 												<form action="AdminDeleteClubServlet" method="POST">
 													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>

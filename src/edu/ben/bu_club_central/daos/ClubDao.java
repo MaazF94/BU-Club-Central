@@ -102,8 +102,7 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
-						cs.getInt("member_count"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
 
@@ -134,8 +133,7 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
-						cs.getInt("member_count"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
 
@@ -163,7 +161,8 @@ public class ClubDao {
 		
 		try {
 			while(rs.next()) {
-				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("member_count"), rs.getInt("enabled") );
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), 
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("enabled") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -189,7 +188,9 @@ public class ClubDao {
 		
 		try {
 			while (rs.next()) {
-				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("member_count"), rs.getInt("enabled") );
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), 
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), 
+						rs.getInt("enabled") );
 				clubList.add(club);
 			}
 		} catch (SQLException e) {
