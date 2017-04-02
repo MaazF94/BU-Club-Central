@@ -40,15 +40,18 @@ public class ClubHomepageServlet extends HttpServlet {
 		
 		
 		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
+		Club clubObject = cDao.getClubById(Integer.parseInt(request.getParameter("club_id_num")));
 		String clubName = clubObject.getClub_name();
 		request.setAttribute("clubName", clubName);
 
-		int clubMemberCount = callClubMemberCount(((User) request.getSession().getAttribute("user")).getClub_id_num());
+		int clubMemberCount = callClubMemberCount(clubObject.getClub_id_num());
 		request.setAttribute("clubMembers", clubMemberCount);
 		
 		String clubDescription = clubObject.getClub_description();
 		request.setAttribute("clubDescription", clubDescription);
+		
+		String advisor = clubObject.getAdvisor_name();
+		request.setAttribute("advisorName", advisor);
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubHomepage.jsp").forward(request, response);
 	}
 

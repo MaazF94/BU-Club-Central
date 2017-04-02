@@ -165,26 +165,17 @@
 					<h1>${clubName}</h1>
 				</div>
 			</h1>
-			<%ClubDao numMembers = new ClubDao();
-				int size = numMembers.countMemebers(((User)session.getAttribute("user")).getClub_id_num());
-			
-			
-			%>
-			<h5>Number of Club Members: <%=size %></h5>
+			<h5>Number of Club Members: ${clubMembers}</h5>
 
 			<br>
 			   <b>Description:</b>
 			   <br>
-			   <%ClubDao daoC = new ClubDao();
-			   	Club c = daoC.getClubById(((User)session.getAttribute("user")).getClub_id_num());
-			   %>
-			   <%=c.getClub_description() %>
-			 </p>
+			   <p>${clubDescription}</p>
 			 
 			 <br>
 			   <b>Advisor: </b>
 			   <br>
-			   <%=c.getAdvisor_name() %>
+			   <p>${advisorName}</p>
 			   
 			<div class="range range-xs-left range-xs-left">
               <div class="cell-sm-6">
@@ -260,191 +251,6 @@
 				</div>
 			</div>
 		</div> --%>
-
-
-
-
-		<div class="row">
-			<div class="container">
-				<div class="col-lg-12">
-					<h1>Home Page</h1>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="container" style="height: 100px"></div>
-		</div>
-
-
-
-		<div class="row">
-
-
-
-			<div class="container">
-				<div class="col-lg-6">
-					<%
-						EventsDao eDao = new EventsDao();
-						LinkedList<Events> eventList = new LinkedList<Events>();
-						eventList = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-						int eventListIndex = 0;
-						int eventListSize = eventList.size();
-					%>
-
-
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>Event Name</th>
-								<th>Location</th>
-								<th>RSVP</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<%
-								while (eventListIndex < eventListSize) {
-							%>
-							<tr>
-								<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
-								<td><%=eventList.get(eventListIndex).getLocation()%></td>
-								<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
-								<td>
-									<form action="EventDetailsServlet" method="GET">
-										<%
-											int eventId = eventList.get(eventListIndex).getEventId();
-										%>
-										<button class="btn" type="submit" name="eventId"
-											value="<%=eventId%>">
-											<span class="glyphicon glyphicon-calendar"
-												style="font-size: 40px"></span>
-										</button>
-
-									</form>
-
-
-								</td>
-							</tr>
-
-							<%
-								eventListIndex++;
-							%>
-							<%
-								}
-							%>
-						</tbody>
-					</table>
-
-
-
-				</div>
-
-				<div class="col-lg-6">
-				
-							<%PostDao pDao = new PostDao();
-								LinkedList<Post> postList = new LinkedList<Post>();
-								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-								
-								int postListIndex = 0;
-								int postListSize = postList.size();
-								
-							%>
-							
-							<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Post Title</th>
-											<th>Contents</th>
-											<th></th>
-										</tr>
-									</thead>
-							<%while (postListIndex < postListSize) { %>
-								
-									<tbody>
-										<tr>
-											<td><%=postList.get(postListIndex).getTitle()%></td>
-											<td><%=postList.get(postListIndex).getContents()%></td>
-											<td>
-												<form action="#" method="GET">
-													<%int postId = postList.get(postListIndex).getIdpost();%>
-													<button class="btn" type="submit" name="editPostId" value="<%=postId%>">
-														<span class="glyphicon glyphicon-comment" style="font-size: 40px"></span></button>
-												
-												</form>
-											
-											</td>
-										</tr>
-									</tbody>
-							
-							<%postListIndex++; %>
-							<% }%>
-							</table>
-				
-
-			</div>
-		</div>
-	</div>
-
-
-	<div class="row">
-		<div class="container">
-			<div class="col-lg-12">
-				<%UserDao uDao = new UserDao();
-					LinkedList<User> userList = new LinkedList<User>();
-				
-					userList = uDao.getUsersByClub(((User)session.getAttribute("user")).getClub_id_num());
-					
-					int userListIndex = 0;
-					int userListSize = userList.size();
-				%>
-				
-				
-				<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>User Name</th>
-											<th>Email</th>
-											<th>Role</th>
-										</tr>
-									</thead>
-							<%while (userListIndex < userListSize) { %>
-								
-									<tbody>
-										<tr>
-											<td><%=userList.get(userListIndex).getFirst_name() + " " + userList.get(userListIndex).getLast_name()%></td>
-											<td><%=userList.get(userListIndex).getUsername()%></td>
-											<td><%=userList.get(userListIndex).getEmail()%></td>
-											
-											<%if(userList.get(userListIndex).getRole_id() == 1) { %>
-												<td>General Member</td>
-											
-											<%} else { %>
-												<td>Board Member</td>
-											<%} %>
-										</tr>
-									</tbody>
-							
-							<%userListIndex++; %>
-							<% }%>
-							</table>
-				
-			</div>
-		</div>
-	</div>
-
-
-
-	
-
-	<div class="row">
-		<div class="container" style="height:500px">
-			<div class="col-lg-12">
-			
-			</div>
-		</div>	
-	</div>
 
 
 

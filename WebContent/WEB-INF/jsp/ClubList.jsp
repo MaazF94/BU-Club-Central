@@ -7,6 +7,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
+<style>
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+#Notify, #PTable {
+    clear: both;
+}
+
+#Notify {
+    float: right;
+    text-align: left;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
+button.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+</style>
 <!-- Site Title-->
 <title>Events</title>
 
@@ -154,9 +202,9 @@
 
 
 		<section class="section-66 section-sm-top-110 section-lg-bottom-0">
-		<div class="shell">
+				<div class="shell">
 			<div class="range range-xs-center">
-				<div class="cell-lg-6">
+							<div class="cell-lg-6">
 					<img src="img/overviewBU.jpg" width="494" height="623"
 						alt="" class="veil reveal-lg-inline-block">
 				</div>
@@ -170,36 +218,24 @@
 							while (index < clubList.size()) {
 						%>
 
-						<div role="tablist" aria-multiselectable="true" id="accordion-1"
-							class="panel-group accordion offset-top-0 text-left">
-							<div class="panel">
-							 <div class="panel panel-default">
-                    <div role="tab" id="headingOne" class="panel-heading">
-                      <div class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" href="#collapseOne" aria-expanded="true" class="collapsed"><%
+								<button class="accordion"><%
 												out.println(clubList.get(index).getClub_name());
-											%></a></div>
-                    </div>
-                    <div role="tabpanel" aria-labelledby="headingOne" id="collapseOne" class="panel-collapse collapse">
-                      <div class="panel-body"><%
-												out.println(clubList.get(index).getClub_description());
-											%>
-											</br>
-											<a type="button" class="btn btn-info" href="ClubHomepageServlet?bu_club_id=<%=(clubList.get(index).getClub_id_num())%>">More Info</a>
-																			
-										
-                      </div>
-                    </div>
-                  </div>
-								
-						</div>
-						
-					</div>
-					
-				</div>
+											%></button>
+<div class="panel">
+<form action="ClubHomepageServlet" method="GET">
+<button style="background-color: blue;" value="<%=clubList.get(index).getClub_id_num()%>" name="club_id_num" class="btn btn-primary" type="submit">Visit <%
+												out.println(clubList.get(index).getClub_name());
+											%> Homepage</button>
+											</form>
+
+</div>
 				<%
 										index++;
 										}
 									%>
+			</div>
+							</div>
+			</div>
 			</div>
 		</section>
 
@@ -299,5 +335,25 @@
 	<!-- Java script-->
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	    acc[i].onclick = function(){
+	        /* Toggle between adding and removing the "active" class,
+	        to highlight the button that controls the panel */
+	        this.classList.toggle("active");
+
+	        /* Toggle between hiding and showing the active panel */
+	        var panel = this.nextElementSibling;
+	        if (panel.style.display === "block") {
+	            panel.style.display = "none";
+	        } else {
+	            panel.style.display = "block";
+	        }
+	    }
+	}
+	</script>
 </body>
 </html>
