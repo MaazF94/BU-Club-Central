@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
 <%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -149,7 +150,15 @@ button.accordion.active:after {
 											%>
       
         <ul class="dropdown-menu">
-        
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
@@ -198,6 +207,7 @@ button.accordion.active:after {
 			clubList = cDao.displayClub();
 
 			int index = 0;
+			
 		%>
 
 
@@ -222,15 +232,27 @@ button.accordion.active:after {
 											%></button>
 <div class="panel">
 <form action="ClubHomepageServlet" method="GET">
-<button style="background-color: blue;" value="<%=clubList.get(index).getClub_id_num()%>" name="club_id_num" class="btn btn-primary" type="submit">Visit <%
+<a type="button" class="btn btn-info" href="ClubHomepageServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
 												out.println(clubList.get(index).getClub_name());
-											%> Homepage</button>
+											%> Homepage</a>
 											</form>
-<form action="JoinAClubServlet" method="POST">
-<button style="background-color: green;" value="<%=clubList.get(index).getClub_id_num()%>" name="club_id_num" class="btn btn-primary" type="submit">Join <%
+											<br>
+<%
+ClubMembershipDao cmDao = new ClubMembershipDao();
+int user_id = ((User) session.getAttribute("user")).getUser_id();
+boolean isInClub = cmDao.checkIfUserInClub(clubList.get(index).getClub_id_num(), user_id);
+if (!isInClub) {%>
+<form action = "JoinAClubServlet" method="GET">
+<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Join <%
 												out.println(clubList.get(index).getClub_name());
-											%></button>
-											</form>
+											%></a></form>
+<%
+} else {
+	%>
+	<a type="button" class="btn btn-success">Joined</a>
+<%
+}
+ %>
 
 </div>
 				<%

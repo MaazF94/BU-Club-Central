@@ -110,7 +110,15 @@
 											%>
       
       <ul class="dropdown-menu">
-        
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
@@ -161,11 +169,24 @@
              <h1>User Dashboard</h1>
 			
                <!-- Put dashboard code here -->
-               
                 <section>
           <div class="shell">
            		${message}
          		<div class="row">
+         		               		<form action = "UserEmailsAdminFromDashboardServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                <br>
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
 			<div class="container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
@@ -454,6 +475,12 @@
 	function enableUpdateButton3() {
 
 	    document.getElementById("button3").disabled = false;
+
+	}
+	
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
 
 	}
 	</script>

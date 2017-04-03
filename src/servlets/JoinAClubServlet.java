@@ -39,17 +39,6 @@ public class JoinAClubServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		session = request.getSession();
-		session.setAttribute("first_name", null);
-		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		try {
 
 			String[] clubIdList = new String[100];
@@ -78,6 +67,16 @@ public class JoinAClubServlet extends HttpServlet {
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
 		}
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp");
 	}
 
 	/**

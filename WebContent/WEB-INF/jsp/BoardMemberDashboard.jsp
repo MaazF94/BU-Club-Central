@@ -1,3 +1,4 @@
+<%@page import="javax.mail.Session"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -113,6 +114,14 @@
 											%>
       
         <ul class="dropdown-menu">
+        						<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
         						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
  							
@@ -148,9 +157,21 @@
 			class="section-98 section-sm-110">
 		<div class="shell">
 			<h1>Board Member Dashboard</h1>
-
-		</div>
-
+		</div>		
+		<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                <br>
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
 		<div class="row">
 				${message}
 			<div class="container">
@@ -877,6 +898,12 @@
 	function enableUpdateButton() {
 
 	    document.getElementById("button").disabled = false;
+
+	}
+	
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
 
 	}
 	</script>

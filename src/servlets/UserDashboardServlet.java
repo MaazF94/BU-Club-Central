@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.models.User;
+
 /**
  * Servlet implementation class UserServlet
  */
@@ -27,7 +29,12 @@ public class UserDashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("AccessDeniedServlet");
+		}
+		
 	}
 
 	/**
