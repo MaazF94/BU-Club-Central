@@ -208,7 +208,6 @@ button.accordion.active:after {
 			clubList = cDao.displayClub();
 
 			int index = 0;
-			
 		%>
 
 
@@ -251,7 +250,10 @@ if (!isInClub) {%>
 <%
 } else {
 	%>
-	<a type="button" class="btn btn-success">Joined</a>
+<a type="button" class="btn btn-warning" 
+href="LeaveClubFromClublistServlet?clubID=<%=(clubList.get(index).getClub_id_num())%>">Leave <%
+												out.println(clubList.get(index).getClub_name());
+											%></a>
 <%
 }
 }
