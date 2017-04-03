@@ -38,10 +38,10 @@ public class UserEmailsBMServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
 		String first_name = (((User) request.getSession().getAttribute("user")).getFirst_name());
 		String last_name = (((User) request.getSession().getAttribute("user")).getLast_name());
 		String email = (((User) request.getSession().getAttribute("user")).getEmail());
-		try {
 			if (!checkMessage(request.getParameter("message"))) {
 				throw new Exception();
 			} else { callEmailAdmin(first_name, last_name, email, request.getParameter("message"));
@@ -66,6 +66,9 @@ request.setAttribute("message", message);
 doGet(request, response);
 			}
 		} catch (Exception e) {
+			if ((((User) request.getSession().getAttribute("user")) == null)) {
+				request.getRequestDispatcher("/WEB-INF/jsp/MustLoginToView.jsp").forward(request, response);
+			} else {
 			String message = 	"<!DOCTYPE html>\r\n" + 
 					"<html>\r\n" +
 					"<head>\r\n" +
@@ -85,6 +88,7 @@ doGet(request, response);
 					"</html>";
 		request.setAttribute("message", message);
 		doGet(request, response);
+			}
 		}
 	}
 	

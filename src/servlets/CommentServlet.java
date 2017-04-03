@@ -42,9 +42,15 @@ public class CommentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
 		addComment(request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
 		sendEmailNotificationComment(((User)request.getSession().getAttribute("user")), request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")));
 		response.sendRedirect("EventServlet");
+		} catch (Exception e) {
+			if (((User) request.getSession().getAttribute("user")) == null) {
+			request.getRequestDispatcher("/WEB-INF/jsp/MustLoginToView.jsp").forward(request, response);
+			}
+		}
 	
 	}
 	
