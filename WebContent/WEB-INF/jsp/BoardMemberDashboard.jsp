@@ -1,3 +1,4 @@
+<%@page import="javax.mail.Session"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -113,6 +114,14 @@
 											%>
       
         <ul class="dropdown-menu">
+        						<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
         						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
  							
