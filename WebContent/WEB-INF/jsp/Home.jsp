@@ -161,7 +161,7 @@
 										class="hidden reveal-xs-block text-light"></h5>
 									<div class="group group-xl offset-top-41 offset-sm-top-30">
 
-										<a href="JoinAClubServlet" class="btn btn-danger">JOIN A
+										<a href="ClublistServlet" class="btn btn-danger">JOIN A
 											CLUB</a><a href="NewClubSubmissionServlet" class="btn btn-danger">Make your own club</a><a href="EventServlet" class="btn btn-danger">Find an
 											Event</a>
 

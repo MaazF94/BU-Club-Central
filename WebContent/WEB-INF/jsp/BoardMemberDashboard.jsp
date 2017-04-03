@@ -9,6 +9,8 @@
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.DocumentDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Document"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
@@ -193,8 +195,10 @@
 								Description</a></li>
 						<li role="presentation"><a href="#viewMember"
 							aria-controls="viewMember" role="tab" data-toggle="tab">View Club Members</a></li>
-							<li role="presentation"><a href="#sendEmail"
+						<li role="presentation"><a href="#sendEmail"
 							aria-controls="sendEmail" role="tab" data-toggle="tab">Send Emails</a></li>
+						<li role="presentation"><a href="#viewForm"
+							aria-controls="viewForm" role="tab" data-toggle="tab">Forms</a></li>
 
 					</ul>
 
@@ -239,6 +243,43 @@
 									%>
 								</table>
 							</div>
+						</div>
+						
+						<div role="tabpanel" class="tab-pane" id="viewForm">
+						<div class="container">
+							<%DocumentDao dDao = new DocumentDao();
+							LinkedList<Document> documentList = new LinkedList<Document>();
+								documentList = dDao.displayDocumentInfo();
+								int documentIndex = 0;
+								
+							%>
+														
+							<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Forms (Click Name to Download)</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+									<%
+									while (documentIndex < documentList.size()) {
+									%>
+										<tr>
+											<td><a href=<%=documentList.get(documentIndex).getfilePath()%>>
+											<%=documentList.get(documentIndex).getName()%></a></td>
+											<td><%=documentList.get(documentIndex).getDescription()%></td>											
+										</tr>
+										<%
+										documentIndex++;
+
+									}
+										%>
+									</tbody>
+							
+							</table>							
+						</div>
 						</div>
 					
 					
@@ -400,6 +441,7 @@
 
 
 						<div role="tabpanel" class="tab-pane" id="editPosts">
+						<div class="container">
 							<%PostDao pDao = new PostDao();
 								LinkedList<Post> postList = new LinkedList<Post>();
 								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
@@ -458,6 +500,7 @@
 							<% }%>
 							</table>
 						</div>
+						</div>
 						
 						
 						
@@ -465,6 +508,7 @@
 						
 						
 						<div role="tabpanel" class="tab-pane" id="editDescription">
+						<div class="container">
 							<%ClubDao cDao = new ClubDao();
 								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
 								String clubDescription = clubObject.getClub_description();								
@@ -493,8 +537,10 @@
 							
 							</table>
 							</form>
-							
+							</div>
 						</div>
+
+
 						
 						<div role="tabpanel" class="tab-pane" id="sendEmail">
 							<div class="container">
