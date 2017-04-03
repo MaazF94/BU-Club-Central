@@ -172,8 +172,12 @@
 				<div class="container">
 					<h1>${clubName}</h1>
 				</div>
+				
 			</h1>
+							              ${message}
+			
 			<h5>Number of Club Members: ${clubMembers}</h5>
+
 
 			<br>
 			   <b>Description:</b>
@@ -185,35 +189,23 @@
 			   <br>
 			   <p>${advisorName}</p>
 			   
+			   	<form action = "UserEmailsBMServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                  <p style="float: center; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact a board member..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+			   
 			<div class="range range-xs-left range-xs-left">
               <div class="cell-sm-6">
-              ${message}
-                <h6 style="align:left; padding-left:1px;">Contact a Board Member:</h6>
                 <!-- RD Mailform-->
-                <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-20">
-                    <div style="width: 75%" class="cell-lg-2">
-                      <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name"  class="form-control form-control-impressed">
-                      </div>
-                    </div>
-                    <div style="padding: 10px; width: 75%" class="cell-lg-2 offset-top-20">
-                      <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
-                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
-                      </div>
-                    </div>
-                    <div style="padding: 10px; width: 75%" class="cell-lg-6 offset-top-20">
-                      <div class="form-group">
-                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
-                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." class="form-control form-control-impressed"></textarea>
-                      </div>
-                    </div>
-                  <div class="group-sm text-center text-lg-center offset-top-30">
-                    <button type="submit" class="btn btn-danger">Send</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
-                  </div>
-                </form>
               </div>
             </div>
 		</div>
@@ -360,6 +352,13 @@
 
 
 	<!-- Java script-->
+		<script>
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
+
+	}
+	</script>
 	<script>
 		var request = new XMLHttpRequest();
 		function searchInfo() {
