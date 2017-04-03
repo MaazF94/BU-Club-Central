@@ -101,7 +101,7 @@
 											%>
       
        <ul class="dropdown-menu">
-        
+        					
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out

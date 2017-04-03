@@ -40,7 +40,7 @@ public class ClubHomepageServlet extends HttpServlet {
 		
 		
 		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(Integer.parseInt(request.getParameter("club_id_num")));
+		Club clubObject = cDao.getClubById(((User)request.getSession().getAttribute("user")).getClub_id_num());
 		String clubName = clubObject.getClub_name();
 		request.setAttribute("clubName", clubName);
 
