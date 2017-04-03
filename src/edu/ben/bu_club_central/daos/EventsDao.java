@@ -198,6 +198,51 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 	}
+	public LinkedList<Events> getAllEventsForPaging(int offset, int noOfRecords) {
+		LinkedList<Events> results = new LinkedList<Events>();
+		String sql;
+		sql = "SELECT SQL_CALC_FOUND_ROWS * FROM " + tableName+ "LIMIT " +offset+ ","+noOfRecords;
+		
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+
+			while (cs.next()) {
+				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
+						cs.getString("location"), cs.getInt("club_id_num"));
+				event.setEventId(cs.getInt("idevent"));
+				event.setRsvp_count(cs.getInt("rsvp_count"));
+				
+				results.add(event);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

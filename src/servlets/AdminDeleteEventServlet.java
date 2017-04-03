@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.daos.EventsDao;
 
 /**
- * Servlet implementation class AdminEnableClubServlet
+ * Servlet implementation class AdminDeleteEventServlet
  */
-@WebServlet("/AdminEnableClubServlet")
-public class AdminEnableClubServlet extends HttpServlet {
+@WebServlet("/AdminDeleteEventServlet")
+public class AdminDeleteEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminEnableClubServlet() {
+    public AdminDeleteEventServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +29,23 @@ public class AdminEnableClubServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		enableClub(Integer.parseInt(request.getParameter("enableClubId")));
+		deleteEvent(Integer.parseInt(request.getParameter("deleteEventId")));
 		response.sendRedirect("AdminHome");
 	}
 	
-	private void enableClub(int club_id_num) {
-		ClubDao clubDao = new ClubDao();
-		
-		clubDao.enableClub(club_id_num);
+	private void deleteEvent(int eventId) {
+		EventsDao eDao = new EventsDao();
+		eDao.deleteEventByEventId(eventId);
 	}
-	
-	
-	
-	
 
+	
+	
+	
+	
 }

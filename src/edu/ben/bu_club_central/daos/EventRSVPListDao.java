@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+
+import edu.ben.bu_club_central.models.User;
 
 
 
@@ -63,5 +66,47 @@ public class EventRSVPListDao {
 		
 		return false;
 	}
+	
+	
+	
+	public LinkedList<User> getAllUsersForEvent(int eventId) {
+		UserDao uDao = new UserDao();
+		User u;
+		
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE eventId=" + eventId;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				u = uDao.getUserByIdNum(rs.getInt("user_id_num"));
+				userList.add(u);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userList;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 }

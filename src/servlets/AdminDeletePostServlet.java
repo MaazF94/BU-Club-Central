@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.daos.PostDao;
 
 /**
- * Servlet implementation class AdminEnableClubServlet
+ * Servlet implementation class AdminDeletePostServlet
  */
-@WebServlet("/AdminEnableClubServlet")
-public class AdminEnableClubServlet extends HttpServlet {
+@WebServlet("/AdminDeletePostServlet")
+public class AdminDeletePostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminEnableClubServlet() {
+    public AdminDeletePostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +34,13 @@ public class AdminEnableClubServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		enableClub(Integer.parseInt(request.getParameter("enableClubId")));
+		deletePost(Integer.parseInt(request.getParameter("deletePostId")));
 		response.sendRedirect("AdminHome");
 	}
-	
-	private void enableClub(int club_id_num) {
-		ClubDao clubDao = new ClubDao();
-		
-		clubDao.enableClub(club_id_num);
+
+	private void deletePost(int postId) {
+		PostDao pDao = new PostDao();
+		pDao.deletePost(postId);
 	}
 	
-	
-	
-	
-
 }

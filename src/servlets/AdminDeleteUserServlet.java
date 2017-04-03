@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.daos.UserDao;
 
 /**
- * Servlet implementation class AdminEnableClubServlet
+ * Servlet implementation class AdminDeleteUserServlet
  */
-@WebServlet("/AdminEnableClubServlet")
-public class AdminEnableClubServlet extends HttpServlet {
+@WebServlet("/AdminDeleteUserServlet")
+public class AdminDeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminEnableClubServlet() {
+    public AdminDeleteUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +34,17 @@ public class AdminEnableClubServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		enableClub(Integer.parseInt(request.getParameter("enableClubId")));
+		disableUser(Integer.parseInt(request.getParameter("deleteUserId")));
 		response.sendRedirect("AdminHome");
+	
 	}
 	
-	private void enableClub(int club_id_num) {
-		ClubDao clubDao = new ClubDao();
+	
+	private void disableUser(int userIdNum) {
+		UserDao uDao = new UserDao();
+		uDao.disableUser(userIdNum);
 		
-		clubDao.enableClub(club_id_num);
 	}
-	
-	
-	
 	
 
 }

@@ -43,7 +43,7 @@ public class CommentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		addComment(request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
 		sendEmailNotificationComment(((User)request.getSession().getAttribute("user")), request.getParameter("comment"), Integer.parseInt(request.getParameter("commentId_eventId")));
-		response.sendRedirect("ClubHomepageServlet");
+		response.sendRedirect("EventServlet");
 	
 	}
 	
@@ -68,7 +68,7 @@ public class CommentServlet extends HttpServlet {
 		String password = "thefirm123";
 		String toEmail; 
 		String name = u.getFirst_name() + " " + u.getLast_name();
-		String subject = "A new user plans on going to your event!!!";
+		String subject = "A new comment has been posted on an event!!!";
 		String content = name + " has just left a comment on an event\n"
 				+ "Comment: " + comment;
 		

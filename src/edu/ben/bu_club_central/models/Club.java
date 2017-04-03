@@ -22,49 +22,35 @@ public class Club {
 		this.enabled = enabled;
 	}
 
-	
-	
+
 	public String getClub_name() {
 		return club_name;
 	}
+
 
 	public void setClub_name(String club_name) {
 		this.club_name = club_name;
 	}
 
+
 	public String getPet_name() {
 		return pet_name;
 	}
+
 
 	public void setPet_name(String pet_name) {
 		this.pet_name = pet_name;
 	}
 
+
 	public String getClub_description() {
 		return club_description;
 	}
 
+
 	public void setClub_description(String club_description) {
 		this.club_description = club_description;
 	}
-
-	
-	public String getPet_email() {
-		return pet_email;
-	}
-
-	public void setPet_email(String pet_email) {
-		this.pet_email = pet_email;
-	}
-
-	public String getAdvisor_name() {
-		return advisor_name;
-	}
-
-	public void setAdvisor_name(String advisor_name) {
-		this.advisor_name = advisor_name;
-	}
-
 
 
 	public int getClub_id_num() {
@@ -72,21 +58,29 @@ public class Club {
 	}
 
 
-
 	public void setClub_id_num(int club_id_num) {
 		this.club_id_num = club_id_num;
 	}
-	
-	public int getEnabled() {
-		return enabled;
+
+
+	public String getPet_email() {
+		return pet_email;
 	}
 
 
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
+	public void setPet_email(String pet_email) {
+		this.pet_email = pet_email;
 	}
 
+
+	public String getAdvisor_name() {
+		return advisor_name;
+	}
+
+
+	public void setAdvisor_name(String advisor_name) {
+		this.advisor_name = advisor_name;
+	}
 
 
 	public int getMember_count() {
@@ -94,11 +88,22 @@ public class Club {
 	}
 
 
-
-	public void setMember_count(int memeber_count) {
-		this.member_count = memeber_count;
+	public void setMember_count(int member_count) {
+		this.member_count = member_count;
 	}
 
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
+	
+	
 	
 	
 	

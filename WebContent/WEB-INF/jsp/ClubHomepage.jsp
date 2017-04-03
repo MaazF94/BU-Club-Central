@@ -93,6 +93,8 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+
+							</ul>
 								 <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
@@ -143,8 +145,7 @@
 		<div class="context-dark">
 			<!-- Modern Breadcrumbs-->
 			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-			<div data-speed="0.2" data-type="media" data-url="img/BUSenate.jpg"
-				class="rd-parallax-layer"></div>
+
 			<div data-speed="0" data-type="html" class="rd-parallax-layer">
 				<div
 					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
@@ -161,16 +162,30 @@
 		<div class="jumbotron" style="background-color: #f1eaee">
 			<h1>
 				<div class="container">
-					<h1> ${clubName} </h1>
+					<h1>${clubName}</h1>
 				</div>
 			</h1>
-			<hr>
-			<p><b>Number of club members:</b> ${clubMembers}
+			<%ClubDao numMembers = new ClubDao();
+				int size = numMembers.countMemebers(((User)session.getAttribute("user")).getClub_id_num());
+			
+			
+			%>
+			<h5>Number of Club Members: <%=size %></h5>
+
 			<br>
 			   <b>Description:</b>
 			   <br>
-			   ${clubDescription}
+			   <%ClubDao daoC = new ClubDao();
+			   	Club c = daoC.getClubById(((User)session.getAttribute("user")).getClub_id_num());
+			   %>
+			   <%=c.getClub_description() %>
 			 </p>
+			 
+			 <br>
+			   <b>Advisor: </b>
+			   <br>
+			   <%=c.getAdvisor_name() %>
+			   
 			<div class="range range-xs-left range-xs-left">
               <div class="cell-sm-6">
               ${message}
@@ -249,6 +264,187 @@
 
 
 
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-12">
+					<h1>Home Page</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container" style="height: 100px"></div>
+		</div>
+
+
+
+		<div class="row">
+
+
+
+			<div class="container">
+				<div class="col-lg-6">
+					<%
+						EventsDao eDao = new EventsDao();
+						LinkedList<Events> eventList = new LinkedList<Events>();
+						eventList = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+						int eventListIndex = 0;
+						int eventListSize = eventList.size();
+					%>
+
+
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Event Name</th>
+								<th>Location</th>
+								<th>RSVP</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								while (eventListIndex < eventListSize) {
+							%>
+							<tr>
+								<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
+								<td><%=eventList.get(eventListIndex).getLocation()%></td>
+								<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
+								<td>
+									<form action="EventDetailsServlet" method="GET">
+										<%
+											int eventId = eventList.get(eventListIndex).getEventId();
+										%>
+										<button class="btn" type="submit" name="eventId"
+											value="<%=eventId%>">
+											<span class="glyphicon glyphicon-calendar"
+												style="font-size: 40px"></span>
+										</button>
+
+									</form>
+
+
+								</td>
+							</tr>
+
+							<%
+								eventListIndex++;
+							%>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+
+
+
+				</div>
+
+				<div class="col-lg-6">
+				
+							<%PostDao pDao = new PostDao();
+								LinkedList<Post> postList = new LinkedList<Post>();
+								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+								
+								int postListIndex = 0;
+								int postListSize = postList.size();
+								
+							%>
+							
+							<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Post Title</th>
+											<th>Contents</th>
+											<th></th>
+										</tr>
+									</thead>
+							<%while (postListIndex < postListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td><%=postList.get(postListIndex).getTitle()%></td>
+											<td><%=postList.get(postListIndex).getContents()%></td>
+											<td>
+												<form action="#" method="GET">
+													<%int postId = postList.get(postListIndex).getIdpost();%>
+													<button class="btn" type="submit" name="editPostId" value="<%=postId%>">
+														<span class="glyphicon glyphicon-comment" style="font-size: 40px"></span></button>
+												
+												</form>
+											
+											</td>
+										</tr>
+									</tbody>
+							
+							<%postListIndex++; %>
+							<% }%>
+							</table>
+				
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="container">
+			<div class="col-lg-12">
+				<%UserDao uDao = new UserDao();
+					LinkedList<User> userList = new LinkedList<User>();
+				
+					userList = uDao.getUsersByClub(((User)session.getAttribute("user")).getClub_id_num());
+					
+					int userListIndex = 0;
+					int userListSize = userList.size();
+				%>
+				
+				
+				<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>User Name</th>
+											<th>Email</th>
+											<th>Role</th>
+										</tr>
+									</thead>
+							<%while (userListIndex < userListSize) { %>
+								
+									<tbody>
+										<tr>
+											<td><%=userList.get(userListIndex).getFirst_name() + " " + userList.get(userListIndex).getLast_name()%></td>
+											<td><%=userList.get(userListIndex).getUsername()%></td>
+											<td><%=userList.get(userListIndex).getEmail()%></td>
+											
+											<%if(userList.get(userListIndex).getRole_id() == 1) { %>
+												<td>General Member</td>
+											
+											<%} else { %>
+												<td>Board Member</td>
+											<%} %>
+										</tr>
+									</tbody>
+							
+							<%userListIndex++; %>
+							<% }%>
+							</table>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+	
+
+	<div class="row">
+		<div class="container" style="height:500px">
+			<div class="col-lg-12">
+			
+			</div>
+		</div>	
+	</div>
 
 
 
@@ -269,17 +465,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-		<!-- Final div -->
+	<!-- Final div -->
 	</div>
 
 	<!-- Page Footer-->
@@ -330,15 +516,20 @@
 						</div>
 						<div class="offset-top-50 text-xs-center text-lg-left">
 							<ul class="list-inline">
-									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
-										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://twitter.com/BenU1887" target="_blank"
-										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
-										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
-										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-								</ul>
+								<li><a
+									href="https://www.facebook.com/BenedictineUniversity/"
+									target="_blank"
+									class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="https://twitter.com/BenU1887" target="_blank"
+									class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a href="https://plus.google.com/106737408889171586664"
+									target="_blank"
+									class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
+								<li><a
+									href="https://www.linkedin.com/edu/benedictine-university-18245"
+									target="_blank"
+									class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
+							</ul>
 						</div>
 						<p class="text-darker offset-top-20">
 							The F.I.R.M. &copy; <span id="copyright-year"></span> . <a

@@ -330,8 +330,12 @@ public class UserDao {
 			if (!rs.next()) {
 				return null;
 			}else {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+//						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+				
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -360,8 +364,11 @@ public class UserDao {
 		
 		try {
 			while(rs.next()) {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+						
+//				user.setRole_id(rs.getInt("role_id"));
+//				user.setEnabled(rs.getInt("enabled"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -449,8 +456,11 @@ public class UserDao {
 			if (!rs.next()) {
 				return null;
 			}else {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+//						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 			}
@@ -484,6 +494,37 @@ public class UserDao {
 		}
 	
 	
+	public void disableUser(int userIdNum) {
+		String sql = "UPDATE " + tableName + " SET enabled = 0 WHERE id_num = " + userIdNum;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void enableUser(int userIdNum) {
+		String sql = "UPDATE " + tableName + " SET enabled = 1 WHERE id_num = " + userIdNum;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public LinkedList<User> getAllUsersForClub(int club_id_num) {
 		User user;
 		LinkedList<User> userList = new LinkedList<User>();
@@ -503,8 +544,11 @@ public class UserDao {
 		
 		try {
 			while(rs.next()) {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+//						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -529,11 +573,15 @@ public class UserDao {
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet cs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			
-			while (cs.next()) {
+			while (rs.next()) {
 				
-				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
+//				User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
+				User newUser = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+				
+				
 				results.add(newUser);
 			}
 
@@ -545,6 +593,49 @@ public class UserDao {
 	}
 	
 	
+	public LinkedList<User> getUsersByClub(int clubId) {
+		LinkedList<User> userList = new LinkedList<User>();
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num =" + clubId;
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		User user;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			while(rs.next()) {
+				if (rs.getInt("enabled") == 1) {
+//					user = new User (rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+//							rs.getInt("role_id"), rs.getInt("enabled"));
+					
+					user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+							rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+					
+//					user.setRole_id(rs.getInt("role_id"));
+					userList.add(user);
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return userList;
+	}
 
 	
 	
@@ -604,7 +695,11 @@ public class UserDao {
 		
 		try {
 			while(rs.next()) {
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"), rs.getInt("iduser"));
+//				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+//						rs.getInt("role_id"), rs.getInt("enabled"));
+				
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+						rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
 				
 				userList.add(user);
 			
