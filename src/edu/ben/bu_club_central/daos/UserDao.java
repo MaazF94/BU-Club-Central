@@ -139,6 +139,60 @@ public class UserDao {
 		
 		return false;
 	}
+	
+	public boolean editUsername(int user_id, String username) {
+		String sql = "UPDATE " + tableName + " SET username = '" + username + "' WHERE iduser =" + user_id;
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+			return true;
+			} else {
+				throw new SQLException();
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean editPassword(int user_id, String password) {
+		String sql = "UPDATE " + tableName + " SET passwrd = '" + password + "' WHERE iduser =" + user_id;
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+			return true;
+			} else {
+				throw new SQLException();
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean editEmail(int user_id, String email) {
+		String sql = "UPDATE " + tableName + " SET email = '" + email + "' WHERE iduser =" + user_id;
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+			return true;
+			} else {
+				throw new SQLException();
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
 		
 	/**
 	 * Checks to make sure username only contains letters and numbers
@@ -591,6 +645,36 @@ public class UserDao {
 
 		return results;
 	}
+	
+	public LinkedList<User> displayUsersInfo(int userID) {
+		 LinkedList<User> results = new LinkedList<User>();
+			String sql;
+			
+			
+			sql = "SELECT * FROM " + tableName + " WHERE enabled = 1 and iduser = " + userID;
+			
+				
+
+			try {
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+				
+				while (rs.next()) {
+					
+//					User newUser = new User(cs.getString("first_name"),cs.getString("last_name"), cs.getString("username"), cs.getString("passwrd"), cs.getInt("id_num"), cs.getString("email"), cs.getInt("role_id"), cs.getInt("iduser"));
+					User newUser = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"),
+							rs.getInt("role_id"), rs.getInt("iduser"), rs.getInt("enabled"));
+					
+					
+					results.add(newUser);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return results;
+		}
 	
 	
 	public LinkedList<User> getUsersByClub(int clubId) {

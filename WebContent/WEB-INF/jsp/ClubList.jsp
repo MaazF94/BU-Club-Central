@@ -210,8 +210,7 @@ button.accordion.active:after {
 				</div>
 				<div class="cell-sm-9 cell-lg-6 offset-top-0">
 					<h1 class="text-darker text-lg-left">Benedictine Clubs</h1>
-					<h6 class="text-darker text-lg-left">Click on a club to check out their homepage!</h6>
-					<hr class="divider bg-red hr-lg-left-0">
+					${message}
 					<div class="offset-top-41 offset-lg-top-66">
 						<!-- Bootstrap Accordion-->
 						<%
@@ -226,6 +225,11 @@ button.accordion.active:after {
 <button style="background-color: blue;" value="<%=clubList.get(index).getClub_id_num()%>" name="club_id_num" class="btn btn-primary" type="submit">Visit <%
 												out.println(clubList.get(index).getClub_name());
 											%> Homepage</button>
+											</form>
+<form action="JoinAClubServlet" method="POST">
+<button style="background-color: green;" value="<%=clubList.get(index).getClub_id_num()%>" name="club_id_num" class="btn btn-primary" type="submit">Join <%
+												out.println(clubList.get(index).getClub_name());
+											%></button>
 											</form>
 
 </div>

@@ -47,14 +47,12 @@ public class ClubMembershipDao {
 			ClubMembership m = memberships.get(i);
 
 			sql = "INSERT INTO " + tableName + " (club_ID, user_ID, role_ID, active) VALUES (" + m.getClubID() + ", "
-					+ m.getUserID() + ", " + m.getRoleID() + ", " + m.getActive() + ") ";
+					+ m.getUserID() + ", " + m.getRoleID() + ", " + m.getActive() + ") ON DUPLICATE KEY UPDATE active = 1 ";
 
 			PreparedStatement ps;
 			try {
 				ps = conn.prepareStatement(sql);
-				if (ps.executeUpdate() != 1) {
-					throw new SQLException();
-				}
+				ps.executeUpdate(sql);
 			} catch (SQLException e) {
 				System.out.println("Already exists");
 				e.printStackTrace();
@@ -139,6 +137,42 @@ public class ClubMembershipDao {
 		
 		sql = "SELECT * from " + tableName + " CM inner join club C, user U"
 				+ " where C.club_id_num = CM.club_ID and CM.user_ID = U.iduser and CM.user_ID = " + user_id + " and active = 1";
+		
+		PreparedStatement ps;
+		ResultSet rs = null;;
+		ClubMembership newClubMembership;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			while(rs.next()) {
+				newClubMembership = new ClubMembership(rs.getInt("club_ID"), rs.getInt("user_ID"), rs.getInt("role_ID"), rs.getBoolean("active"), rs.getString("club_name"));
+				ClubMembershipList.add(newClubMembership);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ClubMembershipList;
+	}
+	
+	/**
+	 * Used to display which clubs a user is in on dashboard
+	 * @param user_id
+	 * @return list of clubs user is in
+	 */
+	public LinkedList<ClubMembership> displayUserPastClubInfo(int user_id) {
+		LinkedList<ClubMembership> ClubMembershipList = new LinkedList<ClubMembership>();
+		String sql = "";
+		
+		sql = "SELECT * from " + tableName + " CM inner join club C, user U"
+				+ " where C.club_id_num = CM.club_ID and CM.user_ID = U.iduser and CM.user_ID = " + user_id + " and active = 0";
 		
 		PreparedStatement ps;
 		ResultSet rs = null;;
