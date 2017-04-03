@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.UserDao;
-
 /**
- * Servlet implementation class AdminDeleteUserServlet
+ * Servlet implementation class AccessDeniedServlet
  */
-@WebServlet("/AdminDeleteUserServlet")
-public class AdminDeleteUserServlet extends HttpServlet {
+@WebServlet("/AccessDeniedServlet")
+public class AccessDeniedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminDeleteUserServlet() {
+    public AccessDeniedServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,24 +26,15 @@ public class AdminDeleteUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("AccessDeniedServlet");
+		request.getRequestDispatcher("/WEB-INF/jsp/AccessDenied.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		disableUser(Integer.parseInt(request.getParameter("deleteUserId")));
-		response.sendRedirect("AdminHome");
-	
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
-	
-	
-	private void disableUser(int userIdNum) {
-		UserDao uDao = new UserDao();
-		uDao.disableUser(userIdNum);
-		
-	}
-	
 
 }

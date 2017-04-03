@@ -11,6 +11,7 @@ import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.User;
 
 /**
  * Servlet implementation class AdminHome
@@ -32,7 +33,12 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		if (((User) request.getSession().getAttribute("user")).getRole_id() == 3) {
+			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("AccessDeniedServlet");
+		}
+		
 	}
 
 	/**
