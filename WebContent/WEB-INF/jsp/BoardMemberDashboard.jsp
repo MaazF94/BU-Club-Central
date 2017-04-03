@@ -148,9 +148,21 @@
 			class="section-98 section-sm-110">
 		<div class="shell">
 			<h1>Board Member Dashboard</h1>
-
-		</div>
-
+		</div>		
+		<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                <br>
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
 		<div class="row">
 				${message}
 			<div class="container">
@@ -877,6 +889,12 @@
 	function enableUpdateButton() {
 
 	    document.getElementById("button").disabled = false;
+
+	}
+	
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
 
 	}
 	</script>
