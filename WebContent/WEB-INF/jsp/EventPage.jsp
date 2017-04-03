@@ -181,6 +181,16 @@
 						eventList = eventDao.getAllEvents();
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
+						 int noOfRecords = eventList.size();
+						int pages = 1;
+				         int recordsPerPage = 5;
+				        
+				        
+				        
+				        
+				        
+				         
+				         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 						ClubDao cDao = new ClubDao();
 					%>
 					<%
@@ -274,12 +284,29 @@
                 <div class="range offset-top-41">
                   <div class="cell-xs-6 cell-md-12">
                     <!-- Category-->
+                    <%
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao2.displayClub();
+
+			int index = 0;
+		%>
                     <h6 class="text-uppercase text-spacing-60">Clubs</h6>
                     <div class="text-subline"></div>
                     <ul class="list list-marked offset-top-30">
-                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                    <%
+							while (index < clubList.size()) {
+						%>
+                      <li><a href="#"><%
+												out.println(clubList.get(index).getClub_name());
+											%><span class="text-dark">(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></a></li>
+												<%
+										index++;
+										}
+									%>
                       
                     </ul>
+                    
                   </div>
                   
                 </div>

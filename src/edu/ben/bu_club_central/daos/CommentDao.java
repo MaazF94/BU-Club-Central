@@ -17,8 +17,8 @@ public class CommentDao {
 	private Connection conn = dbc.getConn();
 	
 	public void addComent(String comment, int eventId, int userId) {
-		String sql = "INSERT INTO " + tableName + "(comment, eventId, userId) VALUES ('" + comment + "', '" + eventId + "', '" + userId + "')";
-		
+		String sql = "INSERT INTO " + tableName + "(comment, eventId, userId, madeOn) VALUES ('" + comment + "', '" + eventId + "', '" + userId + "',' CURRENT_TIMESTAMP')";
+		System.out.println(sql);
 		PreparedStatement ps;
 		
 		try {
