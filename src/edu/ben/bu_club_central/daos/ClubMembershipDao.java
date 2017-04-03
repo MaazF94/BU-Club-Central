@@ -62,6 +62,47 @@ public class ClubMembershipDao {
 
 		return result;
 	}
+	
+	/**
+	 * adds user to club(s). Have to keep in mind, duplicate entries. This is
+	 * handled.
+	 * 
+	 * @param memberships
+	 * @return true if added, false if not
+	 */
+	public boolean checkIfUserInClub(int club_id, int user_id) {
+
+		String sql = "";
+		ResultSet rs = null;
+
+			sql = "SELECT club_id, user_id, active FROM " + tableName + " WHERE club_id = " + club_id +
+					" AND user_id = " + user_id + " AND active = 1";
+			PreparedStatement ps;
+			try {
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery(sql);
+			} catch (SQLException e) {
+				System.out.println("Does not exist");
+				e.printStackTrace();
+			}
+			
+			try {
+				while (rs.next()) {
+					if (rs.getString("club_id").equals(Integer.toString(club_id))) {
+						if (rs.getString("user_id").equals(Integer.toString(user_id))) {
+							if (rs.getString("active").equals(Integer.toString(1))) {
+								return true;
+							}
+						}
+					} 
+				}
+			} catch (SQLException e) {
+				System.out.println("Did not pull from username to see if it exists 2");
+				e.printStackTrace();
+			}
+
+		return false;
+	}
 
 	/**
 	 * Count members in a club by club ID
