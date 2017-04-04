@@ -192,7 +192,7 @@
                 <!-- Embed Video-->
                 <!-- Classic Soundcloud Player-->
                 <!-- Blog Default Single-->
-                <section class = "well">
+                <section >
                 <%
 					ClubDao clubDao = new ClubDao();
 					EventsDao eventDao = new EventsDao();
@@ -202,7 +202,7 @@
 					LinkedList<User> userList = rsvpDao.getAllUsersForEvent(Integer.parseInt(request.getParameter("eventId")));
 				%>
                                   <!-- Post Wide-->
-                                  <article class="post post-default text-left ">
+                                  <article class="post post-default text-left well">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
@@ -223,12 +223,12 @@
                                       </div>
                                     </div>
                                     <!-- PostContent-->
-                                    <section class="post-content offset-top-41">
+                                    <section class="post-content offset-top-41 ">
                                       <p><%=event.getDescription()%></p>
                                       
                                     </section>
                                   </article>
-                  <footer class="offset-top-50 text-sm-left clearfix ">
+                  <footer class="offset-top-50 text-sm-left clearfix well ">
                     <h6 class="pull-sm-left">Please Join Us:</h6>
                     <ul class="list-inline small pull-sm-right p offset-top-0 text-sm-right">
                       <li><form action="RSVPServlet" method="POST">
@@ -244,7 +244,7 @@
                   <div id="comments"></div>
                   <hr class="offset-top-66">
                   <h4 class="offset-top-66 text-uppercase text-spacing-120 text-left text-bold">Comments</h4>
-                  <div class="offset-top-41">
+                  <div class="offset-top-41 well">
                       <%
 											UserDao userDao = new UserDao();
 												User user;
@@ -260,7 +260,7 @@
 										%>              
                                                      
                                     <!-- Box Comment-->
-                                    <div class="box-comment text-left box-comment-outboxed">
+                                    <div class="box-comment text-left box-comment-outboxed bg-gray-lightest">
                                       <div class="media">
                                         
                                         <div class="media-body">
@@ -268,7 +268,7 @@
                                             <div class="unit-left unit-grow-1">
                                               <ul class="box-comment-meta list-inline list-inline-sm text-dark">
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
-                                                  <time datetime="2016-01-01"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
+                                                  <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
                                                 <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
                                                 <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
@@ -294,7 +294,7 @@
 										%>
                   </div>
                   <h4 class="offset-top-34 text-uppercase text-spacing-120 text-left text-bold">Leave a comment</h4>
-                  <form action="CommentServlet" method="POST" class="rd-mailform offset-top-10 text-left">
+                  <form action="CommentServlet" method="POST" class="rd-mailform offset-top-10 text-left well">
                     <div class="form-group">
                       <label for="comment-message" class="form-label form-label-outside">Message:</label>
                       <textarea class="form-control"

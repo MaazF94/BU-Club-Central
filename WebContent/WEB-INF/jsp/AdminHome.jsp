@@ -184,11 +184,11 @@
                
 				<div class="row">
 				${message}
-			<div class="container">
+			<div class="nav-stacked-container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
 					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
+					<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
 						<li role="presentation" class="active"><a href="#editClubs"
 							aria-controls="editClubs" role="tab" data-toggle="tab">Edit
 								Clubs</a></li>
@@ -210,7 +210,7 @@
 					</ul>
 
 					<!-- Tab panes -->
-					<div class="tab-content">
+					<div class="tab-content well">
 					<div role="tabpanel" class="tab-pane active" id="editClubs">
 					<div class="container">
 							<%ClubDao clubDao = new ClubDao();
@@ -572,6 +572,12 @@
 					</div>
 
 
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-12" style="height:100px">
 				</div>
 			</div>
 		</div>
