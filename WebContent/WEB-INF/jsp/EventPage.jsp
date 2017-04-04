@@ -166,9 +166,9 @@
 
 		
 		<!-- Page Content-->
-      <main class="page-content section-98 section-sm-110">
-        <div class="shell">
-          <div class="range range-xs-center">
+      <main class="page-content section-98 section-sm-110 ">
+        <div class="shell ">
+          <div class="range range-xs-center ">
             <div class="cell-md-8 cell-md-push-2">
               <div class="inset-md-left-20">
                 <!-- Classic Thumbnail-->
@@ -205,11 +205,12 @@
 						while (eventListIndex < eventListSize) {
 					%>
                                   <!-- Post Wide-->
-                                  <article class="post post-default text-left">
+                                  <article class="post post-default text-left well">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
                                       <ul class="post-controls list-inline list-inline-sm p text-dark">
+                                      <li><h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3></li>
                                         
                                         <li><span class="text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot">&nbsp;</span><%=eventList.get(eventListIndex).getRsvp_count()%><span class="text-middle small"></span></li>
                                         
@@ -217,15 +218,17 @@
                                         <li><span class="text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=eventList.get(eventListIndex).getLocation()%></span></a></li>
                                       </ul>
                                       <!-- Post Meta-->
-                                      <h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3>
+                                      
                                       <!-- Post Media-->
                                       
                                     </div>
                                     <!-- PostContent-->
                                     <section class="post-content offset-top-41">
                                     <p><%= eventList.get(eventListIndex).getDescription() %></p>
-                                      <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
-									<button class="btn btn-default text-red-gray" type="submit" name="eventId"
+                                     
+                                    </section>
+                                     <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-info text-red-gray" type="submit" name="eventId"
 												value="<%=eventList.get(eventListIndex).getEventId()%>">More
 												Info</button>
 										</form></a>
@@ -257,8 +260,9 @@
 										
 									
 									<%} } %></a>
-                                    </section>
+                                    
                                   </article>
+                                  
                   <hr class="hr offset-top-66">
                   <%
 					eventListIndex++;

@@ -192,7 +192,7 @@
                 <!-- Embed Video-->
                 <!-- Classic Soundcloud Player-->
                 <!-- Blog Default Single-->
-                <section>
+                <section class = "well">
                 <%
 					ClubDao clubDao = new ClubDao();
 					EventsDao eventDao = new EventsDao();
@@ -202,11 +202,13 @@
 					LinkedList<User> userList = rsvpDao.getAllUsersForEvent(Integer.parseInt(request.getParameter("eventId")));
 				%>
                                   <!-- Post Wide-->
-                                  <article class="post post-default text-left">
+                                  <article class="post post-default text-left ">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
+                                       
                                       <ul class="post-controls list-inline list-inline-sm p text-dark">
+                                      <li><h3 class="post-title"><a href="#"><%=event.getEvent_name()%></a></h3></li>
                                         
                                         <li><a href="#" class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot " title="Number of people coming">&nbsp;</a><%=event.getRsvp_count()%><span class="text-middle small"></span></li>
                                         
@@ -214,7 +216,7 @@
                                         <li><span class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot" title="Location of the event">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=event.getLocation()%></span></a></li>
                                       </ul>
                                       <!-- Post Meta-->
-                                      <h3 class="post-title"><a href="#"><%=event.getEvent_name()%></a></h3>
+                                     
                                       <!-- Post Media-->
                                       <div class="post-media offset-top-34">
                                         
@@ -226,12 +228,12 @@
                                       
                                     </section>
                                   </article>
-                  <footer class="offset-top-50 text-sm-left clearfix">
+                  <footer class="offset-top-50 text-sm-left clearfix ">
                     <h6 class="pull-sm-left">Please Join Us:</h6>
                     <ul class="list-inline small pull-sm-right p offset-top-0 text-sm-right">
                       <li><form action="RSVPServlet" method="POST">
 
-									<button class="btn btn-default " type="submit" name="eventId"
+									<button class="btn btn-info " type="submit" name="eventId"
 										value="<%=Integer.parseInt(request.getParameter("eventId"))%>">RSVP</button>
 								</form></li>
                       

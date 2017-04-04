@@ -227,7 +227,7 @@ button.accordion.active:after {
 							while (index < clubList.size()) {
 						%>
 
-								<button class="accordion"><%
+								<button class="accordion text-bold"><%
 												out.println(clubList.get(index).getClub_name());
 											%></button>
 <div class="panel">
