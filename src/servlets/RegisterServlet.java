@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.UserDao;
 import mailDispatcher.SendMail;
-import org.mindrot.jbcrypt.BCrypt;
+//import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * Servlet implementation class RegisterServlet

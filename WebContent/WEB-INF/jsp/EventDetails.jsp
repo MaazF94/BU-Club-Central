@@ -265,7 +265,7 @@
                                             <div class="unit-left unit-grow-1">
                                               <ul class="box-comment-meta list-inline list-inline-sm text-dark">
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
-                                                  <time datetime="2016-01-01">Feb 17, 7:34</time>
+                                                  <time datetime="2016-01-01"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
                                                 <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
                                                 <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
