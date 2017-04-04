@@ -157,15 +157,21 @@
         </div>
       </header>
       <!-- Page Contents-->
+      
 		<main class="page-content"> <section id="welcome"
 			class="section-98 section-sm-110">
+			
 		<div class="shell">
-			<h1>Board Member Dashboard</h1>
-		</div>		
-		<form action = "BMEmailsAdminServlet" method="POST">
+			
+			<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
               <div class="cell-lg-4">
+              
                 <div class="inset-lg-left-80">
+                
                 <br>
+                
                   <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
                   <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
                   <br>
@@ -176,12 +182,17 @@
                 </div>
               </div>
               </form>
-		<div class="row">
-			<div class="container">
+              </div>
+		</div>		
+		
+		<div class="row">s
+		<h1>Board Member Dashboard</h1>
+		<hr class="divider hr-lg bg-red">
+			<div class="nav-stacked-container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
 					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
+					<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
 						<li role="presentation" class="active"><a href="#editEvents"
 							aria-controls="editEvents" role="tab" data-toggle="tab">Edit
 								Events</a></li>
@@ -208,7 +219,7 @@
 					</ul>
 
 					<!-- Tab panes -->
-					<div class="tab-content">
+					<div class="tab-content well">
 						<div role="tabpanel" class="tab-pane" id="viewClub">
 							<div class="container">
 								<%
@@ -338,43 +349,7 @@
 							</div>
 						</div>
 						
-						<div role="tabpanel" class="tab-pane" id="viewForm">
-						<div class="container">
-							<%DocumentDao dDao = new DocumentDao();
-							LinkedList<Document> documentList = new LinkedList<Document>();
-								documentList = dDao.displayDocumentInfo();
-								int documentIndex = 0;
-								
-							%>
-														
-							<table class="table table-hover sortable">
-									<thead>
-										<tr>
-											<th>Forms (Click Name to Download)</th>
-											<th></th>
-										</tr>
-									</thead>
-								
-									<tbody>
-									<%
-									while (documentIndex < documentList.size()) {
-									%>
-										<tr>
-											<td><a href=<%=documentList.get(documentIndex).getfilePath()%>>
-											<%=documentList.get(documentIndex).getName()%></a></td>
-											<td><%=documentList.get(documentIndex).getDescription()%></td>											
-										</tr>
-										<%
-										documentIndex++;
-
-									}
-										%>
-									</tbody>
-							
-							</table>							
-						</div>
-						</div>
-					
+						
 					
 					
 					
@@ -600,39 +575,7 @@
 						
 						
 						
-						<div role="tabpanel" class="tab-pane" id="editDescription">
-						<div class="container">
-							<%ClubDao cDao = new ClubDao();
-								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-								String clubDescription = clubObject.getClub_description();								
-								
-							%>
-							
-							<form  action="EditClubDescriptionServlet" method="post">
-							
-							<table class="table table-hover sortable">
-									<thead>
-										<tr>
-											<th>Club Description</th>
-											<th></th>
-										</tr>
-									</thead>
-								
-									<tbody>
-										<tr>
-											<td> 
-											<textarea onkeypress="enableUpdateButton()" cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
-											<br>
-											<button id="button" disabled class="btn btn-warning" type="submit">Save Changes</button>
-											</td>
-										</tr>
-									</tbody>
-							
-							</table>
-							</form>
-							</div>
-						</div>
-
+						
 
 						
 						<div role="tabpanel" class="tab-pane" id="sendEmail">

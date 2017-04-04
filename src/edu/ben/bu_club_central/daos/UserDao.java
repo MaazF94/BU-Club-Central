@@ -60,7 +60,7 @@ public class UserDao {
 	public boolean userPasswordChange(String username, String passwrd, int id_num, String email) {
 		String sql = "UPDATE " + tableName + " SET passwrd='" + passwrd + "'" + " WHERE username='" + username + "'" + "and id_num='" + id_num + "'" + "and email='"
 		+ email + "'";
-		
+		System.out.println(sql);
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);

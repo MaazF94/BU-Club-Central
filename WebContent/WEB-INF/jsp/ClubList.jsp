@@ -230,7 +230,7 @@ button.accordion.active:after {
 								<button class="accordion text-bold"><%
 												out.println(clubList.get(index).getClub_name());
 											%></button>
-<div class="panel">
+<div class=" well">
 <form action="ClubHomepageServlet" method="GET">
 <a type="button" class="btn btn-info" href="ClubHomepageServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
 												out.println(clubList.get(index).getClub_name());
