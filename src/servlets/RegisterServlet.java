@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.UserDao;
+import jbcrypt.BCrypt;
 import mailDispatcher.SendMail;
 //import org.mindrot.jbcrypt.BCrypt;
 

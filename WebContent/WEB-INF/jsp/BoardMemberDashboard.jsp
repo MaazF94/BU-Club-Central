@@ -265,6 +265,41 @@
 						
 						
 						
+						<div role="tabpanel" class="tab-pane" id="editDescription">
+						<div class="container">
+							<%ClubDao clDao = new ClubDao();
+								Club clubObject = clDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
+								String clubDescription = clubObject.getClub_description();								
+								
+							%>
+							
+							<form  action="EditClubDescriptionServlet" method="post">
+							
+							<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Club Description</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+										<tr>
+											<td> 
+											<textarea onkeypress="enableUpdateButton()" cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+											<br>
+											<button id="button" disabled class="btn btn-warning" type="submit">Save Changes</button>
+											</td>
+										</tr>
+									</tbody>
+							
+							</table>
+							</form>
+							</div>
+						</div>
+						
+						
+						
 						
 						<div role="tabpanel" class="tab-pane" id="viewPastClub">
 							<div class="container">
@@ -593,7 +628,7 @@
 
 						<div role="tabpanel" class="tab-pane" id="editPosts">
 						<div class="container">
-						<div>
+													<div>
 			
 			<form action = "BMEmailsAdminServlet" method="POST">
               <div class="cell-lg-4">
@@ -670,6 +705,65 @@
 							<%postListIndex++; %>
 							<% }%>
 							</table>
+						</div>
+						</div>
+						
+						
+						
+						<div role="tabpanel" class="tab-pane" id="viewForm">
+						<div class="container">
+													<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
+							<%DocumentDao dDao = new DocumentDao();
+							LinkedList<Document> documentList = new LinkedList<Document>();
+								documentList = dDao.displayDocumentInfo();
+								int documentIndex = 0;
+								
+							%>
+														
+							<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Forms (Click Name to Download)</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+									<%
+									while (documentIndex < documentList.size()) {
+									%>
+										<tr>
+											<td><a href=<%=documentList.get(documentIndex).getfilePath()%>>
+											<%=documentList.get(documentIndex).getName()%></a></td>
+											<td><%=documentList.get(documentIndex).getDescription()%></td>											
+										</tr>
+										<%
+										documentIndex++;
+
+									}
+										%>
+									</tbody>
+							
+							</table>							
 						</div>
 						</div>
 						
