@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.User;
 
 /**
  * Servlet implementation class ClublistServlet
@@ -33,6 +34,7 @@ public class ClublistServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		ClubDao cDao = new ClubDao(); 
 		LinkedList<Club> clubList = new LinkedList<Club>();
 		clubList =cDao.displayClub(); 
@@ -41,6 +43,7 @@ public class ClublistServlet extends HttpServlet {
 		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
+
 	}
 
 	/**

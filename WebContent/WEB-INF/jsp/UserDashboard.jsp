@@ -263,7 +263,7 @@
 										%>
 										<tr>
 											<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
-											<td><form action="RejoinClubUserDashboardServlet" method="post">
+											<td><form action="RejoinClubFromDashboardServlet" method="post">
 													<button class="btn btn-warning" type="submit"
 														name="club_id_num"
 														value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin Club</button>

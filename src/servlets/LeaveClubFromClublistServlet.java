@@ -14,16 +14,16 @@ import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
 
 /**
- * Servlet implementation class UserLeavesClubServlet
+ * Servlet implementation class LeaveClubFromClublistServlet
  */
-@WebServlet("/UserLeavesClubServlet")
-public class UserLeavesClubServlet extends HttpServlet {
+@WebServlet("/LeaveClubFromClublistServlet")
+public class LeaveClubFromClublistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserLeavesClubServlet() {
+	public LeaveClubFromClublistServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,12 +34,18 @@ public class UserLeavesClubServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
-			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
-		}
+		ClubMembershipDao cmDao = new ClubMembershipDao();
+		String ID = request.getParameter("clubID");
+		int club_ID = Integer.parseInt(ID);
+		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_ID);
+		String message = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<title>Mileage</title>\r\n"
+				+ "<style> \r\n" + ".isa_success {\r\n" + "color: #4F8A10;\r\n"
+				+ "background-color: #DFF2BF;\r\n" + "}\r\n" + "</style>\r\n" + "</head>\r\n<body>\r\n"
+				+ "<div class=isa_success>\r\n" + "<i class=fa fa-check></i>\r\n"
+				+ "You left the club.\r\n" + "\t\t</div>\r\n" + "</body>\r\n" + "</html>";
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -50,11 +56,8 @@ public class UserLeavesClubServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		ClubMembershipDao cmDao = new ClubMembershipDao();
-		String ID = request.getParameter("clubID");
-		int club_ID = Integer.parseInt(ID);
-		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_ID);
-		doGet(request, response);
+
+		request.getRequestDispatcher("/WEB-INF/jsp/Clublist.jsp").forward(request, response);
 	}
 
 }

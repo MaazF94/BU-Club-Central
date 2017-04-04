@@ -127,6 +127,7 @@
 											%>
       
          <ul class="dropdown-menu">
+         <%if (session.getAttribute("user") != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
         							<li><a href=UserServlet><span class="">Dash Board</span></a>
@@ -141,7 +142,7 @@
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
       
-        
+        <%} %>
           
         </ul>
       </li>

@@ -16,17 +16,17 @@ import edu.ben.bu_club_central.models.ClubMembership;
 import edu.ben.bu_club_central.models.User;
 
 /**
- * Servlet implementation class RejoinClubUserDashboardServlet
+ * Servlet implementation class RejoinClubFromDashboardServlet
  */
-@WebServlet("/RejoinClubUserDashboardServlet")
-public class RejoinClubUserDashboardServlet extends HttpServlet {
+@WebServlet("/RejoinClubFromDashboardServlet")
+public class RejoinClubFromDashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HttpSession session;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RejoinClubUserDashboardServlet() {
+	public RejoinClubFromDashboardServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,7 +40,11 @@ public class RejoinClubUserDashboardServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		session = request.getSession();
 		session.setAttribute("first_name", null);
+		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
 		request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -63,8 +67,11 @@ public class RejoinClubUserDashboardServlet extends HttpServlet {
 						+ "<div class=isa_success>\r\n" + "<i class=fa fa-check></i>\r\n"
 						+ "You successfully joined.\r\n" + "\t\t</div>\r\n" + "</body>\r\n" + "</html>";
 				request.setAttribute("message", message);
-				request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
-			} else {
+				if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+					request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+					} else {
+						request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+					}			} else {
 				throw new Exception();
 			}
 		} catch (Exception e) {
@@ -75,8 +82,11 @@ public class RejoinClubUserDashboardServlet extends HttpServlet {
 					+ "You entered some information incorrectly, please try again.\r\n" + "\t\t</div>\r\n"
 					+ "</body>\r\n" + "</html>";
 			request.setAttribute("message", message);
-			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
-		}
+			if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+				request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+				}		}
 	}
 
 	/**

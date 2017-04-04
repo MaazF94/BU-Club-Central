@@ -150,6 +150,7 @@ button.accordion.active:after {
 											%>
       
         <ul class="dropdown-menu">
+        <%if (((User) session.getAttribute("user")) != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
         							<li><a href=UserServlet><span class="">Dash Board</span></a>
@@ -163,7 +164,7 @@ button.accordion.active:after {
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
+      <%} %>
         
           
         </ul>
@@ -207,7 +208,6 @@ button.accordion.active:after {
 			clubList = cDao.displayClub();
 
 			int index = 0;
-			
 		%>
 
 
@@ -238,6 +238,7 @@ button.accordion.active:after {
 											</form>
 											<br>
 <%
+if (((User) session.getAttribute("user")) != null) {
 ClubMembershipDao cmDao = new ClubMembershipDao();
 int user_id = ((User) session.getAttribute("user")).getUser_id();
 boolean isInClub = cmDao.checkIfUserInClub(clubList.get(index).getClub_id_num(), user_id);
@@ -249,8 +250,12 @@ if (!isInClub) {%>
 <%
 } else {
 	%>
-	<a type="button" class="btn btn-success">Joined</a>
+<a type="button" class="btn btn-warning" 
+href="LeaveClubFromClublistServlet?clubID=<%=(clubList.get(index).getClub_id_num())%>">Leave <%
+												out.println(clubList.get(index).getClub_name());
+											%></a>
 <%
+}
 }
  %>
 

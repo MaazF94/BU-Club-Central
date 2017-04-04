@@ -9,7 +9,11 @@
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.DocumentDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Document"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
+<%@ page import="edu.ben.bu_club_central.models.ClubMembership"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
@@ -173,7 +177,6 @@
               </div>
               </form>
 		<div class="row">
-				${message}
 			<div class="container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
@@ -193,13 +196,107 @@
 								Description</a></li>
 						<li role="presentation"><a href="#viewMember"
 							aria-controls="viewMember" role="tab" data-toggle="tab">View Club Members</a></li>
-							<li role="presentation"><a href="#sendEmail"
+						<li role="presentation"><a href="#viewClub"
+							aria-controls="viewClub" role="tab" data-toggle="tab">View Current Clubs</a></li>
+						<li role="presentation"><a href="#viewPastClub"
+							aria-controls="viewPastClub" role="tab" data-toggle="tab">View Past Clubs</a></li>
+						<li role="presentation"><a href="#sendEmail"
 							aria-controls="sendEmail" role="tab" data-toggle="tab">Send Emails</a></li>
+						<li role="presentation"><a href="#viewForm"
+							aria-controls="viewForm" role="tab" data-toggle="tab">Forms</a></li>
 
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane" id="viewClub">
+							<div class="container">
+								<%
+			ClubMembershipDao cmDao = new ClubMembershipDao();
+			LinkedList<ClubMembership> clubMembershipList = new LinkedList<ClubMembership>();
+			clubMembershipList = cmDao.displayUserClubInfo(((User) session.getAttribute("user")).getUser_id());
+
+			int indexViewMember = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (indexViewMember < clubMembershipList.size()) {
+										%>
+										<tr>
+											<td><%=clubMembershipList.get(indexViewMember).getClub_name()%></td>
+											<td><form action="UserLeavesClubServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="clubID"
+														value="<%=clubMembershipList.get(indexViewMember).getClubID()%>">Leave Club</button>
+												</form></td>
+										</tr>
+
+										<%
+										indexViewMember++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						
+						
+						
+						<div role="tabpanel" class="tab-pane" id="viewPastClub">
+							<div class="container">
+								<%
+								ClubMembershipDao cmDao2 = new ClubMembershipDao();
+								LinkedList<ClubMembership> clubMembershipList2 = new LinkedList<ClubMembership>();
+								clubMembershipList2 = cmDao2.displayUserPastClubInfo(((User) session.getAttribute("user")).getUser_id());
+								int index3 = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (index3 < clubMembershipList2.size()) {
+										%>
+										<tr>
+											<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
+											<td><form action="RejoinClubFromDashboardServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="club_id_num"
+														value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin Club</button>
+												</form></td>
+										</tr>
+
+										<%
+										index3++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					
+					
+					
+					
+					
+					
+					
 											<div role="tabpanel" class="tab-pane" id="viewMember">
 							<div class="container">
                   <%
@@ -239,6 +336,43 @@
 									%>
 								</table>
 							</div>
+						</div>
+						
+						<div role="tabpanel" class="tab-pane" id="viewForm">
+						<div class="container">
+							<%DocumentDao dDao = new DocumentDao();
+							LinkedList<Document> documentList = new LinkedList<Document>();
+								documentList = dDao.displayDocumentInfo();
+								int documentIndex = 0;
+								
+							%>
+														
+							<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Forms (Click Name to Download)</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+									<%
+									while (documentIndex < documentList.size()) {
+									%>
+										<tr>
+											<td><a href=<%=documentList.get(documentIndex).getfilePath()%>>
+											<%=documentList.get(documentIndex).getName()%></a></td>
+											<td><%=documentList.get(documentIndex).getDescription()%></td>											
+										</tr>
+										<%
+										documentIndex++;
+
+									}
+										%>
+									</tbody>
+							
+							</table>							
+						</div>
 						</div>
 					
 					
@@ -400,6 +534,7 @@
 
 
 						<div role="tabpanel" class="tab-pane" id="editPosts">
+						<div class="container">
 							<%PostDao pDao = new PostDao();
 								LinkedList<Post> postList = new LinkedList<Post>();
 								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
@@ -458,6 +593,7 @@
 							<% }%>
 							</table>
 						</div>
+						</div>
 						
 						
 						
@@ -465,6 +601,7 @@
 						
 						
 						<div role="tabpanel" class="tab-pane" id="editDescription">
+						<div class="container">
 							<%ClubDao cDao = new ClubDao();
 								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
 								String clubDescription = clubObject.getClub_description();								
@@ -493,8 +630,10 @@
 							
 							</table>
 							</form>
-							
+							</div>
 						</div>
+
+
 						
 						<div role="tabpanel" class="tab-pane" id="sendEmail">
 							<div class="container">

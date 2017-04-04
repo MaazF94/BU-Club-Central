@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import edu.ben.bu_club_central.daos.EventsDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Events;
+
+import edu.ben.bu_club_central.models.User;
+
 
 /**
  * Servlet implementation class EventServlet

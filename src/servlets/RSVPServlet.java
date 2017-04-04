@@ -42,10 +42,16 @@ public class RSVPServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
 		addRSVP(Integer.parseInt(request.getParameter("eventId")));
 		addUserToRsvpList(Integer.parseInt(request.getParameter("eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
 		sendEmailNotification(((User)request.getSession().getAttribute("user")), Integer.parseInt(request.getParameter("eventId")));
 		response.sendRedirect("EventServlet");
+		} catch (Exception e) {
+			if (((User) request.getSession().getAttribute("user")) == null) {
+			request.getRequestDispatcher("/WEB-INF/jsp/MustLoginToView.jsp").forward(request, response);
+			}
+		}
 	}
 
 	private void addRSVP(int eventId) {

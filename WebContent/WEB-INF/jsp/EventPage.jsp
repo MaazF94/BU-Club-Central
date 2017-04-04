@@ -117,6 +117,7 @@
 											%>
       
          <ul class="dropdown-menu">
+         <%if (((User) session.getAttribute("user")) != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
         							<li><a href=UserServlet><span class="">Dash Board</span></a>
@@ -129,7 +130,7 @@
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
+      <%} %>
         
           
         </ul>
@@ -223,12 +224,13 @@
                                     <!-- PostContent-->
                                     <section class="post-content offset-top-41">
                                     <p><%= eventList.get(eventListIndex).getDescription() %></p>
-                                  
                                       <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
 									<button class="btn btn-default text-red-gray" type="submit" name="eventId"
 												value="<%=eventList.get(eventListIndex).getEventId()%>">More
 												Info</button>
 										</form></a>
+										                                  <%if (((User) session.getAttribute("user")) != null) { %>
+										
                                       <a class="offset-top-24 btn btn"><%EventRSVPListDao rsvpDao = new EventRSVPListDao(); 
 										
 										boolean rsvpBoolean = rsvpDao.checkUserRsvpForEvent(eventList.get(eventListIndex).getEventId(), ((User)session.getAttribute("user")).getId_num());
@@ -254,7 +256,7 @@
 										
 										
 									
-									<%} %></a>
+									<%} } %></a>
                                     </section>
                                   </article>
                   <hr class="hr offset-top-66">
