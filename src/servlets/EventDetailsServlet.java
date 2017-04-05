@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.EventNotificationDao;
+import edu.ben.bu_club_central.models.User;
+
 /**
  * Servlet implementation class EventDetailsServlet
  */
@@ -28,6 +31,10 @@ public class EventDetailsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);
+		
+		EventNotificationDao eNotDao = new EventNotificationDao();
+		eNotDao.checkedNotification(Integer.parseInt(request.getParameter("eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
+		
 	}
 
 	/**

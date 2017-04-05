@@ -105,8 +105,26 @@ public class EventNotificationDao {
 		
 	}
 	
-	
-	
+	/**
+	 * this method flips the flag on the event notification table when a user visits the event details page of that event
+	 * @param eventId
+	 * @param id_num
+	 */
+	public void checkedNotification(int eventId, int id_num) {
+		String sql = "UPDATE " + tableName + " SET flag = true WHERE eventId = " + eventId + " AND userId = " + id_num;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	
 	
 	

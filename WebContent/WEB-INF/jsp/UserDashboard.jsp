@@ -109,7 +109,7 @@
 									<ul class="dropdown-menu">
 										
 										<%while(eventListIndex < eventListSize) { %>
-											<li><a href="#"><%=eventList.get(eventListIndex).getEvent_name() %></a></li>
+											<li><a href="EventDetailsServlet?eventId=<%=eventList.get(eventListIndex).getEventId()%>"><%=eventList.get(eventListIndex).getEvent_name() %></a></li>
 										
 										<%eventListIndex++; %>
 										<%} %>
