@@ -126,8 +126,6 @@
 											%>
       
         <ul class="dropdown-menu">
-<<<<<<< HEAD
-=======
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
         							<li><a href=UserServlet><span class="">Dash Board</span></a>
@@ -137,7 +135,6 @@
         							<li><a href="AdminHome"><span class="">Dash Board</span></a>
         						<%} %>
         						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
->>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out

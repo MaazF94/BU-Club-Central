@@ -149,9 +149,6 @@ button.accordion.active:after {
 					}
 											%>
         <ul class="dropdown-menu">
-<<<<<<< HEAD
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>          
-=======
         <%if (((User) session.getAttribute("user")) != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
@@ -167,9 +164,6 @@ button.accordion.active:after {
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
       <%} %>
-        
-          
->>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
         </ul>
       </li>
                           </ul>
@@ -221,26 +215,6 @@ button.accordion.active:after {
 
 								<button class="accordion text-bold"><%
 												out.println(clubList.get(index).getClub_name());
-<<<<<<< HEAD
-											%></a></div>
-                    </div>
-                    <div role="tabpanel" aria-labelledby="headingOne" id="collapseOne" class="panel-collapse collapse">
-                      <div class="panel-body"><%
-												out.println(clubList.get(index).getClub_description());
-											%>
-											</br>
-											<a type="button" class="btn btn-info" href="ClubHomepageServlet?bu_club_id=<%=(clubList.get(index).getClub_id_num())%>">More Info</a>
-																			
-										
-                      </div>
-                    </div>
-                  </div>
-						</div>
-						
-					</div>
-					
-				</div>
-=======
 											%></button>
 <div class=" well">
 <form action="ClubHomepageServlet" method="GET">
@@ -272,7 +246,6 @@ href="LeaveClubFromClublistServlet?clubID=<%=(clubList.get(index).getClub_id_num
  %>
 
 </div>
->>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
 				<%
 										index++;
 										}

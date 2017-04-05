@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.UserDao;
-<<<<<<< HEAD
-=======
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
->>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
+
 
 /**
  * Servlet implementation class AdminHome
@@ -34,21 +32,11 @@ public class AdminHomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		Integer roleID = Integer.parseInt(request.getParameter("role_id"));
-		if (roleID == 3){
-			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
-		}else{
-			request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
-		}
-=======
 		if (((User) request.getSession().getAttribute("user")).getRole_id() == 3) {
 			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("AccessDeniedServlet");
 		}
-		
->>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
 	}
 
 	/**

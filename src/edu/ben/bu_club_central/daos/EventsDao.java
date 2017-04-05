@@ -196,8 +196,6 @@ public class EventsDao {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
 	public LinkedList<Events> getAllEventsForPaging(int offset, int noOfRecords) {
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
@@ -221,7 +219,5 @@ public class EventsDao {
 		}
 		return results;
 	}
-	
->>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
 
 }
