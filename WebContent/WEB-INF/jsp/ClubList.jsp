@@ -2,11 +2,60 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
 <%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
+<style>
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+#Notify, #PTable {
+    clear: both;
+}
+
+#Notify {
+    float: right;
+    text-align: left;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
+button.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+</style>
 <!-- Site Title-->
 <title>Events</title>
 
@@ -100,7 +149,27 @@
 					}
 											%>
         <ul class="dropdown-menu">
+<<<<<<< HEAD
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>          
+=======
+        <%if (((User) session.getAttribute("user")) != null) { %>
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
+ 							   
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      <%} %>
+        
+          
+>>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
         </ul>
       </li>
                           </ul>
@@ -135,29 +204,24 @@
 		%>
 		
 		<section class="section-66 section-sm-top-110 section-lg-bottom-0">
-		<div class="shell">
+				<div class="shell">
 			<div class="range range-xs-center">
-				<div class="cell-lg-6">
+							<div class="cell-lg-6">
 					<img src="img/overviewBU.jpg" width="494" height="623"
 						alt="" class="veil reveal-lg-inline-block">
 				</div>
 				<div class="cell-sm-9 cell-lg-6 offset-top-0">
 					<h1 class="text-darker text-lg-left">Benedictine Clubs</h1>
-					<h6 class="text-darker text-lg-left">Click on a club to check out their homepage!</h6>
-					<hr class="divider bg-red hr-lg-left-0">
+					${message}
 					<div class="offset-top-41 offset-lg-top-66">
 						<!-- Bootstrap Accordion-->
 						<%
 							while (index < clubList.size()) {
 						%>
 
-						<div role="tablist" aria-multiselectable="true" id="accordion-1"
-							class="panel-group accordion offset-top-0 text-left">
-							<div class="panel">
-							 <div class="panel panel-default">
-                    <div role="tab" id="headingOne" class="panel-heading">
-                      <div class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" href="#collapseOne" aria-expanded="true" class="collapsed"><%
+								<button class="accordion text-bold"><%
 												out.println(clubList.get(index).getClub_name());
+<<<<<<< HEAD
 											%></a></div>
                     </div>
                     <div role="tabpanel" aria-labelledby="headingOne" id="collapseOne" class="panel-collapse collapse">
@@ -176,10 +240,46 @@
 					</div>
 					
 				</div>
+=======
+											%></button>
+<div class=" well">
+<form action="ClubHomepageServlet" method="GET">
+<a type="button" class="btn btn-info" href="ClubHomepageServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
+												out.println(clubList.get(index).getClub_name());
+											%> Homepage</a>
+											</form>
+											<br>
+<%
+if (((User) session.getAttribute("user")) != null) {
+ClubMembershipDao cmDao = new ClubMembershipDao();
+int user_id = ((User) session.getAttribute("user")).getUser_id();
+boolean isInClub = cmDao.checkIfUserInClub(clubList.get(index).getClub_id_num(), user_id);
+if (!isInClub) {%>
+<form action = "JoinAClubServlet" method="GET">
+<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Join <%
+												out.println(clubList.get(index).getClub_name());
+											%></a></form>
+<%
+} else {
+	%>
+<a type="button" class="btn btn-warning" 
+href="LeaveClubFromClublistServlet?clubID=<%=(clubList.get(index).getClub_id_num())%>">Leave <%
+												out.println(clubList.get(index).getClub_name());
+											%></a>
+<%
+}
+}
+ %>
+
+</div>
+>>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
 				<%
 										index++;
 										}
 									%>
+			</div>
+							</div>
+			</div>
 			</div>
 		</section>
 		<!-- Spaces page from footer-->
@@ -261,5 +361,25 @@
 	<!-- Java script-->
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	    acc[i].onclick = function(){
+	        /* Toggle between adding and removing the "active" class,
+	        to highlight the button that controls the panel */
+	        this.classList.toggle("active");
+
+	        /* Toggle between hiding and showing the active panel */
+	        var panel = this.nextElementSibling;
+	        if (panel.style.display === "block") {
+	            panel.style.display = "none";
+	        } else {
+	            panel.style.display = "block";
+	        }
+	    }
+	}
+	</script>
 </body>
 </html>

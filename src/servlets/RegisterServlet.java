@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.UserDao;
+import jbcrypt.BCrypt;
 import mailDispatcher.SendMail;
+//import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -97,8 +99,10 @@ response.sendRedirect("");
 	public static void callRegisterUser(String first_name, String last_name, String username, String passwrd,
 			int id_num, String email) {
 		UserDao uDao = new UserDao();
+		
+		String hashedPw = BCrypt.hashpw(passwrd, BCrypt.gensalt());
 
-		uDao.registerUser(first_name, last_name, username, passwrd, id_num, email);
+		uDao.registerUser(first_name, last_name, username, hashedPw, id_num, email);
 		System.out.println("Added user");
 		
 		// send email to a newly registered user after they've been put into database

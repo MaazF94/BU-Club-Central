@@ -12,22 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
-import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.ClubMembership;
 import edu.ben.bu_club_central.models.User;
 
 /**
- * Servlet implementation class JoinAClubServlet
+ * Servlet implementation class RejoinClubFromDashboardServlet
  */
-@WebServlet("/JoinAClubServlet")
-public class JoinAClubServlet extends HttpServlet {
+@WebServlet("/RejoinClubFromDashboardServlet")
+public class RejoinClubFromDashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HttpSession session;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public JoinAClubServlet() {
+	public RejoinClubFromDashboardServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,6 +38,21 @@ public class JoinAClubServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		session = request.getSession();
+		session.setAttribute("first_name", null);
+		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+		request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 
 			String[] clubIdList = new String[100];
@@ -53,8 +67,11 @@ public class JoinAClubServlet extends HttpServlet {
 						+ "<div class=isa_success>\r\n" + "<i class=fa fa-check></i>\r\n"
 						+ "You successfully joined.\r\n" + "\t\t</div>\r\n" + "</body>\r\n" + "</html>";
 				request.setAttribute("message", message);
-				request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
-			} else {
+				if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+					request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+					} else {
+						request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+					}			} else {
 				throw new Exception();
 			}
 		} catch (Exception e) {
@@ -65,18 +82,11 @@ public class JoinAClubServlet extends HttpServlet {
 					+ "You entered some information incorrectly, please try again.\r\n" + "\t\t</div>\r\n"
 					+ "</body>\r\n" + "</html>";
 			request.setAttribute("message", message);
-			request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
-		}
-		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp");
+			if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+				request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+				}		}
 	}
 
 	/**

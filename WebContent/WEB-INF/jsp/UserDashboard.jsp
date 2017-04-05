@@ -110,7 +110,15 @@
 											%>
       
       <ul class="dropdown-menu">
-        
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
@@ -161,24 +169,40 @@
              <h1>User Dashboard</h1>
 			
                <!-- Put dashboard code here -->
-               
                 <section>
           <div class="shell">
-           
+           		${message}
          		<div class="row">
+         		               		<form action = "UserEmailsAdminFromDashboardServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                <br>
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
 			<div class="container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#viewClub"
-							aria-controls="viewClub" role="tab" data-toggle="tab">View Clubs</a></li>
-
+					<li role="presentation" class="active"><a href="#viewProfile"
+							aria-controls="viewProfile" role="tab" data-toggle="tab">View Profile</a></li>
+						<li role="presentation"><a href="#viewClub"
+							aria-controls="viewClub" role="tab" data-toggle="tab">View Current Clubs</a></li>
+						<li role="presentation"><a href="#viewPastClub"
+							aria-controls="viewPastClub" role="tab" data-toggle="tab">View Past Clubs</a></li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="viewClub">
+						<div role="tabpanel" class="tab-pane" id="viewClub">
 							<div class="container">
 								<%
 			ClubMembershipDao cmDao = new ClubMembershipDao();
@@ -208,7 +232,46 @@
 										</tr>
 
 										<%
-											index++;
+										index++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div role="tabpanel" class="tab-pane" id="viewPastClub">
+							<div class="container">
+								<%
+								ClubMembershipDao cmDao2 = new ClubMembershipDao();
+								LinkedList<ClubMembership> clubMembershipList2 = new LinkedList<ClubMembership>();
+								clubMembershipList2 = cmDao2.displayUserPastClubInfo(((User) session.getAttribute("user")).getUser_id());
+								int index3 = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (index3 < clubMembershipList2.size()) {
+										%>
+										<tr>
+											<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
+											<td><form action="RejoinClubFromDashboardServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="club_id_num"
+														value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin Club</button>
+												</form></td>
+										</tr>
+
+										<%
+										index3++;
 										%>
 										<%
 											}
@@ -218,7 +281,63 @@
 							</div>
 						</div>
 
+						<div role="tabpanel" class="tab-pane active" id="viewProfile">
+							<div class="container">
+								<%
+			UserDao uDao = new UserDao();
+			LinkedList<User> userList = new LinkedList<User>();
+			userList = uDao.displayUsersInfo(((User) session.getAttribute("user")).getUser_id());
 
+			int index2 = 0;
+		%>
+													
+							<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Username</th>
+											<th>Password</th>
+											<th>Email</th>
+										</tr>
+									</thead>
+								
+									<tbody>
+										<%
+											while (index2 < userList.size()) {
+										%>
+										<tr>
+											<td>
+											<form  action="EditUsernameServlet" method="POST">	 
+											<textarea onkeypress="enableUpdateButton1()" cols="15" rows="1" name="editUsername"><%=userList.get(index2).getUsername()%></textarea>
+											<br>
+											<button id="button1" disabled class="btn btn-warning" type="submit">Save Changes</button>										
+											</form>
+											</td>
+											<td> 
+											<form  action="EditPasswordServlet" method="POST">
+											<textarea onkeypress="enableUpdateButton2()" cols="15" rows="1" name="editPassword"><%=userList.get(index2).getPassword()%></textarea>
+											<br>
+											<button id="button2" disabled class="btn btn-warning" type="submit">Save Changes</button>
+											</form>
+											</td>
+											<td> 
+											<form  action="EditEmailServlet" method="POST">
+											<textarea onkeypress="enableUpdateButton3()" cols="20" rows="1" name="editEmail"><%=userList.get(index2).getEmail()%></textarea>
+											<br>
+											<button id="button3" disabled class="btn btn-warning" type="submit">Save Changes</button>
+											</form>
+											</td>
+										</tr>
+																				<%
+										index2++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+							
+							</table>
+							</div>
+						</div>
 
 
 
@@ -338,6 +457,32 @@
 			}
 			
 		}
+	</script>
+	
+		<script>
+	function enableUpdateButton1() {
+
+	    document.getElementById("button1").disabled = false;
+
+	}
+	
+	function enableUpdateButton2() {
+
+	    document.getElementById("button2").disabled = false;
+
+	}
+	
+	function enableUpdateButton3() {
+
+	    document.getElementById("button3").disabled = false;
+
+	}
+	
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
+
+	}
 	</script>
     
     <script src="js/js/core.min.js"></script>

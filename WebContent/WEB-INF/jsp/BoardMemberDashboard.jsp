@@ -1,3 +1,4 @@
+<%@page import="javax.mail.Session"%>
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -8,7 +9,11 @@
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.DocumentDao"%>
+<%@ page import="edu.ben.bu_club_central.models.Document"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
+<%@ page import="edu.ben.bu_club_central.models.ClubMembership"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
@@ -113,6 +118,14 @@
 											%>
       
         <ul class="dropdown-menu">
+        						<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
         						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
  							
@@ -144,20 +157,25 @@
         </div>
       </header>
       <!-- Page Contents-->
+      
 		<main class="page-content"> <section id="welcome"
 			class="section-98 section-sm-110">
+			
 		<div class="shell">
-			<h1>Board Member Dashboard</h1>
-
-		</div>
-
+	
+			
+		</div>		
+		
 		<div class="row">
-				${message}
-			<div class="container">
+		<h1>Board Member Dashboard</h1>
+		<hr class="divider hr-lg bg-red">
+			
+			
+			<div class="nav-stacked-container">
 				<div class="container" style="height: 100px"></div>
 				<div class="col-lg-12">
 					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
+					<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
 						<li role="presentation" class="active"><a href="#editEvents"
 							aria-controls="editEvents" role="tab" data-toggle="tab">Edit
 								Events</a></li>
@@ -172,15 +190,204 @@
 								Description</a></li>
 						<li role="presentation"><a href="#viewMember"
 							aria-controls="viewMember" role="tab" data-toggle="tab">View Club Members</a></li>
-							<li role="presentation"><a href="#sendEmail"
+						<li role="presentation"><a href="#viewClub"
+							aria-controls="viewClub" role="tab" data-toggle="tab">View Current Clubs</a></li>
+						<li role="presentation"><a href="#viewPastClub"
+							aria-controls="viewPastClub" role="tab" data-toggle="tab">View Past Clubs</a></li>
+						<li role="presentation"><a href="#sendEmail"
 							aria-controls="sendEmail" role="tab" data-toggle="tab">Send Emails</a></li>
+						<li role="presentation"><a href="#viewForm"
+							aria-controls="viewForm" role="tab" data-toggle="tab">Forms</a></li>
 
 					</ul>
 
 					<!-- Tab panes -->
-					<div class="tab-content">
+					<div class="tab-content well">
+						<div role="tabpanel" class="tab-pane" id="viewClub">
+							<div class="container">
+							<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
+								<%
+			ClubMembershipDao cmDao = new ClubMembershipDao();
+			LinkedList<ClubMembership> clubMembershipList = new LinkedList<ClubMembership>();
+			clubMembershipList = cmDao.displayUserClubInfo(((User) session.getAttribute("user")).getUser_id());
+
+			int indexViewMember = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (indexViewMember < clubMembershipList.size()) {
+										%>
+										<tr>
+											<td><%=clubMembershipList.get(indexViewMember).getClub_name()%></td>
+											<td><form action="UserLeavesClubServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="clubID"
+														value="<%=clubMembershipList.get(indexViewMember).getClubID()%>">Leave Club</button>
+												</form></td>
+										</tr>
+
+										<%
+										indexViewMember++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						
+						
+						<div role="tabpanel" class="tab-pane" id="editDescription">
+						<div class="container">
+							<%ClubDao clDao = new ClubDao();
+								Club clubObject = clDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
+								String clubDescription = clubObject.getClub_description();								
+								
+							%>
+							
+							<form  action="EditClubDescriptionServlet" method="post">
+							
+							<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Club Description</th>
+											<th></th>
+										</tr>
+									</thead>
+								
+									<tbody>
+										<tr>
+											<td> 
+											<textarea onkeypress="enableUpdateButton()" cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+											<br>
+											<button id="button" disabled class="btn btn-warning" type="submit">Save Changes</button>
+											</td>
+										</tr>
+									</tbody>
+							
+							</table>
+							</form>
+							</div>
+						</div>
+						
+						
+						
+						
+						<div role="tabpanel" class="tab-pane" id="viewPastClub">
+							<div class="container">
+							<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
+								<%
+								ClubMembershipDao cmDao2 = new ClubMembershipDao();
+								LinkedList<ClubMembership> clubMembershipList2 = new LinkedList<ClubMembership>();
+								clubMembershipList2 = cmDao2.displayUserPastClubInfo(((User) session.getAttribute("user")).getUser_id());
+								int index3 = 0;
+		%>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Club Name</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (index3 < clubMembershipList2.size()) {
+										%>
+										<tr>
+											<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
+											<td><form action="RejoinClubFromDashboardServlet" method="post">
+													<button class="btn btn-warning" type="submit"
+														name="club_id_num"
+														value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin Club</button>
+												</form></td>
+										</tr>
+
+										<%
+										index3++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					
+					
+					
+					
+					
+					
+					
 											<div role="tabpanel" class="tab-pane" id="viewMember">
 							<div class="container">
+							<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
                   <%
 			UserDao uDao = new UserDao();
 			LinkedList<User> userList = new LinkedList<User>();
@@ -219,7 +426,8 @@
 								</table>
 							</div>
 						</div>
-					
+						
+						
 					
 					
 					
@@ -229,6 +437,26 @@
 					
 						<div role="tabpanel" class="tab-pane active" id="editEvents">
 							<div class="container">
+							<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
 								<%
 									LinkedList<Events> eventList = new LinkedList<Events>();
 									EventsDao eDao = new EventsDao();
@@ -298,6 +526,26 @@
 
 						<div role="tabpanel" class="tab-pane" id="editComments">
 							<div class="container">
+							<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
 								<%
 									LinkedList<Events> eventList2 = new LinkedList<Events>();
 									EventsDao eDao2 = new EventsDao();
@@ -379,6 +627,27 @@
 
 
 						<div role="tabpanel" class="tab-pane" id="editPosts">
+						<div class="container">
+													<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
 							<%PostDao pDao = new PostDao();
 								LinkedList<Post> postList = new LinkedList<Post>();
 								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
@@ -437,46 +706,97 @@
 							<% }%>
 							</table>
 						</div>
+						</div>
 						
 						
 						
-						
-						
-						
-						<div role="tabpanel" class="tab-pane" id="editDescription">
-							<%ClubDao cDao = new ClubDao();
-								Club clubObject = cDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-								String clubDescription = clubObject.getClub_description();								
+						<div role="tabpanel" class="tab-pane" id="viewForm">
+						<div class="container">
+													<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
+							<%DocumentDao dDao = new DocumentDao();
+							LinkedList<Document> documentList = new LinkedList<Document>();
+								documentList = dDao.displayDocumentInfo();
+								int documentIndex = 0;
 								
 							%>
-							
-							<form  action="EditClubDescriptionServlet" method="post">
-							
+														
 							<table class="table table-hover sortable">
 									<thead>
 										<tr>
-											<th>Club Description</th>
+											<th>Forms (Click Name to Download)</th>
 											<th></th>
 										</tr>
 									</thead>
 								
 									<tbody>
+									<%
+									while (documentIndex < documentList.size()) {
+									%>
 										<tr>
-											<td> 
-											<textarea onkeypress="enableUpdateButton()" cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
-											<br>
-											<button id="button" disabled class="btn btn-warning" type="submit">Save Changes</button>
-											</td>
+											<td><a href=<%=documentList.get(documentIndex).getfilePath()%>>
+											<%=documentList.get(documentIndex).getName()%></a></td>
+											<td><%=documentList.get(documentIndex).getDescription()%></td>											
 										</tr>
+										<%
+										documentIndex++;
+
+									}
+										%>
 									</tbody>
 							
-							</table>
-							</form>
-							
+							</table>							
 						</div>
+						</div>
+						
+						
+						
+						
+						
+						
+						
+
 						
 						<div role="tabpanel" class="tab-pane" id="sendEmail">
 							<div class="container">
+							<div>
+			
+			<form action = "BMEmailsAdminServlet" method="POST">
+              <div class="cell-lg-4">
+              
+                <div class="inset-lg-left-80">
+                
+                <br>
+                
+                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
+              </div>
           			        <%
 									LinkedList<Events> eventList3 = new LinkedList<Events>();
 									EventsDao eDao3 = new EventsDao();
@@ -877,6 +1197,12 @@
 	function enableUpdateButton() {
 
 	    document.getElementById("button").disabled = false;
+
+	}
+	
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
 
 	}
 	</script>

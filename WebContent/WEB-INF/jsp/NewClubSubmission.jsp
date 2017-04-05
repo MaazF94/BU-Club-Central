@@ -126,6 +126,18 @@
 											%>
       
         <ul class="dropdown-menu">
+<<<<<<< HEAD
+=======
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
+>>>>>>> 4f60a709a9a3aa1ceb12b013f91d882b92b79fe1
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
@@ -159,7 +171,7 @@
 		</header>
       
       <main class="page-content">
-        <section class="section-top-98 section-md-top-110 text-lg-left">
+              <section class="section-top-98 section-md-top-110 text-lg-left">
           <div class="shell">
             <div class="range range-xs-center range-xs-center">
               <div class="cell-lg-4">
@@ -182,10 +194,12 @@
                   
                 </div>
               </div>
-              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">
+              <div class="cell-sm-8 offset-top-66 offset-lg-top-0">              
                 <h3 class="text-bold">New Club Submission Form</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
+                                               <p>${message}</p>
+               
                 <form data-form-output="form-output-global" data-form-type="contact" method="post" action="NewClubSubmissionServlet" class="rd-mailform text-left offset-top-50">
                   <div class="range">
                     <div class="cell-lg-6">

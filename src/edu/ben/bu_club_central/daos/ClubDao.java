@@ -43,19 +43,38 @@ public class ClubDao {
 	 * @param pet_email the head petitioners email
 	 * @param advisor_name the name of the clubs advisor
 	 */
-	public void addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
-		String sql = "INSERT INTO " + tableName
-				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES ('" + ++clubID + "', '" + club_name + "', '"+ pet_name + "', '" + club_description + "', '"+
-				 enabled + "','" + pet_email+"','"+advisor_name+ "')"; 
+	public boolean addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
+		String sql = "SELECT max(club_id_num) from " + tableName + ""; 
 	
-		PreparedStatement ps;
 		try {
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+			
+			while (cs.next()) {
+				
+				clubID = cs.getInt("max(club_id_num)");
+				++clubID;
+			}
+
 		} catch (SQLException e) {
-			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		
+		sql = "INSERT INTO " + tableName
+				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES (" + clubID + ", '" + club_name + "', '"+ pet_name + "', '" + club_description + "', "+
+				 enabled + ",'" + pet_email+"','"+advisor_name+ "')"; 
+	
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+			return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -78,8 +97,7 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
-						cs.getInt("member_count"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
 
@@ -110,8 +128,7 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
-						cs.getInt("member_count"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
 
@@ -139,7 +156,8 @@ public class ClubDao {
 		
 		try {
 			while(rs.next()) {
-				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("member_count"), rs.getInt("enabled") );
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), 
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("enabled") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -165,7 +183,9 @@ public class ClubDao {
 		
 		try {
 			while (rs.next()) {
-				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("member_count"), rs.getInt("enabled") );
+				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), 
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), 
+						rs.getInt("enabled") );
 				clubList.add(club);
 			}
 		} catch (SQLException e) {

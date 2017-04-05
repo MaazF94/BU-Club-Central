@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.UserDao;
+import edu.ben.bu_club_central.models.User;
 
 /**
  * Servlet implementation class BoardMemberDashBoardServlet
@@ -29,7 +30,12 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+		if (((User) request.getSession().getAttribute("user")).getRole_id() == 2) {
+			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("AccessDeniedServlet");
+		}
+		
 	}
 
 	/**

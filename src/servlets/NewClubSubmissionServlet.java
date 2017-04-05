@@ -371,8 +371,25 @@ public class NewClubSubmissionServlet extends HttpServlet {
 				System.out.println("Sent email");
 		
 		ClubDao cDao = new ClubDao();
-		cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 1, request.getParameter("petEmail"),request.getParameter("advisorName") );
-		doGet(request, response);
+		if (cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 1, request.getParameter("petEmail"),request.getParameter("advisorName"))) {
+			String message = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<title>Mileage</title>\r\n"
+					+ "<style> \r\n" + ".isa_success {\r\n" + "color: #4F8A10;\r\n"
+					+ "background-color: #DFF2BF;\r\n" + "}\r\n" + "</style>\r\n" + "</head>\r\n<body>\r\n"
+					+ "<div class=isa_success>\r\n" + "<i class=fa fa-check></i>\r\n"
+					+ "You successfully created your new club.\r\n" + "\t\t</div>\r\n" + "</body>\r\n" + "</html>";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
+		} else {
+			String message = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<title>Mileage</title>\r\n"
+					+ "<style> \r\n" + ".isa_error {\r\n" + "color: #D8000C;\r\n" + "background-color: #FFBABA;\r\n"
+					+ "}\r\n" + "</style>\r\n" + "</head>\r\n<body>\r\n" + "<div class=isa_error>\r\n"
+					+ "<i class=fa fa-times-circle></i>\r\n"
+					+ "Duplicate information was entered, please try again.\r\n" + "\t\t</div>\r\n"
+					+ "</body>\r\n" + "</html>";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
+		}
+		
 	}
 
 }

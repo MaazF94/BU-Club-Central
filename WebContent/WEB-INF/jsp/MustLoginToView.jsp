@@ -5,7 +5,7 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
 <!-- Site Title-->
-<title>Document Central</title>
+<title>Login</title>
 
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
@@ -15,10 +15,9 @@
 <meta name="date" content="Dec 26">
 <link rel="icon" type="image/png" href="img/favicon-16x16.png"
 	sizes="16x16" />
-
 <!-- Stylesheets-->
 <link rel="stylesheet" type="text/css"
-	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
+	href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,700,900%7CYesteryear">
 <link rel="stylesheet" href="css/style.css">
 <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -28,16 +27,6 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
-		<div class="page-loader page-loader-variant-1">
-			<div>
-				<img class='img-responsive'
-					style='margin-top: -20px; margin-left: -18px;' width='280'
-					height='67' src='img/BURedTransparent.png' alt='' />
-				<div class="offset-top-41 text-center">
-					<div class="spinner"></div>
-				</div>
-			</div>
-		</div>
 		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
 		<div class="rd-navbar-wrap">
@@ -109,16 +98,8 @@
 											%>
       
         <ul class="dropdown-menu">
-        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
- 							   		
+        
+ 							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
@@ -134,149 +115,58 @@
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-					<div class="rd-navbar-search">
-						<a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search"
-							href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-						<form action="search-results.html" method="GET"
-							class="rd-navbar-search-form search-form-icon-right rd-search">
-							<div class="form-group">
-								<label for="rd-navbar-search-form-input" class="form-label">Type
-									and hit enter...</label> <input id="rd-navbar-search-form-input"
-									type="text" name="s" autocomplete="off"
-									class="rd-navbar-search-form-input form-control form-control-gray-lightest" />
-							</div>
-							<!--button(type="submit").rd-navbar-search-form-submit.mdi.mdi-magnify-->
-						</form>
-						<!--div.rd-navbar-live-search-results-->
-						<!--button(data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-inner, .rd-navbar-live-search-results").rd-navbar-search-toggle-->
-						<!--  span-->
-					</div>
+				
 				</div>
 			</div>
 			</nav>
 		</div>
-		<!-- Welcome to Intense--> <section>
-		<div data-on="false" data-md-on="true"
-			class="bg-gray-base context-dark rd-parallax">
-			<div data-speed="0.3" data-type="html" data-md-fade="true"
-				class="rd-parallax-layer">
-				<div class="shell">
-					<div class="range">
-						<div
-							class="range range-xs-middle range-xs-center section-cover section-top-124 section-bottom-98 section-sm-top-110 section-sm-bottom-110 context-dark">
-							<div class="range range-xs-center">
-								<div class="cell-lg-12">
-									<div data-caption-animate="fadeInUp" data-caption-delay="300"
-										class="text-extra-big text-bold text-italic text-uppercase"
-										style="color: red">DOCUMENT CENTRAL</div>
+		<!-- Page Content--> <main class="page-content bg-shark-radio">
+		<div class="one-page">
+			<!-- Login-->
+			<section>
+			<div class="shell">
+				<div class="range">
+					<div
+						class="section-110 section-cover range range-xs-center range-xs-middle">
+						<div class="cell-xs-8 cell-sm-6 cell-md-4">
+							<div
+								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
+								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
+								<div>
+									<div class="offset-top-24 text-darker big text-bold">You must login or register to view this page</div>
+									<p class="text-extra-small text-dark offset-top-4"> Click on login or register below</p>
 								</div>
-								<div class="cell-lg-9 offset-top-20">
-									<h5 data-caption-animate="fadeInUp" data-caption-delay="500"
-										class="hidden reveal-xs-block text-light"></h5>
-									<h6 style="font-size: 24px;">Below are all the necessary
-										documents that clubs will need.</h6>
+								<!-- RD Mailform-->
+								<form action="errorLogin" method="post" data-form-output="form-output-global"
+									data-form-type="contact" method="post"
+									class="text-left offset-top-30">
+									
+									<button type="submit"
+										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
+										Login<span
+											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
+									</button>
 
+								</form>
+								
+								<div
+									class="offset-top-30 text-sm-left text-dark text-extra-small">
+									<a href="#" class="text-picton-blue">Forgot your password?</a>
+									<div class="offset-top-0">
+										Don't have an account? <a href="RegisterServlet"
+											class="text-picton-blue">Sign up here</a>.
+									</div>
+									
 								</div>
+								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		</section> </header>
-
-		<!-- First Grid -->
-		<div data-on="false" data-md-on="true"
-			class="bg-gray-base context-dark rd-parallax">
-			<div class="w3-content">
-				<TABLE BORDER="5" WIDTH="99%" CELLPADDING="10" CELLSPACING="2">
-					<TR>
-						<TH COLSPAN="2"><BR>
-						<H3 style="text-align: center;">Club Documents</H3></TH>
-					</TR>
-					<TR>
-						<TH style="text-align: center; color: red; width: 50%">File
-							Name</TH>
-						<TH style="text-align: center; color: red; width: 50%">File
-							Description</TH>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Event-Request-Form.docx"
-								download="Event Request Form">Event Request Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for
-							reserving rooms, equipment, etc.</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Fundraising-Event-Form.docx"
-								download="Fundraising Event Request Form">Fundraising Event
-									Request Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for trying
-							to raise funds for an event</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Funding-Review-Board.docx"
-								download="Funding Review Board Form">Funding Review Board
-									Form</a></u></TD>
-						<TD style="text-align: justify">This form is used to appeal
-							for funds from the Funding Review Board</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Food-Form.docx"
-								download="Food Request Form">Food Request Form</a></u></TD>
-						<TD style="text-align: justify">This form is used to request
-							for food at an event</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/Event-Evaluation.docx"
-								download="Event Evaluation Form">Event Evaluation Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for
-							evaluating how an event went and providing feedback to
-							administrators</TD>
-					</TR>
-					<TR ALIGN="CENTER">
-						<TD style="text-align: justify"><u><a
-								href="http://www.ben.edu/student-life/student-success-center/student_engagement/upload/GBM-Sign-In-Sheet.doc"
-								download="GBM Sign In Form">General Body Meeting Sign In
-									Form</a></u></TD>
-						<TD style="text-align: justify">This form is used for signing
-							in students at general body meetings</TD>
-					</TR>
-				</TABLE>
-			</div>
-		</div>
-		
-		<div class="bg-gray-base context-dark rd-parallax">
-		
-		<p style="margin-top: 50px"><b>Upload Forms Below: </b></p>
-		
-  		<form method="POST" action="uploadFile" enctype="multipart/form-data">
-    		<input style="display: inline-block;" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-    		
-    	<button type="button" style="margin-top: 10px; color: red; width: 100px">            
-  		Submit
-  		</button>
-  		
-		</form>
-  		
-
-		<!-- Page Footer-->
-		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-		<div class="shell">
-			<div class="range range-sm-center text-lg-left">
-				<div class="cell-sm-12">
-					<div class="range range-xs-center">
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-							<!-- Footer brand-->
-							<div class="offset-top-50 text-xs-center text-lg-left">
+			</section>
+			<div class="one-page-footer">
+			<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
@@ -288,17 +178,13 @@
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
 							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-									href="privacy.html">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
-						</div>
-					</div>
-				</div>
+				<p style="color: rgba(255, 255, 255, 0.3)" class="small">
+					The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+						href="privacy.html">Privacy Policy</a>
+				</p>
 			</div>
 		</div>
-		</footer>
+		</main>
 	</div>
 	<!-- Global Mailform Output-->
 	<div id="form-output-global" class="snackbars"></div>

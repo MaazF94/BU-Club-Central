@@ -108,12 +108,20 @@
 											%>
       
         <ul class="dropdown-menu">
-        
- 							   
+        <%if  (((User) session.getAttribute("user")) != null) {%>
+ 							<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>	   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
+      <%} %>
         
           
         </ul>
@@ -164,57 +172,40 @@
 				<div class="container">
 					<h1>${clubName}</h1>
 				</div>
+				
 			</h1>
-			<%ClubDao numMembers = new ClubDao();
-				int size = numMembers.countMemebers(((User)session.getAttribute("user")).getClub_id_num());
+							              ${message}
 			
-			
-			%>
-			<h5>Number of Club Members: <%=size %></h5>
+			<h5>Number of Club Members: ${clubMembers}</h5>
+
 
 			<br>
 			   <b>Description:</b>
 			   <br>
-			   <%ClubDao daoC = new ClubDao();
-			   	Club c = daoC.getClubById(((User)session.getAttribute("user")).getClub_id_num());
-			   %>
-			   <%=c.getClub_description() %>
-			 </p>
+			   <p>${clubDescription}</p>
 			 
 			 <br>
 			   <b>Advisor: </b>
 			   <br>
-			   <%=c.getAdvisor_name() %>
+			   <p>${advisorName}</p>
+			   
+			   	<form action = "UserEmailsBMServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                  <p style="float: center; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact a board member..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+</p>
+                  
+                </div>
+              </div>
+              </form>
 			   
 			<div class="range range-xs-left range-xs-left">
               <div class="cell-sm-6">
-              ${message}
-                <h6 style="align:left; padding-left:1px;">Contact a Board Member:</h6>
                 <!-- RD Mailform-->
-                <form data-form-output="form-output-global" data-form-type="contact" method="post" class="text-left offset-top-20">
-                    <div style="width: 75%" class="cell-lg-2">
-                      <div class="form-group">
-                        <label for="contact-us-name" class="form-label form-label-outside"><strong>Name:</strong></label>
-                        <input id="contact-us-name" type="text" name="name"  placeholder="Full Name"  class="form-control form-control-impressed">
-                      </div>
-                    </div>
-                    <div style="padding: 10px; width: 75%" class="cell-lg-2 offset-top-20">
-                      <div class="form-group">
-                        <label for="contact-us-email" class="form-label form-label-outside"><strong>E-Mail:</strong></label>
-                        <input id="contact-us-email" type="email" name="email" placeholder="Your Email Address" data-constraints="@Required @Email" class="form-control form-control-impressed">
-                      </div>
-                    </div>
-                    <div style="padding: 10px; width: 75%" class="cell-lg-6 offset-top-20">
-                      <div class="form-group">
-                        <label for="contact-us-message" class="form-label form-label-outside"><strong>Message:</strong></label>
-                        <textarea id="contact-us-message" name="message" placeholder="Write Your Message Here..." class="form-control form-control-impressed"></textarea>
-                      </div>
-                    </div>
-                  <div class="group-sm text-center text-lg-center offset-top-30">
-                    <button type="submit" class="btn btn-danger">Send</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
-                  </div>
-                </form>
               </div>
             </div>
 		</div>
@@ -260,191 +251,6 @@
 				</div>
 			</div>
 		</div> --%>
-
-
-
-
-		<div class="row">
-			<div class="container">
-				<div class="col-lg-12">
-					<h1>Home Page</h1>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="container" style="height: 100px"></div>
-		</div>
-
-
-
-		<div class="row">
-
-
-
-			<div class="container">
-				<div class="col-lg-6">
-					<%
-						EventsDao eDao = new EventsDao();
-						LinkedList<Events> eventList = new LinkedList<Events>();
-						eventList = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-						int eventListIndex = 0;
-						int eventListSize = eventList.size();
-					%>
-
-
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>Event Name</th>
-								<th>Location</th>
-								<th>RSVP</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<%
-								while (eventListIndex < eventListSize) {
-							%>
-							<tr>
-								<td><%=eventList.get(eventListIndex).getEvent_name()%></td>
-								<td><%=eventList.get(eventListIndex).getLocation()%></td>
-								<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
-								<td>
-									<form action="EventDetailsServlet" method="GET">
-										<%
-											int eventId = eventList.get(eventListIndex).getEventId();
-										%>
-										<button class="btn" type="submit" name="eventId"
-											value="<%=eventId%>">
-											<span class="glyphicon glyphicon-calendar"
-												style="font-size: 40px"></span>
-										</button>
-
-									</form>
-
-
-								</td>
-							</tr>
-
-							<%
-								eventListIndex++;
-							%>
-							<%
-								}
-							%>
-						</tbody>
-					</table>
-
-
-
-				</div>
-
-				<div class="col-lg-6">
-				
-							<%PostDao pDao = new PostDao();
-								LinkedList<Post> postList = new LinkedList<Post>();
-								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-								
-								int postListIndex = 0;
-								int postListSize = postList.size();
-								
-							%>
-							
-							<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Post Title</th>
-											<th>Contents</th>
-											<th></th>
-										</tr>
-									</thead>
-							<%while (postListIndex < postListSize) { %>
-								
-									<tbody>
-										<tr>
-											<td><%=postList.get(postListIndex).getTitle()%></td>
-											<td><%=postList.get(postListIndex).getContents()%></td>
-											<td>
-												<form action="#" method="GET">
-													<%int postId = postList.get(postListIndex).getIdpost();%>
-													<button class="btn" type="submit" name="editPostId" value="<%=postId%>">
-														<span class="glyphicon glyphicon-comment" style="font-size: 40px"></span></button>
-												
-												</form>
-											
-											</td>
-										</tr>
-									</tbody>
-							
-							<%postListIndex++; %>
-							<% }%>
-							</table>
-				
-
-			</div>
-		</div>
-	</div>
-
-
-	<div class="row">
-		<div class="container">
-			<div class="col-lg-12">
-				<%UserDao uDao = new UserDao();
-					LinkedList<User> userList = new LinkedList<User>();
-				
-					userList = uDao.getUsersByClub(((User)session.getAttribute("user")).getClub_id_num());
-					
-					int userListIndex = 0;
-					int userListSize = userList.size();
-				%>
-				
-				
-				<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>User Name</th>
-											<th>Email</th>
-											<th>Role</th>
-										</tr>
-									</thead>
-							<%while (userListIndex < userListSize) { %>
-								
-									<tbody>
-										<tr>
-											<td><%=userList.get(userListIndex).getFirst_name() + " " + userList.get(userListIndex).getLast_name()%></td>
-											<td><%=userList.get(userListIndex).getUsername()%></td>
-											<td><%=userList.get(userListIndex).getEmail()%></td>
-											
-											<%if(userList.get(userListIndex).getRole_id() == 1) { %>
-												<td>General Member</td>
-											
-											<%} else { %>
-												<td>Board Member</td>
-											<%} %>
-										</tr>
-									</tbody>
-							
-							<%userListIndex++; %>
-							<% }%>
-							</table>
-				
-			</div>
-		</div>
-	</div>
-
-
-
-	
-
-	<div class="row">
-		<div class="container" style="height:500px">
-			<div class="col-lg-12">
-			
-			</div>
-		</div>	
-	</div>
 
 
 
@@ -546,6 +352,13 @@
 
 
 	<!-- Java script-->
+		<script>
+	function enableUpdateButtonContact() {
+
+	    document.getElementById("buttonContact").disabled = false;
+
+	}
+	</script>
 	<script>
 		var request = new XMLHttpRequest();
 		function searchInfo() {

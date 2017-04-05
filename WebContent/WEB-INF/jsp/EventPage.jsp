@@ -117,12 +117,20 @@
 											%>
       
          <ul class="dropdown-menu">
-        
- 							   
+         <%if (((User) session.getAttribute("user")) != null) { %>
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
+      <%} %>
         
           
         </ul>
@@ -158,9 +166,9 @@
 
 		
 		<!-- Page Content-->
-      <main class="page-content section-98 section-sm-110">
-        <div class="shell">
-          <div class="range range-xs-center">
+      <main class="page-content section-98 section-sm-110 ">
+        <div class="shell ">
+          <div class="range range-xs-center ">
             <div class="cell-md-8 cell-md-push-2">
               <div class="inset-md-left-20">
                 <!-- Classic Thumbnail-->
@@ -181,17 +189,28 @@
 						eventList = eventDao.getAllEvents();
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
+						 int noOfRecords = eventList.size();
+						int pages = 1;
+				         int recordsPerPage = 5;
+				        
+				        
+				        
+				        
+				        
+				         
+				         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 						ClubDao cDao = new ClubDao();
 					%>
 					<%
 						while (eventListIndex < eventListSize) {
 					%>
                                   <!-- Post Wide-->
-                                  <article class="post post-default text-left">
+                                  <article class="post post-default text-left well">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
                                       <ul class="post-controls list-inline list-inline-sm p text-dark">
+                                      <li><h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3></li>
                                         
                                         <li><span class="text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot">&nbsp;</span><%=eventList.get(eventListIndex).getRsvp_count()%><span class="text-middle small"></span></li>
                                         
@@ -199,19 +218,22 @@
                                         <li><span class="text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=eventList.get(eventListIndex).getLocation()%></span></a></li>
                                       </ul>
                                       <!-- Post Meta-->
-                                      <h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3>
+                                      
                                       <!-- Post Media-->
                                       
                                     </div>
                                     <!-- PostContent-->
                                     <section class="post-content offset-top-41">
                                     <p><%= eventList.get(eventListIndex).getDescription() %></p>
-                                  
-                                      <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
-									<button class="btn btn-default text-red-gray" type="submit" name="eventId"
+                                     
+                                    </section>
+                                     <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-info text-red-gray" type="submit" name="eventId"
 												value="<%=eventList.get(eventListIndex).getEventId()%>">More
 												Info</button>
 										</form></a>
+										                                  <%if (((User) session.getAttribute("user")) != null) { %>
+										
                                       <a class="offset-top-24 btn btn"><%EventRSVPListDao rsvpDao = new EventRSVPListDao(); 
 										
 										boolean rsvpBoolean = rsvpDao.checkUserRsvpForEvent(eventList.get(eventListIndex).getEventId(), ((User)session.getAttribute("user")).getId_num());
@@ -237,9 +259,10 @@
 										
 										
 									
-									<%} %></a>
-                                    </section>
+									<%} } %></a>
+                                    
                                   </article>
+                                  
                   <hr class="hr offset-top-66">
                   <%
 					eventListIndex++;
@@ -274,12 +297,29 @@
                 <div class="range offset-top-41">
                   <div class="cell-xs-6 cell-md-12">
                     <!-- Category-->
+                    <%
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao2.displayClub();
+
+			int index = 0;
+		%>
                     <h6 class="text-uppercase text-spacing-60">Clubs</h6>
                     <div class="text-subline"></div>
                     <ul class="list list-marked offset-top-30">
-                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                    <%
+							while (index < clubList.size()) {
+						%>
+                      <li><a href="#"><%
+												out.println(clubList.get(index).getClub_name());
+											%><span class="text-dark">(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></a></li>
+												<%
+										index++;
+										}
+									%>
                       
                     </ul>
+                    
                   </div>
                   
                 </div>

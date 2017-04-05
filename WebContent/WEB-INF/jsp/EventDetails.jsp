@@ -127,13 +127,22 @@
 											%>
       
          <ul class="dropdown-menu">
-        
+         <%if (session.getAttribute("user") != null) { %>
+        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
+        						<%if (role_id == 1) { %>
+        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        						<%}else if (role_id == 2) { %>
+        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
+        						<%}else { %>
+        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
+        						<%} %>
+        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
       
-        
+        <%} %>
           
         </ul>
       </li>
@@ -183,7 +192,7 @@
                 <!-- Embed Video-->
                 <!-- Classic Soundcloud Player-->
                 <!-- Blog Default Single-->
-                <section>
+                <section class = "well">
                 <%
 					ClubDao clubDao = new ClubDao();
 					EventsDao eventDao = new EventsDao();
@@ -193,11 +202,13 @@
 					LinkedList<User> userList = rsvpDao.getAllUsersForEvent(Integer.parseInt(request.getParameter("eventId")));
 				%>
                                   <!-- Post Wide-->
-                                  <article class="post post-default text-left">
+                                  <article class="post post-default text-left ">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
+                                       
                                       <ul class="post-controls list-inline list-inline-sm p text-dark">
+                                      <li><h3 class="post-title"><a href="#"><%=event.getEvent_name()%></a></h3></li>
                                         
                                         <li><a href="#" class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot " title="Number of people coming">&nbsp;</a><%=event.getRsvp_count()%><span class="text-middle small"></span></li>
                                         
@@ -205,7 +216,7 @@
                                         <li><span class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot" title="Location of the event">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=event.getLocation()%></span></a></li>
                                       </ul>
                                       <!-- Post Meta-->
-                                      <h3 class="post-title"><a href="#"><%=event.getEvent_name()%></a></h3>
+                                     
                                       <!-- Post Media-->
                                       <div class="post-media offset-top-34">
                                         
@@ -217,12 +228,12 @@
                                       
                                     </section>
                                   </article>
-                  <footer class="offset-top-50 text-sm-left clearfix">
+                  <footer class="offset-top-50 text-sm-left clearfix ">
                     <h6 class="pull-sm-left">Please Join Us:</h6>
                     <ul class="list-inline small pull-sm-right p offset-top-0 text-sm-right">
                       <li><form action="RSVPServlet" method="POST">
 
-									<button class="btn btn-default " type="submit" name="eventId"
+									<button class="btn btn-info " type="submit" name="eventId"
 										value="<%=Integer.parseInt(request.getParameter("eventId"))%>">RSVP</button>
 								</form></li>
                       
@@ -257,7 +268,7 @@
                                             <div class="unit-left unit-grow-1">
                                               <ul class="box-comment-meta list-inline list-inline-sm text-dark">
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
-                                                  <time datetime="2016-01-01">Feb 17, 7:34</time>
+                                                  <time datetime="2016-01-01"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
                                                 <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
                                                 <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>

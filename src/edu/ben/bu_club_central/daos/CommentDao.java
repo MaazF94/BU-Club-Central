@@ -18,7 +18,7 @@ public class CommentDao {
 	
 	public void addComent(String comment, int eventId, int userId) {
 		String sql = "INSERT INTO " + tableName + "(comment, eventId, userId) VALUES ('" + comment + "', '" + eventId + "', '" + userId + "')";
-		
+		System.out.println(sql);
 		PreparedStatement ps;
 		
 		try {
@@ -47,7 +47,7 @@ public class CommentDao {
 		
 		try {
 			while(rs.next()) {
-				c = new Comment(rs.getInt("idcomments"), rs.getString("comment"), rs.getInt("eventId"), rs.getInt("userId"));
+				c = new Comment(rs.getInt("idcomments"), rs.getString("comment"), rs.getInt("eventId"), rs.getInt("userId"), rs.getString("createdOn"));
 				commentList.add(c);
 				
 			}
@@ -75,7 +75,7 @@ public class CommentDao {
 		
 			try {
 				rs.next();
-				comment = new Comment(rs.getInt("idcomments"), rs.getString("comment"), rs.getInt("eventId"), rs.getInt("userId"));
+				comment = new Comment(rs.getInt("idcomments"), rs.getString("comment"), rs.getInt("eventId"), rs.getInt("userId"), rs.getString("createdOn"));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
