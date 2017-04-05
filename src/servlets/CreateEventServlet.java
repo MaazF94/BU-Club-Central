@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.EventNotificationDao;
 import edu.ben.bu_club_central.daos.EventsDao;
 import edu.ben.bu_club_central.models.User;
 
@@ -43,6 +44,9 @@ public class CreateEventServlet extends HttpServlet {
 		createEvent(request.getParameter("event_name"), request.getParameter("description"),
 				request.getParameter("location"), 
 				((User) request.getSession().getAttribute("user")).getClub_id_num());
+		
+		eventNotifications();
+		
 		response.sendRedirect("BoardMemberDashBoard");
 
 	}
@@ -50,6 +54,13 @@ public class CreateEventServlet extends HttpServlet {
 	public void createEvent(String event_name, String description, String location, int club_id_num) {
 		EventsDao eDao = new EventsDao();
 		eDao.addEvent(event_name, description, location, club_id_num);
+	}
+	
+	public void eventNotifications() {
+		EventNotificationDao eDao = new EventNotificationDao();
+		EventsDao eventDao = new EventsDao();
+		int eventId = eventDao.getLatestEventId();
+		eDao.addEventsAndUsers(eventId);
 	}
 
 }
