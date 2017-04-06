@@ -9,6 +9,8 @@
 <%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
 <%@ page import="edu.ben.bu_club_central.models.ClubMembership"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.DocumentForAdminDao"%>
+<%@ page import="edu.ben.bu_club_central.models.DocumentForAdmin"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
@@ -206,6 +208,8 @@
 						<li role="presentation" ><a href="#editUsers"
 							aria-controls="editUsers" role="tab" data-toggle="tab">Edit
 								Users</a></li>
+								<li role="presentation" ><a href="#pendingForms"
+							aria-controls="pendingForms" role="tab" data-toggle="tab">Pending Forms</a></li>
 
 					</ul>
 
@@ -548,6 +552,50 @@
 
 										<%
 											userListIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						<div role="tabpanel" class="tab-pane " id="pendingForms">
+							<div class="container">
+								<%DocumentForAdminDao dfaDao = new DocumentForAdminDao();
+							LinkedList<DocumentForAdmin> documentForAdminList = new LinkedList<DocumentForAdmin>();
+							documentForAdminList = dfaDao.displayDocumentForAdminInfo();
+								int documentPendingIndex = 0;
+								
+							%>
+								<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Name of Form</th>
+											<th>Submitted by</th>
+											<th>File</th>
+											<th>Accept/Deny</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (documentPendingIndex < documentForAdminList.size()) {
+										%>
+										<tr>
+											<td><%=documentForAdminList.get(documentPendingIndex).getName()%></td>
+											<td><%=documentForAdminList.get(documentPendingIndex).getFrom_id_num()%></td>
+											<td><%=documentForAdminList.get(documentPendingIndex).getFile()%></td>
+																										
+										</tr>
+
+										<%
+										documentPendingIndex++;
 										%>
 										<%
 											}

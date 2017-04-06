@@ -27,7 +27,7 @@
 <head>
 <!-- Site Title-->
 <title>Club Dashboard</title>
-
+<meta http-equiv="Content-Type">
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport"
 	content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -763,7 +763,31 @@
 										%>
 									</tbody>
 							
-							</table>							
+							</table>	
+							<center>
+							<form action="UploadFileServlet" method="POST" enctype="multipart/form-data">
+            <table border="0">
+            									<thead>
+										<tr>
+											<th>Upload Completed Form:</th>
+																				</tr>
+									</thead>
+                <tr>
+                	<td>File: </td>
+                    <td><input type="file" name="document" size="50"/></td>
+                </tr>
+                <tr>
+                	<td><input placeholder="Which form are you submitting?" type="text" name="name"/></td>
+                </tr>
+                <br>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Save">
+                    </td>
+                </tr>
+            </table>
+        </form>	
+        </center>					
 						</div>
 						</div>
 						
