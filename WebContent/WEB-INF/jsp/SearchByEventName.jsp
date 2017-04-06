@@ -329,13 +329,10 @@
                 <div class="text-subline"></div>
                 <div class="offset-top-34">
                                 <!-- RD Search Form-->
-                               <form action="SearchByEventName" method="POST" class="form-search rd-search">
-                                  <div class="form-group">
-                                    <label for="blog-sidebar-1-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
-                                    <input id="blog-sidebar-1-form-search-widget" type="text" name="s" autocomplete="off" class="form-search-input input-sm form-control input-sm">
-                                  </div>
-                                  <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
-                                </form>
+                               <form name="vinform">
+								<input placeholder="Enter title of event" type="text"
+									name="name" onkeyup="searchInfo()">
+							</form>
 
                 </div>
               </aside>
