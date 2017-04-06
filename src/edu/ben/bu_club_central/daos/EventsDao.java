@@ -69,6 +69,7 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(results.size());
 		return results;
 	}
 	
@@ -141,10 +142,11 @@ public class EventsDao {
 	
 	public LinkedList<Events> getAllEventsByClubId(int clubId) {
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
+		//System.out.println(sql);
 		
 		
 		LinkedList<Events> list = new LinkedList<Events>();
-		Events event = null;
+		Events event;
 		
 		PreparedStatement ps;
 		ResultSet rs = null;
@@ -168,7 +170,7 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		//System.out.println(list.size());
 		return list;
 	}
 	
@@ -222,9 +224,8 @@ public class EventsDao {
 		}
 		return results;
 	}
-	
 
-	
+
 	
 	
 	

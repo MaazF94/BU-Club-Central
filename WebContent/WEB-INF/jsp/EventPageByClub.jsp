@@ -97,17 +97,17 @@
 								<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
 
-								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
-								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+								<li class=""><a href="/bu-club-central/HomeServlet"><span>Home</span></a></li>
+								<li><a href="/bu-club-central/EventServlet"><span>Events</span></a></li>
+								<li><a href="/bu-club-central/ClublistServlet"><span>clubs</span></a></li>
 
-								<li><a href="MeetTheAdminsServlet"><span>About
+								<li><a href="/bu-club-central/MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
-								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								<li><a href="/bu-club-central/ContactUsServlet"><span>Contact Us</span></a>
 								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+        <a class="dropdown-toggle" data-toggle="dropdown" href="/bu-club-central/LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
+ 						%> <a  href="/bu-club-central/LoginServlet"> Sign In <%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -186,7 +186,7 @@
 						EventsDao eventDao = new EventsDao();
 						LinkedList<Events> eventList = new LinkedList<Events>();
 
-						eventList = eventDao.getAllEvents();
+						eventList = eventDao.getAllEventsByClubId(Integer.parseInt(request.getParameter("clubID")));
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
 						 int noOfRecords = eventList.size();
