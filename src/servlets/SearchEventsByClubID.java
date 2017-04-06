@@ -17,14 +17,14 @@ import edu.ben.bu_club_central.models.Events;
  * Servlet implementation class EventpageByClub
  */
 @WebServlet("/EventpageByClub")
-public class EventSearchServlet extends HttpServlet {
+public class SearchEventsByClubID extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static HttpSession session;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EventSearchServlet() {
+    public SearchEventsByClubID() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +48,7 @@ public class EventSearchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
-		System.out.println("IT GETS HERE POST");
+		
 		EventsDao eventDao = new EventsDao();		
 		int clubid = Integer.parseInt(request.getParameter("clubID"));
 		session.setAttribute("clubID",clubid );
