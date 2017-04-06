@@ -17,7 +17,7 @@ import mailDispatcher.SendMail;
 /**
  * Servlet implementation class ClubHomepageServlet
  */
-@WebServlet("/ClubHomepageServlet")
+@WebServlet("/ClubHomepage")
 public class ClubHomepageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String clubIdNum = "";
@@ -36,9 +36,6 @@ public class ClubHomepageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		
-		
 		ClubDao cDao = new ClubDao();
 		Club clubObject = cDao.getClubById(Integer.parseInt(request.getParameter("club_id_num")));
 		String clubName = clubObject.getClub_name();

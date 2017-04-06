@@ -219,5 +219,30 @@ public class EventsDao {
 		}
 		return results;
 	}
+	/**
+	 * returns the event id of the last event to be created this method
+	 * goes in part with the event notification methods
+	 * @return
+	 */
+	public int getLatestEventId() {
+		String sql = "SELECT * FROM " + tableName + " ORDER BY idevent DESC LIMIT 1";
+		
+		int eventId = 0;
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			eventId = rs.getInt("idevent");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return eventId;
+	}
 
 }
