@@ -47,7 +47,7 @@
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 </head>
-<body onload="loggedIn()">
+<body >
 	<!-- Page-->
 	<div class="page text-center">
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
@@ -226,9 +226,7 @@
               </form>
               </div>
 								<%
-			ClubMembershipDao cmDao = new ClubMembershipDao();
-			LinkedList<ClubMembership> clubMembershipList = new LinkedList<ClubMembership>();
-			clubMembershipList = cmDao.displayUserClubInfo(((User) session.getAttribute("user")).getUser_id());
+			LinkedList<ClubMembership> clubMembershipList = (LinkedList<ClubMembership>) request.getAttribute("clubMembershipList");
 
 			int indexViewMember = 0;
 		%>
@@ -267,9 +265,9 @@
 						
 						<div role="tabpanel" class="tab-pane" id="editDescription">
 						<div class="container">
-							<%ClubDao clDao = new ClubDao();
-								Club clubObject = clDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-								String clubDescription = clubObject.getClub_description();								
+							<%
+								
+								String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
 								
 							%>
 							
@@ -324,9 +322,7 @@
               </form>
               </div>
 								<%
-								ClubMembershipDao cmDao2 = new ClubMembershipDao();
-								LinkedList<ClubMembership> clubMembershipList2 = new LinkedList<ClubMembership>();
-								clubMembershipList2 = cmDao2.displayUserPastClubInfo(((User) session.getAttribute("user")).getUser_id());
+								LinkedList<ClubMembership> clubMembershipList2 = (LinkedList<ClubMembership>) request.getAttribute("clubMembershipList2");
 								int index3 = 0;
 		%>
 								<table class="table table-hover">
@@ -389,9 +385,7 @@
               </form>
               </div>
                   <%
-			UserDao uDao = new UserDao();
-			LinkedList<User> userList = new LinkedList<User>();
-			userList = uDao.getAllUsersForClub(((User) session.getAttribute("user")).getClub_id_num());
+			LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
 			int index = 0;
 		%>
 								<table class="table table-hover sortable">
@@ -458,9 +452,7 @@
               </form>
               </div>
 								<%
-									LinkedList<Events> eventList = new LinkedList<Events>();
-									EventsDao eDao = new EventsDao();
-									eventList = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+									LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList");
 									int eventListIndex = 0;
 									int eventListSize = eventList.size();
 								%>
@@ -547,9 +539,8 @@
               </form>
               </div>
 								<%
-									LinkedList<Events> eventList2 = new LinkedList<Events>();
-									EventsDao eDao2 = new EventsDao();
-									eventList2 = eDao.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
+									
 									int eventListIndex2 = 0;
 									int eventListSize2 = eventList.size();
 								%>
@@ -570,7 +561,6 @@
 											<th>Comment ID</th>
 											<th>Comment</th>
 											<th>Event ID</th>
-											<th>By:</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -579,8 +569,6 @@
 										<%CommentDao cDao = new CommentDao();
 											LinkedList<Comment> commentList = new LinkedList<Comment>();
 											commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
-											UserDao uDao2 = new UserDao();
-											User u;
 											
 											int commentListIndex = 0;
 											int commentListSize = commentList.size();
@@ -593,9 +581,6 @@
 											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
 											<td><%=commentList.get(commentListIndex).getComment()%></td>
 											<td><%=commentList.get(commentListIndex).getEventId()%></td>
-											<td><%u = uDao2.getUserByIdNum(commentList.get(commentListIndex).getUserId()); %>
-												<%=u.getFirst_name() + " " + u.getLast_name()%>
-											</td>
 											<td>
 												<form action="EditCommentServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
@@ -648,9 +633,8 @@
               </div>
               </form>
               </div>
-							<%PostDao pDao = new PostDao();
-								LinkedList<Post> postList = new LinkedList<Post>();
-								postList = pDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+							<%
+								LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
 								
 								int postListIndex = 0;
 								int postListSize = postList.size();
@@ -732,9 +716,8 @@
               </div>
               </form>
               </div>
-							<%DocumentDao dDao = new DocumentDao();
-							LinkedList<Document> documentList = new LinkedList<Document>();
-								documentList = dDao.displayDocumentInfo();
+							<%
+							LinkedList<Document> documentList = (LinkedList<Document>) request.getAttribute("documentList");
 								int documentIndex = 0;
 								
 							%>
@@ -798,9 +781,7 @@
               </form>
               </div>
           			        <%
-									LinkedList<Events> eventList3 = new LinkedList<Events>();
-									EventsDao eDao3 = new EventsDao();
-									eventList3 = eDao3.getAllEventsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+									LinkedList<Events> eventList3 = (LinkedList<Events>) request.getAttribute("eventList3");
 									int eventListIndex3 = 0;
 									int eventListSize3 = eventList3.size();
 								%>
