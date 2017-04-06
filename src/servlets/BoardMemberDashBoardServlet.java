@@ -90,6 +90,12 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 			request.setAttribute("eventList3", eventList3);
 			
 			
+			LinkedList<Events> eventListFeedback = new LinkedList<Events>();
+			EventsDao eventListFeedbackDao = new EventsDao();
+			eventListFeedback = eventListFeedbackDao.getAllEventsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			request.setAttribute("eventListFeedback", eventListFeedback);
+			
+			
 			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 			
 		} else {
