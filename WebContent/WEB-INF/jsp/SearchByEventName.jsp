@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 
 
-
 <%@ page import="edu.ben.bu_club_central.models.User"%>
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
@@ -15,6 +14,8 @@
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventRSVPListDao"%>
 <%@ page import="java.util.*"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
@@ -37,18 +38,7 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
-		<style>
-.tooltip {
-	display:none;
-	position:absolute;
-	border:1px solid #333;
-	background-color:#161616;
-	border-radius:5px;
-	padding:10px;
-	color:#fff;
-	font-size:12px Arial;
-}
-</style>
+
 </head>
 <body>
 	<!-- Page-->
@@ -127,7 +117,7 @@
 											%>
       
          <ul class="dropdown-menu">
-         <%if (session.getAttribute("user") != null) { %>
+         <%if (((User) session.getAttribute("user")) != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
         							<li><a href=UserServlet><span class="">Dash Board</span></a>
@@ -137,12 +127,11 @@
         							<li><a href="AdminHome"><span class="">Dash Board</span></a>
         						<%} %>
         						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
- 							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
-        <%} %>
+      <%} %>
+        
           
         </ul>
       </li>
@@ -175,15 +164,11 @@
 		</div>
 		</header>
 
-		<!-- End of header -->
-	
-
-
-
-<!-- Page Content-->
-      <main class="page-content section-98 section-sm-110">
-        <div class="shell">
-          <div class="range range-xs-center">
+		
+		<!-- Page Content-->
+      <main class="page-content section-98 section-sm-110 ">
+        <div class="shell ">
+          <div class="range range-xs-center ">
             <div class="cell-md-8 cell-md-push-2">
               <div class="inset-md-left-20">
                 <!-- Classic Thumbnail-->
@@ -192,148 +177,151 @@
                 <!-- Embed Video-->
                 <!-- Classic Soundcloud Player-->
                 <!-- Blog Default Single-->
-                <section >
+                
+                <section>
+                
+                <h2 class="text-bold">Upcoming Events</h2>
+                <hr class="divider  bg-red">
                 <%
-					ClubDao clubDao = new ClubDao();
-					EventsDao eventDao = new EventsDao();
-					Events event = eventDao.getEventByEventId(Integer.parseInt(request.getParameter("eventId")));
-					
-					EventRSVPListDao rsvpDao = new EventRSVPListDao();
-					LinkedList<User> userList = rsvpDao.getAllUsersForEvent(Integer.parseInt(request.getParameter("eventId")));
-				%>
+						EventsDao eventDao = new EventsDao();
+						LinkedList<Events> eventList = new LinkedList<Events>();
+
+						eventList = eventDao.getAllEvents();
+						int eventListSize = eventList.size();
+						int eventListIndex = 0;
+						 int noOfRecords = eventList.size();
+						int pages = 1;
+				         int recordsPerPage = 5;
+				        
+				        
+				        
+				        
+				        
+				         
+				         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+						ClubDao cDao = new ClubDao();
+					%>
+					<%
+						while (eventListIndex < eventListSize) {
+					%>
                                   <!-- Post Wide-->
                                   <article class="post post-default text-left well">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
-                                       
                                       <ul class="post-controls list-inline list-inline-sm p text-dark">
-                                      <li><h3 class="post-title"><a href="#"><%=event.getEvent_name()%></a></h3></li>
+                                      <li><h3 class="post-title text-default"><a><%=eventList.get(eventListIndex).getEvent_name()%></a></h3></li>
                                         
-                                        <li><a href="#" class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot " title="Number of people coming">&nbsp;</a><%=event.getRsvp_count()%><span class="text-middle small"></span></li>
+                                        <li><span class="text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot">&nbsp;</span><%=eventList.get(eventListIndex).getRsvp_count()%><span class="text-middle small"></span></li>
                                         
                                         
-                                        <li><span class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot" title="Location of the event">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=event.getLocation()%></span></a></li>
+                                        <li><span class="text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=eventList.get(eventListIndex).getLocation()%></span></a></li>
                                       </ul>
                                       <!-- Post Meta-->
-                                     
+                                      
                                       <!-- Post Media-->
-                                      <div class="post-media offset-top-34">
-                                        
-                                      </div>
+                                      
                                     </div>
                                     <!-- PostContent-->
-                                    <section class="post-content offset-top-41 ">
-                                      <p><%=event.getDescription()%></p>
-                                      
+                                    <section class="post-content offset-top-41">
+                                    <p><%= eventList.get(eventListIndex).getDescription() %></p>
+                                     
                                     </section>
+                                     <a class="offset-top-24 btn btn"><form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-info text-red-gray" type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">More
+												Info</button>
+										</form></a>
+										                                  <%if (((User) session.getAttribute("user")) != null) { %>
+										
+                                      <a class="offset-top-24 btn btn"><%EventRSVPListDao rsvpDao = new EventRSVPListDao(); 
+										
+										boolean rsvpBoolean = rsvpDao.checkUserRsvpForEvent(eventList.get(eventListIndex).getEventId(), ((User)session.getAttribute("user")).getId_num());
+									%>
+									
+									<%if(!rsvpBoolean) { %>
+										
+										<form action="RSVPServlet" method="POST">
+
+											<button class="btn btn-default " type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">RSVP For Event</button>
+										</form>
+										
+									
+									
+									<%}else { %>
+										
+											<form action="RSVPServlet" method="POST">
+
+											<button disabled class="btn btn-default" type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">Already Going</button>
+										</form>
+										
+										
+									
+									<%} } %></a>
+                                    
                                   </article>
-                  <footer class="offset-top-50 text-sm-left clearfix well ">
-                    <h6 class="pull-sm-left">Please Join Us:</h6>
-                    <ul class="list-inline small pull-sm-right p offset-top-0 text-sm-right">
-                      <li><form action="RSVPServlet" method="POST">
-
-									<button class="btn btn-info " type="submit" name="eventId"
-										value="<%=Integer.parseInt(request.getParameter("eventId"))%>">RSVP</button>
-								</form></li>
-                      
-                    </ul>
-                  </footer>
+                                  
+                  <hr class="hr offset-top-66">
+                  <%
+					eventListIndex++;
+				%>
+				<%
+					}
+				%>
                   
                   
-                  <div id="comments"></div>
-                  <hr class="offset-top-66">
-                  <h4 class="offset-top-66 text-uppercase text-spacing-120 text-left text-bold">Comments</h4>
-                  <div class="offset-top-41 well">
-                      <%
-											UserDao userDao = new UserDao();
-												User user;
-												LinkedList<Comment> commentList = new LinkedList<Comment>();
-												CommentDao commentDao = new CommentDao();
-												commentList = commentDao.getCommentsByEventId(Integer.parseInt(request.getParameter("eventId")));
-												int commentListIndex = 0;
-												int commentListSize = commentList.size();
-										%>
-
-										<%
-											while (commentListIndex < commentListSize) {
-										%>              
-                                                     
-                                    <!-- Box Comment-->
-                                    <div class="box-comment text-left box-comment-outboxed bg-gray-lightest">
-                                      <div class="media">
-                                        
-                                        <div class="media-body">
-                                          <header class="box-comment-header unit unit-vertical unit-spacing-xxs unit-md unit-md-horizontal unit-md-inverse unit-md-middle unit-md-align-right">
-                                            <div class="unit-left unit-grow-1">
-                                              <ul class="box-comment-meta list-inline list-inline-sm text-dark">
-                                                <li><span class="box-comment-icon mdi mdi-clock"></span>
-                                                  <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
-                                                </li>
-                                                <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
-                                                <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
-                                              </ul>
-                                            </div>
-                                            <div class="unit-body">
-                                              <h6 class="box-comment-title"><%
-													user = userDao.getUserByIdNum(commentList.get(commentListIndex).getUserId());
-												%> By: <%=user.getFirst_name()%></h6>
-                                            </div>
-                                          </header>
-                                          <section class="box-comment-body">
-                                            <p><%=commentList.get(commentListIndex).getComment()%></p>
-                                          </section>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <%
-											commentListIndex++;
-										%>
-										<%
-											}
-										%>
+                 
+                  <div class="offset-top-66">
+                                    <!-- Bootstrap Pagination-->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true" class="mdi mdi-chevron-double-left"></span></a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#" aria-label="Next"><span aria-hidden="true" class="mdi mdi-chevron-double-right"></span></a></li>
+                                      </ul>
+                                    </nav>
                   </div>
-                  <h4 class="offset-top-34 text-uppercase text-spacing-120 text-left text-bold">Leave a comment</h4>
-                  <form action="CommentServlet" method="POST" class="rd-mailform offset-top-10 text-left well">
-                    <div class="form-group">
-                      <label for="comment-message" class="form-label form-label-outside">Message:</label>
-                      <textarea class="form-control"
-							onkeyup="textCounter(this,'counter',250);" rows="4" cols="30"
-							name="comment"
-							placeholder="Enter your comment here... 250 Characters max"></textarea>
-                    </div>
-                    <div class="group-sm text-center text-lg-left offset-top-30">
-                      <button class="btn btn-md btn-primary" type="submit"
-							name="commentId_eventId"
-							value="<%=Integer.parseInt(request.getParameter("eventId"))%>">Comment
-						</button>
-                    <h6 class="pull-right">
-							<input disabled maxlength="1" size="1" class= "" value="250" id="counter">
-							Remaining
-						</h6>
-                    </div>
-                    
-                  </form>
                 </section>
               </div>
             </div>
-            <div class="cell-md-4 cell-md-push-1 offset-top-66 offset-md-top-0">
-               <!-- Section Blog Modern-->
+    <div class="cell-md-4 cell-md-push-1 offset-top-66 offset-md-top-0">
+              <!-- Section Blog Modern-->
               <aside class="text-left">
                 
                
                 <div class="range offset-top-41">
                   <div class="cell-xs-6 cell-md-12">
                     <!-- Category-->
+                    <%
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao2.displayClub();
+
+			int index = 0;
+		%>
                     <h6 class="text-uppercase text-spacing-60">Clubs</h6>
                     <div class="text-subline"></div>
                     <ul class="list list-marked offset-top-30">
-                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                    <%
+							while (index < clubList.size()) {
+						%>
+                      <li><form action ="EventpageByClub" method="POST" >
+                      <button type="submit" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-dark"><%
+												out.println(clubList.get(index).getClub_name());
+											%>(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></button></form></li>
+												<%
+										index++;
+										}
+									%>
                       
                     </ul>
+                    
                   </div>
-                  
-                  
                   
                 </div>
                 <!-- Search Form-->
@@ -351,68 +339,13 @@
             </div>
           </div>
         </div>
-        
-          <div class="row">
-          	<div class="container">
-          		<div class="col-lg-12">
-          			<table>
-                  	<thead>
-                  		<tr>
-                  			<th><h1>Users Going</h1></th>
-                  		</tr>
-                  	</thead>
-                  	<tbody>
-                  		<% int rsvpIndex = 0;
-                  			int rsvpListSize = userList.size();
-                  		
-                  		%>
-                  		<%while(rsvpIndex < rsvpListSize) { %>
-                  		<tr>
-                  			<td><%=userList.get(rsvpIndex).getFirst_name() + " " + userList.get(rsvpIndex).getLast_name() %> </td>
-                  		</tr>
-                  		
-                  		<%rsvpIndex++; %>
-						<%} %>                  		
-                  		
-                  	</tbody>
-                  
-                  
-                  </table>
-          		</div>
-          	</div>
-          </div>
-        
       </main>
-      
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		<!-- Page Footer-->
 		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
@@ -421,75 +354,102 @@
 
 						<div
 							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-
-
-
-
-
-
+							<!-- Footer brand-->
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
-									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
+									<li><a
+										href="https://www.facebook.com/BenedictineUniversity/"
+										target="_blank"
+
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
 										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
+									<li><a
+										href="https://plus.google.com/106737408889171586664"
+										target="_blank"
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
+									<li><a
+										href="https://www.linkedin.com/edu/benedictine-university-18245"
+										target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
+                  </div>
+                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
+                    <!-- {%FOOTER_LINK}-->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+	</div>
+	<!-- Global Mailform Output-->
+	<div id="form-output-global" class="snackbars"></div>
+	<!-- PhotoSwipe Gallery-->
+	<div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+		<div class="pswp__bg"></div>
+		<div class="pswp__scroll-wrap">
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<div class="pswp__counter"></div>
+					<button title="Close (Esc)"
+						class="pswp__button pswp__button--close"></button>
+					<button title="Share" class="pswp__button pswp__button--share"></button>
+					<button title="Toggle fullscreen"
+						class="pswp__button pswp__button--fs"></button>
+					<button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
 							</div>
-							<p class="text-darker offset-top-20">
-								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
-									href="privacy.html">Privacy Policy</a>
-								<!-- {%FOOTER_LINK}-->
-							</p>
 						</div>
 					</div>
 				</div>
+				<div
+					class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button title="Previous (arrow left)"
+					class="pswp__button pswp__button--arrow--left"></button>
+				<button title="Next (arrow right)"
+					class="pswp__button pswp__button--arrow--right"></button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
 			</div>
 		</div>
-		</footer>
 	</div>
 	<!-- Java script-->
-
-
 	<script>
-		function textCounter(field, field2, maxlimit) {
-			var countfield = document.getElementById(field2);
-			if (field.value.length > maxlimit) {
-				field.value = field.value.substring(0, maxlimit);
-				return false;
-			} else {
-				countfield.value = maxlimit - field.value.length;
+		var request = new XMLHttpRequest();
+		function searchInfo() {
+			var name = document.vinform.name.value;
+			var url = "/bu-club-central/SearchPageServlet?val=" + name;
+
+			try {
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						var val = request.responseText;
+						document.getElementById('mylocation').innerHTML = val;
+					}
+				}//end of function  
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Unable to connect to server");
 			}
 		}
 	</script>
+
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
-	 <script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
-</script>
 </body>
 
 </html>

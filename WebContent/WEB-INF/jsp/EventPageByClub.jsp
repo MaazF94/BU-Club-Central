@@ -97,17 +97,17 @@
 								<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
 
-								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
-								<li><a href="EventServlet"><span>Events</span></a></li>
-								<li><a href="ClublistServlet"><span>clubs</span></a></li>
+								<li class=""><a href="/bu-club-central/HomeServlet"><span>Home</span></a></li>
+								<li><a href="/bu-club-central/EventServlet"><span>Events</span></a></li>
+								<li><a href="/bu-club-central/ClublistServlet"><span>clubs</span></a></li>
 
-								<li><a href="MeetTheAdminsServlet"><span>About
+								<li><a href="/bu-club-central/MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
-								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
+								<li><a href="/bu-club-central/ContactUsServlet"><span>Contact Us</span></a>
 								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+        <a class="dropdown-toggle" data-toggle="dropdown" href="/bu-club-central/LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
+ 						%> <a  href="/bu-club-central/LoginServlet"> Sign In <%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -186,7 +186,7 @@
 						EventsDao eventDao = new EventsDao();
 						LinkedList<Events> eventList = new LinkedList<Events>();
 
-						eventList = eventDao.getAllEvents();
+						eventList = eventDao.getAllEventsByClubId(Integer.parseInt(request.getParameter("clubID")));
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
 						 int noOfRecords = eventList.size();
@@ -329,13 +329,10 @@
                 <div class="text-subline"></div>
                 <div class="offset-top-34">
                                 <!-- RD Search Form-->
-                               <form action="SearchByEventName" method="POST" class="form-search rd-search">
-                                  <div class="form-group">
-                                    <label for="blog-sidebar-1-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
-                                    <input id="blog-sidebar-1-form-search-widget" type="text" name="s" autocomplete="off" class="form-search-input input-sm form-control input-sm">
-                                  </div>
-                                  <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
-                                </form>
+                               <form name="vinform">
+								<input placeholder="Enter title of event" type="text"
+									name="name" onkeyup="searchInfo()">
+							</form>
 
                 </div>
               </aside>
