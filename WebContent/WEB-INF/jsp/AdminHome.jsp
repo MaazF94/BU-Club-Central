@@ -37,6 +37,16 @@
 		<![endif]-->
 		
 				<style>
+	.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
 		#myInput {
     background-image: url('/css/searchicon.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
@@ -48,6 +58,9 @@
     margin-bottom: 12px; /* Add some space below the input */
 }
 		</style>
+		
+
+
   </head>
   <body onload="loggedIn()">
     <!-- Page-->
@@ -248,7 +261,7 @@
 											<td>
 												<form action="AdminDeleteClubServlet" method="POST">
 													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>
-													<button class="btn btn-danger" type="submit" name="deleteClubId" value="<%=clubId%>">Delete</button>
+													<button  title="Delete Club"  class="btn btn-danger masterTooltip" type="submit" name="deleteClubId" value="<%=clubId%>"><i class="mdi mdi-delete mdi  "></i></button>
 												
 												</form>
 											
@@ -347,9 +360,9 @@
 											<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
 											<td><%=eventList.get(eventListIndex).getClub_id_num()%></td>
 											<td><form action="AdminDeleteEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this event.');">
-													<button class="btn btn-danger" type="submit"
+													<button title="Delete Event"  class="btn btn-danger masterTooltip" type="submit"
 														name="deleteEventId"
-														value="<%=eventList.get(eventListIndex).getEventId()%>">Delete</button>
+														value="<%=eventList.get(eventListIndex).getEventId()%>"><i class="mdi mdi-delete mdi  "></i></button>
 												</form></td>
 										</tr>
 
@@ -420,8 +433,8 @@
 											</td>
 											<td>
 												<form action="AdminDeleteCommentServlet" method="POST" onsubmit="return confirm('Are you sure you want to delete this event.');">
-													<button class="btn btn-danger" type="submit"
-														name="deleteCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>">Delete</button>
+													<button title="Delete Comment"  class="btn btn-danger masterTooltip" type="submit"
+														name="deleteCommentId" value="<%=commentList.get(commentListIndex).getIdcomment()%>"><i class="mdi mdi-delete mdi  "></i></button>
 												
 												</form>
 											
@@ -481,7 +494,7 @@
 											<td>
 												<form action="AdminDeletePostServlet" method="POST">
 													<%int postId = postList.get(postListIndex).getIdpost();%>
-													<button class="btn btn-danger" type="submit" name="deletePostId" value="<%=postId%>">Delete</button>
+													<button title="Delete Post"  class="btn btn-danger masterTooltip" type="submit" name="deletePostId" value="<%=postId%>"><i class="mdi mdi-delete mdi  "></i></button>
 												
 												</form>
 											
@@ -531,14 +544,14 @@
 											<td><%=userList.get(userListIndex).getEnabled() %></td>
 											
 											<td><form action="AdminDeleteUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to disable this user.');">
-													<button class="btn btn-danger" type="submit" name="deleteUserId"
-														<%int userId = userList.get(userListIndex).getId_num();%> value="<%=userId %>">Delete</button>
+													<button title="Delete User"  class="btn btn-danger masterTooltip" type="submit" name="deleteUserId"
+														<%int userId = userList.get(userListIndex).getId_num();%> value="<%=userId %>"><i class="mdi mdi-delete mdi  "></i></button>
 													
 												</form>
 												
 												<form action="AdminEnableUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to enable this user.');">
-													<button class="btn btn-warning" type="submit" name="enableUserId"
-														<%int userId2 = userList.get(userListIndex).getId_num();%> value="<%=userId2 %>">Enable</button>
+													<button title="Enable User"class="btn btn-warning masterTooltip" type="submit" name="enableUserId"
+														<%int userId2 = userList.get(userListIndex).getId_num();%> value="<%=userId2 %>"><i class="fa fa-plus-square-o"></i></button>
 													
 												</form>
 												
@@ -1219,6 +1232,29 @@ var forEach = function(object, block, context) {
     
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
+     <script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
   </body>
 
 </html>
