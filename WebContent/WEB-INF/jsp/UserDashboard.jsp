@@ -92,10 +92,11 @@
 							</div>
 							<!-- RD Navbar Nav-->
 							<ul class="rd-navbar-nav">
-							
+
 								<%
 									EventNotificationDao eventNotDao = new EventNotificationDao();
-									LinkedList<Events> eventList = eventNotDao.getEventNotifications(((User) session.getAttribute("user")).getId_num());
+									LinkedList<Events> eventList = eventNotDao
+											.getEventNotifications(((User) session.getAttribute("user")).getId_num());
 									int eventListIndex = 0;
 									int eventListSize = eventList.size();
 								%>
@@ -103,27 +104,36 @@
 								<%
 									if (eventList.size() != 0) {
 								%>
-								
-							<li>	<div class="dropdown " style="width:100px">
-										<span data-toggle="dropdown" class="glyphicon glyphicon-calendar" style="color:yellow; font-size:20px">Notifications</span>
-									<ul class="dropdown-menu">
-										
-										<%while(eventListIndex < eventListSize) { %>
-											<li><a href="EventDetailsServlet?eventId=<%=eventList.get(eventListIndex).getEventId()%>"><%=eventList.get(eventListIndex).getEvent_name() %></a></li>
-										
-										<%eventListIndex++; %>
-										<%} %>
-									
-										
-									</ul>
-								</div>
-								<%
-									}
-								%>
 
-							</li>
-							
-							
+								<li>
+									<div class="dropdown " style="width: 100px">
+										<span data-toggle="dropdown"
+											class="glyphicon glyphicon-calendar"
+											style="color: yellow; font-size: 20px">Notifications</span>
+										<ul class="dropdown-menu">
+
+											<%
+												while (eventListIndex < eventListSize) {
+											%>
+											<li><a
+												href="EventDetailsServlet?eventId=<%=eventList.get(eventListIndex).getEventId()%>"><%=eventList.get(eventListIndex).getEvent_name()%></a></li>
+
+											<%
+												eventListIndex++;
+											%>
+											<%
+												}
+											%>
+
+
+										</ul>
+									</div> <%
+ 	}
+ %>
+
+								</li>
+
+
 
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
@@ -133,15 +143,14 @@
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
 								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="LoginSevlet">
-										<%
-											if (session.getAttribute("user") == null) {
-										%> <a href="LoginServlet"> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%> <span
-											class="caret"></span></a> <%
- 	}
- %>
+									data-toggle="dropdown" href="LoginSevlet"> <%
+											 	if (session.getAttribute("user") == null) {
+											 %> <a href="LoginServlet"> Sign In <%
+											 	} else {
+											 %> <%=((User) session.getAttribute("user")).getFirst_name()%> <span
+																						class="caret"></span></a> <%
+											 	}
+											 %>
 
 										<ul class="dropdown-menu">
 											<%
@@ -150,7 +159,7 @@
 											<%
 												if (role_id == 1) {
 											%>
-											<li><a href=UserServlet><span class="">Dash
+											<li><a href="UserServlet"><span class="">Dash
 														Board</span></a> <%
  	} else if (role_id == 2) {
  %>
@@ -169,7 +178,7 @@
 											</a>
 										</ul></li>
 
-								
+
 
 
 								<li><a href="#"><span></span></a></li>

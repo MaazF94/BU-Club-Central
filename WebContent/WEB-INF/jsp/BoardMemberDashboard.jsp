@@ -120,7 +120,7 @@
         <ul class="dropdown-menu">
         						<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
+        							<li><a href="UserServlet"><span class="">Dash Board</span></a>
         						<%}else if (role_id == 2) { %>
         							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
         						<%}else { %>
