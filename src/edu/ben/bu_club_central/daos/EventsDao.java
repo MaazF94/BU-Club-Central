@@ -66,11 +66,13 @@ public class EventsDao {
 						cs.getString("location"), cs.getInt("club_id_num"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
+				//event.setAcutal_count(cs.getInt("acutal_count"));
 				results.add(event);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(results.size());
 		return results;
 	}
 	public void increaseRSVPCount(int eventId) {
@@ -130,6 +132,7 @@ public class EventsDao {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
+				//event.setAcutal_count(rs.getInt("acutal_count"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -138,10 +141,11 @@ public class EventsDao {
 	}
 	public LinkedList<Events> getAllEventsByClubId(int clubId) {
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
+		//System.out.println(sql);
 		
 		
 		LinkedList<Events> list = new LinkedList<Events>();
-		Events event = null;
+		Events event;
 		
 		PreparedStatement ps;
 		ResultSet rs = null;
@@ -159,13 +163,14 @@ public class EventsDao {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
+				//event.setAcutal_count(rs.getInt("acutal_count"));
 				
 				list.add(event);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		//System.out.println(list.size());
 		return list;
 	}
 	
@@ -243,6 +248,54 @@ public class EventsDao {
 		}
 		
 		return eventId;
+	}
+	public LinkedList<Events> getAllEventsByEventName(String eventName) {
+		String sql = "SELECT * FROM " + tableName + " WHERE event_name = '"+eventName+"'";
+		System.out.println(sql);
+		
+		
+		LinkedList<Events> list = new LinkedList<Events>();
+		Events event;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			while(rs.next()) {
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+				event.setRsvp_count(rs.getInt("rsvp_count"));
+				event.setEventId(rs.getInt("idevent"));
+				
+				list.add(event);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(list.size());
+		return list;
+	}
+	
+	
+	public void increaseActualCount(int acutalCount, int eventId) {
+		String sql = "UPDATE " + tableName + " SET acutal_count=" + acutalCount + " WHERE idevent=" + eventId ;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -186,7 +186,7 @@
 						EventsDao eventDao = new EventsDao();
 						LinkedList<Events> eventList = new LinkedList<Events>();
 
-						eventList = eventDao.getAllEvents();
+						eventList = eventDao.getAllEventsByEventName(request.getParameter("EventName"));
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
 						 int noOfRecords = eventList.size();

@@ -13,6 +13,7 @@ public class Events {
 	private String location;
 	private int rsvp_count;
 	private int club_id_num;
+	private int acutal_count;
 	
 	public Events(String event_name, String description, String location, int club_id_num){
 		this.event_name = event_name;
@@ -21,6 +22,19 @@ public class Events {
 		this.club_id_num = club_id_num;
 	}
 	
+	public int getAcutal_count() {
+		return acutal_count;
+	}
+
+
+
+
+
+
+	public void setAcutal_count(int acutal_count) {
+		this.acutal_count = acutal_count;
+	}
+
 	public int getEventId() {
 		return eventId;
 	}

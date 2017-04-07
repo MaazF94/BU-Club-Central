@@ -63,7 +63,7 @@ public class UserEmailsBMServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-doGet(request, response);
+response.sendRedirect("UserServlet");
 			}
 		} catch (Exception e) {
 			if ((((User) request.getSession().getAttribute("user")) == null)) {
@@ -87,7 +87,7 @@ doGet(request, response);
 					"</body>\r\n" +
 					"</html>";
 		request.setAttribute("message", message);
-		doGet(request, response);
+		response.sendRedirect("UserServlet");
 			}
 		}
 	}

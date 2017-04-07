@@ -126,6 +126,7 @@
 											%>
       
         <ul class="dropdown-menu">
+        <%if (((User) session.getAttribute("user")) != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
         						<%if (role_id == 1) { %>
         							<li><a href=UserServlet><span class="">Dash Board</span></a>
@@ -139,6 +140,7 @@
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
+        <%} %>
         </ul>
       </li>
 								
@@ -195,7 +197,7 @@
                 <h3 class="text-bold">New Club Submission Form</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
                 <!-- RD Mailform-->
-                                               <p>${message}</p>
+                 ${message}
                
                 <form data-form-output="form-output-global" data-form-type="contact" method="post" action="NewClubSubmissionServlet" class="rd-mailform text-left offset-top-50">
                   <div class="range">

@@ -64,7 +64,7 @@ public class ClubHomepageServlet extends HttpServlet {
 			ClubDao cDao = new ClubDao();
 			Club clubObject = cDao.getClubById(club_id_num);
 			clubBoardMemberName = clubObject.getPet_name();
-doGet(request, response);
+			response.sendRedirect("ClubHomepageServlet");
 	}
 		
 

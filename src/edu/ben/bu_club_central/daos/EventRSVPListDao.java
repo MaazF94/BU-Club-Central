@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
+import edu.ben.bu_club_central.models.Events;
 import edu.ben.bu_club_central.models.User;
 
 
@@ -104,7 +105,57 @@ public class EventRSVPListDao {
 	}
 	
 	
-	
+	public LinkedList<Events> getAllEventsThatuserRSVP(int userId) {
+		LinkedList<Integer> eventIdList = new LinkedList<Integer>();
+		LinkedList<Events> eventList = new LinkedList<Events>();
+		Events event;
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE event_rsvp_list.user_id_num=" + userId;
+		
+		PreparedStatement ps, ps2;
+		ResultSet rs, rs2;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				eventIdList.add(rs.getInt("eventId"));
+				
+			
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String sql2 = "SELECT * FROM bu_club_central.event WHERE idevent=?";
+		int eventIdListIndex = 0;
+		int eventIdListSize = eventIdList.size();
+		try {
+			
+			
+			while(eventIdListIndex < eventIdListSize) {
+				ps2 = conn.prepareStatement(sql2);
+				ps2.setInt(1, eventIdList.get(eventIdListIndex));
+				rs2 = ps2.executeQuery();
+				rs2.next();
+				event = new Events(rs2.getString("event_name"), rs2.getString("description"), rs2.getString("location"), rs2.getInt("club_id_num"));
+				event.setEventId(rs2.getInt("idevent"));
+				eventList.add(event);
+				
+				eventIdListIndex++;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return eventList;
+	}
 	
 	
 	

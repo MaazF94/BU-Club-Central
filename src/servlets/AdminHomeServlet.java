@@ -69,7 +69,7 @@ public class AdminHomeServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-doGet(request, response);
+response.sendRedirect("AdminHome");
 		} else {
 			throw new Exception();
 		}
@@ -92,7 +92,7 @@ doGet(request, response);
 								"</body>\r\n" +
 								"</html>";
 					request.setAttribute("message", message);
-					request.getRequestDispatcher("AdminHome").forward(request, response);
+					response.sendRedirect("AdminHome");
 		}
 		
 		//ClubDao cDao = new ClubDao();

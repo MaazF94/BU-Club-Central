@@ -105,7 +105,7 @@
 									</form>
 								</div>
 								<!-- RD Navbar Nav-->
-							<ul class="rd-navbar-nav">
+						<ul class="rd-navbar-nav">
 
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
@@ -114,42 +114,47 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
-					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  <span class="caret"></span></a>
- 							
+								<li class="dropdown"><a class="dropdown-toggle"
+									data-toggle="dropdown" href="LoginSevlet"> <%
+ 	if (session.getAttribute("user") == null) {
+ %> <a href="LoginServlet"> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%>
+											<span class="caret"></span></a> <%
+ 	}
+ %>
+
+										<ul class="dropdown-menu">
 											<%
-					}
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
 											%>
-      
-         <ul class="dropdown-menu">
-         <%if (session.getAttribute("user") != null) { %>
-        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
- 							   
- 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a>
-      
-        <%} %>
-          
-        </ul>
-      </li>
-								
-								
-                      <li><a href="#"><span></span></a></li>
-                          </ul>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+											<li><a href="ClubHomepageServlet"><span class="">Club
+														Home Page</span></a> <a type="button" href="LogoutServlet"
+												class="btn btn-sm btn-info "> <span
+													class="glyphicon glyphicon-log-out"></span> Log out
+											</a>
+										</ul></li>
+
+
+
+
+								<li><a href="#"><span></span></a></li>
+							</ul>
 									
 							
 							
@@ -192,7 +197,7 @@
                 <!-- Embed Video-->
                 <!-- Classic Soundcloud Player-->
                 <!-- Blog Default Single-->
-                <section class = "well">
+                <section >
                 <%
 					ClubDao clubDao = new ClubDao();
 					EventsDao eventDao = new EventsDao();
@@ -202,7 +207,7 @@
 					LinkedList<User> userList = rsvpDao.getAllUsersForEvent(Integer.parseInt(request.getParameter("eventId")));
 				%>
                                   <!-- Post Wide-->
-                                  <article class="post post-default text-left ">
+                                  <article class="post post-default text-left well">
                                     <!-- Post Header-->
                                     <div class="header post-header">
                                       <!-- Post Meta-->
@@ -223,12 +228,12 @@
                                       </div>
                                     </div>
                                     <!-- PostContent-->
-                                    <section class="post-content offset-top-41">
+                                    <section class="post-content offset-top-41 ">
                                       <p><%=event.getDescription()%></p>
                                       
                                     </section>
                                   </article>
-                  <footer class="offset-top-50 text-sm-left clearfix ">
+                  <footer class="offset-top-50 text-sm-left clearfix well ">
                     <h6 class="pull-sm-left">Please Join Us:</h6>
                     <ul class="list-inline small pull-sm-right p offset-top-0 text-sm-right">
                       <li><form action="RSVPServlet" method="POST">
@@ -244,7 +249,7 @@
                   <div id="comments"></div>
                   <hr class="offset-top-66">
                   <h4 class="offset-top-66 text-uppercase text-spacing-120 text-left text-bold">Comments</h4>
-                  <div class="offset-top-41">
+                  <div class="offset-top-41 well">
                       <%
 											UserDao userDao = new UserDao();
 												User user;
@@ -260,7 +265,7 @@
 										%>              
                                                      
                                     <!-- Box Comment-->
-                                    <div class="box-comment text-left box-comment-outboxed">
+                                    <div class="box-comment text-left box-comment-outboxed bg-gray-lightest">
                                       <div class="media">
                                         
                                         <div class="media-body">
@@ -268,9 +273,9 @@
                                             <div class="unit-left unit-grow-1">
                                               <ul class="box-comment-meta list-inline list-inline-sm text-dark">
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
-                                                  <time datetime="2016-01-01"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
+                                                  <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
-                                                <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
+                                                <li><form action ="LikeServlet" method = "POST" name = "like" id = "like"><button ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
                                                 <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
                                               </ul>
                                             </div>
@@ -294,7 +299,7 @@
 										%>
                   </div>
                   <h4 class="offset-top-34 text-uppercase text-spacing-120 text-left text-bold">Leave a comment</h4>
-                  <form action="CommentServlet" method="POST" class="rd-mailform offset-top-10 text-left">
+                  <form action="CommentServlet" method="POST" class="rd-mailform offset-top-10 text-left well">
                     <div class="form-group">
                       <label for="comment-message" class="form-label form-label-outside">Message:</label>
                       <textarea class="form-control"
@@ -327,8 +332,25 @@
                     <!-- Category-->
                     <h6 class="text-uppercase text-spacing-60">Clubs</h6>
                     <div class="text-subline"></div>
-                    <ul class="list list-marked offset-top-30">
-                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                        <%
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao2.displayClub();
+
+			int index = 0;
+		%>
+                   <ul class="list list-marked offset-top-30">
+                    <%
+							while (index < clubList.size()) {
+						%>
+                      <li><form action ="EventpageByClub" method="POST" >
+                      <button type="submit" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-dark"><%
+												out.println(clubList.get(index).getClub_name());
+											%>(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></button></form></li>
+												<%
+										index++;
+										}
+									%>
                       
                     </ul>
                   </div>
@@ -340,11 +362,14 @@
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>
                 <div class="offset-top-34">
-                                <!-- RD Search Form-->
-                               <form name="vinform">
-								<input placeholder="Enter title of event" type="text"
-									name="name" onkeyup="searchInfo()">
-							</form>
+                               <!-- RD Search Form-->
+                               <form action="SearchByEventName" method="POST" class="form-search rd-search">
+                                  <div class="form-group">
+                                    <label for="blog-sidebar-1-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
+                                    <input id="blog-sidebar-1-form-search-widget" id="EventName" name="EventName" autocomplete="off" class="form-search-input input-sm form-control input-sm">
+                                  </div>
+                                  <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
+                                </form>
 
                 </div>
               </aside>

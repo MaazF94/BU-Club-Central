@@ -64,7 +64,7 @@ public class EditClubDescriptionServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-doGet(request, response);
+response.sendRedirect("BoardMemberDashBoard");
 		} else {
 			throw new Exception();
 		}
@@ -87,8 +87,7 @@ doGet(request, response);
 								"</body>\r\n" +
 								"</html>";
 					request.setAttribute("message", message);
-					request.getRequestDispatcher("AdminHome").forward(request, response);
-		}
+					response.sendRedirect("BoardMemberDashBoard");		}
 	}
 	
 	public static boolean callEditClubDescription(String club_description, int club_id_num) {
