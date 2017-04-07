@@ -15,7 +15,7 @@ import edu.ben.bu_club_central.models.User;
 /**
  * Servlet implementation class AdminHome
  */
-@WebServlet("/user/AdminHome")
+@WebServlet("/AdminHome")
 public class AdminHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

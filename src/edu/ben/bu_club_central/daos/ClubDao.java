@@ -117,7 +117,7 @@ public class ClubDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName + " where enabled = 1";
+		sql = "SELECT * FROM " + tableName + ";";
 		
 			
 

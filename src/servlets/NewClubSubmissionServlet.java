@@ -352,7 +352,7 @@ public class NewClubSubmissionServlet extends HttpServlet {
 						"                    <p> The F.I.R.M.</p>\r\n" + 
 						"                  </td>\r\n" + 
 						"                  <td>\r\n" + 
-						"                      <img src = \"https://upload.wikimedia.org/wikipedia/en/b/b8/Benedictine_University_logo.jpg\">\r\n" + 
+						"                      <img src = \"http://i.imgur.com/tklPxvC.png\">\r\n" + 
 						"                  </td>\r\n" + 
 						"                </tr>\r\n" + 
 						"              </table>\r\n" + 
@@ -371,7 +371,7 @@ public class NewClubSubmissionServlet extends HttpServlet {
 				System.out.println("Sent email");
 		
 		ClubDao cDao = new ClubDao();
-		if (cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 1, request.getParameter("petEmail"),request.getParameter("advisorName"))) {
+		if (cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 0, request.getParameter("petEmail"),request.getParameter("advisorName"))) {
 			String message = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<title>Mileage</title>\r\n"
 					+ "<style> \r\n" + ".isa_success {\r\n" + "color: #4F8A10;\r\n"
 					+ "background-color: #DFF2BF;\r\n" + "}\r\n" + "</style>\r\n" + "</head>\r\n<body>\r\n"
