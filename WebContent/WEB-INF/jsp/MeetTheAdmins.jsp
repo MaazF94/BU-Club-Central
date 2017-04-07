@@ -208,7 +208,7 @@
               </div>
               <div class="cell-xs-10 cell-sm-7 text-sm-left">
                 <div>
-                  <h1 class="text-darker">Meet The Staff</h1>
+                  <h1 class="text-darker">Our Staff</h1>
                 </div>
                 <p class="text-muted offset-top-4">Department of Student Activities and Leadership Development</p>
                 <hr class="divider bg-red hr-sm-left-0">
