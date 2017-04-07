@@ -29,5 +29,40 @@ public class UserDao_userRoleChanges {
 		boolean actual = uDao.userRoleChanges(1, 3);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void userRoleChanges4() {
+		boolean expected = false;
+		boolean actual = uDao.userRoleChanges(5, 3);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void userRoleChanges5() {
+		boolean expected = false;
+		boolean actual = uDao.userRoleChanges(10, 3);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void userRoleChanges6() {
+		boolean expected = false;
+		boolean actual = uDao.userRoleChanges(15, 3);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void userRoleChanges7() {
+		boolean expected = false;
+		boolean actual = uDao.userRoleChanges(5, 2);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void userRoleChanges8() {
+		boolean expected = false;
+		boolean actual = uDao.userRoleChanges(5, 1);
+		assertEquals(expected, actual);
+	}
 
 }

@@ -535,7 +535,7 @@ public class UserDao {
 				if (rs.next()) {
 					PreparedStatement ps;
 					
-					ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE id_num = " + "'"+id_num+"'");
+					ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE id_num = " +id_num);
 
 					System.out.println(ps);
 
@@ -561,6 +561,33 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public int getUserDisableEnableStatus(int userId) {
+		String sql = "SELECT * FROM USER where idUser = " + userId;
+		int status = -1;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			if (!rs.next()) {
+				return -1;
+			} else {
+				status = rs.getInt("enabled");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 	
 	public void enableUser(int userIdNum) {
