@@ -144,13 +144,13 @@
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
 								<li class="dropdown"><a class="dropdown-toggle"
 									data-toggle="dropdown" href="LoginSevlet"> <%
-											 	if (session.getAttribute("user") == null) {
-											 %> <a href="LoginServlet"> Sign In <%
-											 	} else {
-											 %> <%=((User) session.getAttribute("user")).getFirst_name()%> <span
-																						class="caret"></span></a> <%
-											 	}
-											 %>
+ 	if (session.getAttribute("user") == null) {
+ %> <a href="LoginServlet"> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%>
+											<span class="caret"></span></a> <%
+ 	}
+ %>
 
 										<ul class="dropdown-menu">
 											<%
@@ -251,7 +251,13 @@
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active"><a
+									<li class="active" role="presentation"><a href="#viewEvents"
+										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
+										
+									<li role="presentation"><a href="#editPosts"
+										aria-controls="#editPosts" role="tab" data-toggle="tab">View
+											Posts</a></li>	
+									<li role="presentation" ><a
 										href="#viewProfile" aria-controls="viewProfile" role="tab"
 										data-toggle="tab">View Profile</a></li>
 									<li role="presentation"><a href="#viewClub"
@@ -260,10 +266,174 @@
 									<li role="presentation"><a href="#viewPastClub"
 										aria-controls="viewPastClub" role="tab" data-toggle="tab">View
 											Past Clubs</a></li>
+									<li role="presentation"><a href="#eventFeedback"
+										aria-controls="#eventFeedback" role="tab" data-toggle="tab">Event
+											Feedback</a></li>
 								</ul>
 
 								<!-- Tab panes -->
+								
 								<div class="tab-content">
+										<div role="tabpanel" class="tab-pane active" id="viewEvents">
+							<div class="container">
+								<%
+									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
+									int eventListIndex2 = 0;
+									int eventListSize2 = eventList2.size();
+								%>
+
+
+								<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Event ID</th>
+											<th>Event Name</th>
+											<th>Location</th>
+											<th>RSVP Count</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (eventListIndex2 < eventListSize2) {
+										%>
+										<tr>
+											<td><%=eventList2.get(eventListIndex2).getEventId()%></td>
+											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
+											<td><%=eventList2.get(eventListIndex2).getLocation()%></td>
+											<td><%=eventList2.get(eventListIndex2).getRsvp_count()%></td>
+											<td><form action="EventDetailsServlet" method="GET">
+													<button class="btn btn-warning" type="submit"
+														name="eventId"
+														value="<%=eventList2.get(eventListIndex2).getEventId()%>">Event Info</button>
+												</form></td>
+										</tr>
+
+										<%
+										eventListIndex2++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+								
+								<div role="tabpanel" class="tab-pane" id="editPosts">
+							<div class="container">
+								
+								<%
+									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
+
+									int postListIndex = 0;
+									int postListSize = postList.size();
+								%>
+
+
+								<table class="table table-hover ">
+									<thead>
+										<tr>
+											<th>Post ID</th>
+											<th>Post Title</th>
+											<th>Contents</th>
+											<th>Club ID Number</th>
+											<th>Posted by</th>
+										</tr>
+									</thead>
+									<%
+										while (postListIndex < postListSize) {
+									%>
+
+									<tbody>
+										<tr>
+											<td><%=postList.get(postListIndex).getIdpost()%></td>
+											<td><%=postList.get(postListIndex).getTitle()%></td>
+											<td><%=postList.get(postListIndex).getContents()%></td>
+											<td><%=postList.get(postListIndex).getClub_id_num()%></td>
+											<td><%=postList.get(postListIndex).getUser_id_num()%></td>
+											
+										</tr>
+									</tbody>
+
+									<%
+										postListIndex++;
+									%>
+									<%
+										}
+									%>
+								</table>
+							</div>
+						</div>
+								
+								
+								
+									<div role="tabpanel" class="tab-pane" id="eventFeedback">
+										<div class="container">
+												<%
+												LinkedList<Events> eventListFeedback = (LinkedList<Events>) request.getAttribute("eventList");
+												int eventListIndexFeedback = 0;
+												int eventListSizeFeedback = eventListFeedback.size();
+											%>
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th>Event Name</th>
+														<th>Description</th>
+														<th>Location</th>
+														<th><% %></th>
+													</tr>
+												</thead>
+												<tbody
+													style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+													<%
+														while (eventListIndexFeedback < eventListSizeFeedback) {
+													%>
+													<tr>
+														<td><%=eventListFeedback.get(eventListIndexFeedback).getEvent_name()%></td>
+														<td><%=eventListFeedback.get(eventListIndexFeedback).getDescription()%></td>
+														<td><%=eventListFeedback.get(eventListIndexFeedback).getLocation()%></td>
+														<td>
+															<form action="EventUserFeedbackServlet" method="POST">
+
+																		<br>
+
+																			<textarea name="eventFeedbackMessage"
+																				placeholder="Leave Feedback for event that you just attended"
+																				 cols="50"
+																				rows="7" name="editDescription"></textarea>
+																			<br>
+																			<button name="eventIdFeedback"
+																				value="<%=eventListFeedback.get(eventListIndexFeedback).getEventId()%>"
+																				class="btn btn-warning" type="submit">Submit</button>
+
+
+															</form>
+
+														</td>
+													</tr>
+
+													<%
+														eventListIndexFeedback++;
+													%>
+													<%
+														}
+													%>
+												</tbody>
+											</table>
+												
+
+
+										</div>
+									</div>
+
+
+
+
+
+
+
 									<div role="tabpanel" class="tab-pane" id="viewClub">
 										<div class="container">
 											<%

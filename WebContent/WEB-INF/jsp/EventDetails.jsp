@@ -105,7 +105,7 @@
 									</form>
 								</div>
 								<!-- RD Navbar Nav-->
-							<ul class="rd-navbar-nav">
+						<ul class="rd-navbar-nav">
 
 								<li class=""><a href="HomeServlet"><span>Home</span></a></li>
 								<li><a href="EventServlet"><span>Events</span></a></li>
@@ -114,42 +114,47 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
-					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
- 					} else {
- 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
- 							  <span class="caret"></span></a>
- 							
+								<li class="dropdown"><a class="dropdown-toggle"
+									data-toggle="dropdown" href="LoginSevlet"> <%
+ 	if (session.getAttribute("user") == null) {
+ %> <a href="LoginServlet"> Sign In <%
+ 	} else {
+ %> <%=((User) session.getAttribute("user")).getFirst_name()%>
+											<span class="caret"></span></a> <%
+ 	}
+ %>
+
+										<ul class="dropdown-menu">
 											<%
-					}
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
 											%>
-      
-         <ul class="dropdown-menu">
-         <%if (session.getAttribute("user") != null) { %>
-        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
- 							   
- 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a>
-      
-        <%} %>
-          
-        </ul>
-      </li>
-								
-								
-                      <li><a href="#"><span></span></a></li>
-                          </ul>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+											<li><a href="ClubHomepageServlet"><span class="">Club
+														Home Page</span></a> <a type="button" href="LogoutServlet"
+												class="btn btn-sm btn-info "> <span
+													class="glyphicon glyphicon-log-out"></span> Log out
+											</a>
+										</ul></li>
+
+
+
+
+								<li><a href="#"><span></span></a></li>
+							</ul>
 									
 							
 							
