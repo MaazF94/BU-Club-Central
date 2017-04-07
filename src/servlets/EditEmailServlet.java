@@ -60,7 +60,7 @@ public class EditEmailServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-doGet(request, response);
+response.sendRedirect("UserServlet");
 		} else {
 			throw new Exception();
 		}
@@ -83,7 +83,7 @@ doGet(request, response);
 								"</body>\r\n" +
 								"</html>";
 					request.setAttribute("message", message);
-					request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+					response.sendRedirect("UserServlet");
 		}
 	}
 	

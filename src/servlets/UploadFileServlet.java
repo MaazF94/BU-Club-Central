@@ -58,9 +58,9 @@ public class UploadFileServlet extends HttpServlet {
         }
 		
         if (callAddDocument(fileName, user_id_num, inputStream, true)) {
-    		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+			response.sendRedirect("BoardMemberDashBoard");
         } else {
-    		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+			response.sendRedirect("BoardMemberDashBoard");
         }
 	}
 	
