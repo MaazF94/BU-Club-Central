@@ -4,17 +4,20 @@
 package edu.ben.bu_club_central.daos;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.util.*;
 
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Events;
 import javafx.event.Event;
 
+
 /**
  * @author raza The connector for the events table in the database
  *
  */
 public class EventsDao {
+
 	private String tableName = "bu_club_central.event";
 	private Events eventObj;
 	private final int rsvpInitalCount = 0;
@@ -64,7 +67,6 @@ public class EventsDao {
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				//event.setAcutal_count(cs.getInt("acutal_count"));
-				
 				results.add(event);
 			}
 		} catch (SQLException e) {
@@ -73,8 +75,6 @@ public class EventsDao {
 		System.out.println(results.size());
 		return results;
 	}
-	
-	
 	public void increaseRSVPCount(int eventId) {
 		String sql = "SELECT * FROM " + tableName + " WHERE idevent=" + eventId;
 		
@@ -137,11 +137,8 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return event;
-		
 	}
-	
 	public LinkedList<Events> getAllEventsByClubId(int clubId) {
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
 		//System.out.println(sql);
@@ -227,8 +224,6 @@ public class EventsDao {
 		}
 		return results;
 	}
-
-
 	/**
 	 * returns the event id of the last event to be created this method
 	 * goes in part with the event notification methods
@@ -302,17 +297,5 @@ public class EventsDao {
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

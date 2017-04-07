@@ -20,7 +20,7 @@
 
   <head>
     <!-- Site Title-->
-    <title>Contact Us</title>
+    <title>Administrative Dashboard</title>
    
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -190,7 +190,6 @@
       <main class="page-content">
         <section class="section-top-98 section-md-top-110 text-lg-left">
           <div class="shell">
-         
             <div class="range range-xs-center range-xs-center">
              <h1>Admin Dashboard</h1>
 			
@@ -263,12 +262,20 @@
 											<td><%=clubList.get(clubListIndex).getClub_name() %> </td>
 											<td><%=memberCount%> </td>
 											<td>
+											<%if (clubList.get(clubListIndex).getEnabled() == 1) { %>
 												<form action="AdminDeleteClubServlet" method="POST">
 													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>
-													<button  title="Delete Club"  class="btn btn-danger masterTooltip" type="submit" name="deleteClubId" value="<%=clubId%>"><i class="mdi mdi-delete mdi  "></i></button>
-												
+													<button  title="Disable Club"  class="btn btn-danger masterTooltip" type="submit" name="deleteClubId" value="<%=clubId%>"><i class="mdi-lock mdi  "></i></button>
+															
 												</form>
-											
+											<%} else { %>
+												
+												<form action="AdminEnableClubServlet" method="POST">
+													<%int clubIdnew = clubList.get(clubListIndex).getClub_id_num();%>
+													<button  title="Accept Club"  class="btn btn-info masterTooltip" type="submit" name="enableClubId" value="<%=clubIdnew%>"><i class="mdi mdi-account-multiple-plus mdi  "></i></button>
+													
+												</form>
+											<%} %>
 											</td>
 										</tr>
 									</tbody>

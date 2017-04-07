@@ -105,7 +105,7 @@ response.sendRedirect("");
 		uDao.registerUser(first_name, last_name, username, hashedPw, id_num, email);
 		System.out.println("Added user");
 		
-		// send email to a newly registered user
+		// send email to a newly registered user after they've been put into database
 		String subject = "Thank You for Registering " + first_name + "!";
 		String content = "<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 

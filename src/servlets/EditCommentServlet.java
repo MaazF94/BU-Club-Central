@@ -12,7 +12,7 @@ import edu.ben.bu_club_central.daos.CommentDao;
 /**
  * Servlet implementation class EditCommentServlet
  */
-@WebServlet("/EditCommentServlet")
+@WebServlet("/user/EditCommentServlet")
 public class EditCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

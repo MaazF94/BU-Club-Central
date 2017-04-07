@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.ClubDao;
-import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
+
 
 /**
  * Servlet implementation class AdminHome
@@ -38,7 +37,6 @@ public class AdminHomeServlet extends HttpServlet {
 		}else {
 			response.sendRedirect("AccessDeniedServlet");
 		}
-		
 	}
 
 	/**

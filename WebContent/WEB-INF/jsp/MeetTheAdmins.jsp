@@ -158,87 +158,74 @@
       </header>
       <!-- Page Contents-->
       <main class="page-content">
-        
-        <!-- Our Dream Team-->
+        <!-- Our Dream Team-->         
         <section class="section-98 section-sm-110">
           <div class="shell">
-            <h1>Meet the Admins</h1>
-            <hr class="divider bg-danger">
-            <div class="range range-xs-center offset-top-50 offset-lg-top-66">
-              <div class="cell-sm-10 cell-lg-8 text-danger">
-                <p>Take a look below to learn
-										about the people behind the scenes that help make BenU Clubs
-										great.</p>
+            <div class="range range-xs-center range-xs-middle">
+              <!-- Simple quote Slider-->
+              <div class="cell-sm-9 cell-lg-6 cell-lg-push-6">
+                <div data-items="1" data-nav="false" data-dots="false" data-nav-custom=".owl-custom-navigation" class="owl-carousel owl-carousel-classic owl-carousel-class-light shadow-drop-md">
+                  <div><img src="img/Jaeger.jpg" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>
+                  <div><img src="img/gameroom.jpg" width="525" height="321" alt="" class="img-responsive element-fullwidth"></div>
+                  <div><img src="img/TableTennisBLUE.jpg" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>
+                  <div><img src="img/SpiritCase.jpg" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>
+                 
+                </div>
               </div>
-            </div>
-            <div class="range range-xs-center offset-sm-top-50 offset-lg-top-66">
-              <div class="cell-sm-10 cell-lg-12">
-                <div class="range">
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
-                    <!-- Box Member-->
-                    <div class="box-member">
-                     
-                    </div>
-                    
-                  </div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-sm-top-0 offset-lg-top-0">
-                    <!-- Box Member-->
-                    <div ><img src="img\danny.jpg" alt="" class="img-responsive"/>
-                      <h5 class = "text-danger" ><a href="#">Danny Turano</a> <small class="text-danger"></small>
-                      </h5>
-                      <div class="box-member-wrap">
-                        <div class="box-member-caption">
-                          <div class="box-member-caption-inner">
-                            <ul class="list-inline list-inline-xs">
-                              
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="offset-lg-top-0 text-muted">Hi, my name is Danny Turano and I'm the
-					Director of Student Life.</p>
-                    <a href="ContactUsServlet" class="btn btn-danger">get in touch</a>
-                  </div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                    <!-- Box Member-->
-                    <div><img src="img\JoanHenehan.jpg" alt="" class="img-responsive"/>
-                      <h5 class="text-bold offset-top-20 text-danger"><a href="#">Joan Henehan</a> <small class="text-danger"></small>
-                      </h5>
-                      <div class="box-member-wrap">
-                        <div class="box-member-caption">
-                          <div class="box-member-caption-inner">
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="offset-lg-top-0 text-muted">Hi, my name is Joan Henehan and I am the
-					Director of Student Engagement and Leadership Development.</p>
-                    <a href="ContactUsServlet" class="btn btn-danger">get in touch</a>
-                  </div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                    <!-- Box Member-->
-                    <div class="box-member">
-                    
-                  <div class="range-spacer offset-top-66"></div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
-                    
-                    
-                   
-                    
+              <div class="cell-sm-9 cell-lg-6 cell-lg-pull-6 text-lg-left offset-top-66 offset-lg-top-0 inset-lg-right-30">
+                <h1>Benedictine Clubs and Organizations</h1>
+                <hr class="divider bg-red hr-lg-left-0">
+                <p class="offset-top-50 text-sm-left">With more than 50 clubs, Benedictine has something for everyone! The Benedictine community is committed to diversity and allowing everyone an opportunity to get involved.</p>
+                <div class="offset-top-20">
+                  <p class="text-sm-left">Students can spend their time at Ben Union where they have a multitude of fun options, such as ping pong, billiards or Mario Kart, to choose from. Students can also study in the designated study area on the first floor of Krasa.</p>
+                </div>
+                <div class="owl-custom-navigation owl-customer-navigation offset-top-20">
+                  <div class="owl-nav">
+                    <div data-owl-prev class="owl-prev mdi mdi-chevron-left"></div>
+                    <div data-owl-next class="owl-next mdi mdi-chevron-right"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-		
-		
-		
-		
-		
-
+        
+        <section class="section-98 section-sm-110">
+          <div class="shell">
+            <div class="range range-xs-center">
+              <div class="cell-xs-10 cell-sm-5">
+                <!-- Member block type 5-->
+                <div class="member-block-type-5 inset-md-right-20"><img src="img/BenQuad.jpg" width="437" height="437" alt="" class="img-responsive center-block"/>
+                  <div class="member-block-body"><a href="ContactUsServlet" class="btn btn-block btn-danger">get in touch</a>
+                    <address class="contact-info offset-top-20 offset-sm-top-34">
+                      <ul class="list-unstyled p">
+                        <li><span class="icon icon-xxs text-middle text-dark mdi mdi-phone"></span><a href="callto:(630) 829-6617" class="p big text-middle reveal-inline-block offset-top-0">(630) 829-6617</a></li>
+                        <li><span class="icon icon-xxs text-middle text-dark mdi mdi-email-open"></span><a href="mailto:BUclubcentral@gmail.com" class="p big text-middle reveal-inline-block offset-top-0 text-picton-blue">BUclubcentral@gmail.com</a></li>
+                      </ul>
+                    </address>
+                  </div>
+                </div>
+              </div>
+              <div class="cell-xs-10 cell-sm-7 text-sm-left">
+                <div>
+                  <h1 class="text-darker">Our Staff</h1>
+                </div>
+                <p class="text-muted offset-top-4">Department of Student Activities and Leadership Development</p>
+                <hr class="divider bg-red hr-sm-left-0">
+                <p class="offset-top-50 text-left"><b>Joan Henehan</b> <br>
+					Director of Student Engagement and Leadership Development<br>
+				<a style="color: red;" href="mailto:jhenehan@ben.edu">jhenehan@ben.edu</a><br>
+				(630) 829-6617<br>
+				Krasa Student Center 015<br>
+				<p class="offset-top-50 text-left"><b>Daniel Turano</b><br>Coordinator for Student Involvement<br>
+				<a style="color: red;" href="mailto:dturano@ben.edu">dturano@ben.edu</a><br>
+				(630) 829-6620<br>Krasa Student Center 010</p>
+				<p class="offset-top-50 text-left"><b>Katie Buell</b><br>Coordinator of Student Activities and Commuter Services<br>
+				<a style="color: red;" href="mailto:kbuell@ben.edu">kbuell@ben.edu</a><br>
+				(630) 829-6128<br>Krasa Student Center 020<br><br></p>
+			</div>
+			</div>
+        </section>       
 		<!-- Page Footer-->
 		<footer
 			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">

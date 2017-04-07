@@ -38,35 +38,41 @@
 <body>
 	<!-- Page-->
 	<div class="page text-center">
-		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
-		<div class="rd-navbar-wrap">
-			<nav data-md-device-layout="rd-navbar-fixed"
+		<header class="page-head slider-menu-position">
+        <!-- RD Navbar Transparent-->
+        <div class="rd-navbar-wrap">
+		<nav data-md-device-layout="rd-navbar-fixed"
 				data-lg-device-layout="rd-navbar-static"
-				class="rd-navbar container rd-navbar-floated rd-navbar-dark"
+				class="rd-navbar rd-navbar-default rd-navbar-transparent"
 				data-lg-auto-height="true" data-md-layout="rd-navbar-fixed"
 				data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
 			<div class="rd-navbar-inner">
-				<!-- RD Navbar Top Panel-->
-				<!-- RD Navbar Panel -->
+				<!-- RD Navbar Panel-->
+
 				<div class="rd-navbar-panel">
 					<!-- RD Navbar Toggle-->
 					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"
 						class="rd-navbar-toggle">
 						<span></span>
 					</button>
-					<!-- RD Navbar Top Panel Toggle-->
-					<button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-top-panel"
-						class="rd-navbar-top-panel-toggle">
-						<span></span>
-					</button>
-					<!--Navbar Brand-->
 
-				</div>
+					<!--Navbar Brand-->
+					<div class="rd-navbar-brand">
+						<a href="index.html"><img class='img-responsive' width='40'
+							height='30' src='img/BURedTransparent.png' alt='' /></a>
+					</div>
+
+
 				<div class="rd-navbar-menu-wrap">
 					<div class="rd-navbar-nav-wrap">
 						<div class="rd-navbar-mobile-scroll">
-							<!--Navbar Brand Mobile-->
 
+
+							<!--Navbar Brand Mobile-->
+							<div class="rd-navbar-mobile-brand">
+								<a href="index.html"><img class='img-responsive' width='238'
+									height='30' src='img/BUred.png' alt='' /></a>
+							</div>
 							<div class="form-search-wrap">
 								<!-- RD Search Form-->
 								<form action="search-results.html" method="GET"
@@ -93,12 +99,10 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-
-							</ul>
 								 <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
+ 						%> Sign In <%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -108,76 +112,53 @@
 											%>
       
         <ul class="dropdown-menu">
-        <%if  (((User) session.getAttribute("user")) != null) {%>
- 							<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>	   
- 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a>
-      <%} %>
-        
+          <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
           
         </ul>
       </li>
 								
 								
-                      <li><a href="#"><span></span></a></li>
+                      
                           </ul>
+								
+									
+									
+									
+							
+							
+							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
-					<div class="rd-navbar-search rd-navbar-search-top-panel">
-						<a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search"
-							href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
-						<form action="search-results.html" method="GET"
-							class="rd-navbar-search-form search-form-icon-right rd-search">
-							<div class="form-group">
-								<label for="rd-navbar-search-form-input" class="form-label">Type
-									and hit enter...</label> <input id="rd-navbar-search-form-input"
-									type="text" name="s" autocomplete="off"
-									class="rd-navbar-search-form-input form-control form-control-gray-lightest" />
-							</div>
-						</form>
-					</div>
+
 				</div>
 			</div>
 			</nav>
-		</div>
-		<div class="context-dark">
-			<!-- Modern Breadcrumbs-->
-			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-
-			<div data-speed="0" data-type="html" class="rd-parallax-layer">
-				<div
-					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-					<h2 class="veil reveal-md-block offset-top-30">
-						<span class="big"><br> <br> </span>
-					</h2>
-
-				</div>
-			</div>
-			</section>
-		</div>
-		</header>
+        </div>
+        <div class="context-dark">
+          <!-- Modern Breadcrumbs-->
+          <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+            <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
+            <div data-speed="0" data-type="html" class="rd-parallax-layer">
+              <div class="shell section-top-98   ">
+               
+              </div>
+            </div>
+          </section>
+        </div>
+      </header>
 		<!-- Page Contents-->
 		<div class="jumbotron" style="background-color: #f1eaee">
 			<h1>
 				<div class="container">
-					<h1>${clubName}</h1>
+					<h1  class="text-danger" >${clubName}</h1>
 				</div>
 				
 			</h1>
 							              ${message}
 			
 			<h5>Number of Club Members: ${clubMembers}</h5>
-
+			
 
 			<br>
 			   <b>Description:</b>
@@ -189,7 +170,7 @@
 			   <br>
 			   <p>${advisorName}</p>
 			   
-			   	<form action = "UserEmailsBMServlet" method="POST">
+			   	<!--<form action = "UserEmailsBMServlet" method="POST">
               <div class="cell-lg-4">
                 <div class="inset-lg-left-80">
                   <p style="float: center; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
@@ -197,18 +178,60 @@
                   <br>
                   <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
                   
-</p>
+				  </p>
                   
+              </div>
+              </div>
+              </form> -->
+          
+			   
+			
+		</div>
+		<section class="section-98 section-sm-110">
+          <div class="shell">
+            <h1>Board Members</h1>
+            <hr class="divider bg-danger">
+            <div class="range range-xs-center offset-sm-top-66">
+              <div class="cell-sm-10 cell-lg-12">
+                <div class="range">
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
+                    <!-- Box Member-->
+                    <div class="box-member"><img src="img/image_part_001.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="">Becca Thomas</a> <small class="text-danger">President</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">a short one sentence description of Becca Thomas</p>
+                  </div>
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-sm-top-0 offset-lg-top-0">
+                    <!-- Box Member-->
+                    <div class="box-member"><img src="img/image_part_002.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Raza Mohammed</a> <small class="text-danger">Vice President</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Raza Mohammed.</p>
+                  </div>
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
+                    <!-- Box Member-->
+                    <div class="box-member"><img src="img/image_part_003.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Joel Sandoval</a> <small class="text-danger">Secretary</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Joel Sandoval</p>
+                  </div>
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
+                    <!-- Box Member-->
+                    <div class="box-member"><img src="img/image_part_004.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Frank Rooks</a> <small class="text-danger">Treasurer</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Frank Rooks</p>
+                  </div>
                 </div>
               </div>
-              </form>
-			   
-			<div class="range range-xs-left range-xs-left">
-              <div class="cell-sm-6">
-                <!-- RD Mailform-->
-              </div>
             </div>
-		</div>
+          </div>
+        </section>
+		
 		
 		            
 
@@ -281,35 +304,7 @@
 		<div class="range range-sm-center text-lg-left">
 			<div class="cell-sm-12">
 				<div class="range range-xs-center">
-					<div
-						class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-						<!-- Twitter Feed-->
-						<h6
-							class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter
-							Feed</h6>
-						<div class="offset-top-20">
-							<div data-twitter-username="templatemonster"
-								data-twitter-date-hours=" hours ago"
-								data-twitter-date-minutes=" minutes ago" class="twitter">
-								<div data-twitter-type="tweet" class="twitter-sm">
-									<div class="twitter-date text-dark small">
-										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-										<span data-date="text" class="text-middle"></span>
-									</div>
-									<div data-tweet="text" class="twitter-text"></div>
-									<div data-screen_name="text" class="twitter-name text-bold big"></div>
-								</div>
-								<div data-twitter-type="tweet" class="twitter-sm">
-									<div class="twitter-date text-dark small">
-										<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-										<span data-date="text" class="text-middle"></span>
-									</div>
-									<div data-tweet="text" class="twitter-text"></div>
-									<div data-screen_name="text" class="twitter-name text-bold big"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 
 
 					<div

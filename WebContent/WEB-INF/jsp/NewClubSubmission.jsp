@@ -140,9 +140,7 @@
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
         <%} %>
-          
         </ul>
       </li>
 								
@@ -189,7 +187,7 @@
                     </dl>
                     <dl>
                       <dt>E-mail:</dt>
-                      <dd><a href="mailto:#">mail@demolink.org</a></dd>
+                      <dd><a href="mailto:#">BUClubCentral@gmail.com</a></dd>
                     </dl>
                   </address>
                   

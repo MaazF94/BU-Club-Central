@@ -12,13 +12,8 @@ import edu.ben.bu_club_central.models.User;
 
 
 public class ClubDao {
-	/**
-	 * Establishes the name of the table being used
-	 */
-	private String tableName = "bu_club_central.club";
-	/**
-	 * intialized club object
-	 */
+	private String tableName = "club";
+	
 	private Club clubObject;
 	/**
 	 * variable to distinguish user
@@ -122,7 +117,7 @@ public class ClubDao {
 		String sql;
 		
 		
-		sql = "SELECT * FROM " + tableName + " where enabled = 1";
+		sql = "SELECT * FROM " + tableName + ";";
 		
 			
 

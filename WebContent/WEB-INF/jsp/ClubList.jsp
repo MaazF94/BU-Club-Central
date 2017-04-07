@@ -137,10 +137,10 @@ button.accordion.active:after {
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
+								<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
+ 						%> <a  href="LoginServlet"><span>Sign In</span></a></a> </li><%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -165,21 +165,9 @@ button.accordion.active:after {
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
       <%} %>
-        
-          
         </ul>
       </li>
-								
-								
-                      <li><a href="#"><span></span></a></li>
                           </ul>
-								
-									
-									
-									
-							
-							
-							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -209,8 +197,7 @@ button.accordion.active:after {
 
 			int index = 0;
 		%>
-
-
+		
 		<section class="section-66 section-sm-top-110 section-lg-bottom-0">
 				<div class="shell">
 			<div class="range range-xs-center">
@@ -232,7 +219,7 @@ button.accordion.active:after {
 											%></button>
 <div class=" well">
 <form action="ClubHomepageServlet" method="GET">
-<a type="button" class="btn btn-info" href="ClubHomepageServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
+<a type="button" class="btn btn-info" href="ClubHomepage?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
 												out.println(clubList.get(index).getClub_name());
 											%> Homepage</a>
 											</form>
@@ -269,36 +256,18 @@ href="LeaveClubFromClublistServlet?clubID=<%=(clubList.get(index).getClub_id_num
 			</div>
 			</div>
 		</section>
-
-
-
-
 		<!-- Spaces page from footer-->
 		<div class="range range-xs-center offset-top-66">
 			<div class="cell-md-7"></div>
-
-
 		</div>
 	</div>
-
-
-
-
 	<!-- Page Footer -->
 	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
         <div class="shell">
           <div class="range range-sm-center text-lg-left">
             <div class="cell-sm-12">
               <div class="range range-xs-center">
-               
-                
                  <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  
-                  
-                        
-                      
-                      
-  
                   <div class="offset-top-50 text-xs-center text-lg-left">
                     <ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
