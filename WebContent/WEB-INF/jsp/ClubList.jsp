@@ -137,10 +137,10 @@ button.accordion.active:after {
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
+								<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"> Sign In <%
+ 						%> <a  href="LoginServlet"><span>Sign In</span></a></a> </li><%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -148,6 +148,7 @@ button.accordion.active:after {
 											<%
 					}
 											%>
+      
         <ul class="dropdown-menu">
         <%if (((User) session.getAttribute("user")) != null) { %>
         					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
@@ -218,7 +219,7 @@ button.accordion.active:after {
 											%></button>
 <div class=" well">
 <form action="ClubHomepageServlet" method="GET">
-<a type="button" class="btn btn-info" href="ClubHomepageServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
+<a type="button" class="btn btn-info" href="ClubHomepage?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
 												out.println(clubList.get(index).getClub_name());
 											%> Homepage</a>
 											</form>
