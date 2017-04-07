@@ -1,19 +1,20 @@
 package edu.ben.bu_club_central.models;
 
-import java.io.File;
+import java.io.InputStream;
+import java.sql.Blob;
 
 public class DocumentForAdmin {
 	
 	private String name;
 	private int from_id_num;
-	private File file;
+	private char file;
 	private boolean accept_deny;
 	private boolean active;
 	
-	public DocumentForAdmin(String name, int from_id_num, File file, boolean accept_deny, boolean active) {
+	public DocumentForAdmin(String name, int from_id_num, char c, boolean accept_deny, boolean active) {
 		this.name = name;
 		this.from_id_num = from_id_num;
-		this.file = file;
+		this.file = c;
 		this.accept_deny = accept_deny;
 		this.active = active;
 	}
@@ -34,11 +35,11 @@ public class DocumentForAdmin {
 		this.from_id_num = from_id_num;
 	}
 	
-	public File getFile() {
+	public char getFile() {
 		return this.file;
 	}
 	
-	public void setFile(File file) {
+	public void setFile(char file) {
 		this.file = file;
 	}
 	

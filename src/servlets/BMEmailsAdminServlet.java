@@ -64,7 +64,7 @@ public class BMEmailsAdminServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-doGet(request, response);
+response.sendRedirect("BoardMemberDashBoard");
 			}
 		} catch (Exception e) {
 			String message = 	"<!DOCTYPE html>\r\n" + 
@@ -85,7 +85,7 @@ doGet(request, response);
 					"</body>\r\n" +
 					"</html>";
 		request.setAttribute("message", message);
-		doGet(request, response);
+		response.sendRedirect("BoardMemberDashBoard");
 		}
 	}
 	
