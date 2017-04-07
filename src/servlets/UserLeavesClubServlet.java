@@ -35,11 +35,7 @@ public class UserLeavesClubServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
-			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
-		}
+
 	}
 
 	/**
@@ -54,7 +50,10 @@ public class UserLeavesClubServlet extends HttpServlet {
 		String ID = request.getParameter("clubID");
 		int club_ID = Integer.parseInt(ID);
 		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_ID);
-		doGet(request, response);
-	}
+		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+			response.sendRedirect("UserServlet");
+		} else {
+			response.sendRedirect("BoardMemberDashBoard");
+		}	}
 
 }

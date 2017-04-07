@@ -275,7 +275,7 @@
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
                                                   <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
-                                                <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
+                                                <li><form action ="LikeServlet" method = "POST" name = "like" id = "like"><button ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
                                                 <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
                                               </ul>
                                             </div>
@@ -332,8 +332,25 @@
                     <!-- Category-->
                     <h6 class="text-uppercase text-spacing-60">Clubs</h6>
                     <div class="text-subline"></div>
-                    <ul class="list list-marked offset-top-30">
-                      <li><a href="#">Computer Science  <span class="text-dark">(0)</span></a></li>
+                        <%
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao2.displayClub();
+
+			int index = 0;
+		%>
+                   <ul class="list list-marked offset-top-30">
+                    <%
+							while (index < clubList.size()) {
+						%>
+                      <li><form action ="EventpageByClub" method="POST" >
+                      <button type="submit" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-dark"><%
+												out.println(clubList.get(index).getClub_name());
+											%>(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></button></form></li>
+												<%
+										index++;
+										}
+									%>
                       
                     </ul>
                   </div>
@@ -345,11 +362,14 @@
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>
                 <div class="offset-top-34">
-                                <!-- RD Search Form-->
-                               <form name="vinform">
-								<input placeholder="Enter title of event" type="text"
-									name="name" onkeyup="searchInfo()">
-							</form>
+                               <!-- RD Search Form-->
+                               <form action="SearchByEventName" method="POST" class="form-search rd-search">
+                                  <div class="form-group">
+                                    <label for="blog-sidebar-1-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
+                                    <input id="blog-sidebar-1-form-search-widget" id="EventName" name="EventName" autocomplete="off" class="form-search-input input-sm form-control input-sm">
+                                  </div>
+                                  <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
+                                </form>
 
                 </div>
               </aside>

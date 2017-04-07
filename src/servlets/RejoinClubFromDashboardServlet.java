@@ -68,10 +68,11 @@ public class RejoinClubFromDashboardServlet extends HttpServlet {
 						+ "You successfully joined.\r\n" + "\t\t</div>\r\n" + "</body>\r\n" + "</html>";
 				request.setAttribute("message", message);
 				if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
-					request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+					response.sendRedirect("UserServlet");
 					} else {
-						request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
-					}			} else {
+						response.sendRedirect("BoardMemberDashBoard");
+					}
+				} else {
 				throw new Exception();
 			}
 		} catch (Exception e) {
@@ -83,9 +84,9 @@ public class RejoinClubFromDashboardServlet extends HttpServlet {
 					+ "</body>\r\n" + "</html>";
 			request.setAttribute("message", message);
 			if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
-				request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+				response.sendRedirect("UserServlet");
 				} else {
-					request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+					response.sendRedirect("BoardMemberDashBoard");
 				}		}
 	}
 
