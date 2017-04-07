@@ -344,36 +344,7 @@
 
 
 
-						<div role="tabpanel" class="tab-pane" id="editDescription">
-							<div class="container">
-								<%
-									String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
-								%>
-
-								<form action="EditClubDescriptionServlet" method="post">
-
-									<table class="table table-hover sortable">
-										<thead>
-											<tr>
-												<th>Club Description</th>
-												<th></th>
-											</tr>
-										</thead>
-
-										<tbody>
-											<tr>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
-													<br>
-													<button id="button" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></td>
-											</tr>
-										</tbody>
-
-									</table>
-								</form>
-							</div>
-						</div>
+						
 
 
 
@@ -1310,8 +1281,7 @@
 	<script type="text/javascript">
 		
 		function loggedIn() {
-			var calledOnced = '<%=session.getAttribute("loggedIn")%>
-		';
+			var calledOnced = '<%=session.getAttribute("loggedIn")%>';
 			if (calledOnced == 0) {
 	<%request.getSession().setAttribute("loggedIn", 1);%>
 		calledOnce = 1;

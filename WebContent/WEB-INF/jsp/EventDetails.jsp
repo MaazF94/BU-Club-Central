@@ -270,7 +270,7 @@
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
                                                   <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
-                                                <li><a href="#like"><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</a></li>
+                                                <li><form action ="LikeServlet" method = "POST" name = "like" id = "like"><button ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
                                                 <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
                                               </ul>
                                             </div>

@@ -45,6 +45,7 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (((User) request.getSession().getAttribute("user")).getRole_id() == 2) {
+			
 			ClubDao clDao = new ClubDao();
 			Club clubObject = clDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
 			request.setAttribute("clubObject", clubObject);
