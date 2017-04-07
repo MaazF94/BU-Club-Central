@@ -234,7 +234,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
@@ -348,7 +348,36 @@
 
 
 						
+<div role="tabpanel" class="tab-pane" id="editDescription">
+							<div class="container">
+								<%
+									String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
+								%>
 
+								<form action="EditClubDescriptionServlet" method="post">
+
+									<table class="table table-hover sortable">
+										<thead>
+											<tr>
+												<th>Club Description</th>
+												<th></th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td><textarea onkeypress="enableUpdateButton()"
+														cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+													<br>
+													<button id="button" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></td>
+											</tr>
+										</tbody>
+
+									</table>
+								</form>
+							</div>
+						</div>
 
 
 
@@ -368,7 +397,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
@@ -439,7 +468,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
@@ -530,7 +559,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
@@ -620,7 +649,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
@@ -725,7 +754,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
@@ -815,7 +844,7 @@
                 <br>
                 
                   <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
-                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="message"></textarea>
                   <br>
                   <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
                   
@@ -909,7 +938,7 @@
 													<textarea name="message"
 														placeholder="Need help? Contact the admin..."
 														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="editDescription"></textarea>
+														rows="2" name="message"></textarea>
 													<br>
 													<button id="buttonContact" disabled class="btn btn-info"
 														type="submit">Contact Admin</button>
