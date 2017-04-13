@@ -17,7 +17,7 @@ import org.simplejavamail.mailer.Mailer;
 import org.simplejavamail.mailer.config.TransportStrategy;
 
 public class SendMail {
-	public static void email(String fromEmail, String username, String password, String toEmail, String subject,
+	public static void email(String fromEmail, final String username, final String password, String toEmail, String subject,
 			String content) {
 		//set properties to send email by
 		Properties props = new Properties();

@@ -118,8 +118,9 @@
         						<%}else { %>
         							<li><a href="AdminHome"><span class="">Dash Board</span></a>
         						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
- 							   
+        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %> 							   
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>

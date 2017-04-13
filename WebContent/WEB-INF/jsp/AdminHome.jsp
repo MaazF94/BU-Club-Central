@@ -146,7 +146,6 @@
         						<%}else { %>
         							<li><a href="AdminHome"><span class="">Dash Board</span></a>
         						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
  							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
  							
       

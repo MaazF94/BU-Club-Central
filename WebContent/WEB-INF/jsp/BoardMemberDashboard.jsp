@@ -138,8 +138,9 @@
 														Board</span></a> <%
  	}
  %>
-											<li><a href="ClubHomepageServlet"><span class="">Club
-														Home Page</span></a>
+        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %>
 											<li><a href="LogoutServlet"><span
 													class="text-danger">logout</span></a>
 										</ul></li>
