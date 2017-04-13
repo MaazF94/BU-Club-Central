@@ -30,11 +30,12 @@ public class EventDetailsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);
-		
+		if (request.getSession().getAttribute("user") != null) {
 		EventNotificationDao eNotDao = new EventNotificationDao();
 		eNotDao.checkedNotification(Integer.parseInt(request.getParameter("eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
-		
+		}
+		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);		
+
 	}
 
 	/**
