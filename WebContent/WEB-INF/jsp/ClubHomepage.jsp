@@ -99,10 +99,10 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
+								 								 <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> Sign In <%
+ 						%> <a  href="LoginServlet"> Sign In <%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -111,11 +111,35 @@
 					}
 											%>
       
-        <ul class="dropdown-menu">
-                <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+         <ul class="dropdown-menu">
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
+											%>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
           <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
         <%} %>
-          <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      
+        
           
         </ul>
       </li>
@@ -173,73 +197,7 @@
 			   <br>
 			   <p>${advisorName}</p>
 			   
-			   	<!--<form action = "UserEmailsBMServlet" method="POST">
-              <div class="cell-lg-4">
-                <div class="inset-lg-left-80">
-                  <p style="float: center; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
-                  <textarea name = "message" placeholder="Need help? Contact a board member..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
-                  <br>
-                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
-                  
-				  </p>
-                  
-              </div>
-              </div>
-              </form> -->
-          
-			   
-			
-		</div>
-		<section class="section-98 section-sm-110">
-          <div class="shell">
-            <h1>Board Members</h1>
-            <hr class="divider bg-danger">
-            <div class="range range-xs-center offset-sm-top-66">
-              <div class="cell-sm-10 cell-lg-12">
-                <div class="range">
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
-                    <!-- Box Member-->
-                    <div class="box-member"><img src="img/image_part_001.jpg" alt="" class="img-responsive"/>
-                      <h5 class="text-bold offset-top-20"><a href="">Becca Thomas</a> <small class="text-danger">President</small>
-                      </h5>
-                    </div>
-                    <p class="offset-lg-top-0 text-muted">a short one sentence description of Becca Thomas</p>
-                  </div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-sm-top-0 offset-lg-top-0">
-                    <!-- Box Member-->
-                    <div class="box-member"><img src="img/image_part_002.jpg" alt="" class="img-responsive"/>
-                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Raza Mohammed</a> <small class="text-danger">Vice President</small>
-                      </h5>
-                    </div>
-                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Raza Mohammed.</p>
-                  </div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                    <!-- Box Member-->
-                    <div class="box-member"><img src="img/image_part_003.jpg" alt="" class="img-responsive"/>
-                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Joel Sandoval</a> <small class="text-danger">Secretary</small>
-                      </h5>
-                    </div>
-                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Joel Sandoval</p>
-                  </div>
-                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                    <!-- Box Member-->
-                    <div class="box-member"><img src="img/image_part_004.jpg" alt="" class="img-responsive"/>
-                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Frank Rooks</a> <small class="text-danger">Treasurer</small>
-                      </h5>
-                    </div>
-                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Frank Rooks</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-		
-		
-		            
-
-		<%--div class="row" style="background-color: white">
-			<div class="container">
+			   			<div class="container">
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4 ">
 					<h3>Post Feed</h3>
@@ -247,8 +205,8 @@
 						PostDao postDao = new PostDao();
 
 						LinkedList<Post> postList = new LinkedList<Post>();
-
-						postList = postDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
+						String club_id_num = (String) request.getAttribute("club_id_num");
+						postList = postDao.getAllPostsByClubId(Integer.parseInt(club_id_num));
 
 						//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
 						int postListSize = postList.size();
@@ -276,7 +234,65 @@
 
 				</div>
 			</div>
-		</div> --%>
+			   
+			   	<!--<form action = "UserEmailsBMServlet" method="POST">
+              <div class="cell-lg-4">
+                <div class="inset-lg-left-80">
+                  <p style="float: center; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
+                  <textarea name = "message" placeholder="Need help? Contact a board member..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="editDescription"></textarea>
+                  <br>
+                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
+                  
+				  </p>
+                  
+              </div>
+              </div>
+              </form> -->
+          
+			   
+			
+		</div>
+		<!--<section class="section-98 section-sm-110">
+          <div class="shell">
+            <h1>Board Members</h1>
+            <hr class="divider bg-danger">
+            <div class="range range-xs-center offset-sm-top-66">
+              <div class="cell-sm-10 cell-lg-12">
+                <div class="range">
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
+                    <div class="box-member"><img src="img/image_part_001.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="">Becca Thomas</a> <small class="text-danger">President</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">a short one sentence description of Becca Thomas</p>
+                  </div>
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-sm-top-0 offset-lg-top-0">
+                    <div class="box-member"><img src="img/image_part_002.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Raza Mohammed</a> <small class="text-danger">Vice President</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Raza Mohammed.</p>
+                  </div>
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
+                    <div class="box-member"><img src="img/image_part_003.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Joel Sandoval</a> <small class="text-danger">Secretary</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Joel Sandoval</p>
+                  </div>
+                  <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
+                    <div class="box-member"><img src="img/image_part_004.jpg" alt="" class="img-responsive"/>
+                      <h5 class="text-bold offset-top-20"><a href="about-coach.html">Frank Rooks</a> <small class="text-danger">Treasurer</small>
+                      </h5>
+                    </div>
+                    <p class="offset-lg-top-0 text-muted">A short one sentence description of Frank Rooks</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>-->
+
 
 
 

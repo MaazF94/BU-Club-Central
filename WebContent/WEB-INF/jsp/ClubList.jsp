@@ -140,7 +140,7 @@ button.accordion.active:after {
 								<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> <a  href="LoginServlet"><span>Sign In</span></a></a> </li><%
+ 						%> <a  href="LoginServlet"> Sign In <%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -149,23 +149,36 @@ button.accordion.active:after {
 					}
 											%>
       
-        <ul class="dropdown-menu">
-        <%if (((User) session.getAttribute("user")) != null) { %>
-        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
-        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+         <ul class="dropdown-menu">
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
+											%>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
           <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
-        <%} %> 							   
+        <%} %>
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      <%} %>
+      
+        
+          
         </ul>
       </li>
                           </ul>

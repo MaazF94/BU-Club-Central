@@ -49,6 +49,9 @@ public class ClubHomepageServlet extends HttpServlet {
 		
 		String advisor = clubObject.getAdvisor_name();
 		request.setAttribute("advisorName", advisor);
+		
+		String club_id_num = request.getParameter("club_id_num");
+		request.setAttribute("club_id_num", club_id_num);
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubHomepage.jsp").forward(request, response);
 	}
 
