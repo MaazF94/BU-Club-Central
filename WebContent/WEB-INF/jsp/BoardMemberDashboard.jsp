@@ -47,8 +47,7 @@
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 		
-		<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=131zx5pf1fhoa2bxv2n36gzoa8sldmsbb8qiiwm8qoyqu28p"></script>
-  <script>tinymce.init({ selector:'textarea' });</script>
+
 </head>
 <body>
 	<!-- Page-->
@@ -221,31 +220,6 @@
 					<div class="tab-content well">
 						<div role="tabpanel" class="tab-pane" id="viewClub">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
 								<%
 									LinkedList<ClubMembership> clubMembershipList = (LinkedList<ClubMembership>) request
 											.getAttribute("clubMembershipList");
@@ -384,31 +358,7 @@
 
 						<div role="tabpanel" class="tab-pane" id="viewPastClub">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
+								
 								<%
 									LinkedList<ClubMembership> clubMembershipList2 = (LinkedList<ClubMembership>) request
 											.getAttribute("clubMembershipList2");
@@ -455,31 +405,7 @@
 
 						<div role="tabpanel" class="tab-pane" id="viewMember">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
+								
 								<%
 									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
 									int index = 0;
@@ -546,31 +472,7 @@
 
 						<div role="tabpanel" class="tab-pane active" id="editEvents">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
+								
 								<%
 									LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList");
 									int eventListIndex = 0;
@@ -636,31 +538,7 @@
 
 						<div role="tabpanel" class="tab-pane" id="editComments">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
+								
 								<%
 									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
 
@@ -741,31 +619,7 @@
 
 						<div role="tabpanel" class="tab-pane" id="editPosts">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
+								
 								<%
 									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
 
@@ -835,26 +689,7 @@
 
 <div role="tabpanel" class="tab-pane" id="viewForm">
 						<div class="container">
-													<div>
-			
-			<form action = "BMEmailsAdminServlet" method="POST">
-              <div class="cell-lg-4">
-              
-                <div class="inset-lg-left-80">
-                
-                <br>
-                
-                  <p style="float: right; margin: 0; padding: 1em;" class="offset-top-41 offset-lg-top-50">
-                  <textarea name = "message" placeholder="Need help? Contact the admin..." onkeypress="enableUpdateButtonContact()" cols="30" rows="2" name="message"></textarea>
-                  <br>
-                  <button id="buttonContact" disabled class="btn btn-info" type="submit">Contact Admin</button>
-                  
-</p>
-                  
-                </div>
-              </div>
-              </form>
-              </div>
+													
 							<%
 							LinkedList<Document> documentList = (LinkedList<Document>) request.getAttribute("documentList");
 							int documentIndex = 0;
@@ -925,31 +760,7 @@
 
 						<div role="tabpanel" class="tab-pane" id="sendEmail">
 							<div class="container">
-								<div>
-
-									<form action="BMEmailsAdminServlet" method="POST">
-										<div class="cell-lg-4">
-
-											<div class="inset-lg-left-80">
-
-												<br>
-
-												<p style="float: right; margin: 0; padding: 1em;"
-													class="offset-top-41 offset-lg-top-50">
-													<textarea name="message"
-														placeholder="Need help? Contact the admin..."
-														onkeypress="enableUpdateButtonContact()" cols="30"
-														rows="2" name="message"></textarea>
-													<br>
-													<button id="buttonContact" disabled class="btn btn-info"
-														type="submit">Contact Admin</button>
-
-												</p>
-
-											</div>
-										</div>
-									</form>
-								</div>
+								
 								<%
 									LinkedList<Events> eventList3 = (LinkedList<Events>) request.getAttribute("eventList3");
 									int eventListIndex3 = 0;
