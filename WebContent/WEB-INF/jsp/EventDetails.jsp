@@ -275,8 +275,8 @@
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
                                                   <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
                                                 </li>
-                                                <li><form action ="LikeServlet" method = "POST" name = "like" id = "like"><button ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
-                                                <li><a href="#reply"><span class="box-comment-icon mdi mdi-message-outline"></span> Reply</a></li>
+                                                <li><form action ="LikeServlet" method = "POST" ><button class = "btn-info" type = "submit" name = "commentID" id = "commentID" value =<%=commentList.get(commentListIndex).getIdcomment() %> ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
+                                                <li><a href="#"><span class=""></span>Current likes: <%=commentDao.getNumOfLikes(commentList.get(commentListIndex).getIdcomment()) %></a></li>
                                               </ul>
                                             </div>
                                             <div class="unit-body">

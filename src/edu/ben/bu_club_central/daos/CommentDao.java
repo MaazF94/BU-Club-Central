@@ -111,6 +111,42 @@ public class CommentDao {
 		}
 	}
 	
+	public void addLikeToComment(int commentId, int currentLikes) {
+		String sql = "UPDATE " + tableName + " SET likesCount=  likesCount + 1 WHERE idcomments=" + commentId;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public int getNumOfLikes(int commentId) {
+		String sql = "SELECT likesCount from " + tableName + " WHERE idcomments= '" + commentId + "'";
+		
+		
+		int likes =0;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+			
+		 likes = rs.getInt("likesCount");
+			};
+		
+		 return likes;
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	
 	
 	

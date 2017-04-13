@@ -174,6 +174,40 @@
 			</div>
 		</div>
 		</section> </header>
+		<section id="welcome" class="section-98 section-sm-110">
+          <div class="shell">
+            <h1>Welcome</h1>
+            <hr class="divider bg-red">
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-lg-8">
+                <p>Welcome to the website Intense Gym! We hope that you will appreciate our services and opportunities we offer our loyal and potential customers. Here are some of them:</p>
+              </div>
+            </div>
+            <div class="range offset-top-98">
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
+                <!-- Icon Box Type 5-->
+                <div class="box-icon box-icon-bordered"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-account-multiple"></span>
+                  <h4 class="text-danger offset-top-20">Qualified Coaches</h4>
+                  <p>Our coaches have years of experience in various types of fitness and sports.</p>
+                </div>
+              </div>
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
+                <!-- Icon Box Type 5-->
+                <div class="box-icon box-icon-bordered"><span class="icon icon-outlined icon-xs icon-dark-filled mdi mdi-thumb-up"></span>
+                  <h4 class="text-danger offset-top-20">Individual Approach</h4>
+                  <p>Every client of Intense has a personalized program of training and nutrition.</p>
+                </div>
+              </div>
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0 offset-top-98 offset-md-top-0">
+                <!-- Icon Box Type 5-->
+                <div class="box-icon box-icon-bordered"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-dumbbell"></span>
+                  <h4 class="text-danger offset-top-20">Modern Fitness Equipment</h4>
+                  <p>We cooperate with leading fitness equipment suppliers to give you the superior results.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 		<!-- Page Footer-->
 		<footer
 			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">

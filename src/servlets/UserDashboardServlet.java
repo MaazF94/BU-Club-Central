@@ -23,48 +23,59 @@ import edu.ben.bu_club_central.models.User;
 @WebServlet("/UserServlet")
 public class UserDashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserDashboardServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
-			
-			LinkedList<Events> eventList = new LinkedList<Events>();
-			EventRSVPListDao eDao = new EventRSVPListDao();
-			eventList = eDao.getAllEventsThatuserRSVP(((User)request.getSession().getAttribute("user")).getId_num());
-			request.setAttribute("eventList", eventList);
-			
-			LinkedList<Events> eventList2 = new LinkedList<Events>();
-			EventsDao eDao2 = new EventsDao();
-			eventList2 = eDao2.getAllEventsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
-			request.setAttribute("eventList2", eventList2);
-			
-			PostDao pDao = new PostDao();
-			LinkedList<Post> postList = new LinkedList<Post>();
-			postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
-			request.setAttribute("postList", postList);
-			
-			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
-		}else {
-			response.sendRedirect("AccessDeniedServlet");
-		}
-		
+	public UserDashboardServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		if (((User) request.getSession().getAttribute("user")) != null) {
+			if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
+
+				LinkedList<Events> eventList = new LinkedList<Events>();
+				EventRSVPListDao eDao = new EventRSVPListDao();
+				eventList = eDao
+						.getAllEventsThatuserRSVP(((User) request.getSession().getAttribute("user")).getId_num());
+				request.setAttribute("eventList", eventList);
+
+				LinkedList<Events> eventList2 = new LinkedList<Events>();
+				EventsDao eDao2 = new EventsDao();
+				eventList2 = eDao2
+						.getAllEventsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
+				request.setAttribute("eventList2", eventList2);
+
+				PostDao pDao = new PostDao();
+				LinkedList<Post> postList = new LinkedList<Post>();
+				postList = pDao
+						.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
+				request.setAttribute("postList", postList);
+
+				request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
+			} else {
+				response.sendRedirect("AccessDeniedServlet");
+			}
+		} else {
+			response.sendRedirect("AccessDeniedServlet");
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
