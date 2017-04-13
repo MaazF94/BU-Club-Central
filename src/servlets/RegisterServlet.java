@@ -1,6 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,12 +67,14 @@ public class RegisterServlet extends HttpServlet {
 					"</head>\r\n<body>\r\n" +
 					"<div class=isa_success>\r\n" +
 					"<i class=fa fa-check></i>\r\n" +
-					"You successfully registered.\r\n" +
+					"You successfully registered. Please login below.\r\n" +
 					"\t\t</div>\r\n" +
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-response.sendRedirect("");
+ServletContext context = getServletContext();
+RequestDispatcher dispatcher = context.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
+dispatcher.forward(request, response);
 
 		} else {
 			System.out.println("user error checking failed");
@@ -91,8 +96,9 @@ response.sendRedirect("");
 					"</body>\r\n" +
 					"</html>";
 		request.setAttribute("message", message);
-		response.sendRedirect("");
-		}
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/WEB-INF/jsp/Register.jsp");
+		dispatcher.forward(request, response);		}
 
 	}
 
@@ -102,7 +108,7 @@ response.sendRedirect("");
 		
 		String hashedPw = BCrypt.hashpw(passwrd, BCrypt.gensalt());
 
-		uDao.registerUser(first_name, last_name, username, hashedPw, id_num, email);
+		if (uDao.registerUser(first_name, last_name, username, hashedPw, id_num, email)) {
 		System.out.println("Added user");
 		
 		// send email to a newly registered user after they've been put into database
@@ -240,6 +246,7 @@ response.sendRedirect("");
 				"</html>";
 		SendMail.email("BUclubcentral@gmail.com", "BUclubcentral@gmail.com" , "thefirm123", email, subject, content);
 		System.out.println("Sent email");
+		}
 		
 	}
 

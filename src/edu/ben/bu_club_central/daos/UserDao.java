@@ -20,21 +20,23 @@ public class UserDao {
 	private Connection conn = dbc.getConn();
 
 	// Register user method works
-	public void registerUser(String first_name, String last_name, String username, String passwrd, int id_num,
+	public boolean registerUser(String first_name, String last_name, String username, String passwrd, int id_num,
 			String email) {
 		String sql = "INSERT INTO " + tableName
 				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name + "', '"
-				+ last_name + "', '" + username + "', '" + passwrd + "', '" + id_num + "', '" + email + "', '" + default_user_id + "', '" + enabled
-				+ "')";
+				+ last_name + "', '" + username + "', '" + passwrd + "', " + id_num + ", '" + email + "', " + default_user_id + ", " + enabled
+				+ ")";
 
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	/**
@@ -210,7 +212,7 @@ public class UserDao {
 	 * @return
 	 */
 	public boolean checkUsernameExist(String username) {
-		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'";
+		String sql = "SELECT * FROM " + tableName;
 
 		PreparedStatement ps;
 		ResultSet rs = null;
