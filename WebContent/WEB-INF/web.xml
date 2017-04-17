@@ -32,4 +32,24 @@
     <servlet-name>BenUnion</servlet-name>
     <url-pattern>/BenUnion</url-pattern>
   </servlet-mapping>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/WEB-INF/jsp/ErrorCatchAllPage.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/jsp/ErrorCatchAllPage.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/ErrorCatchAllPage.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/jsp/ErrorCatchAllPage.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>503</error-code>
+    <location>/WEB-INF/jsp/ErrorCatchAllPage.jsp</location>
+  </error-page>
 </web-app>
