@@ -158,6 +158,19 @@ public class EventRSVPListDao {
 	}
 	
 	
+	public void unRSVPForEvent(int eventId, int id_num) {
+		String sql = "DELETE FROM " + tableName + " WHERE eventId=" + eventId + " AND user_id_num=" + id_num;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 }
