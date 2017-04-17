@@ -15,6 +15,9 @@
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventRSVPListDao"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.sql.Timestamp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
@@ -273,7 +276,14 @@
                                             <div class="unit-left unit-grow-1">
                                               <ul class="box-comment-meta list-inline list-inline-sm text-dark">
                                                 <li><span class="box-comment-icon mdi mdi-clock"></span>
-                                                  <time datetime="2016-01-01 text-white"><%=commentList.get(commentListIndex).getCreatedOn() %></time>
+                                               <% SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                               SimpleDateFormat sdfOut = new SimpleDateFormat("h:mm a  MMM d, ''yy");
+                                               String input = commentList.get(commentListIndex).getCreatedOn();
+                                               Date date = sdfIn.parse(input);%>
+                                             
+                                                  <time datetime="2016-01-01 text-white"><%=sdfOut.format(date) %></time>
+                                             
+                                                
                                                 </li>
                                                 <li><form action ="LikeServlet" method = "POST" ><button class = "btn-info" type = "submit" name = "commentID" id = "commentID" value =<%=commentList.get(commentListIndex).getIdcomment() %> ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
                                                 <li><a href="#"><span class=""></span>Current likes: <%=commentDao.getNumOfLikes(commentList.get(commentListIndex).getIdcomment()) %></a></li>
