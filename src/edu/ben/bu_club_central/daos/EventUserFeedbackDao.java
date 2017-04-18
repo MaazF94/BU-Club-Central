@@ -24,11 +24,7 @@ public class EventUserFeedbackDao {
 			e.printStackTrace();
 		}
 		
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	
 	}
 
 }

@@ -33,11 +33,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		
 	}
 	
@@ -62,14 +58,11 @@ public class CommentDao {
 				commentList.add(c);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return commentList;
 	}
 	
@@ -94,11 +87,7 @@ public class CommentDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return comment;
 		
 	}
@@ -115,11 +104,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 	public void deleteComment(int commentId) {
@@ -133,11 +118,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 	public void addLikeToComment(int commentId, int currentLikes) {
@@ -151,11 +132,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	public int getNumOfLikes(int commentId) {
 		String sql = "SELECT likesCount from " + tableName + " WHERE idcomments= '" + commentId + "'";
@@ -178,11 +155,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return 0;
 	}
 	 public String getparsedDate(String date) throws Exception {
@@ -198,11 +171,7 @@ public class CommentDao {
 
 	            e.printStackTrace();
 	        }
-	        try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	       
 	        return s2;
 
 	    }

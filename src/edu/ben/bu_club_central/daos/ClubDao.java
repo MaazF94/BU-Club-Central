@@ -76,21 +76,13 @@ public class ClubDao {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -117,15 +109,11 @@ public class ClubDao {
 						cs.getInt("enabled"));
 				results.add(newClub);
 			}
-
+			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return results;
 	}
 
@@ -154,7 +142,7 @@ public class ClubDao {
 						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
-
+			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -183,15 +171,11 @@ public class ClubDao {
 						cs.getInt("enabled"));
 				results.add(newClub);
 			}
-
+			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return results;
 	}
 
@@ -216,14 +200,11 @@ public class ClubDao {
 						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),
 						rs.getInt("enabled"));
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return club;
 	}
 
@@ -249,14 +230,11 @@ public class ClubDao {
 						rs.getInt("enabled"));
 				clubList.add(club);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return clubList;
 	}
 
@@ -296,11 +274,7 @@ public class ClubDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	/**
@@ -316,22 +290,14 @@ public class ClubDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	
 		return false;
 	}
 
@@ -347,11 +313,7 @@ public class ClubDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void enableClub(int club_id_num) {
@@ -366,11 +328,7 @@ public class ClubDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public int countMemebers(int club_id_num) {
@@ -400,16 +358,13 @@ public class ClubDao {
 
 				list.add(user);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		size = list.size();
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return size;
 	}
 

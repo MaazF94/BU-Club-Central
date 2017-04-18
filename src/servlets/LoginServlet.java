@@ -56,47 +56,55 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		if (!request.getParameter("username").equals(null) || !request.getParameter("password").equals(null)) {
-			if (!(loginUser(request.getParameter("username")) == null)) {
-				user = uDao.getUserByUsername(request.getParameter("username"));
-				request.getSession().setAttribute("user", user);
-				request.getSession().setAttribute("loggedIn", 0);
-				
-				
-//				int club_id_num = user.getClub_id_num(); 
-//				ClubDao cDao = new ClubDao();
-//				Club clubObject = cDao.getClubById(club_id_num);
-//				request.getSession().setAttribute("clubObject", clubObject);
-				
-				
-				if (user.getRole_id() == 1) {
-					response.sendRedirect("UserServlet");
-				} else if (user.getRole_id() == 2) {
+			if (checkUsernamePasswordMatch(request.getParameter("username"), request.getParameter("password"))) {
 
-					
-					
-					response.sendRedirect("BoardMemberDashBoard");
-					
-					out.println("logIn();");
-					
+				if (!(loginUser(request.getParameter("username")) == null)) {
+					user = uDao.getUserByUsername(request.getParameter("username"));
+					request.getSession().setAttribute("user", user);
+					request.getSession().setAttribute("loggedIn", 0);
+
+					// int club_id_num = user.getClub_id_num();
+					// ClubDao cDao = new ClubDao();
+					// Club clubObject = cDao.getClubById(club_id_num);
+					// request.getSession().setAttribute("clubObject",
+					// clubObject);
+
+					if (user.getRole_id() == 1) {
+						response.sendRedirect("UserServlet");
+					} else if (user.getRole_id() == 2) {
+
+						response.sendRedirect("BoardMemberDashBoard");
+
+						out.println("logIn();");
+
+					} else {
+						response.sendRedirect("AdminHome");
+					}
 				} else {
-					response.sendRedirect("AdminHome");
+					response.sendRedirect("errorLogin");
+
 				}
 			} else {
 				response.sendRedirect("errorLogin");
-			
 			}
 		} else {
 			response.sendRedirect("errorLogin");
 		}
 
-	
 	}// Need to add if checks for where to long into when there are different
 		// roles. ie: user, admin, president
 
-
 	private User loginUser(String username) {
 		uDao = new UserDao();
+		
 		return uDao.getUserByUsername(username);
+	}
+
+	private boolean checkUsernamePasswordMatch(String username, String password) {
+		boolean result = false;
+		UserDao uDao = new UserDao();
+		result = uDao.checkPasswordUsernameMatch(username, password);
+		return result;
 	}
 
 }

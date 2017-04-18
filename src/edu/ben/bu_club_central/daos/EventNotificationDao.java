@@ -52,11 +52,7 @@ public class EventNotificationDao {
 			
 			listIndex++;
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 	
@@ -104,11 +100,7 @@ public class EventNotificationDao {
 			eventNotificationIndex++;
 		}
 		
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return eventsList;
 		
 		
@@ -131,24 +123,9 @@ public class EventNotificationDao {
 			e.printStackTrace();
 		}
 		
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
