@@ -35,7 +35,7 @@ public class LikeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		request.getRequestDispatcher("/WEB-INF/jsp/EventPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);
 	}
 
 	/**

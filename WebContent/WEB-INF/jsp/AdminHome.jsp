@@ -205,8 +205,6 @@
 						<li role="presentation" class="active"><a href="#editClubs"
 							aria-controls="editClubs" role="tab" data-toggle="tab">Edit
 								Clubs</a></li>
-								<li role="presentation"><a href="#viewUser"
-							aria-controls="viewUsers" role="tab" data-toggle="tab">Edit User Role</a></li>
 						<li role="presentation" ><a href="#editEvents"
 							aria-controls="editEvents" role="tab" data-toggle="tab">Edit
 								Events</a></li>
@@ -285,58 +283,6 @@
 						</div>
 					</div>
 					
-					<div role="tabpanel" class="tab-pane" id="viewUser">
-							<%			UserDao uDao = new UserDao();
-							LinkedList<User> userList = new LinkedList<User>();
-							userList = uDao.displayUsers();
-
-							int index2 = 0;
-							%>
-							<form action="AdminHome" method="post">
-							<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
-							<table id="myTable" class="table table-hover sortable">
-									<thead>
-										<tr>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>ID Number</th>
-											<th>Email</th>
-											<th>Role ID</th>
-										</tr>
-									</thead>
-							<%while (index2 < userList.size()) { %>
-								<%
-								String role = "";
-								if (userList.get(index2).getRole_id() == 1) {
-									role = "Regular User";
-								} else if (userList.get(index2).getRole_id() == 2) {
-									role = "Board Member";
-								} else if (userList.get(index2).getRole_id() == 3) {
-									role = "Admin";
-								} 
-								%>
-									<tbody>
-										<tr>
-											<td><input type="hidden" name="first_name" value=<%=userList.get(index2).getFirst_name()%>> <%out.println(userList.get(index2).getFirst_name());%></td>
-											<td><input type="hidden" name="last_name" value=<%=userList.get(index2).getLast_name()%>> <%out.println(userList.get(index2).getLast_name());%></td>
-											<td><input type="hidden" name="id_num" value=<%=userList.get(index2).getId_num()%>> <%out.println(userList.get(index2).getId_num());%></td>
-											<td><input type="hidden" name="email" value=<%=userList.get(index2).getEmail()%>> <%out.println(userList.get(index2).getEmail());%></td>
-											<td><select
-											name="role_id" onchange="this.form.submit()">
-  <option selected="selected" disabled="disabled"><%=role%></option>											
-  <option value="1, <%=userList.get(index2).getUser_id()%>">Regular User </option> 
-  <option value="2, <%=userList.get(index2).getUser_id()%>">Board Member</option>
-</select>
-</td>										
-										</tr>
-									</tbody>
-							
-							<%index2++;
-							%>
-							<% }%>
-							</table>
-							</form>
-						</div>
 					
 						<div role="tabpanel" class="tab-pane " id="editEvents">
 							<div class="container">
@@ -521,20 +467,24 @@
 						<div role="tabpanel" class="tab-pane " id="editUsers">
 							<div class="container">
 								<%
+									UserDao uDao = new UserDao();
+									LinkedList<User> userList = new LinkedList<User>();
 									userList = uDao.getAllUsers();
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
 								
 								%>
-								<table class="table table-hover sortable">
+								<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
+								<form action = "AdminChangeRoleID" method="POST">
+							<table id="myTable" class="table table-hover sortable">
 									<thead>
 										<tr>
 											<th>Name</th>
 											<th>User Name</th>
 											<th>ID Number</th>
 											<th>Email</th>
-											<th>Role ID</th>
+											<th><input value="Set Roles" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
 											<th>Enabled/Disabled</th>
 											<th></th>
 											<th></th>
@@ -545,12 +495,30 @@
 										<%
 											while (userListIndex < userListSize) {
 										%>
-										<tr>
+																		<%
+								String role = "";
+								if (userList.get(userListIndex).getRole_id() == 1) {
+									role = "Regular User";
+								} else if (userList.get(userListIndex).getRole_id() == 2) {
+									role = "Board Member";
+								} else if (userList.get(userListIndex).getRole_id() == 3) {
+									role = "Admin";
+								} 
+								%>
+										<tr id=<%=userListIndex%>>
 											<td><%=userList.get(userListIndex).getFirst_name() + " " + userList.get(userListIndex).getLast_name()%></td>
 											<td><%=userList.get(userListIndex).getUsername() %></td>
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
-											<td><%=userList.get(userListIndex).getRole_id() %></td>
+											<td><select onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00';"
+											name = "role_id">
+  <option selected="selected" disabled="disabled"><%=role%></option>											
+  <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
+  <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
+  <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
+</select>
+</td>												
+
 											<td><%=userList.get(userListIndex).getEnabled() %></td>
 											
 											<td><form action="AdminDeleteUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to disable this user.');">
@@ -577,6 +545,7 @@
 										%>
 									</tbody>
 								</table>
+								</form>
 							</div>
 						</div>
 						
