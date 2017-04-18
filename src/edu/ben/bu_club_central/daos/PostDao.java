@@ -53,6 +53,7 @@ public class PostDao {
 			while(rs.next()) {
 				newPost = new Post(rs.getString("title"), rs.getString("contents"), rs.getInt("club_id_num"), rs.getInt("id_num_of_user"));
 				newPost.setIdpost(rs.getInt("idpost"));
+				newPost.setNumOfLikes(rs.getInt("numOfLikes"));
 				postList.add(newPost);
 				
 			}
@@ -81,6 +82,7 @@ public class PostDao {
 			while(rs.next()) {
 				newPost = new Post(rs.getString("title"), rs.getString("contents"), rs.getInt("club_id_num"), rs.getInt("id_num_of_user"));
 				newPost.setIdpost(rs.getInt("idpost"));
+				newPost.setNumOfLikes(rs.getInt("numOfLikes"));
 				postList.add(newPost);
 				
 			}
@@ -110,6 +112,7 @@ public class PostDao {
 			rs.next();
 			post = new Post(rs.getString("title"), rs.getString("contents"), rs.getInt("club_id_num"), rs.getInt("id_num_of_user"));
 			post.setIdpost(rs.getInt("idpost"));
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -144,6 +147,28 @@ public class PostDao {
 		}
 	}
 	
-	
+	public void likePost(int postId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE idpost=" + postId;
+		int numLikes = 0;
+		PreparedStatement ps, ps2;
+		ResultSet rs;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			numLikes = rs.getInt("numOfLikes");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		numLikes = numLikes + 1;
+		String sql2 = "UPDATE " + tableName + " SET numOfLikes=" + numLikes + " WHERE idpost=" + postId;
+		try {
+			ps2 = conn.prepareStatement(sql2);
+			ps2.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

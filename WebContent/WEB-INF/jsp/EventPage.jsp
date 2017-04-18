@@ -264,10 +264,13 @@
 									
 									<%}else { %>
 										
-											<form action="RSVPServlet" method="POST">
+											<form action="UNRSVPServlet" method="POST">
 
 											<button disabled class="btn btn-default" type="submit" name="eventId"
 												value="<%=eventList.get(eventListIndex).getEventId()%>">Already Going</button>
+											
+											<button class="btn btn-default" type="submit" name="eventId" 
+												value="<%=eventList.get(eventListIndex).getEventId()%>">Not going anymore</button>
 										</form>
 										
 										
