@@ -503,12 +503,21 @@
 											<td><%=userList.get(userListIndex).getUsername() %></td>
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
-											<td><select  name = "role_id">
+											<td><select  name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00';">
   <option selected="selected" disabled="disabled"><%=role%></option>											
   <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
   <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
 </select>
+<a style="font-size: 12pt;" data-toggle="modal" href="#setRolesModal"><span
+									class="icon glyphicon glyphicon-calendar"></span>Set Club</a>
+									
+										<div class="modal fade" id="setRolesModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
 						                    <%
 			ClubDao cDao = new ClubDao();
 			LinkedList<Club> clubs = new LinkedList<Club>();
@@ -519,14 +528,28 @@
 							while (index < clubs.size()) {
 						%>
               
-              <label><input type="checkbox" name="club_id_num" value="<%=clubs.get(index).getClub_id_num()%> <%=userList.get(userListIndex).getUser_id()%>" /> 	<%
+              <label><input type="checkbox" name="club_id_num" value="<%=clubs.get(index).getClub_id_num()%>" /> 	<%
 												out.println(clubs.get(index).getClub_name());
 											%></label><br>
               
             <%
 										index++;
 										}
-									%>
+									%> 
+
+						<button type="button" class="btn btn-success center"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Set
+						</button>
+						<button type="button" class="btn btn-danger center"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Cancel
+						</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
 </td>												
 
 											<td><%=userList.get(userListIndex).getEnabled() %></td>
@@ -719,46 +742,7 @@
     
 
     	<!-- Board Member Modal -->
-	<div class="modal fade" id="setRolesModal" role="dialog">
-		<div class="modal-dialog" style="top: 25%;">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header" style="padding: 35px 50px;"></div>
-				<div class="modal-body" style="padding: 40px 50px;">
-				<form>	
-						                    <%
-			ClubDao cDao = new ClubDao();
-			LinkedList<Club> clubs = new LinkedList<Club>();
-			clubs = cDao.displayClub();
 
-			int index = 0;
-		%>
-								<%
-							while (index < clubs.size()) {
-						%>
-              
-              <label><input type="radio" name="club_id_num" value=<%=clubs.get(index).getClub_id_num()%> /> 	<%
-												out.println(clubs.get(index).getClub_name());
-											%></label><br>
-              
-            <%
-										index++;
-										}
-									%>  
-
-						<button type="submit" class="btn btn-success center">
-							<span class="glyphicon glyphicon-ok-circle"></span> Set
-						</button>
-						<button type="button" class="btn btn-danger center"
-							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Cancel
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
-
-	</div>
 	<script>
 		$(document).ready(function() {
 			$("#setRolesModal").modal();

@@ -106,26 +106,26 @@ response.sendRedirect("AdminHome");
 		int[] userIDs = new int[100];
 		int[] roleIDs = new int[100];
 		int[] clubIDs = new int[100];
-		int[] BMUserIDs = new int[100];
+		int index = 0;
 		
 		for (int i = 0; i < userRoleList.length; i++) {
 			userRoleList[i].replace("[", "");
 			userRoleList[i].replace("]", "");
 			roleIDs[i] = Integer.parseInt(userRoleList[i].substring(0, 1));
 			userIDs[i] = Integer.parseInt(userRoleList[i].substring(2));
-		}
-		
-		for (int i = 0; i < BMClubIDsList.length; i++) {
-			userRoleList[i].replace("[", "");
-			userRoleList[i].replace("]", "");
-			clubIDs[i] = Integer.parseInt(BMClubIDsList[i].substring(0, 2).trim());
-			BMUserIDs[i] = Integer.parseInt(BMClubIDsList[i].substring(2).trim());
+			if (roleIDs[i] == 2) {
+				if (BMClubIDsList != null) {
+					BMClubIDsList[index].replace("[", "");
+					BMClubIDsList[index].replace("]", "");
+					BMClubIDsList[index].replace(",", "");
+					BMClubIDsList[index].trim();
+					clubIDs[index] = Integer.parseInt(BMClubIDsList[index].substring(0, 1));
+					index++;
+					}
+			}
 		}
 
-		if (uDao.userRoleChanges(roleIDs, userIDs)) {
-			if (clubIDs != null) {
-			uDao.userRoleChangesToBM(clubIDs, BMUserIDs);
-			}
+		if (uDao.userRoleChanges(roleIDs, userIDs, clubIDs)) {
 			return true;
 		}
 		
