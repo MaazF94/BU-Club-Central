@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.models.User;
 import mailDispatcher.SendMail;
 
 /**
@@ -30,7 +31,11 @@ public class NewClubSubmissionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
+		if (((User) request.getSession().getAttribute("user")) != null ) {
+			request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("AccessDeniedServlet");
+		}
 	}
 
 	/**
