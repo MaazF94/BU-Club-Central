@@ -368,6 +368,30 @@
                   
                   
                 </div>
+                     <div class="range offset-top-41">
+                  <div class="cell-xs-6 cell-md-12">
+                    <!-- Category-->
+                    <h6 class="text-uppercase text-spacing-60">Users Going</h6>
+                    <div class="text-subline"></div>
+                        <%
+                         int rsvpIndex = 0;
+              			int rsvpListSize = userList.size();
+              		
+              		%>
+              		
+	
+                   <ul class="list list-marked offset-top-30">
+                    <%while(rsvpIndex < rsvpListSize) { %>
+                    <li><a href="#"><%=userList.get(rsvpIndex).getFirst_name() + " " + userList.get(rsvpIndex).getLast_name() %><span class="text-dark"></span></a></li>
+                     <%rsvpIndex++; %>
+						<%} %>           
+                      
+                    </ul>
+                  </div>
+                  
+                  
+                  
+                </div>
                 <!-- Search Form-->
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>
@@ -390,29 +414,7 @@
           <div class="row">
           	<div class="container">
           		<div class="col-lg-12">
-          			<table>
-                  	<thead>
-                  		<tr>
-                  			<th><h1>Users Going</h1></th>
-                  		</tr>
-                  	</thead>
-                  	<tbody>
-                  		<% int rsvpIndex = 0;
-                  			int rsvpListSize = userList.size();
-                  		
-                  		%>
-                  		<%while(rsvpIndex < rsvpListSize) { %>
-                  		<tr>
-                  			<td><%=userList.get(rsvpIndex).getFirst_name() + " " + userList.get(rsvpIndex).getLast_name() %> </td>
-                  		</tr>
-                  		
-                  		<%rsvpIndex++; %>
-						<%} %>                  		
-                  		
-                  	</tbody>
-                  
-                  
-                  </table>
+          			
           		</div>
           	</div>
           </div>
