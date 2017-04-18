@@ -231,7 +231,7 @@
 								%>
 								
 								<%
-									while (eventListIndex < 3) {
+									while (eventListIndex < eventList.size()) {
 								%>
 					
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
