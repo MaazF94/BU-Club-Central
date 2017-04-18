@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
+import edu.ben.bu_club_central.daos.PostDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.Post;
 import edu.ben.bu_club_central.models.User;
 import mailDispatcher.SendMail;
 
@@ -37,7 +41,7 @@ public class ClubHomepageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(Integer.parseInt(request.getParameter("club_id_num")));
+		Club clubObject = cDao.getClubById(((User)request.getSession().getAttribute("user")).getClub_id_num());
 		String clubName = clubObject.getClub_name();
 		request.setAttribute("clubName", clubName);
 
@@ -52,6 +56,12 @@ public class ClubHomepageServlet extends HttpServlet {
 		
 		String club_id_num = request.getParameter("club_id_num");
 		request.setAttribute("club_id_num", club_id_num);
+		
+		PostDao pDao = new PostDao();
+		LinkedList<Post> postList = new LinkedList<Post>();
+		postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
+		request.setAttribute("postList", postList);
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubHomepage.jsp").forward(request, response);
 	}
 

@@ -199,41 +199,44 @@
 			   
 			   			<div class="container">
 				<div class="col-lg-4"></div>
-				<div class="col-lg-4 ">
-					<h3>Post Feed</h3>
-					<%
-						PostDao postDao = new PostDao();
-
-						LinkedList<Post> postList = new LinkedList<Post>();
-						String club_id_num = (String) request.getAttribute("club_id_num");
-						postList = postDao.getAllPostsByClubId(Integer.parseInt(club_id_num));
-
-						//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
-						int postListSize = postList.size();
-						int postListIndex = 0;
-					%>
-
-					<%
-						while (postListIndex < postListSize) {
-					%>
-
-					<div class="panel panel-default">
-						<div class="panel-heading" style="background-color: light-grey">
-							<h3 class="panel-title"><%=postList.get(postListIndex).getTitle()%></h3>
-						</div>
-						<div class="panel-body text-left"><%=postList.get(postListIndex).getContents()%></div>
-					</div>
-
-					<%
-						postListIndex++;
-					%>
-					<%
-						}
-					%>
-
-
-				</div>
+				
 			</div>
+			
+			<div class="container">
+							<h3>Post Feed (Click button for more info)</h3>	
+								<%
+									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
+
+									int postListIndex = 0;
+									int postListSize = postList.size();
+								%>
+								
+								<%while (postListIndex < postListSize) { %>
+
+									<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=postList.get(postListIndex).getIdpost()%>">
+										<%=postList.get(postListIndex).getTitle() %>  </button>
+									
+									<br>	
+									
+									
+
+									<div id="<%=postList.get(postListIndex).getIdpost()%>" class="collapse">
+									<form action="LikePostServlet" method="post">
+										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost()%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
+									</form>
+									<br>
+									<br>
+									
+									<%=postList.get(postListIndex).getContents() %>
+									</div>
+									<br>
+
+								<%postListIndex++; %>
+								<%} %>
+							</div>
+			
+			
 			   
 			   	<!--<form action = "UserEmailsBMServlet" method="POST">
               <div class="cell-lg-4">
@@ -405,6 +408,24 @@
 			}
 		}
 	</script>
+	
+	<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>
+	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
