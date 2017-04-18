@@ -231,7 +231,7 @@
 								%>
 								
 								<%
-									while (eventListIndex < 3) {
+									while (eventListIndex < eventList.size()) {
 								%>
 					
               <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
@@ -286,6 +286,7 @@
 							<p class="text-darker offset-top-20">
 								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
+									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
 								<!-- {%FOOTER_LINK}-->
 							</p>
 						</div>

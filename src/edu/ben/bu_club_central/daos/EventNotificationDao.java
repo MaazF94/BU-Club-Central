@@ -52,6 +52,7 @@ public class EventNotificationDao {
 			
 			listIndex++;
 		}
+		
 	}
 	
 	
@@ -127,15 +128,4 @@ public class EventNotificationDao {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

@@ -39,7 +39,7 @@ public class ClublistServlet extends HttpServlet {
 		LinkedList<Club> clubList = new LinkedList<Club>();
 		clubList =cDao.displayClub(); 
 				
-		request.getSession().setAttribute("clubs", clubList);
+		request.setAttribute("clubs", clubList);
 		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);

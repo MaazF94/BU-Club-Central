@@ -62,7 +62,7 @@ public class DocumentForAdminDao {
 				newDocumentForAdmin = new DocumentForAdmin(rs.getString("name"), rs.getInt("from_id_num"), (char) rs.getBlob("file").getBinaryStream().read(), rs.getBoolean("accept_deny"), rs.getBoolean("active"));
 				DocumentForAdminList.add(newDocumentForAdmin);
 			}
-			
+			rs.close();
 //			InputStream input = ((Part) rs.getBlob("file")).getInputStream();
 //			ByteArrayOutputStream output = new ByteArrayOutputStream();
 //			byte[] buffer = new byte[10240];
@@ -72,9 +72,6 @@ public class DocumentForAdminDao {
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-
-		
 		return DocumentForAdminList;
 	}
 	

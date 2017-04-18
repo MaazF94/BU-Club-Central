@@ -52,6 +52,7 @@ public class DocumentDao {
 				DocumentList.add(newDocument);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

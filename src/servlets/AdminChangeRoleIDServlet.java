@@ -51,8 +51,10 @@ public class AdminChangeRoleIDServlet extends HttpServlet {
 		try {
 			String[] userRoleList = new String[100];
 			userRoleList = request.getParameterValues("role_id");
+			String[] BMClubIDsList = new String[100];
+			BMClubIDsList = request.getParameterValues("club_id_num");
 			
-		if (callSetUserRoleID(userRoleList)) {
+		if (callSetUserRoleID(userRoleList, BMClubIDsList)) {
 			String message = 	"<!DOCTYPE html>\r\n" + 
 					"<html>\r\n" +
 					"<head>\r\n" +
@@ -98,23 +100,32 @@ response.sendRedirect("AdminHome");
 		}
 	}
 	
-	public static boolean callSetUserRoleID(String[] userRoleList) {
+	public static boolean callSetUserRoleID(String[] userRoleList, String[] BMClubIDsList) {
 		UserDao uDao = new UserDao();
 		
-		List<User> roleChanges = new ArrayList<User>();
 		int[] userIDs = new int[100];
 		int[] roleIDs = new int[100];
-		int[] userIdNums = new int[100];
-		int[] roleIdNums = new int[100];
+		int[] clubIDs = new int[100];
+		int index = 0;
 		
 		for (int i = 0; i < userRoleList.length; i++) {
 			userRoleList[i].replace("[", "");
 			userRoleList[i].replace("]", "");
 			roleIDs[i] = Integer.parseInt(userRoleList[i].substring(0, 1));
 			userIDs[i] = Integer.parseInt(userRoleList[i].substring(2));
+			if (roleIDs[i] == 2) {
+				if (BMClubIDsList != null) {
+					BMClubIDsList[index].replace("[", "");
+					BMClubIDsList[index].replace("]", "");
+					BMClubIDsList[index].replace(",", "");
+					BMClubIDsList[index].trim();
+					clubIDs[index] = Integer.parseInt(BMClubIDsList[index].substring(0, 1));
+					index++;
+					}
+			}
 		}
-		
-		if (uDao.userRoleChanges(roleIDs, userIDs)) {
+
+		if (uDao.userRoleChanges(roleIDs, userIDs, clubIDs)) {
 			return true;
 		}
 		

@@ -69,10 +69,12 @@ public class EventsDao {
 				//event.setAcutal_count(cs.getInt("acutal_count"));
 				results.add(event);
 			}
+			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(results.size());
+//		System.out.println(results.size());
+	
 		return results;
 	}
 	public void increaseRSVPCount(int eventId) {
@@ -109,7 +111,6 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public Events getEventByEventId(int eventId) {
@@ -134,9 +135,11 @@ public class EventsDao {
 				event.setEventId(rs.getInt("idevent"));
 				//event.setAcutal_count(rs.getInt("acutal_count"));
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	
 		return event;
 	}
 	public LinkedList<Events> getAllEventsByClubId(int clubId) {
@@ -167,10 +170,12 @@ public class EventsDao {
 				
 				list.add(event);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		//System.out.println(list.size());
+	
 		return list;
 	}
 	
@@ -186,6 +191,7 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	
 	}
 	
 	
@@ -200,7 +206,9 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	
 	}
+	
 	public LinkedList<Events> getAllEventsForPaging(int offset, int noOfRecords) {
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
@@ -219,9 +227,11 @@ public class EventsDao {
 				
 				results.add(event);
 			}
+			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	
 		return results;
 	}
 	/**
@@ -246,7 +256,7 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+	
 		return eventId;
 	}
 	public LinkedList<Events> getAllEventsByEventName(String eventName) {
@@ -276,10 +286,12 @@ public class EventsDao {
 				
 				list.add(event);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(list.size());
+//		System.out.println(list.size());
+	
 		return list;
 	}
 	

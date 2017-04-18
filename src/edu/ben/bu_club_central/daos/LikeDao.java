@@ -34,6 +34,7 @@ public class LikeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	
@@ -61,6 +62,7 @@ public class LikeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return likeList;
 	}
 	

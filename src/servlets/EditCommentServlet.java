@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.CommentDao;
+import edu.ben.bu_club_central.daos.EventsDao;
+import edu.ben.bu_club_central.models.Comment;
+import edu.ben.bu_club_central.models.Events;
 
 /**
  * Servlet implementation class EditCommentServlet
@@ -28,6 +31,16 @@ public class EditCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CommentDao cDao = new CommentDao();
+      	Comment comment;
+      	comment = cDao.getCommentByCommentId(Integer.parseInt(request.getParameter("editCommentId")));
+      	EventsDao eDao = new EventsDao();
+      	Events event = eDao.getEventByEventId(comment.getEventId());
+      	
+      	request.setAttribute("comment", comment);
+      	request.setAttribute("event", event);
+		
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/EditComment.jsp").forward(request, response);
 	}
 

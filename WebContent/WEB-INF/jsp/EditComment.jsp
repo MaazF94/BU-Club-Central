@@ -173,11 +173,9 @@
       <main class="page-content">
       <!--  This is where the the page contents that you are adding should go -->
       
-      <%CommentDao cDao = new CommentDao();
-      	Comment comment;
-      	comment = cDao.getCommentByCommentId(Integer.parseInt(request.getParameter("editCommentId")));
-      	EventsDao eDao = new EventsDao();
-      	Events event = eDao.getEventByEventId(comment.getEventId());
+      <%
+      	Comment comment = (Comment) request.getAttribute("comment");
+      	Events event = (Events) request.getAttribute("event");
       
       %>
       <h1>Edit Comment</h1>
