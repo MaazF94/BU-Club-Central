@@ -239,6 +239,10 @@ button.accordion.active:after {
 											%> Homepage</a>
 											</form>
 											<br>
+<p><b>Meeting Time:</b> <%=clubList.get(index).getMeeting_Time()%><br>
+<b>Meeting Location:</b> <%=clubList.get(index).getMeeting_Loc()%><br>
+<b>How Often We Meet:</b> <%=clubList.get(index).getMeeting_Freq()%></p>
+
 <%
 if (((User) session.getAttribute("user")) != null) {
 ClubMembershipDao cmDao = new ClubMembershipDao();

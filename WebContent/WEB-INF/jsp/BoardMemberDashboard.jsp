@@ -184,7 +184,7 @@
 		<div class="row">
 			<h1>Board Member Dashboard</h1>
 			<hr class="divider hr-lg bg-red">
-
+			${message}
 
 			<div class="nav-stacked-container">
 				<div class="container" style="height: 100px"></div>
@@ -204,9 +204,8 @@
 						<li role="presentation"><a href="#editPosts"
 							aria-controls="editPosts" role="tab" data-toggle="tab">Edit
 								Posts</a></li>
-						<li role="presentation"><a href="#editDescription"
-							aria-controls="editDescription" role="tab" data-toggle="tab">Edit
-								Description</a></li>
+						<li role="presentation"><a href="#editClubInfo"
+							aria-controls="editClubInfo" role="tab" data-toggle="tab">Edit Club Info</a></li>
 						<li role="presentation"><a href="#viewMember"
 							aria-controls="viewMember" role="tab" data-toggle="tab">View
 								Club Members</a></li>
@@ -331,34 +330,54 @@
 
 
 						
-<div role="tabpanel" class="tab-pane" id="editDescription">
+<div role="tabpanel" class="tab-pane" id="editClubInfo">
 							<div class="container">
 								<%
 									String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
+									String clubMeetingTime = ((Club) request.getAttribute("clubObject")).getMeeting_Time();
+									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
+									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();
+
 								%>
 
-								<form action="EditClubDescriptionServlet" method="post">
+								
 
 									<table class="table table-hover sortable">
 										<thead>
 											<tr>
 												<th>Club Description</th>
-												<th></th>
+												<th>Club Meeting Time</th>
+												<th>Club Meeting Location</th>
+												<th>Club Meets How Often?</th>
 											</tr>
 										</thead>
 
 										<tbody>
 											<tr>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="45" rows="10" name="editDescription"><%=clubDescription%></textarea>
+												<td><form action="EditClubDescriptionServlet" method="post"><textarea onkeypress="enableUpdateButton()"
+														cols="30" rows="10" name="editDescription"><%=clubDescription%></textarea>
 													<br>
 													<button id="button" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></td>
+														type="submit">Save Changes</button></form></td>
+												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton1()"
+														cols="10" rows="2" name="editMeetingTime"><%=clubMeetingTime%></textarea>
+													<br>
+													<button id="button1" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></form></td>
+												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton2()"
+														cols="10" rows="2" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
+													<br>
+													<button id="button2" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></form></td>
+												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton3()"
+														cols="10" rows="2" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
+													<br>
+													<button id="button3" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></form></td> 
 											</tr>
 										</tbody>
 
 									</table>
-								</form>
 							</div>
 						</div>
 
@@ -1179,6 +1198,24 @@
 		function enableUpdateButton() {
 
 			document.getElementById("button").disabled = false;
+
+		}
+		
+		function enableUpdateButton1() {
+
+			document.getElementById("button1").disabled = false;
+
+		}
+		
+		function enableUpdateButton2() {
+
+			document.getElementById("button2").disabled = false;
+
+		}
+		
+		function enableUpdateButton3() {
+
+			document.getElementById("button3").disabled = false;
 
 		}
 
