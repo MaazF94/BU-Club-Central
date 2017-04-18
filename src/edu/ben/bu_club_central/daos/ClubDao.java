@@ -135,6 +135,37 @@ public class ClubDao {
 	 * 
 	 * @return the linked list of the current clubs.
 	 */
+	public LinkedList<Club> displayClubWithoutBM() {
+	 LinkedList<Club> results = new LinkedList<Club>();
+		String sql;
+		
+		
+		sql = "SELECT * FROM " + tableName + " left outer join user on club.club_id_num = user.club_id_num where club.enabled = 1 and user.club_id_num is null";
+		
+			
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+			
+			while (cs.next()) {
+				
+				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
+				results.add(newClub);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return results;
+	}
+	
+	/**
+	 * Display club gets the list of current clubs and adds them to a linked list. This allows them to be displayed in a JSP 
+	 * @return the linked list of the current clubs.
+	 */
 	public LinkedList<Club> displayClubForAdmin() {
 		LinkedList<Club> results = new LinkedList<Club>();
 		String sql;
