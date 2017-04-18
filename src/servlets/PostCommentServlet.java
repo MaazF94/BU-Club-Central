@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.PostCommentDao;
+import edu.ben.bu_club_central.models.User;
+
 /**
- * Servlet implementation class ErrorCatchAllServlet
+ * Servlet implementation class PostCommentServlet
  */
-@WebServlet("/ErrorCatchAllServlet")
-public class ErrorCatchAllServlet extends HttpServlet {
+@WebServlet("/PostCommentServlet")
+public class PostCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ErrorCatchAllServlet() {
+    public PostCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +29,19 @@ public class ErrorCatchAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/ErrorCatchAll.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		commentOnPost(Integer.parseInt(request.getParameter("postIdForComment")), ((User) request.getSession().getAttribute("user")).getId_num(), request.getParameter("comment"));
+		response.sendRedirect("ClubHomepage");
 	}
-
+	
+	
+	private void commentOnPost(int postId, int user_id, String comment) {
+		PostCommentDao pDao = new PostCommentDao();
+		pDao.addPostComment(postId, user_id, comment);
+	}
 }

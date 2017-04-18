@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.PostDao;
+
 /**
- * Servlet implementation class ErrorCatchAllServlet
+ * Servlet implementation class LikePostServlet
  */
-@WebServlet("/ErrorCatchAllServlet")
-public class ErrorCatchAllServlet extends HttpServlet {
+@WebServlet("/LikePostServlet")
+public class LikePostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ErrorCatchAllServlet() {
+    public LikePostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +28,21 @@ public class ErrorCatchAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/ErrorCatchAll.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		likePost(Integer.parseInt(request.getParameter("postId")));
+		response.sendRedirect("ClubHomepage");
 	}
 
+	private void likePost(int postId) {
+		PostDao pDao = new PostDao();
+		pDao.likePost(postId);
+	}
+	
+	
+	
 }

@@ -226,9 +226,8 @@
 					<div class="tab-content well">
 					<div role="tabpanel" class="tab-pane active" id="editClubs">
 					<div class="container">
-							<%ClubDao clubDao = new ClubDao();
-								LinkedList<Club> clubList = new LinkedList<Club>();
-								clubList = clubDao.displayClubForAdmin();
+							<%
+								LinkedList<Club> clubList = (LinkedList<Club>) request.getAttribute("clubList");
 								
 								int clubListIndex = 0;
 								int clubListSize = clubList.size();
@@ -287,9 +286,7 @@
 						<div role="tabpanel" class="tab-pane " id="editEvents">
 							<div class="container">
 								<%
-									LinkedList<Events> eventList = new LinkedList<Events>();
-									EventsDao eDao = new EventsDao();
-									eventList = eDao.getAllEvents();
+									LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList");
 									int eventListIndex = 0;
 									int eventListSize = eventList.size();
 								%>
@@ -338,9 +335,7 @@
 						<div role="tabpanel" class="tab-pane" id="editComments">
 							<div class="container">
 								<%
-									LinkedList<Events> eventList2 = new LinkedList<Events>();
-									EventsDao eDao2 = new EventsDao();
-									eventList2 = eDao.getAllEvents();
+									LinkedList<Events> eventList2 = (LinkedList<Events>)request.getAttribute("eventList2");
 									int eventListIndex2 = 0;
 									int eventListSize2 = eventList.size();
 								%>
@@ -418,9 +413,8 @@
 
 
 						<div role="tabpanel" class="tab-pane" id="editPosts">
-							<%PostDao pDao = new PostDao();
-								LinkedList<Post> postList = new LinkedList<Post>();
-								postList = pDao.getAllPosts();
+							<%
+								LinkedList<Post> postList = (LinkedList<Post>)request.getAttribute("postList");
 								
 								int postListIndex = 0;
 								int postListSize = postList.size();
@@ -467,9 +461,7 @@
 						<div role="tabpanel" class="tab-pane " id="editUsers">
 							<div class="container">
 								<%
-									UserDao uDao = new UserDao();
-									LinkedList<User> userList = new LinkedList<User>();
-									userList = uDao.getAllUsers();
+									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
@@ -573,9 +565,8 @@
 						
 						<div role="tabpanel" class="tab-pane " id="pendingForms">
 							<div class="container">
-								<%DocumentForAdminDao dfaDao = new DocumentForAdminDao();
-							LinkedList<DocumentForAdmin> documentForAdminList = new LinkedList<DocumentForAdmin>();
-							documentForAdminList = dfaDao.displayDocumentForAdminInfo();
+								<%
+							LinkedList<DocumentForAdmin> documentForAdminList = (LinkedList<DocumentForAdmin>) request.getAttribute("documentForAdminList");
 								int documentPendingIndex = 0;
 								
 							%>

@@ -6,6 +6,7 @@ public class Post {
 	private String contents;
 	private int club_id_num;
 	private int user_id_num;
+	private int numOfLikes;
 	
 	public Post(String title, String contents, int club_id_num, int user_id_num) {
 		this.title = title;
@@ -17,6 +18,20 @@ public class Post {
 	
 	
 	
+	public int getNumOfLikes() {
+		return numOfLikes;
+	}
+
+
+
+
+	public void setNumOfLikes(int numOfLikes) {
+		this.numOfLikes = numOfLikes;
+	}
+
+
+
+
 	public int getIdpost() {
 		return idpost;
 	}

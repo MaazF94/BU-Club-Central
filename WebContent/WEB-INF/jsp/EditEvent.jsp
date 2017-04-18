@@ -173,9 +173,7 @@
 				<div class="col-lg-12">
 					
 							<%
-								Events event;
-								EventsDao eDao = new EventsDao();
-								event = eDao.getEventByEventId(Integer.parseInt(request.getParameter("editEventId")));
+								Events event = (Events) request.getAttribute("event");
 							%>
 
 					<p>

@@ -5,12 +5,15 @@
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.PostComments"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostCommentDao"%>
+
 <%@ page import="java.util.*"%>
 
 
@@ -199,41 +202,97 @@
 			   
 			   			<div class="container">
 				<div class="col-lg-4"></div>
-				<div class="col-lg-4 ">
-					<h3>Post Feed</h3>
-					<%
-						PostDao postDao = new PostDao();
-
-						LinkedList<Post> postList = new LinkedList<Post>();
-						String club_id_num = (String) request.getAttribute("club_id_num");
-						postList = postDao.getAllPostsByClubId(Integer.parseInt(club_id_num));
-
-						//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
-						int postListSize = postList.size();
-						int postListIndex = 0;
-					%>
-
-					<%
-						while (postListIndex < postListSize) {
-					%>
-
-					<div class="panel panel-default">
-						<div class="panel-heading" style="background-color: light-grey">
-							<h3 class="panel-title"><%=postList.get(postListIndex).getTitle()%></h3>
-						</div>
-						<div class="panel-body text-left"><%=postList.get(postListIndex).getContents()%></div>
-					</div>
-
-					<%
-						postListIndex++;
-					%>
-					<%
-						}
-					%>
-
-
-				</div>
+				
 			</div>
+			
+			<div class="container">
+							<h3>Post Feed (Click button for more info)</h3>	
+								<%
+									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
+
+									int postListIndex = 0;
+									int postListSize = postList.size();
+								%>
+								
+								<%while (postListIndex < postListSize) { %>
+
+									<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=postList.get(postListIndex).getIdpost()%>">
+										<%=postList.get(postListIndex).getTitle() %>  </button>
+									
+									<br>	
+									
+									
+
+									<div id="<%=postList.get(postListIndex).getIdpost()%>" class="collapse">
+									<form action="LikePostServlet" method="post">
+										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost()%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
+									</form>
+									<br>
+									<%=postList.get(postListIndex).getContents() %>
+									
+									
+									
+									
+									
+									<div class="container">
+									<div class="col-lg-2"></div>
+									<div class="col-lg-8">
+										<%PostCommentDao postCDao = new PostCommentDao();
+											LinkedList<PostComments> commentList = postCDao.getAllCommentsForPost(postList.get(postListIndex).getIdpost());
+										int postCommentIndex = 0; 
+										int postCommentListSize = commentList.size();
+										
+										%>
+										
+										<form action="PostCommentServlet" method="POST">
+											<textarea rows="4" cols="20" placeholder="leave a comment" name="comment"></textarea>
+											<br>
+											<button class="btn btn-success" type="submit" value="<%=postList.get(postListIndex).getIdpost()%>" name="postIdForComment">Comment</button>
+										</form>
+										
+										<br>
+										<br>
+										<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Comment</th>
+											<th>By</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (postCommentIndex < postCommentListSize) {
+											
+											UserDao uDao = new UserDao();
+											User u = uDao.getUserByIdNum(commentList.get(postCommentIndex).getUser_id_num());
+												
+										%>
+										<tr>
+											<td><%=commentList.get(postCommentIndex).getComment()%></td>
+											<td><%=u.getFirst_name() + " " + u.getLast_name()%></td>
+										</tr>
+
+										<%
+										postCommentIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+									</div>
+									
+									</div>
+									</div>
+									<br>
+
+								<%postListIndex++; %>
+								<%} %>
+							</div>
+			
+			
 			   
 			   	<!--<form action = "UserEmailsBMServlet" method="POST">
               <div class="cell-lg-4">
@@ -405,6 +464,24 @@
 			}
 		}
 	</script>
+	
+	<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>
+	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>
