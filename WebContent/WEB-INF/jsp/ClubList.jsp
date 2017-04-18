@@ -216,6 +216,9 @@ button.accordion.active:after {
 							<div class="cell-lg-6">
 					<img src="img/overviewBU.jpg" width="494" height="623"
 						alt="" class="veil reveal-lg-inline-block">
+						<hr>
+						<a href = "ContactUsServlet" ><button class = "btn btn-info">Contact Us</button></a>
+				<p><b>Need Technical Support?</b></p>
 				</div>
 				<div class="cell-sm-9 cell-lg-6 offset-top-0">
 					<h1 class="text-darker text-lg-left">Benedictine Clubs</h1>

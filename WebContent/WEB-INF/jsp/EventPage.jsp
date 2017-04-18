@@ -350,6 +350,11 @@
                                 </form>
 
                 </div>
+                <br>
+                <hr>
+                				<p><b>Need Technical Support?</b></p>
+                
+						<a href = "ContactUsServlet" ><button class = "btn btn-info">Contact Us</button></a>
               </aside>
             </div>
           </div>
