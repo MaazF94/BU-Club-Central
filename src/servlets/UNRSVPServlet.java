@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.EventNotificationDao;
+import edu.ben.bu_club_central.daos.EventRSVPListDao;
 import edu.ben.bu_club_central.models.User;
 
 /**
- * Servlet implementation class EventDetailsServlet
+ * Servlet implementation class UNRSVPServlet
  */
-@WebServlet("/EventDetailsServlet")
-public class EventDetailsServlet extends HttpServlet {
+@WebServlet("/UNRSVPServlet")
+public class UNRSVPServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EventDetailsServlet() {
+    public UNRSVPServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +29,24 @@ public class EventDetailsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("user") != null) {
-		EventNotificationDao eNotDao = new EventNotificationDao();
-		eNotDao.checkedNotification(Integer.parseInt(request.getParameter("eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
-		}
-		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);		
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		unrsvp(Integer.parseInt(request.getParameter("eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
+		response.sendRedirect("EventServlet");
 	}
 
+	
+	
+	
+	private void unrsvp(int eventId, int userId) {
+		EventRSVPListDao eDao = new EventRSVPListDao();
+		eDao.unRSVPForEvent(eventId, userId);
+	}
+	
+	
+	
 }

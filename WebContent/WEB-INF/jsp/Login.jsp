@@ -89,27 +89,8 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="LoginSevlet"> <%
- 	if (session.getAttribute("user") == null) {
- %> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%>
-										<span class="caret"></span>
-								</a> <%
- 	}
- %>
- <ul class="dropdown-menu">
-        
- 							   
- 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a>
-      
-        
-          
-        </ul>
-      </li>
+								<li><a href="LoginServlet"><span>Sign In</span></a>
+
 								
 								
                       <li><a href="#"><span></span></a></li>
@@ -141,6 +122,7 @@
 								class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
 								<!-- Icon Box Type 4<span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>-->
 								<div>
+																<p>${message}</p>
 									<div class="offset-top-24 text-darker big text-bold">Login
 										to your account</div>
 									<p class="text-extra-small text-dark offset-top-4">Enter

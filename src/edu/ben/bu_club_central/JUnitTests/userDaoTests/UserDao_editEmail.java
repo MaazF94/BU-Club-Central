@@ -23,5 +23,54 @@ public class UserDao_editEmail {
 		boolean actual = uDao.editEmail(1, "maazfitter@gmail.com");
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void editEmailTest3() {
+		boolean expected = true;
+		boolean actual = uDao.editEmail(2, "mariamsayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void editEmailTest4() {
+		boolean expected = true;
+		boolean actual = uDao.editEmail(1, "msayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void editEmailTest5() {
+		boolean expected = true;
+		boolean actual = uDao.editEmail(3, "shireensayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void editEmailTest6() {
+		boolean expected = true;
+		boolean actual = uDao.editEmail(3, "ssayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void editEmailTest7() {
+		boolean expected = false;
+		boolean actual = uDao.editEmail(5, "ssayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void editEmailTest8() {
+		boolean expected = false;
+		boolean actual = uDao.editEmail(10, "ssayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void editEmailTest9() {
+		boolean expected = false;
+		boolean actual = uDao.editEmail(15, "ssayeedi@gmail.com");
+		assertEquals(expected, actual);
+	}
 
 }

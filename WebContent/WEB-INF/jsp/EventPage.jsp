@@ -117,20 +117,33 @@
 											%>
       
          <ul class="dropdown-menu">
-         <%if (((User) session.getAttribute("user")) != null) { %>
-        					<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
-        						<li><a href="ClubHomepageServlet"><span class="">Club Home Page</span></a>
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
+											%>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %>
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      <%} %>
+      
         
           
         </ul>
@@ -251,10 +264,13 @@
 									
 									<%}else { %>
 										
-											<form action="RSVPServlet" method="POST">
+											<form action="UNRSVPServlet" method="POST">
 
 											<button disabled class="btn btn-default" type="submit" name="eventId"
 												value="<%=eventList.get(eventListIndex).getEventId()%>">Already Going</button>
+											
+											<button class="btn btn-default" type="submit" name="eventId" 
+												value="<%=eventList.get(eventListIndex).getEventId()%>">Not going anymore</button>
 										</form>
 										
 										

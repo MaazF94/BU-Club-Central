@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
+
 <%@ page import="edu.ben.bu_club_central.models.User"%>
+<%@ page import="edu.ben.bu_club_central.models.Events"%>
+<%@ page import="edu.ben.bu_club_central.models.Club"%>
+<%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.Post"%>
+<%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.EventRSVPListDao"%>
+<%@ page import="java.util.*"%>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -113,8 +126,29 @@
 											%>
       
          <ul class="dropdown-menu">
-         					
-        
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
+											%>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %>
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
@@ -160,9 +194,14 @@
 									<h5 data-caption-animate="fadeInUp" data-caption-delay="500"
 										class="hidden reveal-xs-block text-light"></h5>
 									<div class="group group-xl offset-top-41 offset-sm-top-30">
-
+										<%if (session.getAttribute("user") != null) { %>
 										<a href="ClublistServlet" class="btn btn-danger">JOIN A
-											CLUB</a><a href="NewClubSubmissionServlet" class="btn btn-danger">Make your own club</a><a href="EventServlet" class="btn btn-danger">Find an
+											CLUB</a>
+											<%} else { %>
+											<a href="MustLoginToViewServlet" class="btn btn-danger">JOIN A
+											CLUB</a>
+											<%} %>
+											<a href="NewClubSubmissionServlet" class="btn btn-danger">Make your own club</a><a href="EventServlet" class="btn btn-danger">Find an
 											Event</a>
 
 									</div>
@@ -173,7 +212,53 @@
 				</div>
 			</div>
 		</div>
-		</section> </header>
+		</section> </header><section id="welcome" class="section-98 section-sm-110">
+          <div class="shell">
+            <h1>Upcoming Events</h1>
+            <hr class="divider bg-red">
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-lg-8">
+                <p></p>
+              </div>
+            </div>
+            <div class="range offset-top-98">
+            <%
+									LinkedList<Events> eventList = new LinkedList<Events>();
+									EventsDao eDao = new EventsDao();
+									eventList = eDao.getAllEvents();
+									int eventListIndex = 0;
+									
+								%>
+								
+								<%
+									while (eventListIndex < 3) {
+								%>
+					
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
+                <!-- Icon Box Type 5-->
+            
+                <div class="box-icon box-icon-bordered well"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-account-multiple"></span>
+                  <h4 class="text-danger offset-top-20"><%=eventList.get(eventListIndex).getEvent_name()%></h4>
+                  <p><%= eventList.get(eventListIndex).getDescription() %></p>
+                  <form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-danger text-red-gray" type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">More
+												Info</button>
+										</form>
+                </div>
+                
+              </div>
+              <%
+					eventListIndex++;
+				%>
+				<%
+					}
+				%>
+              
+              
+            </div>
+          </div>
+        </section>
 		<!-- Page Footer-->
 		<footer
 			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">

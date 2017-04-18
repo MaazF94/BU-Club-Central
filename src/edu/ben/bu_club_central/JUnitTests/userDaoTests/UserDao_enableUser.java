@@ -13,22 +13,41 @@ public class UserDao_enableUser {
 	@Test
 	public void enableUserTest() {
 		int expected = 1;
-		uDao.enableUser(1);
-		assertEquals(expected, 1);
+		uDao.enableUser(2180100);
+		int actual = uDao.getUserDisableEnableStatus(1);
+		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void enableUserTest2() {
 		int expected = 1;
-		uDao.enableUser(2);
-		assertEquals(expected, 1);
+		uDao.enableUser(2160987);
+		int actual = uDao.getUserDisableEnableStatus(2);
+		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void enableUserTest3() {
 		int expected = 1;
-		uDao.enableUser(3);
-		assertEquals(expected, 1);
+		uDao.enableUser(2654987);
+		int actual = uDao.getUserDisableEnableStatus(1);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void enableUserTest4() {
+		int expected = -1;
+		uDao.enableUser(5);
+		int actual = uDao.getUserDisableEnableStatus(5);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void enableUserTest5() {
+		int expected = -1;
+		uDao.enableUser(10);
+		int actual = uDao.getUserDisableEnableStatus(10);
+		assertEquals(expected, actual);
 	}
 
 }

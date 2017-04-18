@@ -27,7 +27,7 @@ import edu.ben.bu_club_central.models.User;
 /**
  * Servlet implementation class BoardMemberDashBoardServlet
  */
-@WebServlet("/user//BoardMemberDashBoard")
+@WebServlet("/BoardMemberDashBoard")
 public class BoardMemberDashBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

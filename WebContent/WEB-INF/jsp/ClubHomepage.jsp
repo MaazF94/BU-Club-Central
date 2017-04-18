@@ -5,12 +5,15 @@
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.PostComments"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostCommentDao"%>
+
 <%@ page import="java.util.*"%>
 
 
@@ -99,10 +102,10 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
+								 								 <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
- 						%> Sign In <%
+ 						%> <a  href="LoginServlet"> Sign In <%
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
@@ -111,8 +114,35 @@
 					}
 											%>
       
-        <ul class="dropdown-menu">
-          <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
+         <ul class="dropdown-menu">
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
+											%>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %>
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      
+        
           
         </ul>
       </li>
@@ -170,6 +200,100 @@
 			   <br>
 			   <p>${advisorName}</p>
 			   
+			   			<div class="container">
+				<div class="col-lg-4"></div>
+				
+			</div>
+			
+			<div class="container">
+							<h3>Post Feed (Click button for more info)</h3>	
+								<%
+									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
+
+									int postListIndex = 0;
+									int postListSize = postList.size();
+								%>
+								
+								<%while (postListIndex < postListSize) { %>
+
+									<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=postList.get(postListIndex).getIdpost()%>">
+										<%=postList.get(postListIndex).getTitle() %>  </button>
+									
+									<br>	
+									
+									
+
+									<div id="<%=postList.get(postListIndex).getIdpost()%>" class="collapse">
+									<form action="LikePostServlet" method="post">
+										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost()%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
+									</form>
+									<br>
+									<%=postList.get(postListIndex).getContents() %>
+									
+									
+									
+									
+									
+									<div class="container">
+									<div class="col-lg-2"></div>
+									<div class="col-lg-8">
+										<%PostCommentDao postCDao = new PostCommentDao();
+											LinkedList<PostComments> commentList = postCDao.getAllCommentsForPost(postList.get(postListIndex).getIdpost());
+										int postCommentIndex = 0; 
+										int postCommentListSize = commentList.size();
+										
+										%>
+										
+										<form action="PostCommentServlet" method="POST">
+											<textarea rows="4" cols="20" placeholder="leave a comment" name="comment"></textarea>
+											<br>
+											<button class="btn btn-success" type="submit" value="<%=postList.get(postListIndex).getIdpost()%>" name="postIdForComment">Comment</button>
+										</form>
+										
+										<br>
+										<br>
+										<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Comment</th>
+											<th>By</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (postCommentIndex < postCommentListSize) {
+											
+											UserDao uDao = new UserDao();
+											User u = uDao.getUserByIdNum(commentList.get(postCommentIndex).getUser_id_num());
+												
+										%>
+										<tr>
+											<td><%=commentList.get(postCommentIndex).getComment()%></td>
+											<td><%=u.getFirst_name() + " " + u.getLast_name()%></td>
+										</tr>
+
+										<%
+										postCommentIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+									</div>
+									
+									</div>
+									</div>
+									<br>
+
+								<%postListIndex++; %>
+								<%} %>
+							</div>
+			
+			
+			   
 			   	<!--<form action = "UserEmailsBMServlet" method="POST">
               <div class="cell-lg-4">
                 <div class="inset-lg-left-80">
@@ -187,7 +311,7 @@
 			   
 			
 		</div>
-		<section class="section-98 section-sm-110">
+		<!--<section class="section-98 section-sm-110">
           <div class="shell">
             <h1>Board Members</h1>
             <hr class="divider bg-danger">
@@ -195,7 +319,6 @@
               <div class="cell-sm-10 cell-lg-12">
                 <div class="range">
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-xs-top-0">
-                    <!-- Box Member-->
                     <div class="box-member"><img src="img/image_part_001.jpg" alt="" class="img-responsive"/>
                       <h5 class="text-bold offset-top-20"><a href="">Becca Thomas</a> <small class="text-danger">President</small>
                       </h5>
@@ -203,7 +326,6 @@
                     <p class="offset-lg-top-0 text-muted">a short one sentence description of Becca Thomas</p>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-sm-top-0 offset-lg-top-0">
-                    <!-- Box Member-->
                     <div class="box-member"><img src="img/image_part_002.jpg" alt="" class="img-responsive"/>
                       <h5 class="text-bold offset-top-20"><a href="about-coach.html">Raza Mohammed</a> <small class="text-danger">Vice President</small>
                       </h5>
@@ -211,7 +333,6 @@
                     <p class="offset-lg-top-0 text-muted">A short one sentence description of Raza Mohammed.</p>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                    <!-- Box Member-->
                     <div class="box-member"><img src="img/image_part_003.jpg" alt="" class="img-responsive"/>
                       <h5 class="text-bold offset-top-20"><a href="about-coach.html">Joel Sandoval</a> <small class="text-danger">Secretary</small>
                       </h5>
@@ -219,7 +340,6 @@
                     <p class="offset-lg-top-0 text-muted">A short one sentence description of Joel Sandoval</p>
                   </div>
                   <div class="cell-sm-6 cell-lg-3 offset-top-66 offset-lg-top-0">
-                    <!-- Box Member-->
                     <div class="box-member"><img src="img/image_part_004.jpg" alt="" class="img-responsive"/>
                       <h5 class="text-bold offset-top-20"><a href="about-coach.html">Frank Rooks</a> <small class="text-danger">Treasurer</small>
                       </h5>
@@ -230,50 +350,8 @@
               </div>
             </div>
           </div>
-        </section>
-		
-		
-		            
+        </section>-->
 
-		<%--div class="row" style="background-color: white">
-			<div class="container">
-				<div class="col-lg-4"></div>
-				<div class="col-lg-4 ">
-					<h3>Post Feed</h3>
-					<%
-						PostDao postDao = new PostDao();
-
-						LinkedList<Post> postList = new LinkedList<Post>();
-
-						postList = postDao.getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());
-
-						//getAllPostsByClubId(((User) session.getAttribute("user")).getClub_id_num());		
-						int postListSize = postList.size();
-						int postListIndex = 0;
-					%>
-
-					<%
-						while (postListIndex < postListSize) {
-					%>
-
-					<div class="panel panel-default">
-						<div class="panel-heading" style="background-color: light-grey">
-							<h3 class="panel-title"><%=postList.get(postListIndex).getTitle()%></h3>
-						</div>
-						<div class="panel-body text-left"><%=postList.get(postListIndex).getContents()%></div>
-					</div>
-
-					<%
-						postListIndex++;
-					%>
-					<%
-						}
-					%>
-
-
-				</div>
-			</div>
-		</div> --%>
 
 
 
@@ -386,6 +464,24 @@
 			}
 		}
 	</script>
+	
+	<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>
+	
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
 </body>

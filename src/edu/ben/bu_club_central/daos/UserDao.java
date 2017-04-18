@@ -20,21 +20,23 @@ public class UserDao {
 	private Connection conn = dbc.getConn();
 
 	// Register user method works
-	public void registerUser(String first_name, String last_name, String username, String passwrd, int id_num,
+	public boolean registerUser(String first_name, String last_name, String username, String passwrd, int id_num,
 			String email) {
 		String sql = "INSERT INTO " + tableName
 				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name + "', '"
-				+ last_name + "', '" + username + "', '" + passwrd + "', '" + id_num + "', '" + email + "', '" + default_user_id + "', '" + enabled
-				+ "')";
+				+ last_name + "', '" + username + "', '" + passwrd + "', " + id_num + ", '" + email + "', " + default_user_id + ", " + enabled
+				+ ")";
 
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	/**
@@ -71,33 +73,42 @@ public class UserDao {
 	 * @param last_name
 	 * @param id_num
 	 * @param email
-	 * @param role_id
+	 * @param userIDs
 	 * @return true or false
 	 */
-	public boolean userRoleChanges(int user_id, int role_id) {
+	public boolean userRoleChanges(int[] roleIDs, int[] userIDs) {
 		boolean didUpdate = false;
-		String sql = "UPDATE " + tableName + " SET role_id=" + role_id + " WHERE iduser=" + user_id;
-		
-		PreparedStatement ps;
-		try {
-			ps = conn.prepareStatement(sql);
-			if (ps.executeUpdate() == 1) {
-				didUpdate = true;
-				sql = "UPDATE bu_club_central.club_membership" + " SET role_id=" + role_id + " WHERE user_id=" 
-						+ user_id;
-				if (didUpdate == true) {
-					ps = conn.prepareStatement(sql);
-					ps.executeUpdate();
-					return true;
+		boolean result = true;
+
+		String sql;
+		for (int i = 0; i < roleIDs.length; i ++) {
+			if (roleIDs[i] != 0) {
+			sql = "UPDATE " + tableName + " SET role_id=" + roleIDs[i] + " WHERE iduser=" + userIDs[i];
+			
+			PreparedStatement ps;
+			try {
+				ps = conn.prepareStatement(sql);
+				if (ps.executeUpdate() == 1) {
+					didUpdate = true;
+					sql = "UPDATE bu_club_central.club_membership" + " SET role_id=" + roleIDs[i] + " WHERE user_id=" 
+							+ userIDs[i];
+					if (didUpdate == true) {
+						ps = conn.prepareStatement(sql);
+						ps.executeUpdate();
+					}
+					didUpdate = false;
+				} else {
+					throw new SQLException();
 				}
-			} else {
-				throw new SQLException();
+			} catch (SQLException e) {
+				System.out.println("Did not update");
+				e.printStackTrace();
+				return false;
 			}
-		} catch (SQLException e) {
-			System.out.println("Did not update");
-			e.printStackTrace();
+			}
 		}
-		return false;
+		
+		return result;
 	}
 	/**
 	 * This method will allow a user to change their username, used when they click 'forgot username'
@@ -210,7 +221,7 @@ public class UserDao {
 	 * @return
 	 */
 	public boolean checkUsernameExist(String username) {
-		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'";
+		String sql = "SELECT * FROM " + tableName;
 
 		PreparedStatement ps;
 		ResultSet rs = null;
@@ -523,7 +534,7 @@ public class UserDao {
 				if (rs.next()) {
 					PreparedStatement ps;
 					
-					ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE id_num = " + "'"+id_num+"'");
+					ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE id_num = " +id_num);
 
 					System.out.println(ps);
 
@@ -549,6 +560,33 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public int getUserDisableEnableStatus(int userId) {
+		String sql = "SELECT * FROM USER where idUser = " + userId;
+		int status = -1;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			if (!rs.next()) {
+				return -1;
+			} else {
+				status = rs.getInt("enabled");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 	
 	public void enableUser(int userIdNum) {

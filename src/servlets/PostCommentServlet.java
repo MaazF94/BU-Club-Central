@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ben.bu_club_central.daos.EventNotificationDao;
+import edu.ben.bu_club_central.daos.PostCommentDao;
 import edu.ben.bu_club_central.models.User;
 
 /**
- * Servlet implementation class EventDetailsServlet
+ * Servlet implementation class PostCommentServlet
  */
-@WebServlet("/EventDetailsServlet")
-public class EventDetailsServlet extends HttpServlet {
+@WebServlet("/PostCommentServlet")
+public class PostCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EventDetailsServlet() {
+    public PostCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +29,19 @@ public class EventDetailsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("user") != null) {
-		EventNotificationDao eNotDao = new EventNotificationDao();
-		eNotDao.checkedNotification(Integer.parseInt(request.getParameter("eventId")), ((User) request.getSession().getAttribute("user")).getId_num());
-		}
-		request.getRequestDispatcher("/WEB-INF/jsp/EventDetails.jsp").forward(request, response);		
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		commentOnPost(Integer.parseInt(request.getParameter("postIdForComment")), ((User) request.getSession().getAttribute("user")).getId_num(), request.getParameter("comment"));
+		response.sendRedirect("ClubHomepage");
 	}
-
+	
+	
+	private void commentOnPost(int postId, int user_id, String comment) {
+		PostCommentDao pDao = new PostCommentDao();
+		pDao.addPostComment(postId, user_id, comment);
+	}
 }

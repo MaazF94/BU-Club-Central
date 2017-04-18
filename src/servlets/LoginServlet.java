@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
+		request.getAttribute("message");
 		request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
 
 	}

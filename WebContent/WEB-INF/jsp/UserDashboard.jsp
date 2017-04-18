@@ -142,18 +142,21 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="LoginSevlet"> <%
- 	if (session.getAttribute("user") == null) {
- %> <a href="LoginServlet"> Sign In <%
- 	} else {
- %> <%=((User) session.getAttribute("user")).getFirst_name()%>
-											<span class="caret"></span></a> <%
- 	}
- %>
-
-										<ul class="dropdown-menu">
+								<li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
+					if (session.getAttribute("user") == null) {
+ 						%> <a  href="LoginServlet"> Sign In <%
+ 					} else {
+ 							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
+ 							  <span class="caret"></span></a>
+ 							
 											<%
+					}
+											%>
+      
+         <ul class="dropdown-menu">
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
 												int role_id = ((User) session.getAttribute("user")).getRole_id();
 											%>
 											<%
@@ -171,12 +174,18 @@
 														Board</span></a> <%
  	}
  %>
-											<li><a href="ClubHomepageServlet"><span class="">Club
-														Home Page</span></a> <a type="button" href="LogoutServlet"
-												class="btn btn-sm btn-info "> <span
-													class="glyphicon glyphicon-log-out"></span> Log out
-											</a>
-										</ul></li>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %>
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      
+        
+          
+        </ul>
+      </li>
 
 
 
@@ -227,25 +236,6 @@
 				<div class="shell">
 					${message}
 					<div class="row">
-						<form action="UserEmailsAdminFromDashboardServlet" method="POST">
-							<div class="cell-lg-4">
-								<div class="inset-lg-left-80">
-									<br>
-									<p style="float: right; margin: 0; padding: 1em;"
-										class="offset-top-41 offset-lg-top-50">
-										<textarea name="message"
-											placeholder="Need help? Contact the admin..."
-											onkeypress="enableUpdateButtonContact()" cols="30" rows="2"
-											name="editDescription"></textarea>
-										<br>
-										<button id="buttonContact" disabled class="btn btn-info"
-											type="submit">Contact Admin</button>
-
-									</p>
-
-								</div>
-							</div>
-						</form>
 						<div class="container">
 							<div class="container" style="height: 100px"></div>
 							<div class="col-lg-12">
