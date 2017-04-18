@@ -5,12 +5,15 @@
 <%@ page import="edu.ben.bu_club_central.models.Events"%>
 <%@ page import="edu.ben.bu_club_central.models.Club"%>
 <%@ page import="edu.ben.bu_club_central.models.Comment"%>
+<%@ page import="edu.ben.bu_club_central.models.PostComments"%>
 <%@ page import="edu.ben.bu_club_central.models.Post"%>
 <%@ page import="edu.ben.bu_club_central.daos.UserDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.EventsDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostCommentDao"%>
+
 <%@ page import="java.util.*"%>
 
 
@@ -226,9 +229,62 @@
 										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
 									</form>
 									<br>
-									<br>
-									
 									<%=postList.get(postListIndex).getContents() %>
+									
+									
+									
+									
+									
+									<div class="container">
+									<div class="col-lg-2"></div>
+									<div class="col-lg-8">
+										<%PostCommentDao postCDao = new PostCommentDao();
+											LinkedList<PostComments> commentList = postCDao.getAllCommentsForPost(postList.get(postListIndex).getIdpost());
+										int postCommentIndex = 0; 
+										int postCommentListSize = commentList.size();
+										
+										%>
+										
+										<form action="PostCommentServlet" method="POST">
+											<textarea rows="4" cols="20" placeholder="leave a comment" name="comment"></textarea>
+											<br>
+											<button class="btn btn-success" type="submit" value="<%=postList.get(postListIndex).getIdpost()%>" name="postIdForComment">Comment</button>
+										</form>
+										
+										<br>
+										<br>
+										<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Comment</th>
+											<th>By</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (postCommentIndex < postCommentListSize) {
+											
+											UserDao uDao = new UserDao();
+											User u = uDao.getUserByIdNum(commentList.get(postCommentIndex).getUser_id_num());
+												
+										%>
+										<tr>
+											<td><%=commentList.get(postCommentIndex).getComment()%></td>
+											<td><%=u.getFirst_name() + " " + u.getLast_name()%></td>
+										</tr>
+
+										<%
+										postCommentIndex++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+									</div>
+									
+									</div>
 									</div>
 									<br>
 
