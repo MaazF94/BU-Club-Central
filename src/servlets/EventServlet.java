@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
+import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.EventsDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Events;
@@ -39,7 +40,17 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		EventsDao eventDao = new EventsDao();
+		LinkedList<Events> eventList = new LinkedList<Events>();
+		eventList = eventDao.getAllEvents();
+		
+		request.setAttribute("eventList", eventList);
+		
+		ClubDao cDao2 = new ClubDao();
+		LinkedList<Club> clubList = new LinkedList<Club>();
+		clubList = cDao2.displayClub();
+		
+		request.setAttribute("clubList", clubList);
 		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/EventPage.jsp").forward(request, response);

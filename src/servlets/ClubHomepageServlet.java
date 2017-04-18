@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
+import edu.ben.bu_club_central.daos.PostCommentDao;
 import edu.ben.bu_club_central.daos.PostDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Post;
+import edu.ben.bu_club_central.models.PostComments;
 import edu.ben.bu_club_central.models.User;
 import mailDispatcher.SendMail;
 
@@ -61,6 +63,8 @@ public class ClubHomepageServlet extends HttpServlet {
 		LinkedList<Post> postList = new LinkedList<Post>();
 		postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
 		request.setAttribute("postList", postList);
+		
+		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubHomepage.jsp").forward(request, response);
 	}

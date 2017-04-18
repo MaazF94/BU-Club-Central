@@ -205,9 +205,7 @@ button.accordion.active:after {
 		<!-- Page Contents-->
 
 		<%
-			ClubDao cDao = new ClubDao();
-			LinkedList<Club> clubList = new LinkedList<Club>();
-			clubList = cDao.displayClub();
+			LinkedList<Club> clubList = (LinkedList<Club>) request.getAttribute("clubs");
 
 			int index = 0;
 		%>

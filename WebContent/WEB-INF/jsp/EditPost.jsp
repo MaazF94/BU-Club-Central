@@ -182,10 +182,9 @@
       		<div class="col-lg-12">
       			
       			<br>
-      			<%PostDao pDao = new PostDao();
-      				Post post = pDao.getPostByPostId(Integer.parseInt(request.getParameter("editPostId")));
-      				UserDao uDao = new UserDao();
-      				User user = uDao.getUserByIdNum(post.getUser_id_num());
+      			<%
+      				Post post = (Post) request.getAttribute("post");
+      				User user = (User) request.getAttribute("user");
       			
       			%>
       			<form action="EditPostServlet" method="POST" onsubmit="return confirm('Are you sure you want to edit this post.');">

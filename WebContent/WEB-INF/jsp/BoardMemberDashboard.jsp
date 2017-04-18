@@ -519,7 +519,7 @@
 											<td><%=eventList.get(eventListIndex).getLocation()%></td>
 											<td><%=eventList.get(eventListIndex).getRsvp_count()%></td>
 											<td><%=eventList.get(eventListIndex).getClub_id_num()%></td>
-											<td><form action="EditEventServlet" method="GET">
+											<td><form action="user/EditEventServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
 														name="editEventId"
 														value="<%=eventList.get(eventListIndex).getEventId()%>">Edit</button>
@@ -593,7 +593,7 @@
 											<td><%=commentList.get(commentListIndex).getComment()%></td>
 											<td><%=commentList.get(commentListIndex).getEventId()%></td>
 											<td>
-												<form action="EditCommentServlet" method="GET">
+												<form action="user/EditCommentServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
 														name="editCommentId"
 														value="<%=commentList.get(commentListIndex).getIdcomment()%>">Edit</button>
@@ -670,7 +670,7 @@
 											<td><%=postList.get(postListIndex).getClub_id_num()%></td>
 											<td><%=postList.get(postListIndex).getUser_id_num()%></td>
 											<td>
-												<form action="EditPostServlet" method="GET">
+												<form action="user/EditPostServlet" method="GET">
 													<%
 														int postId = postList.get(postListIndex).getIdpost();
 													%>

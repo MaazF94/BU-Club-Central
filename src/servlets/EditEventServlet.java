@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.EventsDao;
+import edu.ben.bu_club_central.models.Events;
 
 /**
  * Servlet implementation class EditEventServlet
@@ -28,7 +29,12 @@ public class EditEventServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Events event;
+		EventsDao eDao = new EventsDao();
+		event = eDao.getEventByEventId(Integer.parseInt(request.getParameter("editEventId")));
+		request.setAttribute("event", event);
+		
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/EditEvent.jsp").forward(request, response);
 	}
 
