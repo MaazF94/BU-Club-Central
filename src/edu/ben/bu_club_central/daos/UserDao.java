@@ -66,6 +66,38 @@ public class UserDao {
 		return false;
 	}
 	
+	/**
+	 * This method will allow the admin to change the user role ID
+	 * @param first_name
+	 * @param last_name
+	 * @param id_num
+	 * @param email
+	 * @param userIDs
+	 * @return true or false
+	 */
+	public boolean userRoleChangesToBM(int[] clubIDs, int[] userIDs) {
+		boolean result = true;
+
+		String sql;
+		for (int i = 0; i < clubIDs.length; i ++) {
+			if (clubIDs[i] != 0) {
+			sql = "UPDATE " + tableName + " SET club_id_num=" + clubIDs[i] + " WHERE iduser=" + userIDs[i];
+			
+			PreparedStatement ps;
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("Did not update");
+				e.printStackTrace();
+				return false;
+			}
+			}
+		}
+		
+		return result;
+	}
+	
 	
 	/**
 	 * This method will allow the admin to change the user role ID
@@ -83,7 +115,7 @@ public class UserDao {
 		String sql;
 		for (int i = 0; i < roleIDs.length; i ++) {
 			if (roleIDs[i] != 0) {
-			sql = "UPDATE " + tableName + " SET role_id=" + roleIDs[i] + " WHERE iduser=" + userIDs[i];
+			sql = "UPDATE " + tableName + " SET role_id=" + roleIDs[i] + ", club_id_num = null WHERE iduser=" + userIDs[i];
 			
 			PreparedStatement ps;
 			try {
