@@ -72,7 +72,12 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(results.size());
+//		System.out.println(results.size());
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return results;
 	}
 	public void increaseRSVPCount(int eventId) {
@@ -109,6 +114,11 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -134,6 +144,11 @@ public class EventsDao {
 				event.setEventId(rs.getInt("idevent"));
 				//event.setAcutal_count(rs.getInt("acutal_count"));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -171,6 +186,11 @@ public class EventsDao {
 			e.printStackTrace();
 		}
 		//System.out.println(list.size());
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 	
@@ -183,6 +203,11 @@ public class EventsDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -200,7 +225,13 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
 	public LinkedList<Events> getAllEventsForPaging(int offset, int noOfRecords) {
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
@@ -219,6 +250,11 @@ public class EventsDao {
 				
 				results.add(event);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -246,7 +282,11 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return eventId;
 	}
 	public LinkedList<Events> getAllEventsByEventName(String eventName) {
@@ -279,7 +319,12 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(list.size());
+//		System.out.println(list.size());
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 	
@@ -295,7 +340,11 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

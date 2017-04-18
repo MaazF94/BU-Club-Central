@@ -26,6 +26,11 @@ public class PostCommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -48,6 +53,11 @@ public class PostCommentDao {
 				PostComments comment = new PostComments(rs.getInt("idpost_comments"), rs.getInt("postId"), rs.getInt("user_id_num"), rs.getString("comment"));
 				commentList.add(comment);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

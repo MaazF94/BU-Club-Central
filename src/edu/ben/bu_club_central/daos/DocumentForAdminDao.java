@@ -74,7 +74,11 @@ public class DocumentForAdminDao {
 		}
 		
 
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return DocumentForAdminList;
 	}
 	
@@ -98,7 +102,11 @@ public class DocumentForAdminDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
