@@ -30,6 +30,11 @@ public class EventRSVPListDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -56,15 +61,30 @@ public class EventRSVPListDao {
 		
 		try {
 			if(rs.next()) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				return true;
+				
 			}else {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
@@ -100,6 +120,11 @@ public class EventRSVPListDao {
 			e.printStackTrace();
 		}
 		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return userList;
 		
 	}
@@ -151,9 +176,11 @@ public class EventRSVPListDao {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return eventList;
 	}
 	
@@ -166,6 +193,11 @@ public class EventRSVPListDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

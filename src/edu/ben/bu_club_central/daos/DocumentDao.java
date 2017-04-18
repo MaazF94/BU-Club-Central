@@ -55,7 +55,11 @@ public class DocumentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return DocumentList;
 	}
 
