@@ -56,7 +56,7 @@ public class ClubHomepageServlet extends HttpServlet {
 		String advisor = clubObject.getAdvisor_name();
 		request.setAttribute("advisorName", advisor);
 		
-		String club_id_num = request.getParameter("club_id_num");
+		int club_id_num = Integer.parseInt(request.getParameter("club_id_num"));
 		request.setAttribute("club_id_num", club_id_num);
 		
 		PostDao pDao = new PostDao();
