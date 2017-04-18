@@ -59,11 +59,7 @@ public class ClubMembershipDao {
 				result = false;
 			}
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return result;
 	}
 	
@@ -95,11 +91,7 @@ public class ClubMembershipDao {
 					if (rs.getString("club_id").equals(Integer.toString(club_id))) {
 						if (rs.getString("user_id").equals(Integer.toString(user_id))) {
 							if (rs.getString("active").equals(Integer.toString(1))) {
-								try {
-									conn.close();
-								} catch (SQLException e) {
-									e.printStackTrace();
-								}
+								
 								return true;
 							}
 						}
@@ -109,11 +101,7 @@ public class ClubMembershipDao {
 				System.out.println("Did not pull from username to see if it exists 2");
 				e.printStackTrace();
 			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 		return false;
 	}
 
@@ -141,11 +129,7 @@ public class ClubMembershipDao {
 
 		try {
 			if (!rs.next()) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return 0;
 			} else {
 				memberCount = rs.getInt("COUNT(club_id)");
@@ -153,11 +137,7 @@ public class ClubMembershipDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return memberCount;
 	}
 
@@ -177,11 +157,7 @@ public class ClubMembershipDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return true;
 			} else {
 				throw new SQLException();
@@ -190,11 +166,7 @@ public class ClubMembershipDao {
 			System.out.println("User does not exist in club");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 	
@@ -227,14 +199,11 @@ public class ClubMembershipDao {
 				ClubMembershipList.add(newClubMembership);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return ClubMembershipList;
 	}
 	
@@ -267,14 +236,11 @@ public class ClubMembershipDao {
 				ClubMembershipList.add(newClubMembership);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return ClubMembershipList;
 	}
 

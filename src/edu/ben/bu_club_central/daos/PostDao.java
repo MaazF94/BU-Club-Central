@@ -57,6 +57,7 @@ public class PostDao {
 				postList.add(newPost);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,6 +87,7 @@ public class PostDao {
 				postList.add(newPost);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

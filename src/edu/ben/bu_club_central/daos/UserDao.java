@@ -37,13 +37,33 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
+		
+		return false;
+	}
+	
+	public boolean checkPasswordUsernameMatch(String username, String password) {
+		boolean result = false;
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "' AND passwrd='" + password + "'";
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
 		try {
-			conn.close();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = true;
+				rs.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		
+		
+		return result;
 	}
+	
 
 	/**
 	 * This method will allow a user to change their password, used when they
@@ -72,11 +92,7 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -161,11 +177,7 @@ public class UserDao {
 				}
 			}
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return result;
 	}
 
@@ -197,11 +209,7 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -220,11 +228,7 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -243,11 +247,7 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -266,11 +266,7 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -302,11 +298,7 @@ public class UserDao {
 			}
 			return false;
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return true;
 	}
 
@@ -332,11 +324,7 @@ public class UserDao {
 		try {
 			while (rs.next()) {
 				if (rs.getString("username").equals(username)) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+					
 					return true;
 				}
 			}
@@ -344,11 +332,7 @@ public class UserDao {
 			System.out.println("Did not pull from username to see if it exists 2");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -363,36 +347,20 @@ public class UserDao {
 	// Test cases created
 	public boolean checkPasswordMatch(String password1, String password2) {
 		if (password1.equals(null) || password2.equals(null)) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return false;
 		}
 
 		if (password1.equals("") || password2.equals("")) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return false;
 		}
 
 		if (password1.equals(password2)) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return true;
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -409,49 +377,29 @@ public class UserDao {
 		char lnameArray[] = last_name.toCharArray();
 
 		if (first_name.equals(null) || last_name.equals(null)) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return false;
 		}
 
 		if (first_name.equals("") || last_name.equals("")) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return false;
 		}
 
 		for (int i = 0; i < fnameArray.length; i++) {
 			if (!Character.isLetter(fnameArray[i])) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return false;
 			}
 		}
 
 		for (int i = 0; i < lnameArray.length; i++) {
 			if (!Character.isLetter(lnameArray[i])) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return false;
 			}
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return true;
 	}
 
@@ -466,18 +414,10 @@ public class UserDao {
 		String email_format = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 
 		if (email.matches(email_format)) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return true;
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -491,21 +431,13 @@ public class UserDao {
 		char[] idNumArray = id_num.toCharArray();
 
 		if (id_num.equals(null) || id_num.equals("")) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return false;
 		}
 
 		for (int i = 0; i < id_num.length(); i++) {
 			if (!Character.isDigit(idNumArray[i])) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return false;
 			}
 		}
@@ -525,11 +457,7 @@ public class UserDao {
 		try {
 			while (rs.next()) {
 				if (rs.getInt("id_num") == Integer.parseInt(id_num)) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+					
 					return false;
 				}
 			}
@@ -537,11 +465,7 @@ public class UserDao {
 			System.out.println("Did not pull from username to see if it exists 2");
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return true;
 	}
 
@@ -554,17 +478,14 @@ public class UserDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		try {
 			if (!rs.next()) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return null;
 			} else {
 				// user = new User(rs.getString("first_name"),
@@ -579,16 +500,15 @@ public class UserDao {
 
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
+				rs.close();
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return user;
+		
 	}
 
 	public LinkedList<User> getAllUsers() {
@@ -617,14 +537,11 @@ public class UserDao {
 				// user.setEnabled(rs.getInt("enabled"));
 				userList.add(user);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return userList;
 	}
 
@@ -655,20 +572,12 @@ public class UserDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -684,19 +593,11 @@ public class UserDao {
 
 		for (int i = 0; i < num.length(); i++) {
 			if (!Character.isDigit(numArray[i])) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return false;
 			}
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return true;
 	}
 
@@ -707,20 +608,12 @@ public class UserDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return false;
 	}
 
@@ -757,15 +650,12 @@ public class UserDao {
 						rs.getInt("iduser"), rs.getInt("enabled"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
+				rs.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return user;
 	}
 
@@ -790,11 +680,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void disableUser(int userIdNum) {
@@ -809,11 +695,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public int getUserDisableEnableStatus(int userId) {
@@ -831,11 +713,7 @@ public class UserDao {
 
 		try {
 			if (!rs.next()) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return -1;
 			} else {
 				status = rs.getInt("enabled");
@@ -844,11 +722,7 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return status;
 	}
 
@@ -864,11 +738,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public LinkedList<User> getAllUsersForClub(int club_id_num) {
@@ -901,14 +771,11 @@ public class UserDao {
 						rs.getInt("iduser"), rs.getInt("enabled"));
 				userList.add(user);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return userList;
 	}
 
@@ -941,15 +808,11 @@ public class UserDao {
 
 				results.add(newUser);
 			}
-
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return results;
 	}
 
@@ -976,15 +839,11 @@ public class UserDao {
 
 				results.add(newUser);
 			}
-
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return results;
 	}
 
@@ -1027,15 +886,11 @@ public class UserDao {
 				}
 
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			conn.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return userList;
 	}
 
@@ -1067,11 +922,7 @@ public class UserDao {
 
 		try {
 			if (!rs.next()) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
 				return 0;
 			} else {
 				userID = rs.getInt("iduser");
@@ -1079,11 +930,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return userID;
 	}
 
@@ -1118,14 +965,11 @@ public class UserDao {
 				userList.add(user);
 
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return userList;
 
 	}
