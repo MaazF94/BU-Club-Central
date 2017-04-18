@@ -13,6 +13,7 @@
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostCommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
 
 <%@ page import="java.util.*"%>
 
@@ -182,6 +183,30 @@
 			<h1>
 				<div class="container">
 					<h1  class="text-danger" >${clubName}</h1>
+					
+					<%
+if (((User) session.getAttribute("user")) != null) {
+ClubMembershipDao cmDao = new ClubMembershipDao();
+int user_id = ((User) session.getAttribute("user")).getUser_id();
+int club_id = (int) request.getAttribute("club_id_num");
+String club_name = (String) request.getAttribute("clubName");
+boolean isInClub = cmDao.checkIfUserInClub(club_id, user_id);
+if (!isInClub) {%>
+<form action = "JoinAClubServlet" method="GET">
+<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(club_id)%>">Join <%
+												out.println(club_name);
+											%></a></form>
+<%
+} else {
+	%>
+<a type="button" class="btn btn-warning" 
+href="LeaveClubFromClublistServlet?clubID=<%=(club_id)%>">Leave <%
+												out.println(club_name);
+											%></a>
+<%
+}
+}
+ %>
 				</div>
 				
 			</h1>

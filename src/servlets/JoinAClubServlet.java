@@ -67,7 +67,6 @@ public class JoinAClubServlet extends HttpServlet {
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
 	}
 
 	/**
@@ -76,7 +75,7 @@ public class JoinAClubServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp");
+		request.getRequestDispatcher("/WEB-INF/jsp/ClubList.jsp").forward(request, response);
 	}
 
 	/**

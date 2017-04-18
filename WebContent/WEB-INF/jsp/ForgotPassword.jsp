@@ -148,23 +148,6 @@
 									data-form-type="contact" method="post"
 									class="text-left offset-top-20">
 									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-login" placeholder="Your Username"
-												type="text" name="username" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-id" placeholder="Your BenU ID"
-												type="text" name="id_num" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
 									<div class="form-group offset-top-20">
 										<div class="input-group input-group-sm">
 											<span class="input-group-addon input-group-addon-inverse"><i class="material-icons" style="font-size:19px">email</i></span></span> <input
@@ -173,21 +156,11 @@
 												class="form-control">
 										</div>
 									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
-												id="login-your-new-password" placeholder="Your New Password"
-												type="password" name="passwrd" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
 									<button type="submit"
 										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
 										Reset My Password <span
 											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
-									</button>
-
+									</button>									
 								</form>
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
