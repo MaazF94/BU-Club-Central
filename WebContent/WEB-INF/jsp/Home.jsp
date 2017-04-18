@@ -286,6 +286,7 @@
 							<p class="text-darker offset-top-20">
 								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
+									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
 								<!-- {%FOOTER_LINK}-->
 							</p>
 						</div>
