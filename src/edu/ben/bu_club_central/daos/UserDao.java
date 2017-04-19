@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
+import jbcrypt.BCrypt;
 
 public class UserDao {
 	private String tableName = "user";
@@ -44,7 +45,7 @@ public class UserDao {
 	public boolean checkPasswordUsernameMatch(String username, String password) {
 		boolean result = false;
 		
-		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "' AND passwrd='" + password + "'";
+		String sql = "SELECT * FROM " + tableName + " WHERE username='" + username + "'";
 		
 		PreparedStatement ps;
 		ResultSet rs;
@@ -53,9 +54,11 @@ public class UserDao {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				result = true;
-				rs.close();
+				if(BCrypt.checkpw(password, rs.getString("passwrd"))) {
+					result = true;
+				}
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
