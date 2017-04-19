@@ -6,6 +6,7 @@ package edu.ben.bu_club_central.daos;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.*;
+import java.util.Date;
 
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Events;
@@ -39,9 +40,14 @@ public class EventsDao {
 	 * @param club_id_num
 	 *            add a single event object into the database
 	 */
-	public void addEvent(String event_name, String description, String location, int club_id_num) {
+	public void addEvent(String event_name, String description, String location, int club_id_num, String startyear, String startmonth, String startday,
+			String endyear, String endmonth, String endday) {
+		String startDate = startyear + "-" + startmonth + "-" + startday;
+		String endDate = endyear + "-" + endmonth + "-" + endday;
+		
 		String sql = "INSERT INTO " + tableName
-				+ "(event_name, description, location, rsvp_count, club_id_num) VALUES ('" + event_name + "', '" + description + "', '" + location + "', '" + rsvpInitalCount + "', '"  + club_id_num + "')";
+				+ "(event_name, description, location, rsvp_count, club_id_num, startDate, endDate) VALUES ('" + event_name + "', '" + description + "', '" + location + "', '" + rsvpInitalCount + "', '"  +
+				club_id_num + "', '" + startDate + "', '" + endDate + "')";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -310,4 +316,6 @@ public class EventsDao {
 		
 	}
 
+	
+	
 }

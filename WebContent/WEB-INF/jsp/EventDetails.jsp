@@ -396,6 +396,30 @@
                   </div>
                   
                 </div>
+                     <div class="range offset-top-41">
+                  <div class="cell-xs-6 cell-md-12">
+                    <!-- Category-->
+                    <h6 class="text-uppercase text-spacing-60">Users Going</h6>
+                    <div class="text-subline"></div>
+                        <%
+                         int rsvpIndex = 0;
+              			int rsvpListSize = userList.size();
+              		
+              		%>
+              		
+	
+                   <ul class="list list-marked offset-top-30">
+                    <%while(rsvpIndex < rsvpListSize) { %>
+                    <li><a href="#"><%=userList.get(rsvpIndex).getFirst_name() + " " + userList.get(rsvpIndex).getLast_name() %><span class="text-dark"></span></a></li>
+                     <%rsvpIndex++; %>
+						<%} %>           
+                      
+                    </ul>
+                  </div>
+                  
+                  
+                  
+                </div>
                 <!-- Search Form-->
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>
@@ -414,6 +438,7 @@
             </div>
           </div>
         </div>
+
       </main>
 
 

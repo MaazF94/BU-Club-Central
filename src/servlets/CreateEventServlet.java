@@ -41,9 +41,9 @@ public class CreateEventServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		createEvent(request.getParameter("event_name"), request.getParameter("description"),
-				request.getParameter("location"), 
-				((User) request.getSession().getAttribute("user")).getClub_id_num());
+		createEvent(request.getParameter("event_name"), request.getParameter("description"), request.getParameter("location"), 
+				((User) request.getSession().getAttribute("user")).getClub_id_num(), request.getParameter("startyear"), request.getParameter("startmonth"), request.getParameter("startday"),
+				request.getParameter("endyear"), request.getParameter("endmonth"), request.getParameter("endday"));
 		
 		eventNotifications();
 		
@@ -51,9 +51,10 @@ public class CreateEventServlet extends HttpServlet {
 
 	}
 
-	public void createEvent(String event_name, String description, String location, int club_id_num) {
+	public void createEvent(String event_name, String description, String location, int club_id_num, String startyear, String startmonth, String startday,
+			String endyear, String endmonth, String endday) {
 		EventsDao eDao = new EventsDao();
-		eDao.addEvent(event_name, description, location, club_id_num);
+		eDao.addEvent(event_name, description, location, club_id_num, startyear, startmonth, startday, endyear, endmonth, endday);
 	}
 	
 	public void eventNotifications() {
