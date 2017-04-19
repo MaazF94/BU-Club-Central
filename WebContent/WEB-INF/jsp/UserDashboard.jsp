@@ -686,8 +686,7 @@
 	<script type="text/javascript">
 		
 		function loggedIn() {
-			var calledOnced = '<%=session.getAttribute("loggedIn")%>
-		';
+			var calledOnced = <%=session.getAttribute("loggedIn")%>;
 			if (calledOnced == 0) {
 	<%request.getSession().setAttribute("loggedIn", 1);%>
 		calledOnce = 1;
