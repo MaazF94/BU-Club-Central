@@ -465,6 +465,7 @@
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
+									int linkCount = 1000;
 								
 								%>
 								
@@ -477,7 +478,7 @@
 											<th>User Name</th>
 											<th>ID Number</th>
 											<th>Email</th>
-											<th><input value="Set Roles" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
+											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
 											<th>Enabled/Disabled</th>
 											<th></th>
 											<th></th>
@@ -503,14 +504,14 @@
 											<td><%=userList.get(userListIndex).getUsername() %></td>
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
-											<td><select  name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00';">
+											<td><select  name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = 'inline'">
   <option selected="selected" disabled="disabled"><%=role%></option>											
   <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
   <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
 </select>
-<a style="font-size: 12pt;" data-toggle="modal" href="#setRolesModal"><span
-									class="icon glyphicon glyphicon-calendar"></span>Set Club</a>
+<a id="<%=linkCount%>" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal"><span
+									class="icon glyphicon glyphicon-list"></span>Set Club</a>
 									
 										<div class="modal fade" id="setRolesModal" role="dialog">
 		<div class="modal-dialog" style="top: 25%;">
@@ -572,6 +573,7 @@
 
 										<%
 											userListIndex++;
+											linkCount++;
 										%>
 										<%
 											}

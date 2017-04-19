@@ -157,7 +157,7 @@ public class UserDao {
 			if (j == 0) {
 				for (int k = 0; k < roleIDs.length; k++) {
 					if (roleIDs[k] != 0) {
-						if (roleIDs[k] == 2) {
+						if (roleIDs[k] == 2 && clubIDs[j] > 0) {
 							sql = "UPDATE " + tableName + " SET role_id=" + roleIDs[k] + ", club_id_num = " + clubIDs[j]
 									+ " WHERE iduser=" + userIDs[k];
 
