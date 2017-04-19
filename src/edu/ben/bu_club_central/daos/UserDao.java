@@ -79,9 +79,47 @@ public class UserDao {
 	 * @param email
 	 * @return false if not able to change password
 	 */
-	public boolean userPasswordChange(String username, String passwrd, int id_num, String email) {
+	public boolean userCheckEmailExists(String email) {
+		String sql = "SELECT email from " + tableName + " WHERE email = '" + email + "'";
+		System.out.println(sql);
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("Did not pull from email to see if it exists");
+			e.printStackTrace();
+		}
+
+		try {
+			while (rs.next()) {
+				if (rs.getString("email").equals(email)) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not pull from email to see if it exists 2");
+			e.printStackTrace();
+		}
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean userUpdatePassword(String username, String passwrd, int id_num) {
 		String sql = "UPDATE " + tableName + " SET passwrd='" + passwrd + "'" + " WHERE username='" + username + "'"
-				+ "and id_num='" + id_num + "'" + "and email='" + email + "'";
+				+ "and id_num='" + id_num + "'";
 		System.out.println(sql);
 		PreparedStatement ps;
 		try {
@@ -195,10 +233,9 @@ public class UserDao {
 	 * @param username
 	 * @return false if not able to change username
 	 */
-	public boolean userUsernameChange(String first_name, String last_name, int id_num, String email, String username) {
+	public boolean userForgotUsernameUpdate(String first_name, String last_name, int id_num, String username) {
 		String sql = "UPDATE " + tableName + " SET username='" + username + "'" + " WHERE first_name='" + first_name
-				+ "'" + "and last_name='" + last_name + "'" + "and id_num='" + id_num + "'" + "and email='" + email
-				+ "'";
+				+ "'" + "and last_name='" + last_name + "'" + "and id_num='" + id_num + "'";
 
 		PreparedStatement ps;
 		try {
@@ -470,6 +507,47 @@ public class UserDao {
 		}
 		
 		return true;
+	}
+	
+	public User getUserByEmail(String email) {
+		User user = null;
+		String sql = "SELECT * FROM " + tableName + " WHERE email='" + email + "'";
+
+		PreparedStatement ps;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			if (!rs.next()) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return null;
+			} else {
+
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
+						rs.getInt("iduser"), rs.getInt("enabled"));
+
+				user.setRole_id(rs.getInt("role_id"));
+				user.setClub_id_num(rs.getInt("club_id_num"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	public User getUserByUsername(String username) {

@@ -216,6 +216,9 @@ button.accordion.active:after {
 							<div class="cell-lg-6">
 					<img src="img/overviewBU.jpg" width="494" height="623"
 						alt="" class="veil reveal-lg-inline-block">
+						<hr>
+						<a href = "ContactUsServlet" ><button class = "btn btn-info">Contact Us</button></a>
+				<p><b>Need Technical Support?</b></p>
 				</div>
 				<div class="cell-sm-9 cell-lg-6 offset-top-0">
 					<h1 class="text-darker text-lg-left">Benedictine Clubs</h1>
@@ -236,6 +239,10 @@ button.accordion.active:after {
 											%> Homepage</a>
 											</form>
 											<br>
+<p><b>Meeting Time:</b> <%=clubList.get(index).getMeeting_Time()%><br>
+<b>Meeting Location:</b> <%=clubList.get(index).getMeeting_Loc()%><br>
+<b>How Often We Meet:</b> <%=clubList.get(index).getMeeting_Freq()%></p>
+
 <%
 if (((User) session.getAttribute("user")) != null) {
 ClubMembershipDao cmDao = new ClubMembershipDao();

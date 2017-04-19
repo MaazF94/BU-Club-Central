@@ -106,7 +106,8 @@ public class ClubDao {
 
 				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
 						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
-						cs.getInt("enabled"));
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"));
 				results.add(newClub);
 			}
 			cs.close();
@@ -139,7 +140,9 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"), 
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"));
 				results.add(newClub);
 			}
 			cs.close();
@@ -168,7 +171,8 @@ public class ClubDao {
 
 				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
 						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
-						cs.getInt("enabled"));
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"), 
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"));
 				results.add(newClub);
 			}
 			cs.close();
@@ -198,7 +202,8 @@ public class ClubDao {
 			while (rs.next()) {
 				club = new Club(rs.getInt("club_id_num"), rs.getString("club_name"), rs.getString("pet_name"),
 						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),
-						rs.getInt("enabled"));
+						rs.getInt("enabled"), rs.getString("meeting_time"), rs.getString("meeting_freq"),
+						rs.getString("meeting_loc"), rs.getString("broadcast_update"));
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -227,7 +232,8 @@ public class ClubDao {
 			while (rs.next()) {
 				club = new Club(rs.getInt("club_id_num"), rs.getString("club_name"), rs.getString("pet_name"),
 						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),
-						rs.getInt("enabled"));
+						rs.getInt("enabled"), rs.getString("meeting_time"), rs.getString("meeting_freq"), 
+						rs.getString("meeting_loc"), rs.getString("broadcast_update"));
 				clubList.add(club);
 			}
 			rs.close();
@@ -285,6 +291,78 @@ public class ClubDao {
 	 */
 	public boolean editClubDescription(String club_description, int club_id_num) {
 		String sql = "UPDATE " + tableName + " SET club_description = '" + club_description + "'"
+				+ " WHERE club_id_num = " + club_id_num;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+	
+		return false;
+	}
+	
+	public boolean editClubMeetingTime(String meeting_time, int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET meeting_time = '" + meeting_time + "'"
+				+ " WHERE club_id_num = " + club_id_num;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+	
+		return false;
+	}
+	
+	public boolean editClubMeetingLoc(String meeting_loc, int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET meeting_loc = '" + meeting_loc + "'"
+				+ " WHERE club_id_num = " + club_id_num;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+	
+		return false;
+	}
+	
+	public boolean editClubMeetingFreq(String meeting_freq, int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET meeting_freq = '" + meeting_freq + "'"
+				+ " WHERE club_id_num = " + club_id_num;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+	
+		return false;
+	}
+	
+	public boolean editClubBroadcast(String broadcast, int club_id_num) {
+		String sql = "UPDATE " + tableName + " SET broadcast_update = '" + broadcast + "'"
 				+ " WHERE club_id_num = " + club_id_num;
 		PreparedStatement ps;
 		try {

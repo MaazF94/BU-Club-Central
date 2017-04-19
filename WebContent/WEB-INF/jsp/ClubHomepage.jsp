@@ -13,6 +13,7 @@
 <%@ page import="edu.ben.bu_club_central.daos.PostDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostCommentDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
 
 <%@ page import="java.util.*"%>
 
@@ -182,28 +183,65 @@
 			<h1>
 				<div class="container">
 					<h1  class="text-danger" >${clubName}</h1>
+					${message}
+					<%
+if (((User) session.getAttribute("user")) != null) {
+ClubMembershipDao cmDao = new ClubMembershipDao();
+int user_id = ((User) session.getAttribute("user")).getUser_id();
+int club_id = (int) request.getAttribute("club_id_num");
+String club_name = (String) request.getAttribute("clubName");
+boolean isInClub = cmDao.checkIfUserInClub(club_id, user_id);
+if (!isInClub) {%>
+<form action = "JoinAClubServlet" method="GET">
+<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(club_id)%>">Join <%
+												out.println(club_name);
+											%></a></form>
+<%
+} else {
+	%>
+<a type="button" class="btn btn-warning" 
+href="LeaveClubFromClublistServlet?clubID=<%=(club_id)%>">Leave <%
+												out.println(club_name);
+											%></a>
+<%
+}
+}
+ %>
 				</div>
 				
 			</h1>
-							              ${message}
-			
-			<h5>Number of Club Members: ${clubMembers}</h5>
-			
-
-			<br>
-			   <b>Description:</b>
-			   <br>
-			   <p>${clubDescription}</p>
-			 
-			 <br>
-			   <b>Advisor: </b>
-			   <br>
-			   <p>${advisorName}</p>
-			   
-			   			<div class="container">
-				<div class="col-lg-4"></div>
-				
-			</div>
+							              
+			   <%String broadcast = (String) request.getAttribute("broadcast"); %>
+			   			  <div class="" style="font-family:sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.4;margin:0;padding:0;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+    <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
+      <tr>
+        <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
+        <td class="container" style="font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;">
+          <div class="content" style="box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;">Here Is Our Latest Update!</span>
+            <table class="main" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper" style="font-family:sans-serif;font-size:14px;vertical-align:top;box-sizing:border-box;padding:20px;">
+                  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
+                    <tr>
+                      <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
+                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"><b>Latest Update,</b></p>
+                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"><%=broadcast%></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- END MAIN CONTENT AREA -->
+            </table>
+          </div>
+        </td>
+        <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
+      </tr>
+    </table>
+  </div>
 			
 			<div class="container">
 							<h3>Post Feed (Click button for more info)</h3>	
