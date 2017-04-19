@@ -330,64 +330,6 @@
 
 
 						
-<div role="tabpanel" class="tab-pane" id="editClubInfo">
-							<div class="container">
-								<%
-								ClubDao clubDao = new ClubDao();
-								Club clubObject = clubDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-									String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
-									String clubMeetingTime = ((Club) request.getAttribute("clubObject")).getMeeting_Time();
-									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
-									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();
-									String broadcast = ((Club) request.getAttribute("clubObject")).getBroadcast_Update();
-								%>
-
-								
-
-									<table class="table table-hover sortable">
-										<thead>
-											<tr>
-												<th>Club Description</th>
-												<th>Club Meeting Time</th>
-												<th>Club Meeting Location</th>
-												<th>Club Meets How Often?</th>
-												<th>Broadcast Post</th>
-											</tr>
-										</thead>
-
-										<tbody>
-											<tr>
-												<td><form action="EditClubDescriptionServlet" method="post"><textarea onkeypress="enableUpdateButton()"
-														cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
-													<br>
-													<button id="button" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton1()"
-														cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea>
-													<br>
-													<button id="button1" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton2()"
-														cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
-													<br>
-													<button id="button2" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton3()"
-														cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
-													<br>
-													<button id="button3" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td> 
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton4()"
-														cols="10" rows="5" name="broadcast"><%=broadcast%></textarea>
-													<br>
-													<button id="button4" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-											</tr>
-										</tbody>
-
-									</table>
-							</div>
-						</div>
 
 
 
@@ -1152,8 +1094,21 @@
 								Location</label> <input name="location" type="text" class="form-control"
 								id="location" placeholder="Location of Event">
 						</div>
+						<div class="form-group">
+						</div>
 						
-						<br>
+
+						<div class="form-group">
+						<label for=""><span class="glyphicon glyphicon-list"></span>
+								Categories</label><br> 
+							<label><input type="checkbox" name="category" value= "sports"/>Sports</label><br>
+              				<label><input type="checkbox" name="category" value= "technology"/>Technology</label><br>
+              				<label><input type="checkbox" name="category" value= "movies"/>Movies</label><br>
+              				<label><input type="checkbox" name="category" value= "arts"/>arts</label><br>
+              				<label><input type="checkbox" name="category" value= "community"/>Community</label><br>
+             			    <label><input type="checkbox" name="category" value= "other"/>Other</label><br>
+						</div>
+						</div>
 						<br>
 						
 						<div class="form-group">

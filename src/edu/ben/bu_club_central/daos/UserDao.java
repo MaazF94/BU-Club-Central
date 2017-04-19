@@ -28,6 +28,7 @@ public class UserDao {
 				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name
 				+ "', '" + last_name + "', '" + username + "', '" + passwrd + "', " + id_num + ", '" + email + "', "
 				+ default_user_id + ", " + enabled + ")";
+		System.out.println(sql);
 
 		PreparedStatement ps;
 		try {
