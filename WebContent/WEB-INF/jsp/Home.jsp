@@ -267,10 +267,16 @@
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
 					<div class="range range-xs-center">
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					
+					<p>LINKS</p>
+					<a href= "HomeServlet">Home</a><br>
+					<a href= "EventServlet">Events</a><br>
+					<a href= "ContactUsServlet">Contact Us</a><br>
+					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					</div>
+					
+						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
 							<!-- Footer brand-->
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
@@ -283,7 +289,6 @@
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-							</div>
 							<p class="text-darker offset-top-20">
 								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
@@ -291,6 +296,9 @@
 								<!-- {%FOOTER_LINK}-->
 							</p>
 						</div>
+					</div>
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<a href= "HomeServlet">Home</a>
 					</div>
 				</div>
 			</div>
