@@ -145,7 +145,7 @@ public class EventRSVPListDao {
 				ps2.setInt(1, eventIdList.get(eventIdListIndex));
 				rs2 = ps2.executeQuery();
 				rs2.next();
-				event = new Events(rs2.getString("event_name"), rs2.getString("description"), rs2.getString("location"), rs2.getInt("club_id_num"));
+				event = new Events(rs2.getString("event_name"), rs2.getString("description"), rs2.getString("location"), rs2.getInt("club_id_num"), rs2.getString("category"));
 				event.setEventId(rs2.getInt("idevent"));
 				eventList.add(event);
 				

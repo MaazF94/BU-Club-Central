@@ -342,6 +342,18 @@
                   </div>
                   
                 </div>
+                <!-- Categories -->
+                <p class="big text-medium offset-top-41 text-uppercase text-spacing-60">Categories</p>
+                <div class="text-subline"></div>
+                <div class="offset-top-34">
+                                <div class="group-xs">
+                                <a href="#" class="btn btn-xs btn-default">body</a>
+                                <a href="#" class="btn btn-xs btn-default">Fitness</a>
+                                <a href="#" class="btn btn-xs btn-default">CrossFit</a>
+                                <a href="#" class="btn btn-xs btn-default">yoga</a>
+                                <a href="#" class="btn btn-xs btn-default">Bodybuilding</a>
+                                </div>
+                </div>
                 <!-- Search Form-->
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>

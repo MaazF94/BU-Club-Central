@@ -41,13 +41,13 @@ public class EventsDao {
 	 *            add a single event object into the database
 	 */
 	public void addEvent(String event_name, String description, String location, int club_id_num, String startyear, String startmonth, String startday,
-			String endyear, String endmonth, String endday) {
+			String endyear, String endmonth, String endday,String category) {
 		String startDate = startyear + "-" + startmonth + "-" + startday;
 		String endDate = endyear + "-" + endmonth + "-" + endday;
 		
 		String sql = "INSERT INTO " + tableName
-				+ "(event_name, description, location, rsvp_count, club_id_num, startDate, endDate) VALUES ('" + event_name + "', '" + description + "', '" + location + "', '" + rsvpInitalCount + "', '"  +
-				club_id_num + "', '" + startDate + "', '" + endDate + "')";
+				+ "(event_name, description, location, rsvp_count, club_id_num, startDate, endDate, category) VALUES ('" + event_name + "', '" + description + "', '" + location + "', '" + rsvpInitalCount + "', '"  +
+				club_id_num + "', '" + startDate + "', '" + endDate +"', '" + category + "')";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -69,7 +69,7 @@ public class EventsDao {
 
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getInt("club_id_num"));
+						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				//event.setAcutal_count(cs.getInt("acutal_count"));
@@ -136,7 +136,7 @@ public class EventsDao {
 		
 		try {
 			while (rs.next()) {
-				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"), rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 				//event.setAcutal_count(rs.getInt("acutal_count"));
@@ -169,7 +169,7 @@ public class EventsDao {
 		
 		try {
 			while(rs.next()) {
-				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"), rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 				//event.setAcutal_count(rs.getInt("acutal_count"));
@@ -227,7 +227,7 @@ public class EventsDao {
 
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getInt("club_id_num"));
+						cs.getString("location"), cs.getInt("club_id_num"),cs.getString("category"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				
@@ -286,7 +286,7 @@ public class EventsDao {
 		
 		try {
 			while(rs.next()) {
-				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"),rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 				
@@ -314,6 +314,41 @@ public class EventsDao {
 			e.printStackTrace();
 		}
 		
+	}
+	public LinkedList<Events> getAllEventsByCategory(String category) {
+		String sql = "SELECT * FROM " + tableName + " WHERE category = '"+category+"'";
+		System.out.println(sql);
+		
+		
+		LinkedList<Events> list = new LinkedList<Events>();
+		Events event;
+		
+		PreparedStatement ps;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			while(rs.next()) {
+				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"), rs.getString("category"));
+				event.setRsvp_count(rs.getInt("rsvp_count"));
+				event.setEventId(rs.getInt("idevent"));
+				
+				list.add(event);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+//		System.out.println(list.size());
+	
+		return list;
 	}
 
 	

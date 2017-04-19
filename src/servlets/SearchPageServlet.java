@@ -97,7 +97,7 @@ public class SearchPageServlet extends HttpServlet {
 					
 					
 					while (rs.next()) {
-						event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"));
+						event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"), rs.getString("category"));
 						event.setRsvp_count(rs.getInt("rsvp_count"));
 						event.setEventId(Integer.parseInt(rs.getString("idevent")));
 						eventList.add(event);

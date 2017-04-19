@@ -10,11 +10,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.simplejavamail.*;
-import org.simplejavamail.util.*;
-import org.simplejavamail.email.Email;
-import org.simplejavamail.mailer.Mailer;
-import org.simplejavamail.mailer.config.TransportStrategy;
+//import org.simplejavamail.*;
+//import org.simplejavamail.util.*;
+//import org.simplejavamail.email.Email;
+//import org.simplejavamail.mailer.Mailer;
+//import org.simplejavamail.mailer.config.TransportStrategy;
 
 public class SendMail {
 	public static void email(String fromEmail, final String username, final String password, String toEmail, String subject,
