@@ -316,7 +316,7 @@
                     <%
 			ClubDao cDao2 = new ClubDao();
 			LinkedList<Club> clubList = new LinkedList<Club>();
-			clubList = cDao2.displayClub();
+			clubList = cDao2.getAllClubs();
 
 			int index = 0;
 		%>

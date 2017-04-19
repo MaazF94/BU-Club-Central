@@ -42,10 +42,11 @@ public class ClubDao {
 	 * @param enabled either 1 or 0
 	 * @param pet_email the head petitioners email
 	 * @param advisor_name the name of the clubs advisor
+	 * @param string 
 	 */
-	public boolean addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name ) {
+	public boolean addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name, String preference ) {
 		String sql = "SELECT max(club_id_num) from " + tableName + ""; 
-	
+		System.out.println("This is the preference: "+preference);
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
@@ -61,8 +62,8 @@ public class ClubDao {
 		}
 		
 		sql = "INSERT INTO " + tableName
-				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name) VALUES (" + clubID + ", '" + club_name + "', '"+ pet_name + "', '" + club_description + "', "+
-				 enabled + ",'" + pet_email+"','"+advisor_name+ "')"; 
+				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name, preference) VALUES (" + clubID + ", '" + club_name + "', '"+ pet_name + "', '" + club_description + "', "+
+				 enabled + ",'" + pet_email+"','"+advisor_name+ "','"+preference+"')"; 
 	
 		try {
 			PreparedStatement ps;
@@ -97,7 +98,7 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),cs.getString("preference") , cs.getInt("enabled"));
 				results.add(newClub);
 			}
 
@@ -128,7 +129,7 @@ public class ClubDao {
 			while (cs.next()) {
 				
 				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), cs.getInt("enabled") );
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),cs.getString("preference"), cs.getInt("enabled") );
 				results.add(newClub);
 			}
 
@@ -157,7 +158,7 @@ public class ClubDao {
 		try {
 			while(rs.next()) {
 				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), 
-						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), rs.getInt("enabled") );
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),rs.getString("preference") , rs.getInt("enabled") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -184,7 +185,7 @@ public class ClubDao {
 		try {
 			while (rs.next()) {
 				club = new Club( rs.getInt("club_id_num"), rs.getString("club_name"),rs.getString("pet_name"), 
-						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"), 
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),rs.getString("preference") , 
 						rs.getInt("enabled") );
 				clubList.add(club);
 			}
@@ -321,6 +322,32 @@ public class ClubDao {
 		
 		return size;
 	}
+	public LinkedList<Club> displayClubByPreference(String preference) {
+		 LinkedList<Club> results = new LinkedList<Club>();
+			String sql;
+			
+			
+			sql = "SELECT * FROM " + tableName + " where preference ="+ "'"+ preference +"'";
+			System.out.println(sql);
+				
+
+			try {
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet cs = ps.executeQuery();
+				
+				while (cs.next()) {
+					
+					Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
+							cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),cs.getString("preference") , cs.getInt("enabled"));
+					results.add(newClub);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return results;
+		}
 	
 
 }

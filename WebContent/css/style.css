@@ -1392,7 +1392,7 @@ mark,
 
 blockquote.quote .text-primary,
 .text-primary {
-  color: #840000; }
+  color: #ffce25; }
 
 a.text-primary:hover,
 a.text-primary:focus {
@@ -1898,9 +1898,7 @@ input[type="checkbox"] {
   line-height: normal; }
 
 input[type="file"] {
-  display: inline;
-  float: left; }
-  
+  display: block; }
 
 input[type="range"] {
   display: block;
@@ -1925,8 +1923,7 @@ output {
   color: #262627; }
 
 .form-control {
-  display: inline;
-  float: left;
+  display: block;
   width: 100%;
   height: 50px;
   padding: 9px 26px;
@@ -3378,16 +3375,17 @@ tbody.collapse.in {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  
   z-index: 1000;
   display: none;
   float: left;
-  width: 120px;
- 
+  min-width: 100px;
+  padding: 5px 40px;
+  margin: 2px 0 0;
   list-style: none;
   font-size: 15px;
   text-align: left;
-  background-color: #2a2a2a;
+  background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
@@ -3406,8 +3404,7 @@ tbody.collapse.in {
     display: block;
     padding: 3px 20px;
     clear: both;
-    font-weight: normal;
-    line-height: 1.6;
+   
     color: #434345;
     white-space: nowrap; }
 
@@ -5550,6 +5547,115 @@ button.close {
   .modal-lg {
     width: 900px; } }
 
+/** 1.32 Tooltip */
+.tooltip {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.6;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  font-size: 15px;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+  .tooltip.in {
+    opacity: 0.9;
+    filter: alpha(opacity=90); }
+  .tooltip.top {
+    margin-top: -3px;
+    padding: 5px 0; }
+  .tooltip.right {
+    margin-left: 3px;
+    padding: 0 5px; }
+  .tooltip.bottom {
+    margin-top: 3px;
+    padding: 5px 0; }
+  .tooltip.left {
+    margin-left: -3px;
+    padding: 0 5px; }
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 5px; }
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid; }
+
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000; }
+
+.tooltip.top-left .tooltip-arrow {
+  bottom: 0;
+  right: 5px;
+  margin-bottom: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000; }
+
+.tooltip.top-right .tooltip-arrow {
+  bottom: 0;
+  left: 5px;
+  margin-bottom: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000; }
+
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-right-color: #000; }
+
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #000; }
+
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #000; }
+
+.tooltip.bottom-left .tooltip-arrow {
+  top: 0;
+  right: 5px;
+  margin-top: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #000; }
+
+.tooltip.bottom-right .tooltip-arrow {
+  top: 0;
+  left: 5px;
+  margin-top: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #000; }
 
 /** 1.33 Popovers */
 .popover {
@@ -19890,9 +19996,6 @@ html .group-bottom > *, html .group-bottom > *:first-child {
   .box-comment-outboxed .box-comment-img {
     margin-top: 10px; }
   .box-comment-outboxed .media-body {
-<<<<<<< HEAD
-    padding: 20px;
-=======
     padding: 20px;
     border-radius: 3px;
     border: 1px solid #d9d9d9; }
@@ -34716,52 +34819,3 @@ a.pswp__share--download:hover {
   color: #fff; }
   .checkout-tabs .rd-material-tabs__list .rd-material-tab-active a:hover {
     color: #fff; }
-<<<<<<< HEAD
-    
- 
-.table-fixed thead {
-  width: 97%;
-}
-.table-fixed tbody {
-  height: 230px;
-  overflow-y: auto;
-  width: 100%;
-}
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-  display: block;
-}
-.table-fixed tbody td, .table-fixed thead > tr> th {
-  float: left;
-  border-bottom-width: 0;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-
-
-
-
-
-
-

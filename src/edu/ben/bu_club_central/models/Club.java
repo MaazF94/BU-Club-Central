@@ -7,16 +7,18 @@ public class Club {
 	private int club_id_num;
 	private String pet_email;
 	private String advisor_name;
+	private String preference;
 	private int enabled;
 	
 	
-	public Club (int club_id_num, String club_name, String pet_name, String club_description, String pet_email, String advisor_name, int enabled) {
+	public Club (int club_id_num, String club_name, String pet_name, String club_description, String pet_email, String advisor_name,String preference, int enabled) {
 		this.club_name = club_name;
 		this.pet_name = pet_name;
 		this.club_description = club_description;
 		this.club_id_num = club_id_num;
 		this.pet_email = pet_email;
 		this.advisor_name = advisor_name;
+		this.preference = preference;
 		this.enabled = enabled;
 	}
 
@@ -87,6 +89,16 @@ public class Club {
 
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
+	}
+
+
+	public String getPreference() {
+		return preference;
+	}
+
+
+	public void setPreference(String preference) {
+		this.preference = preference;
 	}
 
 	
