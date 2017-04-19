@@ -465,6 +465,7 @@
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
+									int linkCount = 1000;
 								
 								%>
 								
@@ -477,7 +478,7 @@
 											<th>User Name</th>
 											<th>ID Number</th>
 											<th>Email</th>
-											<th><input value="Set Roles" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
+											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
 											<th>Enabled/Disabled</th>
 											<th></th>
 											<th></th>
@@ -503,14 +504,14 @@
 											<td><%=userList.get(userListIndex).getUsername() %></td>
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
-											<td><select  name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00';">
+											<td><select  name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = 'inline'">
   <option selected="selected" disabled="disabled"><%=role%></option>											
   <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
   <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
 </select>
-<a style="font-size: 12pt;" data-toggle="modal" href="#setRolesModal"><span
-									class="icon glyphicon glyphicon-calendar"></span>Set Club</a>
+<a id="<%=linkCount%>" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal"><span
+									class="icon glyphicon glyphicon-list"></span>Set Club</a>
 									
 										<div class="modal fade" id="setRolesModal" role="dialog">
 		<div class="modal-dialog" style="top: 25%;">
@@ -572,6 +573,7 @@
 
 										<%
 											userListIndex++;
+											linkCount++;
 										%>
 										<%
 											}
@@ -662,22 +664,27 @@
         </section>
       </main>
     <!-- Page Footer -->
-	<footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-        <div class="shell">
-          <div class="range range-sm-center text-lg-left">
-            <div class="cell-sm-12">
-              <div class="range range-xs-center">
-               
-                
-                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  
-                  
-                        
-                      
-                      
-  
-                  <div class="offset-top-50 text-xs-center text-lg-left">
-                    <ul class="list-inline">
+	<footer
+			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+		<div class="shell">
+			<div class="range range-sm-center text-lg-left">
+				<div class="cell-sm-12">
+					<div class="range range-xs-center">
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<br>
+					<p><b>Some Useful links</b></p>
+					<a href= "HomeServlet">Home</a><br>
+					<a href= "EventServlet">Events</a><br>
+					<a href= "clublistServlet">Clubs</a><br>
+					<a href= "ContactUsServlet">Contact Us</a><br>
+					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					</div>
+					
+						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+							<!-- Footer brand-->
+							<div class="offset-top-50 text-xs-center text-lg-left">
+								<ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
@@ -687,16 +694,28 @@
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-                  </div>
-                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
-                    <!-- {%FOOTER_LINK}-->
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+								<img src="img/Entrance.jpg" width = "80%" height = "80%">
+							<p class="text-darker offset-top-20">
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+									href="privacy.html">Privacy Policy</a>
+									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
+								<!-- {%FOOTER_LINK}-->
+							</p>
+						</div>
+					</div>
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<br>
+						<br>
+						<br>
+						<a href= "loginServlet">Login</a><br>
+						<a href= "RegisterServlet">Register</a><br>
+						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
+						<a href= "forgotUsernameServlet">Forot Username?</a><br>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
 
     </div>
     <!-- Global Mailform Output-->

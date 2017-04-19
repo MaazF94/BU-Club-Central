@@ -205,7 +205,7 @@ request.getRequestDispatcher("/WEB-INF/jsp/ContactUs.jsp").forward(request, resp
 				"                    <tr>\r\n" + 
 				"                      <td style=\"font-family:sans-serif;font-size:14px;vertical-align:top;\">\r\n" + 
 				"                        <p style=\"font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;\"><b>Hi,</b></p>\r\n" + 
-				"						 <p> <img src = 'http://i.imgur.com/EPKFzy9.jpg?1' width = '50%'> </p>\r\n" +		
+				"						 <img src = 'http://i.imgur.com/EPKFzy9.jpg?1' width = '50%' >\r\n" +		
 				"                        <p style=\"font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;\">" + "<b>" +  "Message from " + fullName + ": </b>" + message + "</p>\r\n" + 
 				"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\" style=\"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;\">\r\n" + 
 				"                          <tbody>\r\n" + 
