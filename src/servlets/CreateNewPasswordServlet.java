@@ -72,18 +72,18 @@ public class CreateNewPasswordServlet extends HttpServlet {
 					"<head>\r\n" +
 					"<title>Mileage</title>\r\n" +
 					"<style> \r\n" +
-					".isa_success {\r\n" +
-					"color: #4F8A10;\r\n" +
-					"background-color: #DFF2BF;\r\n" +
+					".isa_error {\r\n" +
+					"color: #D8000C;\r\n" +
+					"background-color: #FFBABA;\r\n" +
 					"}\r\n" +
 					"</style>\r\n" +
 					"</head>\r\n<body>\r\n" +
-					"<div class=isa_success>\r\n" +
-					"<i class=fa fa-check></i>\r\n" +
+					"<div class=isa_error>\r\n" +
+					"<i class=fa fa-times-circle></i>\r\n" +
 					"You entered some information incorrectly.\r\n" +
 					"\t\t</div>\r\n" +
 					"</body>\r\n" +
-					"</html>";		
+					"</html>";	
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/WEB-INF/jsp/CreateNewPassword.jsp").forward(request, response);
 		}
