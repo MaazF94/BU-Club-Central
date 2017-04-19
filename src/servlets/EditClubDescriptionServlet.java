@@ -64,7 +64,7 @@ public class EditClubDescriptionServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-response.sendRedirect("BoardMemberDashBoard");
+request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 		} else {
 			throw new Exception();
 		}

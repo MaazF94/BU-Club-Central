@@ -203,74 +203,230 @@ button.accordion.active:after {
 		</div>
 		</header>
 		<!-- Page Contents-->
+		<section class="section-98 section-sm-110">
+          <div class="shell">
+            <div class="range range-xs-center range-xs-middle">
+              <!-- Simple quote Slider-->
+              <div class="cell-sm-9 cell-lg-6 cell-lg-push-6">
+                <div data-items="1" data-nav="false" data-dots="false" data-nav-custom=".owl-custom-navigation" class="owl-carousel owl-carousel-classic owl-carousel-class-light shadow-drop-md">
+                  <div><img src="img/overviewBU.jpg" width="800" height="600" alt="" class="img-responsive element-fullwidth"></div>
+                  
+                 
+                </div>
+              </div>
+              <div class="cell-sm-9 cell-lg-6 cell-lg-pull-6 text-lg-left offset-top-66 offset-lg-top-0 inset-lg-right-30">
+                <h1>Benedictine Clubs and Organizations</h1>
+                <hr class="divider bg-red hr-lg-left-0">
+                  <div class="range range-lg text-left">
+					  
+              
+              <div class="cell-sm-5 cell-sm-6 offset-top-66 offset-sm-top-0">
+                <!-- Portfolio-->
+                <h3>Sports</h3>
+                <%
+			ClubDao cDao1 = new ClubDao();
+			LinkedList<Club> clubList1 = new LinkedList<Club>();
+			clubList1 = cDao1.displayClubByPreference("sports");
 
-		<%
-			LinkedList<Club> clubList = (LinkedList<Club>) request.getAttribute("clubs");
 
-			int index = 0;
+			int index1 = 0;
 		%>
-		
-		<section class="section-66 section-sm-top-110 section-lg-bottom-0">
-				<div class="shell">
-			<div class="range range-xs-center">
-							<div class="cell-lg-6">
-					<img src="img/overviewBU.jpg" width="494" height="623"
-						alt="" class="veil reveal-lg-inline-block">
-						<hr>
-						<a href = "ContactUsServlet" ><button class = "btn btn-info">Contact Us</button></a>
-				<p><b>Need Technical Support?</b></p>
-				</div>
-				<div class="cell-sm-9 cell-lg-6 offset-top-0">
-					<h1 class="text-darker text-lg-left">Benedictine Clubs</h1>
-					${message}
-					<div class="offset-top-41 offset-lg-top-66">
-						<!-- Bootstrap Accordion-->
-						<%
-							while (index < clubList.size()) {
+                <hr>
+                <ul class="list list-unstyled">
+                 <%
+                   if(clubList1.size()>0){
+							while (index1 < clubList1.size()) {
 						%>
-
-								<button class="accordion text-bold"><%
-												out.println(clubList.get(index).getClub_name());
-											%></button>
-<div class=" well">
-<form action="ClubHomepageServlet" method="GET">
-<a type="button" class="btn btn-info" href="ClubHomepage?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Visit <%
-												out.println(clubList.get(index).getClub_name());
-											%> Homepage</a>
-											</form>
-											<br>
-<%
-if (((User) session.getAttribute("user")) != null) {
-ClubMembershipDao cmDao = new ClubMembershipDao();
-int user_id = ((User) session.getAttribute("user")).getUser_id();
-boolean isInClub = cmDao.checkIfUserInClub(clubList.get(index).getClub_id_num(), user_id);
-if (!isInClub) {%>
-<form action = "JoinAClubServlet" method="GET">
-<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(clubList.get(index).getClub_id_num())%>">Join <%
-												out.println(clubList.get(index).getClub_name());
-											%></a></form>
-<%
-} else {
-	%>
-<a type="button" class="btn btn-warning" 
-href="LeaveClubFromClublistServlet?clubID=<%=(clubList.get(index).getClub_id_num())%>">Leave <%
-												out.println(clubList.get(index).getClub_name());
-											%></a>
-<%
-}
-}
- %>
-
-</div>
-				<%
-										index++;
+                          <!-- Sitemap-->
+                          <li class="post-meta inset-left-10"><form action="ClubHomepageServlet" method="GET">
+                          <a type="button" class="btn-xs btn-danger" href="ClubHomepage?club_id_num=<%=(clubList1.get(index1).getClub_id_num())%>"><span class="icon icon-xxs text-middle mdi mdi-run"></a></span>
+                           <span class="text-middle-bold"><strong><%=clubList1.get(index1).getClub_name()%></strong></span>
+                           </form>
+                                  </li>
+                                  <hr class="divider bg-gray-darkest hr-lg-left-0">
+                          
+                          
+                          <%
+										index1++;
 										}
-									%>
-			</div>
-							</div>
-			</div>
-			</div>
-		</section>
+                   }else{%>
+                   <span class=""></span> <span class="text-middle">Currently no clubs</span>
+                                  
+                	   <hr class="divider bg-gray-darkest hr-lg-left-0">
+                 <%  }
+            	%>   
+            	</ul>        
+                <div class="offset-top-41">
+                  <!-- Blog-->
+                  <h3>Movies</h3>
+                    <%
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList2 = new LinkedList<Club>();
+			clubList2 = cDao2.displayClubByPreference("movies");
+
+
+			int index2 = 0;
+		%>
+
+                  <hr>
+                    <ul class="list list-unstyled">
+                    <%
+                   if(clubList2.size()>0){
+							while (index2 < clubList2.size()) {
+
+
+						%>
+                          <!-- Sitemap-->
+                         
+                                   <li class="post-meta inset-left-10"><form action="ClubHomepageServlet" method="GET">
+                          <a type="button" class="btn-xs btn-danger" href="ClubHomepage?club_id_num=<%=(clubList2.get(index2).getClub_id_num())%>"><span class="icon icon-xxs text-middle mdi mdi-television"></a></span>
+                           <span class="text-middle"><strong><%=clubList2.get(index2).getClub_name()%></strong></span>
+                           </form>
+                                  </li>
+                                  <hr class="divider bg-gray-darkest hr-lg-left-0">
+                          
+                          
+                          <%
+										index2++;
+										}
+                   }else{%>
+                   <span class=""></span> <span class="text-middle">Currently no clubs</span>
+                                  
+                	  <hr class="divider bg-gray-darkest hr-lg-left-0">
+                 <%  }
+            	%>                                  
+                     </ul>     
+                </div>
+                <div class="offset-top-41 ">
+                  <!-- Blog-->
+                  <h3>Other</h3>
+                  <%
+			ClubDao cDao3 = new ClubDao();
+			LinkedList<Club> clubList3 = new LinkedList<Club>();
+			clubList3 = cDao3.displayClubByPreference("other");
+
+
+			int index3 = 0;
+		%>
+                  <hr>
+                    <ul class="list list-unstyled">
+                   <%
+                   if(clubList3.size()>0){
+							while (index3 < clubList3.size()) {
+						%>
+                          <!-- Sitemap-->
+                         
+                            <li class="post-meta inset-left-10"><form action="ClubHomepageServlet" method="GET">
+                          <a type="button" class="btn-xs btn-danger" href="ClubHomepage?club_id_num=<%=(clubList3.get(index3).getClub_id_num())%>"><span class="icon icon-xxs text-middle  glyphicon glyphicon-asterisk"></a></span>
+                           <span class="text-middle"><strong><%=clubList3.get(index3).getClub_name()%></strong></span>
+                           </form>
+                                  </li>
+                                 <hr class="divider bg-gray-darkest hr-lg-left-0">
+                          
+                          <%
+										index3++;
+										}
+                   }else{%>
+                   <span class=""></span> <span class="text-middle">Currently no clubs</span>
+                       <hr class="divider bg-gray-darkest hr-lg-left-0">          
+                	   
+                 <%  }
+            	%>                                    
+                     </ul>     
+                </div>
+              </div>
+              <div class="cell-xs-7 cell-sm-4 offset-top-66 offset-sm-top-0">
+                <!-- Shop-->
+                <h3>Technology</h3>
+                  <%
+			ClubDao cDao4 = new ClubDao();
+			LinkedList<Club> clubList4 = new LinkedList<Club>();
+			clubList4 = cDao4.displayClubByPreference("technology");
+
+			int index4 = 0;
+		%>
+                <hr>
+                <ul class="list list-unstyled">
+                 <%
+                   if(clubList4.size()>0){
+							while (index4 < clubList4.size()) {
+						%>
+                          <!-- Sitemap-->
+                          
+                                   <li class="post-meta inset-left-10"><form action="ClubHomepageServlet" method="GET">
+                          <a type="button" class="btn-xs btn-danger" href="ClubHomepage?club_id_num=<%=(clubList4.get(index4).getClub_id_num())%>"><span class="icon icon-xxs text-middle  mdi mdi-laptop"></a></span>
+                           <span class="text-middle"><strong><%=clubList4.get(index4).getClub_name()%></strong></span>
+                           </form>
+                                  </li>
+                                  <hr class="divider bg-gray-darkest hr-lg-left-0">
+                          
+                          
+                          <%
+										index4++;
+										}
+                   }else{%>
+                   <span class=""></span> <span class="text-middle">Currently no clubs</span>
+                        <hr class="divider bg-gray-darkest hr-lg-left-0">          
+                	   
+                 <%  }
+            	%>           
+                      </ul>  
+                <div class="offset-top-41">
+                  <!-- Components-->
+                  <h3>Art</h3>
+                    <%
+			ClubDao cDao5 = new ClubDao();
+			LinkedList<Club> clubList5 = new LinkedList<Club>();
+			clubList5 = cDao5.displayClubByPreference("art");
+
+	
+
+			int index5 = 0;
+		%>
+                <hr>
+                <ul class="list list-unstyled">
+                 <%
+                   if(clubList5.size()>0){
+							while (index5 < clubList5.size()) {
+						%>
+                          <!-- Sitemap-->
+                          
+                                  
+                                   <li class="post-meta inset-left-10"><form action="ClubHomepageServlet" method="GET">
+                          <a type="button" class="btn-xs btn-danger" href="ClubHomepage?club_id_num=<%=(clubList5.get(index5).getClub_id_num())%>"><span class="icon icon-xxs text-middle mdi mdi-pencil"></a></span>
+                           <span class="text-middle"><strong><%=clubList5.get(index5).getClub_name()%></strong></span>
+                           </form>
+                                  </li>
+                                 <hr class="divider bg-gray-darkest hr-lg-left-0">
+                                
+                          
+                          
+                          <%
+										index5++;
+										}
+                   }else{%>
+                   <span class=""></span> <span class="text-middle">Currently no clubs</span>
+                         <hr class="divider bg-gray-darkest hr-lg-left-0">        
+                	   
+                 <%  }
+            	%>           
+                      </ul>    
+                </div>
+              </div>
+             
+            </div>
+                
+               
+              </div>
+            </div>
+          </div>
+        </section>
+		
+		
+ 
+		
+		
+		
 		<!-- Spaces page from footer-->
 		<div class="range range-xs-center offset-top-66">
 			<div class="cell-md-7"></div>

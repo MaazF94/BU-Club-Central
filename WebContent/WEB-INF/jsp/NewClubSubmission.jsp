@@ -231,14 +231,14 @@
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
                         <a href="#" title="Name of Advisor" class="masterTooltip"><strong>Advisor Name:</strong></a>
-                        <input id="contact-us-email" type="text" name="advisorName"  data-constraints="@Required @Email" class="form-control form-control-impressed">
+                        <input id="contact-us-message" type="text" name="advisorName"  data-constraints="@Required" class="form-control form-control-impressed">
                       	<br/>
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
                         <a href="#" title="The Name of the head petitioner for the club" class="masterTooltip"><strong>Petitioner Name:</strong></a>
-                        <input id="contact-us-email" type="text" name="petName" data-constraints="@Required @Email" class="form-control form-control-impressed">
+                        <input id="contact-us-message" type="text" name="petName" data-constraints="@Required " class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-12 offset-top-20">
@@ -247,11 +247,27 @@
                         <textarea id="contact-us-message" name="clubDescription"  data-constraints="@Required" class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
+                      <div class="cell-lg-4">
+              <h3 class="text-bold"><a href="#" title="Choose a category for your club" class="masterTooltip">Preference</a></h3>
+            	
+            
+		
+              
+              <label><input type="checkbox" name="preference" value= "sports"/>Sports</label><br>
+              <label><input type="checkbox" name="preference" value= "technology"/>Technology</label><br>
+              <label><input type="checkbox" name="preference" value= "movies"/>Movies</label><br>
+              <label><input type="checkbox" name="preference" value= "arts"/>arts</label><br>
+              <label><input type="checkbox" name="preference" value= "community"/>Community</label><br>
+              <label><input type="checkbox" name="preference" value= "other"/>Other</label><br>
+                
+              </div>
                   </div>
                   <div class="group-sm text-center text-lg-left offset-top-30">
                     <button type="submit" class="btn btn-danger">Send</button>
                     <button type="reset" class="btn btn-default">Reset</button>
+                    
                   </div>
+                
                 </form>
               </div>
             </div>

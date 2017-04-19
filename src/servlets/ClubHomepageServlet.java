@@ -59,6 +59,9 @@ public class ClubHomepageServlet extends HttpServlet {
 		int club_id_num = Integer.parseInt(request.getParameter("club_id_num"));
 		request.setAttribute("club_id_num", club_id_num);
 		
+		String broadcast = clubObject.getBroadcast_Update();
+		request.setAttribute("broadcast", broadcast);
+		
 		PostDao pDao = new PostDao();
 		LinkedList<Post> postList = new LinkedList<Post>();
 		postList = pDao.getAllPostsByClubId(Integer.parseInt(request.getParameter("club_id_num")));

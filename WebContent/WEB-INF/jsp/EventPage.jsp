@@ -312,7 +312,13 @@
                   <div class="cell-xs-6 cell-md-12">
                     <!-- Category-->
                     <%
-			LinkedList<Club> clubList = (LinkedList<Club>) request.getAttribute("clubList");
+
+			ClubDao cDao2 = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = cDao2.getAllClubs();
+
+			//LinkedList<Club> clubList = (LinkedList<Club>) request.getAttribute("clubList");
+
 
 			int index = 0;
 		%>
