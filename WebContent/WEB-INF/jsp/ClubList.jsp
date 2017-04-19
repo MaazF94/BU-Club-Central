@@ -217,6 +217,7 @@ button.accordion.active:after {
               <div class="cell-sm-9 cell-lg-6 cell-lg-pull-6 text-lg-left offset-top-66 offset-lg-top-0 inset-lg-right-30">
                 <h1>Benedictine Clubs and Organizations</h1>
                 <hr class="divider bg-red hr-lg-left-0">
+                ${message}
                   <div class="range range-lg text-left">
 					  
               
