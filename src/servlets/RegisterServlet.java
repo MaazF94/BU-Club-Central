@@ -72,9 +72,7 @@ public class RegisterServlet extends HttpServlet {
 					"</body>\r\n" +
 					"</html>";
 request.setAttribute("message", message);
-ServletContext context = getServletContext();
-RequestDispatcher dispatcher = context.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
-dispatcher.forward(request, response);
+response.sendRedirect("LoginServlet");
 
 		} else {
 			System.out.println("user error checking failed");
