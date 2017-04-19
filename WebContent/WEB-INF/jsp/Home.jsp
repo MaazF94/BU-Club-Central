@@ -268,12 +268,14 @@
 				<div class="cell-sm-12">
 					<div class="range range-xs-center">
 					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-					
-					<p>LINKS</p>
+					<br>
+					<p><b>Some Useful links</b></p>
 					<a href= "HomeServlet">Home</a><br>
 					<a href= "EventServlet">Events</a><br>
+					<a href= "clublistServlet">Clubs</a><br>
 					<a href= "ContactUsServlet">Contact Us</a><br>
 					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					<a href= "BenUnionServlet">Bendictine Underground</a><br>
 					</div>
 					
 						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
@@ -289,6 +291,7 @@
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
+								<img src="img/Entrance.jpg" width = "80%" height = "80%">
 							<p class="text-darker offset-top-20">
 								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
@@ -298,7 +301,13 @@
 						</div>
 					</div>
 					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-					<a href= "HomeServlet">Home</a>
+						<br>
+						<br>
+						<br>
+						<a href= "loginServlet">Login</a><br>
+						<a href= "RegisterServlet">Register</a><br>
+						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
+						<a href= "forgotUsernameServlet">Forot Username?</a><br>
 					</div>
 				</div>
 			</div>
