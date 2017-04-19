@@ -11,10 +11,12 @@ public class Club {
 	private String meeting_time;
 	private String meeting_freq;
 	private String meeting_loc;
+	private String broadcast_update;
 	
 	
 	public Club (int club_id_num, String club_name, String pet_name, String club_description, String pet_email,
-			String advisor_name, int enabled, String meeting_time, String meeting_freq, String meeting_loc) {
+			String advisor_name, int enabled, String meeting_time, String meeting_freq, String meeting_loc,
+			String broadcast_update) {
 		this.club_name = club_name;
 		this.pet_name = pet_name;
 		this.club_description = club_description;
@@ -25,6 +27,7 @@ public class Club {
 		this.meeting_time = meeting_time;
 		this.meeting_freq = meeting_freq;
 		this.meeting_loc = meeting_loc;
+		this.broadcast_update = broadcast_update;
 	}
 
 
@@ -121,6 +124,16 @@ public class Club {
 
 	public void setMeeting_Loc(String meeting_loc) {
 		this.meeting_loc = meeting_loc;
+	}
+	
+	
+	public String getBroadcast_Update() {
+		return broadcast_update;
+	}
+
+
+	public void setBroadcast_Update(String broadcast_update) {
+		this.broadcast_update = broadcast_update;
 	}
 
 	

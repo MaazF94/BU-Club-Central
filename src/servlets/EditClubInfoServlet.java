@@ -115,11 +115,32 @@ public class EditClubInfoServlet extends HttpServlet {
 				} else {
 					throw new Exception();
 				}
-			} else {
+			} else if (request.getParameter("broadcast") != null) {
+				if (callEditBroadcast(request.getParameter("broadcast"), club_id_num)) {
+					message = 	"<!DOCTYPE html>\r\n" + 
+							"<html>\r\n" +
+							"<head>\r\n" +
+							"<title>Mileage</title>\r\n" +
+							"<style> \r\n" +
+							".isa_success {\r\n" +
+							"color: #4F8A10;\r\n" +
+							"background-color: #DFF2BF;\r\n" +
+							"}\r\n" +
+							"</style>\r\n" +
+							"</head>\r\n<body>\r\n" +
+							"<div class=isa_success>\r\n" +
+							"<i class=fa fa-check></i>\r\n" +
+							"You successfully changed your club's information.\r\n" +
+							"\t\t</div>\r\n" +
+							"</body>\r\n" +
+							"</html>";
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
+			}
+			}else {
 				throw new Exception();
 			}
-		}
-				catch (Exception e) {
+		}catch (Exception e) {
 			String message = 	"<!DOCTYPE html>\r\n" + 
 					"<html>\r\n" +
 					"<head>\r\n" +
@@ -163,6 +184,15 @@ public class EditClubInfoServlet extends HttpServlet {
 	public static boolean callEditMeetingFreq(String meeting_freq, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubMeetingFreq(meeting_freq, club_id_num)) {		
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public static boolean callEditBroadcast(String broadcast, int club_id_num) {
+		ClubDao cDao = new ClubDao();
+		if (cDao.editClubBroadcast(broadcast, club_id_num)) {		
 			return true;
 		}
 		

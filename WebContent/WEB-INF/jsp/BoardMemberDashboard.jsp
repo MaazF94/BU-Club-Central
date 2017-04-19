@@ -337,7 +337,7 @@
 									String clubMeetingTime = ((Club) request.getAttribute("clubObject")).getMeeting_Time();
 									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
 									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();
-
+									String broadcast = ((Club) request.getAttribute("clubObject")).getBroadcast_Update();
 								%>
 
 								
@@ -349,31 +349,37 @@
 												<th>Club Meeting Time</th>
 												<th>Club Meeting Location</th>
 												<th>Club Meets How Often?</th>
+												<th>Broadcast Post</th>
 											</tr>
 										</thead>
 
 										<tbody>
 											<tr>
 												<td><form action="EditClubDescriptionServlet" method="post"><textarea onkeypress="enableUpdateButton()"
-														cols="30" rows="10" name="editDescription"><%=clubDescription%></textarea>
+														cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
 													<br>
 													<button id="button" disabled class="btn btn-warning"
 														type="submit">Save Changes</button></form></td>
 												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton1()"
-														cols="10" rows="2" name="editMeetingTime"><%=clubMeetingTime%></textarea>
+														cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea>
 													<br>
 													<button id="button1" disabled class="btn btn-warning"
 														type="submit">Save Changes</button></form></td>
 												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton2()"
-														cols="10" rows="2" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
+														cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
 													<br>
 													<button id="button2" disabled class="btn btn-warning"
 														type="submit">Save Changes</button></form></td>
 												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton3()"
-														cols="10" rows="2" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
+														cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
 													<br>
 													<button id="button3" disabled class="btn btn-warning"
 														type="submit">Save Changes</button></form></td> 
+												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton4()"
+														cols="10" rows="5" name="broadcast"><%=broadcast%></textarea>
+													<br>
+													<button id="button4" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></form></td>
 											</tr>
 										</tbody>
 
@@ -1216,6 +1222,12 @@
 		function enableUpdateButton3() {
 
 			document.getElementById("button3").disabled = false;
+
+		}
+		
+		function enableUpdateButton4() {
+
+			document.getElementById("button4").disabled = false;
 
 		}
 
