@@ -190,6 +190,7 @@ ClubMembershipDao cmDao = new ClubMembershipDao();
 int user_id = ((User) session.getAttribute("user")).getUser_id();
 int club_id = (int) request.getAttribute("club_id_num");
 String club_name = (String) request.getAttribute("clubName");
+
 boolean isInClub = cmDao.checkIfUserInClub(club_id, user_id);
 if (!isInClub) {%>
 <form action = "JoinAClubServlet" method="GET">
@@ -207,6 +208,13 @@ href="LeaveClubFromClublistServlet?clubID=<%=(club_id)%>">Leave <%
 }
 }
  %>
+ <%String meetingLoc = (String) request.getAttribute("meetingLoc");
+ String meetingFreq = (String) request.getAttribute("meetingFreq");
+ String meetingTime = (String) request.getAttribute("meetingTime");
+ %>
+ <p><b>Meeting Time:</b> <%=meetingTime%><br>
+<b>Meeting Location:</b> <%=meetingLoc%><br>
+<b>How Often We Meet:</b> <%=meetingFreq%></p>
 				</div>
 				
 			</h1>
