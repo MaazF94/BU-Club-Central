@@ -228,6 +228,7 @@ button.accordion.active:after {
 			LinkedList<Club> clubList1 = new LinkedList<Club>();
 			clubList1 = cDao1.displayClubByPreference("sports");
 
+
 			int index1 = 0;
 		%>
                 <hr>
@@ -263,13 +264,17 @@ button.accordion.active:after {
 			LinkedList<Club> clubList2 = new LinkedList<Club>();
 			clubList2 = cDao2.displayClubByPreference("movies");
 
+
 			int index2 = 0;
 		%>
+
                   <hr>
                     <ul class="list list-unstyled">
                     <%
                    if(clubList2.size()>0){
 							while (index2 < clubList2.size()) {
+
+
 						%>
                           <!-- Sitemap-->
                          
@@ -299,6 +304,7 @@ button.accordion.active:after {
 			ClubDao cDao3 = new ClubDao();
 			LinkedList<Club> clubList3 = new LinkedList<Club>();
 			clubList3 = cDao3.displayClubByPreference("other");
+
 
 			int index3 = 0;
 		%>
@@ -372,6 +378,8 @@ button.accordion.active:after {
 			ClubDao cDao5 = new ClubDao();
 			LinkedList<Club> clubList5 = new LinkedList<Club>();
 			clubList5 = cDao5.displayClubByPreference("art");
+
+	
 
 			int index5 = 0;
 		%>

@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
+import edu.ben.bu_club_central.daos.PostCommentDao;
 import edu.ben.bu_club_central.daos.PostDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Post;
+import edu.ben.bu_club_central.models.PostComments;
 import edu.ben.bu_club_central.models.User;
 import mailDispatcher.SendMail;
 
@@ -41,7 +43,7 @@ public class ClubHomepageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ClubDao cDao = new ClubDao();
-		Club clubObject = cDao.getClubById(((User)request.getSession().getAttribute("user")).getClub_id_num());
+		Club clubObject = cDao.getClubById(Integer.parseInt(request.getParameter("club_id_num")));
 		String clubName = clubObject.getClub_name();
 		request.setAttribute("clubName", clubName);
 
@@ -54,13 +56,18 @@ public class ClubHomepageServlet extends HttpServlet {
 		String advisor = clubObject.getAdvisor_name();
 		request.setAttribute("advisorName", advisor);
 		
-		String club_id_num = request.getParameter("club_id_num");
+		int club_id_num = Integer.parseInt(request.getParameter("club_id_num"));
 		request.setAttribute("club_id_num", club_id_num);
+		
+		String broadcast = clubObject.getBroadcast_Update();
+		request.setAttribute("broadcast", broadcast);
 		
 		PostDao pDao = new PostDao();
 		LinkedList<Post> postList = new LinkedList<Post>();
-		postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
+		postList = pDao.getAllPostsByClubId(Integer.parseInt(request.getParameter("club_id_num")));
 		request.setAttribute("postList", postList);
+		
+		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/ClubHomepage.jsp").forward(request, response);
 	}

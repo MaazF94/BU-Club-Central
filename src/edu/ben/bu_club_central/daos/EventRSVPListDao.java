@@ -30,6 +30,7 @@ public class EventRSVPListDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	
@@ -56,8 +57,11 @@ public class EventRSVPListDao {
 		
 		try {
 			if(rs.next()) {
+				
 				return true;
+				
 			}else {
+				
 				return false;
 			}
 		} catch (SQLException e) {
@@ -96,10 +100,11 @@ public class EventRSVPListDao {
 				userList.add(u);
 				
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+	
 		return userList;
 		
 	}
@@ -152,8 +157,6 @@ public class EventRSVPListDao {
 		}
 		
 		
-		
-		
 		return eventList;
 	}
 	
@@ -169,6 +172,7 @@ public class EventRSVPListDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	

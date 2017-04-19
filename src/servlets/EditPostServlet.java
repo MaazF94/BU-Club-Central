@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.PostDao;
+import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Post;
+import edu.ben.bu_club_central.models.User;
 
 /**
  * Servlet implementation class EditPostServlet
@@ -29,6 +31,15 @@ public class EditPostServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			PostDao pDao = new PostDao();
+			Post post = pDao.getPostByPostId(Integer.parseInt(request.getParameter("editPostId")));
+			UserDao uDao = new UserDao();
+			User user = uDao.getUserByIdNum(post.getUser_id_num());
+			
+			request.setAttribute("post", post);
+			request.setAttribute("user", user);
+		
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/EditPost.jsp").forward(request, response);
 
 	}

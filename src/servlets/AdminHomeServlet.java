@@ -1,14 +1,23 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.daos.DocumentForAdminDao;
+import edu.ben.bu_club_central.daos.EventsDao;
+import edu.ben.bu_club_central.daos.PostDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
+import edu.ben.bu_club_central.models.DocumentForAdmin;
+import edu.ben.bu_club_central.models.Events;
+import edu.ben.bu_club_central.models.Post;
 import edu.ben.bu_club_central.models.User;
 
 /**
@@ -34,6 +43,39 @@ public class AdminHomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (((User) request.getSession().getAttribute("user")).getRole_id() == 3) {
+			
+			ClubDao clubDao = new ClubDao();
+			LinkedList<Club> clubList = new LinkedList<Club>();
+			clubList = clubDao.displayClubForAdmin();
+			request.setAttribute("clubList", clubList);
+			
+			LinkedList<Events> eventList = new LinkedList<Events>();
+			EventsDao eDao = new EventsDao();
+			eventList = eDao.getAllEvents();
+			request.setAttribute("eventList", eventList);
+			
+			LinkedList<Events> eventList2 = new LinkedList<Events>();
+			EventsDao eDao2 = new EventsDao();
+			eventList2 = eDao2.getAllEvents();
+			request.setAttribute("eventList2", eventList2);
+			
+			PostDao pDao = new PostDao();
+			LinkedList<Post> postList = new LinkedList<Post>();
+			postList = pDao.getAllPosts();
+			request.setAttribute("postList", postList);
+			
+			UserDao uDao = new UserDao();
+			LinkedList<User> userList = new LinkedList<User>();
+			userList = uDao.getAllUsers();
+			request.setAttribute("userList", userList);
+			
+			DocumentForAdminDao dfaDao = new DocumentForAdminDao();
+			LinkedList<DocumentForAdmin> documentForAdminList = new LinkedList<DocumentForAdmin>();
+			documentForAdminList = dfaDao.displayDocumentForAdminInfo();
+			request.setAttribute("documentForAdminList", documentForAdminList);
+			
+			
+			
 			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("AccessDeniedServlet");

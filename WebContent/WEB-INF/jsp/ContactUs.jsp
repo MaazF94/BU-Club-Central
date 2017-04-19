@@ -180,7 +180,7 @@
                 <div class="inset-lg-right-80">
                   <h3 class="text-bold">How to Find us</h3>
                   <hr class="divider hr-lg-left-0 bg-red">
-                  <p class="offset-top-41 offset-lg-top-50">We are located in the basement of Krasa.</p>
+                  <p class="offset-top-41 offset-lg-top-50">Please contact us for any technical help you need.</p>
                   <address class="contact-info offset-top-30 offset-lg-top-50">
                     <div class="h6 text-uppercase text-bold text-danger letter-space-none offset-top-none">Club Central Office</div>
                     <p></p>

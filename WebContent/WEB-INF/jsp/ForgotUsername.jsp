@@ -146,34 +146,8 @@
 								<!-- RD Mailform-->
 								<form data-form-output="form-output-global"
 									data-form-type="contact" method="post"
-									class="text-left offset-top-30">
+									class="text-left offset-top-20">
 									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-login" placeholder="Your First Name"
-												type="text" name="first_name" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-login" placeholder="Your Last Name"
-												type="text" name="last_name" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
-									<div class="form-group offset-top-20">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-id" placeholder="Your BenU ID"
-												type="text" name="id_num" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
 									<div class="form-group offset-top-20">
 										<div class="input-group input-group-sm">
 											<span class="input-group-addon input-group-addon-inverse"><i class="material-icons" style="font-size:19px">email</i></span></span> <input
@@ -182,25 +156,15 @@
 												class="form-control">
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="input-group input-group-sm">
-											<span class="input-group-addon input-group-addon-inverse"><span
-												class="input-group-icon mdi mdi-account-outline"></span></span> <input
-												id="login-your-login" placeholder="Your New Username"
-												type="text" name="username" data-constraints="@Required"
-												class="form-control">
-										</div>
-									</div>
 									<button type="submit"
 										class="btn btn-sm btn-icon btn-block btn-warning btn btn-danger">
 										Reset My Username <span
 											class="icon mdi mdi-arrow-right-bold-circle-outline"></span>
-									</button>
-
+									</button>									
 								</form>
-								
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
+									<a href="ForgotUsernameServlet" class="text-picton-blue">Forgot your username?</a>
 									<div class="offset-top-0">
 										Don't have an account? <a href="RegisterServlet"
 											class="text-picton-blue">Sign up here</a>.

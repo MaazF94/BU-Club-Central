@@ -195,11 +195,9 @@
                 
                 <h2 class="text-bold">Upcoming Events</h2>
                 <hr class="divider  bg-red">
-                <%
-						EventsDao eventDao = new EventsDao();
-						LinkedList<Events> eventList = new LinkedList<Events>();
+                <%		EventsDao eventDao = new EventsDao();
+						LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList");
 
-						eventList = eventDao.getAllEvents();
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
 						 int noOfRecords = eventList.size();
@@ -314,9 +312,13 @@
                   <div class="cell-xs-6 cell-md-12">
                     <!-- Category-->
                     <%
+
 			ClubDao cDao2 = new ClubDao();
 			LinkedList<Club> clubList = new LinkedList<Club>();
 			clubList = cDao2.getAllClubs();
+
+			//LinkedList<Club> clubList = (LinkedList<Club>) request.getAttribute("clubList");
+
 
 			int index = 0;
 		%>
@@ -354,6 +356,11 @@
                                 </form>
 
                 </div>
+                <br>
+                <hr>
+                				<p><b>Need Technical Support?</b></p>
+                
+						<a href = "ContactUsServlet" ><button class = "btn btn-info">Contact Us</button></a>
               </aside>
             </div>
           </div>
