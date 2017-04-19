@@ -104,6 +104,7 @@ dispatcher.forward(request, response);
 
 	public static void callRegisterUser(String first_name, String last_name, String username, String passwrd,
 			int id_num, String email) {
+		System.out.println("called register user");
 		UserDao uDao = new UserDao();
 		
 		String hashedPw = BCrypt.hashpw(passwrd, BCrypt.gensalt());

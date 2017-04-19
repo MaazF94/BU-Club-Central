@@ -34,7 +34,7 @@ public class NewClubSubmissionServlet extends HttpServlet {
 		if (((User) request.getSession().getAttribute("user")) != null ) {
 			request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
 		}else {
-			response.sendRedirect("AccessDeniedServlet");
+			response.sendRedirect("MustLoginToViewServlet");
 		}
 	}
 
@@ -328,7 +328,7 @@ public class NewClubSubmissionServlet extends HttpServlet {
 						"                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\r\n" + 
 						"                                  <tbody>\r\n" + 
 						"                                    <tr>\r\n" + 
-						"                                      <td> <a href=\"http://cs.ben.edu/bu-club-central/AdminHome\" target=\"_blank\">Benedictine</a> </td>\r\n" + 
+						"                                      <td> <a href=\"http://localhost:8080/bu-club-central/AdminHome\" target=\"_blank\">Benedictine</a> </td>\r\n" + 
 						"                                    </tr>\r\n" + 
 						"                                  </tbody>\r\n" + 
 						"                                </table>\r\n" + 
