@@ -186,7 +186,7 @@ dispatcher.forward(request, response);
 				"        <td class=\"container\" style=\"font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;\">\r\n" + 
 				"          <div class=\"content\" style=\"box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;\">\r\n" + 
 				"            <!-- START CENTERED WHITE CONTAINER -->\r\n" + 
-				"            <span class=\"preheader\" style=\"color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;\">Hello," + first_name + ". This is your welcome message to Club Central. The best place to stay up to date with your clubs.</span>\r\n" + 
+				"            <span class=\"preheader\" style=\"color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;\">Hello, " + first_name + ". This is your welcome message to Club Central. The best place to stay up to date with your clubs.</span>\r\n" + 
 				"            <table class=\"main\" style=\"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;\">\r\n" + 
 				"              <!-- START MAIN CONTENT AREA -->\r\n" + 
 				"              <tr>\r\n" + 
@@ -195,7 +195,7 @@ dispatcher.forward(request, response);
 				"                    <tr>\r\n" + 
 				"                      <td style=\"font-family:sans-serif;font-size:14px;vertical-align:top;\">\r\n" + 
 				"                        <p style=\"font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;\">Hi " + username +",</p>\r\n" + 
-				"						 <p> <img src = 'http://i.imgur.com/EPKFzy9.jpg?1' width = '50%'> </p>\r\n" +		
+				"						 <p align = 'center'> <img src = \"http://i.imgur.com/bSjfwaY.jpg?2\" width = '50%'> </p>\r\n" +		
 				"                        <p style=\"font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;\">Welcome to Club Central! We're glad you decided to to join us! There are a bunch of things you can do here including, RSVPing for an event, joiing a club, making a club and much, much more!</p>\r\n" + 
 				"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\" style=\"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;\">\r\n" + 
 				"                          <tbody>\r\n" + 
@@ -204,7 +204,7 @@ dispatcher.forward(request, response);
 				"                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;width:auto;\">\r\n" + 
 				"                                  <tbody>\r\n" + 
 				"                                    <tr>\r\n" + 
-				"                                      <td style=\"font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;\"> <a href=\"http://www.ben.edu\" target=\"_blank\" style=\"text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#c61003;border-color:#3498db;color:#ffffff;\">Benedictine</a> </td>\r\n" + 
+				"                                      <td style=\"font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;\"> <a href=\"http://cs.ben.edu/bu_club_central\" target=\"_blank\" style=\"text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#c61003;border-color:#3498db;color:#ffffff;\">Benedictine</a> </td>\r\n" + 
 				"                                    </tr>\r\n" + 
 				"                                  </tbody>\r\n" + 
 				"                                </table>\r\n" + 
@@ -228,10 +228,13 @@ dispatcher.forward(request, response);
 				"                  <td class=\"content-block\" style=\"font-family:sans-serif;font-size:14px;vertical-align:top;color:#999999;font-size:12px;text-align:center;\">\r\n" + 
 				"                    <span class=\"apple-link\" style=\"color:#999999;font-size:12px;text-align:center;\">The F.I.R.M</span>\r\n" + 
 				"                    <br>\r\n" + 
+				"						\r\n" + 
+				"							This message was sent from Benedictine University Club Central. Please do not reply to this message.\r\n" + 
+				"\r\n" + 						
 				"                     Don't like these emails? <a href=\"http://ww.ben.edu\" style=\"color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;\">Unsubscribe</a>.\r\n" + 
 				"                  </td>\r\n" + 
 				"                  <td style=\"font-family:sans-serif;font-size:14px;vertical-align:top;color:#999999;font-size:12px;text-align:center;\">\r\n" + 
-				"                    <img src=\"https://upload.wikimedia.org/wikipedia/en/b/b8/Benedictine_University_logo.jpg\" style=\"border:none;-ms-interpolation-mode:bicubic;max-width:100%;\">\r\n" + 
+				"                    <img src=\"http://i.imgur.com/tklPxvC.png\" style=\"border:none;-ms-interpolation-mode:bicubic;max-width:100%;\">\r\n" + 
 				"                  </td>\r\n" + 
 				"                </tr>\r\n" + 
 				"              </table>\r\n" + 
