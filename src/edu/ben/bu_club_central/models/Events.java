@@ -14,12 +14,14 @@ public class Events {
 	private int rsvp_count;
 	private int club_id_num;
 	private int acutal_count;
+	private String category;
 	
-	public Events(String event_name, String description, String location, int club_id_num){
+	public Events(String event_name, String description, String location, int club_id_num, String category){
 		this.event_name = event_name;
 		this.description = description;
 		this.location = location;
 		this.club_id_num = club_id_num;
+		this.category = category;
 	}
 	
 	public int getAcutal_count() {
@@ -123,6 +125,14 @@ public class Events {
 	 */
 	public void setClub_id_num(int club_id_num) {
 		this.club_id_num = club_id_num;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }
 

@@ -372,7 +372,7 @@
                     <%
 			ClubDao cDao2 = new ClubDao();
 			LinkedList<Club> clubList = new LinkedList<Club>();
-			clubList = cDao2.displayClub();
+			clubList = cDao2.getAllClubs();
 
 			int index = 0;
 		%>
@@ -383,7 +383,7 @@
 							while (index < clubList.size()) {
 						%>
                       <li><form action ="EventpageByClub" method="POST" >
-                      <button type="submit" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-dark"><%
+                      <button type="submit" class="btn btn-xs btn-default" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-red"><%
 												out.println(clubList.get(index).getClub_name());
 											%>(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></button></form></li>
 												<%
@@ -396,6 +396,42 @@
                   </div>
                   
                 </div>
+                     <div class="range offset-top-41">
+                  <div class="cell-xs-6 cell-md-12">
+                    <!-- Category-->
+                    <h6 class="text-uppercase text-spacing-60">Users Going</h6>
+                    <div class="text-subline"></div>
+                        <%
+                         int rsvpIndex = 0;
+              			int rsvpListSize = userList.size();
+              		
+              		%>
+              		
+	
+                   <ul class="list list-marked offset-top-30">
+                    <%while(rsvpIndex < rsvpListSize) { %>
+                    <li><a href="#"><%=userList.get(rsvpIndex).getFirst_name() + " " + userList.get(rsvpIndex).getLast_name() %><span class="text-dark"></span></a></li>
+                     <%rsvpIndex++; %>
+						<%} %>           
+                      
+                    </ul>
+                  </div>
+                  
+                  
+                  
+                </div>
+                <!-- Categories -->
+                <p class="big text-medium offset-top-41 text-uppercase text-spacing-60">Categories</p>
+                <div class="text-subline"></div>
+                <div class="offset-top-34">
+                                <div class="group-xs">
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Sports" class="btn btn-xs btn-default">Sports</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Technology" class="btn btn-xs btn-default">Technology</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Movies" class="btn btn-xs btn-default">Movies</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Arts" class="btn btn-xs btn-default">Arts</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Community" class="btn btn-xs btn-default">Community</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Other" class="btn btn-xs btn-default">Other</button></form>
+                                </div>
                 <!-- Search Form-->
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>
@@ -414,50 +450,63 @@
             </div>
           </div>
         </div>
+
       </main>
 
 
 		<!-- Page Footer-->
 		<footer
 			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
-
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
 					<div class="range range-xs-center">
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<br>
+					<p><b>Some Useful links</b></p>
+					<a href= "HomeServlet">Home</a><br>
+					<a href= "EventServlet">Events</a><br>
+					<a href= "clublistServlet">Clubs</a><br>
+					<a href= "ContactUsServlet">Contact Us</a><br>
+					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					</div>
+					
+						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
 							<!-- Footer brand-->
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
-									<li><a
-										href="https://www.facebook.com/BenedictineUniversity/"
-										target="_blank"
-
+									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
 										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a
-										href="https://plus.google.com/106737408889171586664"
-										target="_blank"
+									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a
-										href="https://www.linkedin.com/edu/benedictine-university-18245"
-										target="_blank"
+									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-                  </div>
-                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
-                    <!-- {%FOOTER_LINK}-->
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+								<img src="img/Entrance.jpg" width = "80%" height = "80%">
+							<p class="text-darker offset-top-20">
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+									href="privacy.html">Privacy Policy</a>
+									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
+								<!-- {%FOOTER_LINK}-->
+							</p>
+						</div>
+					</div>
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<br>
+						<br>
+						<br>
+						<a href= "loginServlet">Login</a><br>
+						<a href= "RegisterServlet">Register</a><br>
+						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
+						<a href= "forgotUsernameServlet">Forot Username?</a><br>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
 	</div>
 	<!-- Global Mailform Output-->
 	<div id="form-output-global" class="snackbars"></div>

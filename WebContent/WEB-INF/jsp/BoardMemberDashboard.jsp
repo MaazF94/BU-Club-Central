@@ -46,8 +46,6 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
-		
-
 </head>
 <body>
 	<!-- Page-->
@@ -114,7 +112,7 @@
  					} else {
  							%> <%=((User) session.getAttribute("user")).getFirst_name()%>
  							  <span class="caret"></span></a>
- 							
+
 											<%
 					}
 											%>
@@ -326,11 +324,9 @@
 							</div>
 
 						</div>
-
-
-
 						
-<div role="tabpanel" class="tab-pane" id="editClubInfo">
+						
+						<div role="tabpanel" class="tab-pane" id="editClubInfo">
 							<div class="container">
 								<%
 								ClubDao clubDao = new ClubDao();
@@ -388,6 +384,10 @@
 									</table>
 							</div>
 						</div>
+
+
+
+						
 
 
 
@@ -933,76 +933,52 @@
 
 		<!-- Page Footer-->
 		<footer
-			class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
+			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
 					<div class="range range-xs-center">
-						<div
-							class="cell-xs-10 cell-sm-3 text-left cell-sm-push-4 cell-sm-10 cell-lg-3 offset-sm-top-50 offset-lg-top-0 cell-lg-push-2">
-							<!-- Twitter Feed-->
-							<h6
-								class="text-uppercase text-spacing-60 text-center text-lg-left">Twitter
-								Feed</h6>
-							<div class="offset-top-20">
-								<div data-twitter-username="templatemonster"
-									data-twitter-date-hours=" hours ago"
-									data-twitter-date-minutes=" minutes ago" class="twitter">
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-									<div data-twitter-type="tweet" class="twitter-sm">
-										<div class="twitter-date text-dark small">
-											<span class="icon icon-xxs mdi mdi-twitter text-middle"></span>
-											<span data-date="text" class="text-middle"></span>
-										</div>
-										<div data-tweet="text" class="twitter-text"></div>
-										<div data-screen_name="text"
-											class="twitter-name text-bold big"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<br>
+					<p><b>Some Useful links</b></p>
+					<a href= "HomeServlet">Home</a><br>
+					<a href= "EventServlet">Events</a><br>
+					<a href= "clublistServlet">Clubs</a><br>
+					<a href= "ContactUsServlet">Contact Us</a><br>
+					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					</div>
+					
+						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
 							<!-- Footer brand-->
-							<div class="footer-brand">
-								<a href="../index.html"><img
-									src="img/logo_benedictinetransparentwhite.png" width="238"
-									height="30" alt="" class="img-responsive reveal-inline-block"></a>
-							</div>
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
-									<li><a
-										href="https://www.facebook.com/BenedictineUniversity/"
-										target="_blank"
+									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
 										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a
-										href="https://plus.google.com/106737408889171586664"
-										target="_blank"
+									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
 										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a
-										href="https://www.linkedin.com/edu/benedictine-university-18245"
-										target="_blank"
+									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-							</div>
+								<img src="img/Entrance.jpg" width = "80%" height = "80%">
 							<p class="text-darker offset-top-20">
-								The F.I.R.M. &copy; <span id="copyright-year"></span> . <a
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
+									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
 								<!-- {%FOOTER_LINK}-->
 							</p>
 						</div>
+					</div>
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<br>
+						<br>
+						<br>
+						<a href= "loginServlet">Login</a><br>
+						<a href= "RegisterServlet">Register</a><br>
+						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
+						<a href= "forgotUsernameServlet">Forot Username?</a><br>
 					</div>
 				</div>
 			</div>
@@ -1152,8 +1128,21 @@
 								Location</label> <input name="location" type="text" class="form-control"
 								id="location" placeholder="Location of Event">
 						</div>
+						<div class="form-group">
+						</div>
 						
-						<br>
+
+						<div class="form-group">
+						<label for=""><span class="glyphicon glyphicon-list"></span>
+								Categories</label><br> 
+							<label><input type="checkbox" name="category" value= "sports"/>Sports</label><br>
+              				<label><input type="checkbox" name="category" value= "technology"/>Technology</label><br>
+              				<label><input type="checkbox" name="category" value= "movies"/>Movies</label><br>
+              				<label><input type="checkbox" name="category" value= "arts"/>arts</label><br>
+              				<label><input type="checkbox" name="category" value= "community"/>Community</label><br>
+             			    <label><input type="checkbox" name="category" value= "other"/>Other</label><br>
+						</div>
+						</div>
 						<br>
 						
 						<div class="form-group">

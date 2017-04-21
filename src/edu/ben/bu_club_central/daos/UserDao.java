@@ -28,6 +28,7 @@ public class UserDao {
 				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name
 				+ "', '" + last_name + "', '" + username + "', '" + passwrd + "', " + id_num + ", '" + email + "', "
 				+ default_user_id + ", " + enabled + ")";
+		System.out.println(sql);
 
 		PreparedStatement ps;
 		try {
@@ -157,7 +158,7 @@ public class UserDao {
 			if (j == 0) {
 				for (int k = 0; k < roleIDs.length; k++) {
 					if (roleIDs[k] != 0) {
-						if (roleIDs[k] == 2) {
+						if (roleIDs[k] == 2 && clubIDs[j] > 0) {
 							sql = "UPDATE " + tableName + " SET role_id=" + roleIDs[k] + ", club_id_num = " + clubIDs[j]
 									+ " WHERE iduser=" + userIDs[k];
 

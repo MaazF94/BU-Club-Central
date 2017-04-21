@@ -133,12 +133,12 @@
 											<%
 												if (role_id == 1) {
 											%>
-											<li><a href="UserServlet"><span class="">Dash
-														Board</span></a> <%
+											<li><a href="UserServlet">Dash
+														Board</a> <%
  	} else if (role_id == 2) {
  %>
-											<li><a href="BoardMemberDashBoard"><span class="">Dash
-														Board</span></a> <%
+											<li><a href="BoardMemberDashBoard">Dash
+														Board</a> <%
  	} else {
  %>
 											<li><a href="AdminHome"><span class="">Dash
@@ -159,6 +159,7 @@
       </li>
 								
 								
+                
                       <li><a href="#"><span></span></a></li>
                           </ul>
 									
@@ -225,7 +226,7 @@
             <%
 									LinkedList<Events> eventList = new LinkedList<Events>();
 									EventsDao eDao = new EventsDao();
-									eventList = eDao.getAllEvents();
+									eventList = eDao.getLast3Events();
 									int eventListIndex = 0;
 									
 								%>
@@ -266,10 +267,18 @@
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
 					<div class="range range-xs-center">
-
-
-						<div
-							class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<br>
+					<p><b>Some Useful links</b></p>
+					<a href= "HomeServlet">Home</a><br>
+					<a href= "EventServlet">Events</a><br>
+					<a href= "clublistServlet">Clubs</a><br>
+					<a href= "ContactUsServlet">Contact Us</a><br>
+					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					</div>
+					
+						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
 							<!-- Footer brand-->
 							<div class="offset-top-50 text-xs-center text-lg-left">
 								<ul class="list-inline">
@@ -282,7 +291,7 @@
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-							</div>
+								<img src="img/Entrance.jpg" width = "80%" height = "80%">
 							<p class="text-darker offset-top-20">
 								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
@@ -290,6 +299,15 @@
 								<!-- {%FOOTER_LINK}-->
 							</p>
 						</div>
+					</div>
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<br>
+						<br>
+						<br>
+						<a href= "loginServlet">Login</a><br>
+						<a href= "RegisterServlet">Register</a><br>
+						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
+						<a href= "forgotUsernameServlet">Forot Username?</a><br>
 					</div>
 				</div>
 			</div>

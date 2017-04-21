@@ -62,6 +62,15 @@ public class ClubHomepageServlet extends HttpServlet {
 		String broadcast = clubObject.getBroadcast_Update();
 		request.setAttribute("broadcast", broadcast);
 		
+		String meetingLoc = clubObject.getMeeting_Loc();
+		request.setAttribute("meetingLoc", meetingLoc);
+		
+		String meetingTime = clubObject.getMeeting_Time();
+		request.setAttribute("meetingTime", meetingTime);
+		
+		String meetingFreq = clubObject.getMeeting_Freq();
+		request.setAttribute("meetingFreq", meetingFreq);
+		
 		PostDao pDao = new PostDao();
 		LinkedList<Post> postList = new LinkedList<Post>();
 		postList = pDao.getAllPostsByClubId(((User)request.getSession().getAttribute("user")).getClub_id_num());

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.models.User;
 import mailDispatcher.SendMail;
 
 /**
@@ -30,7 +31,11 @@ public class NewClubSubmissionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
+		if (((User) request.getSession().getAttribute("user")) != null ) {
+			request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("MustLoginToViewServlet");
+		}
 	}
 
 	/**
@@ -315,7 +320,10 @@ public class NewClubSubmissionServlet extends HttpServlet {
 						"                        <p>\r\n" + 
 						"                          <b>Description of Club:</b>\r\n" + 
 						"                        </p>\r\n" + 
-						"                        <p>" + request.getParameter("clubDescription") + "</p>\r\n" +
+						"                        <p>" + request.getParameter("clubDescription") + 
+						"                        <p>\r\n" + 
+						"                          <b>Requested Preference: </b>\r\n" + request.getParameter("preference") +
+						"                        </p>\r\n" + 
 						"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">\r\n" + 
 						"                          <tbody>\r\n" + 
 						"                            <tr>\r\n" + 
@@ -323,7 +331,7 @@ public class NewClubSubmissionServlet extends HttpServlet {
 						"                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\r\n" + 
 						"                                  <tbody>\r\n" + 
 						"                                    <tr>\r\n" + 
-						"                                      <td> <a href=\"http://cs.ben.edu/bu-club-central/AdminHome\" target=\"_blank\">Benedictine</a> </td>\r\n" + 
+						"                                      <td> <a href=\"http://localhost:8080/bu-club-central/AdminHome\" target=\"_blank\">Benedictine</a> </td>\r\n" + 
 						"                                    </tr>\r\n" + 
 						"                                  </tbody>\r\n" + 
 						"                                </table>\r\n" + 
@@ -371,7 +379,7 @@ public class NewClubSubmissionServlet extends HttpServlet {
 				System.out.println("Sent email");
 		
 		ClubDao cDao = new ClubDao();
-		if (cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 0, request.getParameter("petEmail"),request.getParameter("advisorName"))) {
+		if (cDao.addClub(request.getParameter("clubName"),request.getParameter("petName"), request.getParameter("clubDescription"), 0, request.getParameter("petEmail"),request.getParameter("advisorName"),request.getParameter("preference"))) {
 			String message = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<title>Mileage</title>\r\n"
 					+ "<style> \r\n" + ".isa_success {\r\n" + "color: #4F8A10;\r\n"
 					+ "background-color: #DFF2BF;\r\n" + "}\r\n" + "</style>\r\n" + "</head>\r\n<body>\r\n"

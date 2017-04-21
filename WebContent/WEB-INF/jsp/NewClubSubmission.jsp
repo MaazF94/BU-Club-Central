@@ -231,14 +231,14 @@
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
                         <a href="#" title="Name of Advisor" class="masterTooltip"><strong>Advisor Name:</strong></a>
-                        <input id="contact-us-email" type="text" name="advisorName"  data-constraints="@Required @Email" class="form-control form-control-impressed">
+                        <input id="contact-us-message" type="text" name="advisorName"  data-constraints="@Required" class="form-control form-control-impressed">
                       	<br/>
                       </div>
                     </div>
                     <div class="cell-lg-6 offset-top-20 offset-lg-top-0">
                       <div class="form-group">
                         <a href="#" title="The Name of the head petitioner for the club" class="masterTooltip"><strong>Petitioner Name:</strong></a>
-                        <input id="contact-us-email" type="text" name="petName" data-constraints="@Required @Email" class="form-control form-control-impressed">
+                        <input id="contact-us-message" type="text" name="petName" data-constraints="@Required " class="form-control form-control-impressed">
                       </div>
                     </div>
                     <div class="cell-lg-12 offset-top-20">
@@ -247,11 +247,27 @@
                         <textarea id="contact-us-message" name="clubDescription"  data-constraints="@Required" class="form-control form-control-impressed"></textarea>
                       </div>
                     </div>
+                      <div class="cell-lg-4">
+              <h3 class="text-bold"><a href="#" title="Choose a category for your club" class="masterTooltip">Preference</a></h3>
+            	
+            
+		
+              
+              <label><input type="checkbox" name="preference" value= "sports"/>Sports</label><br>
+              <label><input type="checkbox" name="preference" value= "technology"/>Technology</label><br>
+              <label><input type="checkbox" name="preference" value= "movies"/>Movies</label><br>
+              <label><input type="checkbox" name="preference" value= "arts"/>arts</label><br>
+              <label><input type="checkbox" name="preference" value= "community"/>Community</label><br>
+              <label><input type="checkbox" name="preference" value= "other"/>Other</label><br>
+                
+              </div>
                   </div>
                   <div class="group-sm text-center text-lg-left offset-top-30">
                     <button type="submit" class="btn btn-danger">Send</button>
                     <button type="reset" class="btn btn-default">Reset</button>
+                    
                   </div>
+                
                 </form>
               </div>
             </div>
@@ -290,22 +306,27 @@
       
       
       <!-- Page Footer-->
-      <footer class="section-relative section-top-66 section-bottom-34 page-footer bg-gray-base context-dark">
-        <div class="shell">
-          <div class="range range-sm-center text-lg-left">
-            <div class="cell-sm-12">
-              <div class="range range-xs-center">
-               
-                
-                 <div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
-                  
-                  
-                        
-                      
-                      
-  
-                  <div class="offset-top-50 text-xs-center text-lg-left">
-                    <ul class="list-inline">
+      <footer
+			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+		<div class="shell">
+			<div class="range range-sm-center text-lg-left">
+				<div class="cell-sm-12">
+					<div class="range range-xs-center">
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+					<br>
+					<p><b>Some Useful links</b></p>
+					<a href= "HomeServlet">Home</a><br>
+					<a href= "EventServlet">Events</a><br>
+					<a href= "clublistServlet">Clubs</a><br>
+					<a href= "ContactUsServlet">Contact Us</a><br>
+					<a href= "MeetTheAdminsServlet">About Us</a><br>
+					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					</div>
+					
+						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+							<!-- Footer brand-->
+							<div class="offset-top-50 text-xs-center text-lg-left">
+								<ul class="list-inline">
 									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
 										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
 									<li><a href="https://twitter.com/BenU1887" target="_blank"
@@ -315,16 +336,28 @@
 									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
 										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
 								</ul>
-                  </div>
-                  <p class="text-darker offset-top-20">The F.I.R.M &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a>
-                    <!-- {%FOOTER_LINK}-->
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+								<img src="img/Entrance.jpg" width = "80%" height = "80%">
+							<p class="text-darker offset-top-20">
+								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
+									href="privacy.html">Privacy Policy</a>
+									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
+								<!-- {%FOOTER_LINK}-->
+							</p>
+						</div>
+					</div>
+					<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
+						<br>
+						<br>
+						<br>
+						<a href= "loginServlet">Login</a><br>
+						<a href= "RegisterServlet">Register</a><br>
+						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
+						<a href= "forgotUsernameServlet">Forot Username?</a><br>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
     </div>
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>

@@ -7,6 +7,7 @@ public class Club {
 	private int club_id_num;
 	private String pet_email;
 	private String advisor_name;
+	private String preference;
 	private int enabled;
 	private String meeting_time;
 	private String meeting_freq;
@@ -14,15 +15,18 @@ public class Club {
 	private String broadcast_update;
 	
 	
+
 	public Club (int club_id_num, String club_name, String pet_name, String club_description, String pet_email,
 			String advisor_name, int enabled, String meeting_time, String meeting_freq, String meeting_loc,
-			String broadcast_update) {
+			String broadcast_update, String preference) {
+
 		this.club_name = club_name;
 		this.pet_name = pet_name;
 		this.club_description = club_description;
 		this.club_id_num = club_id_num;
 		this.pet_email = pet_email;
 		this.advisor_name = advisor_name;
+		this.preference = preference;
 		this.enabled = enabled;
 		this.meeting_time = meeting_time;
 		this.meeting_freq = meeting_freq;
@@ -134,6 +138,16 @@ public class Club {
 
 	public void setBroadcast_Update(String broadcast_update) {
 		this.broadcast_update = broadcast_update;
+	}
+
+
+	public String getPreference() {
+		return preference;
+	}
+
+
+	public void setPreference(String preference) {
+		this.preference = preference;
 	}
 
 	
