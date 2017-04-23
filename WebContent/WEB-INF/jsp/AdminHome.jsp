@@ -34,7 +34,12 @@
     <script src="js/js/sweetalert2.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 		<!--[if lt IE 10]>
-    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); 
+    	clear: both; text-align:center; position: relative; z-index:1;">
+    	<a href="http://windows.microsoft.com/en-US/internet-explorer/">
+    	<img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" 
+    	alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.">
+    	</a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 		
@@ -259,18 +264,66 @@
 											<td><%=memberCount%> </td>
 											<td>
 											<%if (clubList.get(clubListIndex).getEnabled() == 1) { %>
-												<form action="AdminDeleteClubServlet" method="POST">
+												
 													<%int clubId = clubList.get(clubListIndex).getClub_id_num();%>
-													<button  title="Disable Club"  class="btn btn-danger masterTooltip" type="submit" name="deleteClubId" value="<%=clubId%>"><i class="mdi-lock mdi  "></i></button>
-															
-												</form>
+													
+													<a data-toggle="modal" href="#confirmationModal"><button  title="Disable Club"  class="btn btn-danger masterTooltip" ><i class="mdi-lock mdi"></i></button></a>	
+													<div class="modal fade" id="confirmationModal" role="dialog">
+														<div class="modal-dialog" style="top: 25%;">
+												
+															<!-- Modal content-->
+															<div class="modal-content">
+																<div class="modal-body" style="padding: 40px 50px;">
+																	<p style="margin-left: 75px"><b>Are you sure you want to disable the following club?</b></p>
+																	<p style="margin-left: 75px"><%=clubList.get(clubListIndex).getClub_name() %></p>
+																	<p style="margin-left: 75px"> Doing so will email the petitioner of the club 
+																	that their club has been <b>removed</b> from the Club Central Website?</p>
+																	<form role="form" method="POST" action="AdminDeleteClubServlet">
+																		<button style= "margin-left: 50px; margin-right: 50px;"type="submit" 
+																		class="btn btn-danger center" name= "deleteClubId" value="<%=clubId %>">
+																			<span class="glyphicon glyphicon-lock"></span> Disable Club
+																		</button>
+																						
+																		<button type="button" class="btn btn-info center"
+																			data-dismiss="modal">
+																			<span class="glyphicon glyphicon-trash"></span> Cancel
+																		</button>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
 											<%} else { %>
 												
-												<form action="AdminEnableClubServlet" method="POST">
 													<%int clubIdnew = clubList.get(clubListIndex).getClub_id_num();%>
-													<button  title="Accept Club"  class="btn btn-info masterTooltip" type="submit" name="enableClubId" value="<%=clubIdnew%>"><i class="mdi mdi-account-multiple-plus mdi  "></i></button>
 													
-												</form>
+													<a data-toggle="modal" href="#enableModal"><button  title="Accept Club"  class="btn btn-info masterTooltip" ><i class="mdi mdi-account-multiple-plus mdi"></i></button></a>
+				
+													<div class="modal fade" id="enableModal" role="dialog">
+														<div class="modal-dialog" style="top: 25%;">
+												
+															<!-- Modal content-->
+															<div class="modal-content">
+																<div class="modal-body" style="padding: 40px 50px;">
+																	<p style="margin-left: 75px"><b>Are you sure you want to enable the following club?</b></p>
+																	<p style="margin-left: 75px"><%=clubList.get(clubListIndex).getClub_name() %></p>
+																	<p style="margin-left: 75px">Doing so will notify the petitioner that their club has
+																	been accepted and will also now show up on the club central website.
+																	<form role="form" method="POST" action="AdminEnableClubServlet">
+																		<button style= "margin-left: 50px; margin-right: 50px;"type="submit" class="btn btn-info center" name= "enableClubId" value="<%=clubIdnew %>">
+																			<span class="glyphicon glyphicon-lock"></span> Enable Club
+																		</button>
+																						
+																		<button type="button" class="btn btn-danger center"
+																			data-dismiss="modal">
+																			<span class="glyphicon glyphicon-trash"></span> Cancel
+																		</button>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												
 											<%} %>
 											</td>
 										</tr>
@@ -758,13 +811,11 @@
     
 	
     <!-- Java script-->
-    
-
-    	<!-- Board Member Modal -->
 
 	<script>
 		$(document).ready(function() {
 			$("#setRolesModal").modal();
+			$("#confirmationModal").modal();
 		});
 	</script>
     <script type="text/javascript">

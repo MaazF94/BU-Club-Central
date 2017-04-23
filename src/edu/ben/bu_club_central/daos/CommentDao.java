@@ -66,9 +66,11 @@ public class CommentDao {
 				commentList.add(c);
 
 			}
+			
 			rs.close();
-			conn.close();
+		
 			dbc.closeConnection();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

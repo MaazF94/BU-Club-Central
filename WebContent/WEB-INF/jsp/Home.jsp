@@ -261,8 +261,7 @@
           </div>
         </section>
 		<!-- Page Footer-->
-		<footer
-			class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
+		<footer	class="section-relative  section-bottom-34 page-footer bg-gray-base context-dark">
 		<div class="shell">
 			<div class="range range-sm-center text-lg-left">
 				<div class="cell-sm-12">
