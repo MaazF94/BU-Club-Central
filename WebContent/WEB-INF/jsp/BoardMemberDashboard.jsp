@@ -331,7 +331,7 @@
 								<%
 								ClubDao clubDao = new ClubDao();
 								Club clubObject = clubDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-									String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
+									String clubDescription = clubObject.getClub_description();
 									String clubMeetingTime = ((Club) request.getAttribute("clubObject")).getMeeting_Time();
 									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
 									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();

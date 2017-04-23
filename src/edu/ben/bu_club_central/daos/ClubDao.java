@@ -25,28 +25,37 @@ public class ClubDao {
 	/**
 	 * intializes connection to database
 	 */
-	private DatabaseConnection dbc = new DatabaseConnection();
+	private DatabaseConnection dbc;
 	/**
 	 * connects to the database
 	 */
-	private Connection conn = dbc.getConn();
+	private Connection conn;
 
 	public int clubID = 0;
 
 	/**
 	 * Adds a new club to the database table
-<<<<<<< HEAD
-	 * @param club_name name of the club
-	 * @param pet_name the name of the head petitioner for the club
-	 * @param club_description a description of the club
-	 * @param enabled either 1 or 0
-	 * @param pet_email the head petitioners email
-	 * @param advisor_name the name of the clubs advisor
-	 * @param string 
+	 * 
+	 * @param club_name
+	 *            name of the club
+	 * @param pet_name
+	 *            the name of the head petitioner for the club
+	 * @param club_description
+	 *            a description of the club
+	 * @param enabled
+	 *            either 1 or 0
+	 * @param pet_email
+	 *            the head petitioners email
+	 * @param advisor_name
+	 *            the name of the clubs advisor
+	 * @param string
 	 */
-	public boolean addClub( String club_name, String pet_name, String club_description, int enabled, String pet_email, String advisor_name, String preference ) {
-		String sql = "SELECT max(club_id_num) from " + tableName + ""; 
-		System.out.println("This is the preference: "+preference);
+	public boolean addClub(String club_name, String pet_name, String club_description, int enabled, String pet_email,
+			String advisor_name, String preference) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "SELECT max(club_id_num) from " + tableName + "";
+		System.out.println("This is the preference: " + preference);
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -57,28 +66,29 @@ public class ClubDao {
 				clubID = cs.getInt("max(club_id_num)");
 				++clubID;
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		sql = "INSERT INTO " + tableName
 
-				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name, preference) VALUES (" + clubID + ", '" + club_name + "', '"+ pet_name + "', '" + club_description + "', "+
-				 enabled + ",'" + pet_email+"','"+advisor_name+ "','"+preference+"')"; 
-	
+				+ " (club_id_num, club_name, pet_name, club_description, enabled, pet_email, advisor_name, preference) VALUES ("
+				+ clubID + ", '" + club_name + "', '" + pet_name + "', '" + club_description + "', " + enabled + ",'"
+				+ pet_email + "','" + advisor_name + "','" + preference + "')";
 
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 		}
-		
+
 		return false;
 	}
 
@@ -89,6 +99,8 @@ public class ClubDao {
 	 * @return the linked list of the current clubs.
 	 */
 	public LinkedList<Club> displayClub() {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		LinkedList<Club> results = new LinkedList<Club>();
 		String sql;
 
@@ -103,14 +115,16 @@ public class ClubDao {
 				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
 						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
 						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
-						cs.getString("meeting_loc"), cs.getString("broadcast_update"),cs.getString("preference"));
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"), cs.getString("preference"));
 				results.add(newClub);
 			}
 			cs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return results;
 	}
 
@@ -121,40 +135,46 @@ public class ClubDao {
 	 * @return the linked list of the current clubs.
 	 */
 	public LinkedList<Club> displayClubWithoutBM() {
-	 LinkedList<Club> results = new LinkedList<Club>();
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		LinkedList<Club> results = new LinkedList<Club>();
 		String sql;
-		
-		
-		sql = "SELECT * FROM " + tableName + " left outer join user on club.club_id_num = user.club_id_num where club.enabled = 1 and user.club_id_num is null";
-		
-			
+
+		sql = "SELECT * FROM " + tableName
+				+ " left outer join user on club.club_id_num = user.club_id_num where club.enabled = 1 and user.club_id_num is null";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
-			
+
 			while (cs.next()) {
-				
-				Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-				cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
-						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"), 
-						cs.getString("meeting_loc"), cs.getString("broadcast_update"),cs.getString("preference"));
+
+				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"), cs.getString("preference"));
 
 				results.add(newClub);
 			}
 			cs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return results;
 	}
-	
+
 	/**
-	 * Display club gets the list of current clubs and adds them to a linked list. This allows them to be displayed in a JSP 
+	 * Display club gets the list of current clubs and adds them to a linked
+	 * list. This allows them to be displayed in a JSP
+	 * 
 	 * @return the linked list of the current clubs.
 	 */
 	public LinkedList<Club> displayClubForAdmin() {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		LinkedList<Club> results = new LinkedList<Club>();
 		String sql;
 
@@ -166,23 +186,26 @@ public class ClubDao {
 
 			while (cs.next()) {
 
-
 				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
 						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
-						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"), 
-						cs.getString("meeting_loc"), cs.getString("broadcast_update"),cs.getString("preference"));
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"), cs.getString("preference"));
 
 				results.add(newClub);
 			}
 			cs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return results;
 	}
 
 	public Club getClubById(int clubId) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
 
 		PreparedStatement ps;
@@ -203,18 +226,22 @@ public class ClubDao {
 				club = new Club(rs.getInt("club_id_num"), rs.getString("club_name"), rs.getString("pet_name"),
 						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),
 						rs.getInt("enabled"), rs.getString("meeting_time"), rs.getString("meeting_freq"),
-						rs.getString("meeting_loc"), rs.getString("broadcast_update"),rs.getString("preference"));
+						rs.getString("meeting_loc"), rs.getString("broadcast_update"), rs.getString("preference"));
 
 			}
 			rs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return club;
 	}
 
 	public LinkedList<Club> getAllClubs() {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		String sql = "SELECT * FROM " + tableName;
 
 		PreparedStatement ps;
@@ -234,35 +261,24 @@ public class ClubDao {
 
 				club = new Club(rs.getInt("club_id_num"), rs.getString("club_name"), rs.getString("pet_name"),
 						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),
-						rs.getInt("enabled"), rs.getString("meeting_time"), rs.getString("meeting_freq"), 
-						rs.getString("meeting_loc"), rs.getString("broadcast_update"),rs.getString("preference"));
+						rs.getInt("enabled"), rs.getString("meeting_time"), rs.getString("meeting_freq"),
+						rs.getString("meeting_loc"), rs.getString("broadcast_update"), rs.getString("preference"));
 
 				clubList.add(club);
 			}
 			rs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return clubList;
 	}
 
-	// public void deleteClub( String club_name) {
-	// String sql = "DELETE FROM" + tableName + "WHERE club_name ="+ "'"+
-	// club_name +"'";
-	//
-	// PreparedStatement ps;
-	// try {
-	// ps = conn.prepareStatement(sql);
-	// ps.executeUpdate();
-	// } catch (SQLException e) {
-	// System.out.println("Did not update");
-	// e.printStackTrace();
-	// }
-	//
-	// }
-	//
 	public void deleteClub(String club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		String sql = "SELECT * FROM " + tableName;
 
 		try {
@@ -278,12 +294,15 @@ public class ClubDao {
 				System.out.println(ps);
 
 				ps.executeUpdate();
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -293,96 +312,118 @@ public class ClubDao {
 	 * @param club_id_num
 	 */
 	public boolean editClubDescription(String club_description, int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		String sql = "UPDATE " + tableName + " SET club_description = '" + club_description + "'"
 				+ " WHERE club_id_num = " + club_id_num;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-	
+
 		return false;
 	}
-	
+
 	public boolean editClubMeetingTime(String meeting_time, int club_id_num) {
-		String sql = "UPDATE " + tableName + " SET meeting_time = '" + meeting_time + "'"
-				+ " WHERE club_id_num = " + club_id_num;
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET meeting_time = '" + meeting_time + "'" + " WHERE club_id_num = "
+				+ club_id_num;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-	
+
 		return false;
 	}
-	
+
 	public boolean editClubMeetingLoc(String meeting_loc, int club_id_num) {
-		String sql = "UPDATE " + tableName + " SET meeting_loc = '" + meeting_loc + "'"
-				+ " WHERE club_id_num = " + club_id_num;
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET meeting_loc = '" + meeting_loc + "'" + " WHERE club_id_num = "
+				+ club_id_num;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-	
+
 		return false;
 	}
-	
+
 	public boolean editClubMeetingFreq(String meeting_freq, int club_id_num) {
-		String sql = "UPDATE " + tableName + " SET meeting_freq = '" + meeting_freq + "'"
-				+ " WHERE club_id_num = " + club_id_num;
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET meeting_freq = '" + meeting_freq + "'" + " WHERE club_id_num = "
+				+ club_id_num;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-	
+
 		return false;
 	}
-	
+
 	public boolean editClubBroadcast(String broadcast, int club_id_num) {
-		String sql = "UPDATE " + tableName + " SET broadcast_update = '" + broadcast + "'"
-				+ " WHERE club_id_num = " + club_id_num;
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET broadcast_update = '" + broadcast + "'" + " WHERE club_id_num = "
+				+ club_id_num;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			if (ps.executeUpdate() == 1) {
-				
+				ps.close();
+				conn.close();
+				dbc.closeConnection();
 				return true;
 			}
 		} catch (SQLException e) {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-	
+
 		return false;
 	}
 
 	public void disableClub(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		String sql = "UPDATE " + tableName + " SET enabled = 0 WHERE club_id_num = " + club_id_num;
 
 		PreparedStatement ps;
@@ -391,13 +432,18 @@ public class ClubDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void enableClub(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		String sql = "UPDATE " + tableName + " SET enabled = 1 WHERE club_id_num = " + club_id_num;
 
 		PreparedStatement ps;
@@ -406,13 +452,18 @@ public class ClubDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public int countMemebers(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		LinkedList<User> list = new LinkedList<User>();
 		User user;
 		String sql = "SELECT * FROM  bu_club_central.user WHERE club_id_num = " + club_id_num;
@@ -428,11 +479,6 @@ public class ClubDao {
 
 		try {
 			while (rs.next()) {
-				// user = new User(rs.getString("first_name"),
-				// rs.getString("last_name"), rs.getString("username"),
-				// rs.getString("passwrd"), rs.getInt("id_num"),
-				// rs.getString("email"),
-				// rs.getInt("role_id"), rs.getInt("enabled"));
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
 						rs.getInt("iduser"), rs.getInt("enabled"));
@@ -440,45 +486,47 @@ public class ClubDao {
 				list.add(user);
 			}
 			rs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		size = list.size();
-		
+
 		return size;
 	}
 
 	public LinkedList<Club> displayClubByPreference(String preference) {
-		 LinkedList<Club> results = new LinkedList<Club>();
-			String sql;
-			
-			
-			sql = "SELECT * FROM " + tableName + " where preference ="+ "'"+ preference +"'";
-			System.out.println(sql);
-				
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		LinkedList<Club> results = new LinkedList<Club>();
+		String sql;
 
-			try {
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ResultSet cs = ps.executeQuery();
-				
-				while (cs.next()) {
-					
-					Club newClub = new Club( cs.getInt("club_id_num"), cs.getString("club_name"),cs.getString("pet_name"), 
-							cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"), 
-									cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"), 
-									cs.getString("meeting_loc"), cs.getString("broadcast_update"),cs.getString("preference"));
+		sql = "SELECT * FROM " + tableName + " where preference =" + "'" + preference + "'";
+		System.out.println(sql);
 
-							results.add(newClub);
-				}
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
 
-			} catch (SQLException e) {
-				e.printStackTrace();
+			while (cs.next()) {
+
+				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"), cs.getString("preference"));
+
+				results.add(newClub);
 			}
-
-			return results;
+			cs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	
 
+		return results;
+	}
 
 }
