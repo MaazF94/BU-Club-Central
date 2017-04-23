@@ -225,22 +225,22 @@
 		</header>
 		<!-- Page Contents-->
 		<main class="page-content"> <section
-			class="section-top-98 section-md-top-110 text-lg-left">
+			class="section-top-60 section-md-top-40 text-lg-left">
 		<div class="shell">
 
 			<div class="range range-xs-center range-xs-center">
-				<h1>User Dashboard</h1>
-
+				<h1>Hello <%=((User) session.getAttribute("user")).getFirst_name()%></h1>
+	
 				<!-- Put dashboard code here -->
 				<section>
 				<div class="shell">
 					${message}
 					<div class="row">
-						<div class="container">
+						<div class="nav-stacked-container">
 							<div class="container" style="height: 100px"></div>
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
-								<ul class="nav nav-tabs" role="tablist">
+								<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
 									<li class="active" role="presentation"><a href="#viewEvents"
 										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
 										
@@ -263,7 +263,7 @@
 
 								<!-- Tab panes -->
 								
-								<div class="tab-content">
+								<div class="tab-content well">
 										<div role="tabpanel" class="tab-pane active" id="viewEvents">
 							<div class="container">
 								<%
@@ -580,7 +580,9 @@
 
 							</div>
 						</div>
+						
 					</div>
+					<div class="cell-sm-8 offset-top-66 offset-lg-top-0"></div>
 				</section>
 
 				<div class="cell-sm-8 offset-top-66 offset-lg-top-0"></div>
@@ -707,7 +709,7 @@
 
 		}
 	</script>
-
+	
 	<script>
 		function enableUpdateButton1() {
 
