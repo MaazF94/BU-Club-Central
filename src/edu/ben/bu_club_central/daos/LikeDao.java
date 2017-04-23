@@ -12,8 +12,8 @@ import jdk.nashorn.internal.ir.RuntimeNode.Request;
 public class LikeDao {
 	private String tableName = "bu_club_central.likes";
 
-	private DatabaseConnection dbc = new DatabaseConnection();
-	private Connection conn = dbc.getConn();
+	private DatabaseConnection dbc;
+	private Connection conn;
 
 	/**
 	 * 
@@ -22,53 +22,57 @@ public class LikeDao {
 	 * @param likeCount
 	 * @param idevent
 	 */
-	public void addLike( int idUser,  int idevent) {
-		
-		String sql = "INSERT INTO " + tableName + " ( idUser, idevent) VALUES ( '" + idUser
-				+ "', '" + idevent + "')";
+	public void addLike(int idUser, int idevent) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "INSERT INTO " + tableName + " ( idUser, idevent) VALUES ( '" + idUser + "', '" + idevent + "')";
 
-		PreparedStatement ps = null;  
+		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	
 	public LinkedList<Likes> getAllLikesByEventId(int idevent) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
 		LinkedList<Likes> likeList = new LinkedList<Likes>();
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + idevent;
 		PreparedStatement ps;
 		ResultSet rs = null;
 		Likes newLike;
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
-			while(rs.next()) {
-				//newLike = new Likes(Integer.parseInt(rs.getString("idlike")), Integer.parseInt(rs.getString("idUser")), Integer.parseInt(rs.getString("idevent")) );
-				//newLike.setIdlike(rs.getInt("idlike"));
-				//likeList.add(newLike);
-				
+			while (rs.next()) {
+				// newLike = new Likes(Integer.parseInt(rs.getString("idlike")),
+				// Integer.parseInt(rs.getString("idUser")),
+				// Integer.parseInt(rs.getString("idevent")) );
+				// newLike.setIdlike(rs.getInt("idlike"));
+				// likeList.add(newLike);
+
 			}
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return likeList;
 	}
-	
-	
-	
-	
-	
-	
+
 }

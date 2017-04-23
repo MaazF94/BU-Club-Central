@@ -196,7 +196,7 @@
                 <h2 class="text-bold">Upcoming Events</h2>
                 <hr class="divider  bg-red">
                 <%		EventsDao eventDao = new EventsDao();
-						LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList");
+						LinkedList<Events> eventList = eventDao.getAllEvents();
 
 						int eventListSize = eventList.size();
 						int eventListIndex = 0;
@@ -329,7 +329,7 @@
 							while (index < clubList.size()) {
 						%>
                       <li><form action ="EventpageByClub" method="POST" >
-                      <button type="submit" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-dark"><%
+                      <button type="submit" class="btn btn-xs btn-default" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-red"><%
 												out.println(clubList.get(index).getClub_name());
 											%>(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></button></form></li>
 												<%
@@ -342,6 +342,18 @@
                   </div>
                   
                 </div>
+                <!-- Categories -->
+                <p class="big text-medium offset-top-41 text-uppercase text-spacing-60">Categories</p>
+                <div class="text-subline"></div>
+                <div class="offset-top-34">
+                                <div class="group-xs">
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Sports" class="btn btn-xs btn-default">Sports</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Technology" class="btn btn-xs btn-default">Technology</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Movies" class="btn btn-xs btn-default">Movies</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Arts" class="btn btn-xs btn-default">Arts</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Community" class="btn btn-xs btn-default">Community</button></form>
+                                <form action ="SearchByCategory" method="POST" ><button type = "submit" name = "category" value = "Other" class="btn btn-xs btn-default">Other</button></form>
+                                </div>
                 <!-- Search Form-->
                 <h6 class="text-uppercase text-spacing-60">Search</h6>
                 <div class="text-subline"></div>

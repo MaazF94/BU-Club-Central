@@ -329,16 +329,14 @@
 							</div>
 
 						</div>
-
-
-
 						
-<div role="tabpanel" class="tab-pane" id="editClubInfo">
+						
+						<div role="tabpanel" class="tab-pane" id="editClubInfo">
 							<div class="container">
 								<%
 								ClubDao clubDao = new ClubDao();
 								Club clubObject = clubDao.getClubById(((User) session.getAttribute("user")).getClub_id_num());
-									String clubDescription = ((Club) request.getAttribute("clubObject")).getClub_description();
+									String clubDescription = clubObject.getClub_description();
 									String clubMeetingTime = ((Club) request.getAttribute("clubObject")).getMeeting_Time();
 									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
 									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();
@@ -391,6 +389,10 @@
 									</table>
 							</div>
 						</div>
+
+
+
+						
 
 
 
@@ -1131,8 +1133,21 @@
 								Location</label> <input name="location" type="text" class="form-control"
 								id="location" placeholder="Location of Event">
 						</div>
+						<div class="form-group">
+						</div>
 						
-						<br>
+
+						<div class="form-group">
+						<label for=""><span class="glyphicon glyphicon-list"></span>
+								Categories</label><br> 
+							<label><input type="checkbox" name="category" value= "sports"/>Sports</label><br>
+              				<label><input type="checkbox" name="category" value= "technology"/>Technology</label><br>
+              				<label><input type="checkbox" name="category" value= "movies"/>Movies</label><br>
+              				<label><input type="checkbox" name="category" value= "arts"/>arts</label><br>
+              				<label><input type="checkbox" name="category" value= "community"/>Community</label><br>
+             			    <label><input type="checkbox" name="category" value= "other"/>Other</label><br>
+						</div>
+						</div>
 						<br>
 						
 						<div class="form-group">

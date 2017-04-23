@@ -226,7 +226,7 @@
             <%
 									LinkedList<Events> eventList = new LinkedList<Events>();
 									EventsDao eDao = new EventsDao();
-									eventList = eDao.getAllEvents();
+									eventList = eDao.getLast3Events();
 									int eventListIndex = 0;
 									
 								%>
