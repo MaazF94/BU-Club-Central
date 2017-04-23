@@ -151,10 +151,10 @@
 								
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
-									<a href="#" class="text-picton-blue">Forgot your password?</a>
+									<a href="ForgotPasswordServlet" class="text-picton-blue">Forgot your password?</a>
 									<div class="offset-top-0">
 										Don't have an account? <a href="RegisterServlet"
-											class="text-picton-blue">Sign up here</a>.
+											class="text-picton-blue">Sign up here!</a>
 									</div>
 									
 								</div>
@@ -166,18 +166,6 @@
 			</div>
 			</section>
 			<div class="one-page-footer">
-			<div class="offset-top-50 text-xs-center text-lg-left">
-								<ul class="list-inline">
-									<li><a href="https://www.facebook.com/BenedictineUniversity/" target="_blank"
-										class="icon fa fa-facebook icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://twitter.com/BenU1887" target="_blank"
-										class="icon fa fa-twitter icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://plus.google.com/106737408889171586664" target="_blank"
-										class="icon fa fa-google-plus icon-xxs icon-circle icon-darkest-filled"></a></li>
-									<li><a href="https://www.linkedin.com/edu/benedictine-university-18245" target="_blank"
-										class="icon fa fa-linkedin icon-xxs icon-circle icon-darkest-filled"></a></li>
-								</ul>
-							</div>
 				<p style="color: rgba(255, 255, 255, 0.3)" class="small">
 					The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 						href="privacy.html">Privacy Policy</a>

@@ -58,7 +58,9 @@ public class CommentDao {
 				commentList.add(c);
 				
 			}
+			
 			rs.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

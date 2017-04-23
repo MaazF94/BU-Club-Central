@@ -175,6 +175,7 @@ public class ClubDao {
 				results.add(newClub);
 			}
 			cs.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
