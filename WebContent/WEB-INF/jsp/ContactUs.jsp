@@ -178,19 +178,21 @@
             <div class="range range-xs-center range-xs-center">
               <div class="cell-lg-4">
                 <div class="inset-lg-right-80">
-                  <h3 class="text-bold">How to Find us</h3>
+                 <img src="img/BenQuad.jpg" width="437" height="437" alt="" class="img-responsive center-block"/>
                   <hr class="divider hr-lg-left-0 bg-red">
-                  <p class="offset-top-41 offset-lg-top-50">Please contact us for any technical help you need.</p>
+                  <p class="offset-top-41 offset-lg-top-50">Please use the contact form to the left for all technical inquiries. Our technical support team would be glad to assist you in using this website.</p>
+                  <p class="offset-top-41 offset-lg-top-50"> Due to the large amount of inquires please allow 24 hours for a response from our team. For questions regarding club activites and club requests,
+                  please contact the Department of student activties from <a href="MeetTheAdminsServlet">here</a>.
                   <address class="contact-info offset-top-30 offset-lg-top-50">
                     <div class="h6 text-uppercase text-bold text-danger letter-space-none offset-top-none">Club Central Office</div>
                     <p></p>
                     <dl class="offset-top-0">
-                      <dt>Telephone</dt>
-                      <dd><a href="callto:#">+1 800 603 6035</a></dd>
+                      <dt>Telephone:</dt>
+                      <dd><a href="callto:#">N/A</a></dd>
                     </dl>
                     <dl>
                       <dt>E-mail:</dt>
-                      <dd><a href="mailto:#">mail@demolink.org</a></dd>
+                      <dd><a href="mailto:buclubcentral@gmail.com">BUclubcentral@gmail.com</a></dd>
                     </dl>
                   </address>
                   
