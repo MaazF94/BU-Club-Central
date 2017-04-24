@@ -10,7 +10,7 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
   <head>
     <!-- Site Title-->
-    <title>Events</title>
+    <title>About Us</title>
    
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -30,14 +30,7 @@
 	<!-- Page-->
 	<div class="page text-center">
 		<div class="page-loader page-loader-variant-1">
-			<div>
-				<img class='img-responsive'
-					style='margin-top: -20px; margin-left: -18px;' width='280'
-					height='67' src='img/BURedTransparent.png' alt='' />
-				<div class="offset-top-41 text-center">
-					<div class="spinner"></div>
-				</div>
-			</div>
+			
 		</div>
 		<!-- Page Head-->
 		<header class="page-head slider-menu-position"> <!-- RD Navbar Transparent-->
@@ -169,8 +162,7 @@
         </div>
       </header>
       <!-- Page Contents-->
-      <main class="page-content">
-        <!-- Our Dream Team-->         
+      <main class="page-content">       
         <section class="section-98 section-sm-110">
           <div class="shell">
             <div class="range range-xs-center range-xs-middle">
