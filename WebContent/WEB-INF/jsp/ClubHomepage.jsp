@@ -400,6 +400,53 @@
 			</div>
 			</div>
         </section> 
+        </section> </header><section id="welcome" class="section-98 section-sm-110">
+          <div class="shell">
+            <h5>Some of Our Upcoming Events!</h5>
+            <hr class="divider bg-red">
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-lg-8">
+                <p></p>
+              </div>
+            </div>
+            <div class="range offset-top-98">
+            <%
+									LinkedList<Events> eventList = new LinkedList<Events>();
+									EventsDao eDao = new EventsDao();
+									eventList = eDao.getAllEventsByClubId((int)request.getAttribute("club_id_num"));
+									int eventListIndex = 0;
+									
+								%>
+								
+								<%
+									while (eventListIndex < eventList.size()) {
+								%>
+					
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
+                <!-- Icon Box Type 5-->
+            
+                <div class="box-icon box-icon-bordered well"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-account-multiple"></span>
+                  <h4 class="text-danger offset-top-20"><%=eventList.get(eventListIndex).getEvent_name()%></h4>
+                  <p><%= eventList.get(eventListIndex).getDescription() %></p>
+                  <form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-danger text-red-gray" type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">More
+												Info</button>
+										</form>
+                </div>
+                
+              </div>
+              <%
+					eventListIndex++;
+				%>
+				<%
+					}
+				%>
+              
+              
+            </div>
+          </div>
+        </section>
 			
 			   
 			   	<!--<form action = "UserEmailsBMServlet" method="POST">
