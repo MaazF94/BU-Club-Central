@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.EventRSVPListDao;
+import edu.ben.bu_club_central.daos.EventsDao;
 import edu.ben.bu_club_central.models.User;
 
 /**
@@ -45,6 +46,9 @@ public class UNRSVPServlet extends HttpServlet {
 	private void unrsvp(int eventId, int userId) {
 		EventRSVPListDao eDao = new EventRSVPListDao();
 		eDao.unRSVPForEvent(eventId, userId);
+		
+		EventsDao eventDao = new EventsDao();
+		eventDao.decreaseAttendanceCount(eventId);
 	}
 	
 	

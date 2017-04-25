@@ -431,6 +431,7 @@ public class EventsDao {
 
 		return results;
 	}
+
 	public void addLikeToEvent(int eventId, int currentLikes) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -478,13 +479,14 @@ public class EventsDao {
 
 		return 0;
 	}
-	public LinkedList<Events> getMostPopular(){
+
+	public LinkedList<Events> getMostPopular() {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
 		sql = "SELECT * FROM " + tableName + " Order by likes DESC LIMIT 3";
-		
+
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
@@ -506,7 +508,39 @@ public class EventsDao {
 		// System.out.println(results.size());
 
 		return results;
-		
-		
 	}
+
+	public void decreaseAttendanceCount(int eventId) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "SELECT * FROM " + tableName + " WHERE idevent=" + eventId;
+
+		int count = 0;
+
+		PreparedStatement ps = null, ps2;
+		ResultSet rs = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt("rsvp_count");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String sql2 = "UPDATE " + tableName + " SET rsvp_count=" + (count - 1) + " WHERE idevent=" + eventId;
+		try {
+			ps2 = conn.prepareStatement(sql2);
+			ps2.executeUpdate();
+			ps.close();
+			ps2.close();
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
