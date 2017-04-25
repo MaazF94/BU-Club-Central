@@ -55,9 +55,6 @@ public class ClubMembershipDao {
 			try {
 				ps = conn.prepareStatement(sql);
 				ps.executeUpdate(sql);
-				ps.close();
-				conn.close();
-				dbc.closeConnection();
 			} catch (SQLException e) {
 				System.out.println("Already exists");
 				e.printStackTrace();
