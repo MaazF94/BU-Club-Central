@@ -478,4 +478,35 @@ public class EventsDao {
 
 		return 0;
 	}
+	public LinkedList<Events> getMostPopular(){
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		LinkedList<Events> results = new LinkedList<Events>();
+		String sql;
+		sql = "SELECT * FROM " + tableName + " Order by likes ASC LIMIT 3";
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet cs = ps.executeQuery();
+
+			while (cs.next()) {
+				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
+						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
+				event.setEventId(cs.getInt("idevent"));
+				event.setRsvp_count(cs.getInt("rsvp_count"));
+				// event.setAcutal_count(cs.getInt("acutal_count"));
+				results.add(event);
+			}
+			cs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// System.out.println(results.size());
+
+		return results;
+		
+		
+	}
 }
