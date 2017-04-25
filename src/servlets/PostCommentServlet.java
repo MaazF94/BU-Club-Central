@@ -35,8 +35,11 @@ public class PostCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		commentOnPost(Integer.parseInt(request.getParameter("postIdForComment")), ((User) request.getSession().getAttribute("user")).getId_num(), request.getParameter("comment"));
-		response.sendRedirect("ClubHomepage");
+		int postID = Integer.parseInt(request.getParameter("postIdForComment").substring(0, request.getParameter("postIdForComment").indexOf(" ")));
+		String club_id = request.getParameter("postIdForComment").substring(request.getParameter("postIdForComment").indexOf(" "), request.getParameter("postIdForComment").length()).trim();
+		int club_id_num = Integer.parseInt(club_id);
+		commentOnPost(postID, ((User) request.getSession().getAttribute("user")).getId_num(), request.getParameter("comment"));
+		response.sendRedirect("ClubHomepage?club_id_num=" + club_id_num);
 	}
 	
 	
