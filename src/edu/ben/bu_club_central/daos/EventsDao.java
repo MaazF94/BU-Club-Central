@@ -308,7 +308,7 @@ public class EventsDao {
 	public LinkedList<Events> getAllEventsByEventName(String eventName) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
-		String sql = "SELECT * FROM " + tableName + " WHERE event_name = '" + eventName + "'";
+		String sql = "SELECT * FROM " + tableName + " WHERE event_name like '%" + eventName + "%'";
 		System.out.println(sql);
 
 		LinkedList<Events> list = new LinkedList<Events>();
@@ -483,8 +483,8 @@ public class EventsDao {
 		conn = dbc.getConn();
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
-		sql = "SELECT * FROM " + tableName + " Order by likes ASC LIMIT 3";
-
+		sql = "SELECT * FROM " + tableName + " Order by likes DESC LIMIT 3";
+		
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
