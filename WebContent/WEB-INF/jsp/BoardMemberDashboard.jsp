@@ -236,10 +236,13 @@
 
 									int indexViewMember = 0;
 								%>
+								<form action="UserLeavesClubServlet" method="post">
 								<table class="table table-hover">
 									<thead>
 										<tr>
 											<th>Club Name</th>
+											<th><button class="btn btn-warning" type="submit">Leave
+														Clubs</button></th>
 										</tr>
 									</thead>
 									<tbody
@@ -249,11 +252,10 @@
 										%>
 										<tr>
 											<td><%=clubMembershipList.get(indexViewMember).getClub_name()%></td>
-											<td><form action="UserLeavesClubServlet" method="post">
-													<button class="btn btn-warning" type="submit" name="clubID"
-														value="<%=clubMembershipList.get(indexViewMember).getClubID()%>">Leave
-														Club</button>
-												</form></td>
+											<td><input type="checkbox"  name="club_id_num"
+														value="<%=clubMembershipList.get(indexViewMember).getClubID()%>">
+													
+											</td>
 										</tr>
 
 										<%
@@ -264,6 +266,7 @@
 										%>
 									</tbody>
 								</table>
+								</form>
 							</div>
 						</div>
 
@@ -404,10 +407,14 @@
 											.getAttribute("clubMembershipList2");
 									int index3 = 0;
 								%>
+								<form action="RejoinClubFromDashboardServlet"
+													method="post">
 								<table class="table table-hover">
 									<thead>
 										<tr>
 											<th>Club Name</th>
+											<th><button class="btn btn-warning" type="submit">Rejoin
+														Club</button></th>
 										</tr>
 									</thead>
 									<tbody
@@ -417,13 +424,11 @@
 										%>
 										<tr>
 											<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
-											<td><form action="RejoinClubFromDashboardServlet"
-													method="post">
-													<button class="btn btn-warning" type="submit"
+											<td><input type="checkbox" 
 														name="club_id_num"
-														value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin
-														Club</button>
-												</form></td>
+														value="<%=clubMembershipList2.get(index3).getClubID()%>">
+													
+											</td>
 										</tr>
 
 										<%
@@ -434,6 +439,7 @@
 										%>
 									</tbody>
 								</table>
+								</form>
 							</div>
 						</div>
 

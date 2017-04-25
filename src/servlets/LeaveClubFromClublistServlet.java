@@ -35,9 +35,14 @@ public class LeaveClubFromClublistServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ClubMembershipDao cmDao = new ClubMembershipDao();
-		String ID = request.getParameter("clubID");
-		int club_ID = Integer.parseInt(ID);
-		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_ID);
+		String[] ID = request.getParameterValues("clubID");
+		int[] club_id_nums = new int[100];
+		for (int i = 0; i < ID.length; i++) {
+			ID[i].replace("[", "");
+			ID[i].replace("]", "");
+			club_id_nums[i] = Integer.parseInt(ID[i].substring(0, 1));
+		}
+		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_id_nums);
 		String message = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<title>Mileage</title>\r\n"
 				+ "<style> \r\n" + ".isa_success {\r\n" + "color: #4F8A10;\r\n"
 				+ "background-color: #DFF2BF;\r\n" + "}\r\n" + "</style>\r\n" + "</head>\r\n<body>\r\n"

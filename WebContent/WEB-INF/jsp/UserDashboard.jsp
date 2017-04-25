@@ -489,10 +489,14 @@
 
 												int index = 0;
 											%>
+											<form action="UserLeavesClubServlet"
+																method="post">
 											<table class="table table-hover">
 												<thead>
-													<tr>
+													<tr>													
 														<th>Club Name</th>
+														<th><button class="btn btn-warning" type="submit">Leave
+																	Clubs</button></th>
 													</tr>
 												</thead>
 												<tbody
@@ -502,13 +506,7 @@
 													%>
 													<tr>
 														<td><%=clubMembershipList.get(index).getClub_name()%></td>
-														<td><form action="UserLeavesClubServlet"
-																method="post">
-																<button class="btn btn-warning" type="submit"
-																	name="clubID"
-																	value="<%=clubMembershipList.get(index).getClubID()%>">Leave
-																	Club</button>
-															</form></td>
+														<td><input type="checkbox" name = "club_id_num" value="<%=clubMembershipList.get(index).getClubID()%>"></td>
 													</tr>
 
 													<%
@@ -519,6 +517,7 @@
 													%>
 												</tbody>
 											</table>
+											</form>
 										</div>
 									</div>
 
@@ -530,10 +529,14 @@
 												clubMembershipList2 = cmDao2.displayUserPastClubInfo(((User) session.getAttribute("user")).getUser_id());
 												int index3 = 0;
 											%>
+											<form action="RejoinClubFromDashboardServlet"
+																method="post">
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Club Name</th>
+														<th><button class="btn btn-warning" type="submit">Rejoin
+																	Club</button></th>
 													</tr>
 												</thead>
 												<tbody
@@ -543,13 +546,8 @@
 													%>
 													<tr>
 														<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
-														<td><form action="RejoinClubFromDashboardServlet"
-																method="post">
-																<button class="btn btn-warning" type="submit"
-																	name="club_id_num"
-																	value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin
-																	Club</button>
-															</form></td>
+														<td><input type="checkbox" name="club_id_num" value = 
+														"<%=clubMembershipList2.get(index3).getClubID()%>"></td>
 													</tr>
 
 													<%
@@ -560,6 +558,7 @@
 													%>
 												</tbody>
 											</table>
+											</form>
 										</div>
 									</div>
 
