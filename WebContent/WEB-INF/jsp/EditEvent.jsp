@@ -180,12 +180,15 @@
 					<form action="EditEventServlet" method="POST" onsubmit="return confirm('Are you sure you want to edit this event.');">
 						Event Id: <%=event.getEventId()%><br><br>
 					
-						Event Name: <input name="eventName" type="text" value="<%=event.getEvent_name()%>"><br><br>
+						Event Name: <input name="eventName" type="text" value="<%=event.getEvent_name()%>" onkeyup="textCounterEventTitle(this,'counter',45);"><br><br>
 					
 						Description:<br>
-						<textarea name="description" rows="5" cols="50"><%=event.getDescription() %></textarea><br><br>
-					
-						Location: <input name="location" type="text" value="<%=event.getLocation()%>"><br><br>
+						<textarea name="description" rows="5" cols="50" onkeyup="textCounterEvent(this,'counter',500);"><%=event.getDescription() %></textarea>
+						<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" class= "" value="500" id="counter">
+							Remaining
+						</h6>
+						Location: <input name="location" type="text" value="<%=event.getLocation()%>" onkeyup="textCounterEventLocation(this,'counter',100);"><br><br>
 					
 						Number of people coming: <input name="rsvp_count" type="text" value="<%=event.getRsvp_count() %>"><br><br>
 						
@@ -302,6 +305,41 @@
 		</footer>
 	</div>
 	<!-- Java script-->
+	<script>
+		function textCounterEvent(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
+	
+	<script>
+		function textCounterEventTitle(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
+	
+	<script>
+		function textCounterEventLocation(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
 	<script type="text/javascript">
 		function editEvent() {
 			confirm("Are you sure you want to edit this event.")

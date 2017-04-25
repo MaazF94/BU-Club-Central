@@ -187,8 +187,11 @@
       			
       				Comment Id: <%=comment.getIdcomment()%> <br><br>
       			
-      				Comment:<br> <textarea name="comment" rows="5" cols="50"><%=comment.getComment() %></textarea><br><br>
-      				
+      				Comment:<br> <textarea name="comment" rows="5" cols="50" onkeyup="textCounterComment(this,'counter',250);"><%=comment.getComment() %></textarea>
+      				<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" class= "" value="250" id="counter">
+							Remaining
+						</h6>
       				<button class="btn btn-default " type="submit" name="commentid" 
 														value="<%=comment.getIdcomment()%>">Edit</button>
       				
@@ -293,6 +296,17 @@
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
+    <script>
+		function textCounterComment(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
   </body>
 
 </html>
