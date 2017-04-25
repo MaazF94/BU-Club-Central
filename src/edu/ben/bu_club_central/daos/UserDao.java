@@ -157,6 +157,43 @@ public class UserDao {
 
 		return false;
 	}
+	
+	public LinkedList<User> getAllUsersForClub(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		User user;
+		LinkedList<User> userList = new LinkedList<User>();
+
+		String sql = "SELECT u.first_name, u.last_name, u.id_num, u.email, u.iduser FROM " + tableName + 
+				" u INNER JOIN club_membership cm on u.iduser = cm.user_ID WHERE cm.club_ID = " + club_id_num + " and cm.active = 1";
+		System.out.println(sql);
+
+		PreparedStatement ps;
+		ResultSet rs = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			while (rs.next()) {
+
+				user = new User(rs.getString("first_name"), rs.getString("last_name"), "",
+						"", rs.getInt("id_num"), rs.getString("email"), 0, rs.getInt("iduser"), 0);
+				userList.add(user);
+			}
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return userList;
+	}
 
 	/**
 	 * This method will allow the admin to change the user role ID
@@ -811,31 +848,6 @@ public class UserDao {
 		return user;
 	}
 
-	public void deleteUser(String id_num) {
-		dbc = new DatabaseConnection();
-		conn = dbc.getConn();
-		String sql = "SELECT * FROM " + tableName;
-
-		try {
-			PreparedStatement query = conn.prepareStatement(sql);
-			ResultSet rs = query.executeQuery();
-
-			if (rs.next()) {
-				PreparedStatement ps;
-
-				ps = conn.prepareStatement("DELETE FROM " + tableName + " WHERE id_num = " + id_num);
-
-				System.out.println(ps);
-
-				ps.executeUpdate();
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	public void disableUser(int userIdNum) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -898,43 +910,6 @@ public class UserDao {
 			e.printStackTrace();
 		}
 
-	}
-
-	public LinkedList<User> getAllUsersForClub(int club_id_num) {
-		dbc = new DatabaseConnection();
-		conn = dbc.getConn();
-		User user;
-		LinkedList<User> userList = new LinkedList<User>();
-
-		String sql = "SELECT * FROM " + tableName + "  WHERE club_id_num = " + club_id_num;
-		System.out.println(sql);
-
-		PreparedStatement ps;
-		ResultSet rs = null;
-
-		try {
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			while (rs.next()) {
-
-				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
-						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
-				userList.add(user);
-			}
-			rs.close();
-			conn.close();
-			dbc.closeConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return userList;
 	}
 
 	/**

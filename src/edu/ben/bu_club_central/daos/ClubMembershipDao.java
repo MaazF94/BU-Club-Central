@@ -185,6 +185,29 @@ public class ClubMembershipDao {
 		return result;
 	}
 
+	public void removeUserFromClub(int club_id, int[] userIDs) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "";
+
+		for (int i = 0; i < userIDs.length; i++) {
+			if (userIDs[i] != 0) {
+				sql = "UPDATE " + tableName + " SET active = 0 WHERE user_id = " + userIDs[i] + " AND club_id = "
+						+ club_id;
+
+				PreparedStatement ps;
+				
+				try {
+					ps = conn.prepareStatement(sql);
+					ps.executeUpdate(sql);
+				} catch (SQLException e) {
+					System.out.println("User does not exist in club");
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Used to display which clubs a user is in on dashboard
 	 * 
