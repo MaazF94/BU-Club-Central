@@ -431,4 +431,51 @@ public class EventsDao {
 
 		return results;
 	}
+	public void addLikeToEvent(int eventId, int currentLikes) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET likes=  likes + 1 WHERE idevent=" + eventId;
+
+		PreparedStatement ps;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public int getNumOfLikes(int eventId) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "SELECT likes from " + tableName + " WHERE idevent= '" + eventId + "'";
+
+		int likes = 0;
+		PreparedStatement ps;
+		ResultSet rs = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+
+				likes = rs.getInt("likes");
+			}
+			;
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
+			return likes;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
 }
