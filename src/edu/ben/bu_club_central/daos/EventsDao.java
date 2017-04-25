@@ -431,4 +431,42 @@ public class EventsDao {
 
 		return results;
 	}
+	
+	
+	public void decreaseAttendanceCount(int eventId) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "SELECT * FROM " + tableName + " WHERE idevent=" + eventId;
+		
+		int count = 0;
+		
+		PreparedStatement ps = null, ps2;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt("rsvp_count");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String sql2 = "UPDATE " + tableName + " SET rsvp_count=" + (count - 1) + " WHERE idevent=" + eventId;
+		try {
+			ps2 = conn.prepareStatement(sql2);
+			ps2.executeUpdate();
+			ps.close();
+			ps2.close();
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 }
