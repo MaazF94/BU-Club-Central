@@ -47,9 +47,14 @@ public class UserLeavesClubServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		ClubMembershipDao cmDao = new ClubMembershipDao();
-		String ID = request.getParameter("clubID");
-		int club_ID = Integer.parseInt(ID);
-		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_ID);
+		String[] ID = request.getParameterValues("club_id_num");
+		int[] club_id_nums = new int[100];
+		for (int i = 0; i < ID.length; i++) {
+			ID[i].replace("[", "");
+			ID[i].replace("]", "");
+			club_id_nums[i] = Integer.parseInt(ID[i].substring(0, 1));
+		}
+		cmDao.userLeavesClub(((User) request.getSession().getAttribute("user")).getUser_id(), club_id_nums);
 		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
 			response.sendRedirect("UserServlet");
 		} else {

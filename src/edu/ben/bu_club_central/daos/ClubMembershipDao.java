@@ -55,9 +55,6 @@ public class ClubMembershipDao {
 			try {
 				ps = conn.prepareStatement(sql);
 				ps.executeUpdate(sql);
-				ps.close();
-				conn.close();
-				dbc.closeConnection();
 			} catch (SQLException e) {
 				System.out.println("Already exists");
 				e.printStackTrace();
@@ -160,34 +157,32 @@ public class ClubMembershipDao {
 	 * Allows the user to leave a club
 	 * 
 	 * @param user_id
-	 * @param club_id
+	 * @param club_id_nums
 	 * @return true if worked, otherwise false
 	 */
-	public boolean userLeavesClub(int user_id, int club_id) {
+	public boolean userLeavesClub(int user_id, int[] club_id_nums) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql = "";
+		boolean result = true;
 
-		sql = "UPDATE " + tableName + " SET active = 0 WHERE user_id = " + user_id + " AND club_id = " + club_id;
+		for (int i = 0; i < club_id_nums.length; i++) {
+			if (club_id_nums[i] != 0) {
+			sql = "UPDATE " + tableName + " SET active = 0 WHERE user_id = " + user_id + " AND club_id = "
+					+ club_id_nums[i];
 
-		PreparedStatement ps;
-		try {
-			ps = conn.prepareStatement(sql);
-			if (ps.executeUpdate() == 1) {
-				ps.close();
-				conn.close();
-				dbc.closeConnection();
-				return true;
-			} else {
-				throw new SQLException();
-
+			PreparedStatement ps;
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.executeUpdate(sql);
+			} catch (SQLException e) {
+				System.out.println("User does not exist in club");
+				e.printStackTrace();
+				result = false;
 			}
-		} catch (SQLException e) {
-			System.out.println("User does not exist in club");
-			e.printStackTrace();
+			}
 		}
-
-		return false;
+		return result;
 	}
 
 	/**

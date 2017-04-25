@@ -225,11 +225,11 @@
                                         
                                         
                                         <li><span class="text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=event.getLocation()%></span></a></li>
-                                      
-                                                                              <li><a href="#" class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-account-outline text-carrot " title="Number of people coming">&nbsp;</a><%=event.getRsvp_count()%><span class="text-middle small"></span></li>
+                                      	<li><form action ="LikeEventServlet" method = "POST" ><button class = "btn-info" type = "submit" name = "eventID" id = "eventID" value = <%=event.getEventId() %> ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like Event</button></form></li>
+                                                                              
                                         
                                         
-                                        <li><span class=" masterToolTip text-middle icon-xxs text-picton-red mdi mdi-map-marker-multiple text-carrot" title="Location of the event">&nbsp;</span><a href="#" class="text-middle small"><span>&nbsp;<%=event.getLocation()%></span></a></li>
+                                       
                                       </ul>
                                         
                                       <!-- Post Meta-->
@@ -313,7 +313,7 @@
                                                 
                                                 </li>
                                                 <%if (((User) session.getAttribute("user")) != null) { %>
-                                                <li><form action ="LikeServlet" method = "POST" ><button class = "btn-info" type = "submit" name = "commentID" id = "commentID" value =<%=commentList.get(commentListIndex).getIdcomment() %> ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like</button></form></li>
+                                                <li><form action ="LikeServlet" method = "POST" ><button class = "btn-info" type = "submit" name = "commentID" id = "commentID" value =<%=commentList.get(commentListIndex).getIdcomment() %> ><span class="box-comment-icon mdi mdi-thumb-up-outline"></span> Like Comment</button></form></li>
                                                 <li><a href="#"><span class=""></span>Current likes: <%=commentDao.getNumOfLikes(commentList.get(commentListIndex).getIdcomment()) %></a></li>
                                               </ul>
                                               <%} %>
