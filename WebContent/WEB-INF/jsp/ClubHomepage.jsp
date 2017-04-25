@@ -20,6 +20,7 @@
 
 <head>
 <!-- Site Title-->
+
 <title>Club Homepage</title>
 
 <meta name="format-detection" content="telephone=no">
@@ -35,7 +36,11 @@
 	href="//fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700,700italic">
 <link rel="stylesheet" href="css/style.css">
 <!--[if lt IE 10]>
-    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);
+     clear: both; text-align:center; position: relative; z-index:1;"><a href=
+     "http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg"
+      border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, 
+      safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
 </head>
@@ -179,80 +184,135 @@
         </div>
       </header>
 		<!-- Page Contents-->
-		<div class="jumbotron" style="background-color: #f1eaee">
-			<h1>
-				<div class="container">
-					<h1  class="text-danger" >${clubName}</h1>
-					${message}
-					<%
-if (((User) session.getAttribute("user")) != null) {
-ClubMembershipDao cmDao = new ClubMembershipDao();
-int user_id = ((User) session.getAttribute("user")).getUser_id();
-int club_id = (int) request.getAttribute("club_id_num");
-String club_name = (String) request.getAttribute("clubName");
-
-boolean isInClub = cmDao.checkIfUserInClub(club_id, user_id);
-if (!isInClub) {%>
-<form action = "JoinAClubServlet" method="GET">
-<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(club_id)%>">Join <%
-												out.println(club_name);
-											%></a></form>
-<%
-} else {
-	%>
-<a type="button" class="btn btn-warning" 
-href="LeaveClubFromClublistServlet?clubID=<%=(club_id)%>">Leave <%
-												out.println(club_name);
-											%></a>
-<%
-}
-}
- %>
- <%String meetingLoc = (String) request.getAttribute("meetingLoc");
- String meetingFreq = (String) request.getAttribute("meetingFreq");
- String meetingTime = (String) request.getAttribute("meetingTime");
- %>
- <p><b>Meeting Time:</b> <%=meetingTime%><br>
-<b>Meeting Location:</b> <%=meetingLoc%><br>
-<b>How Often We Meet:</b> <%=meetingFreq%></p>
-				</div>
-				
-			</h1>
-							              
-			   <%String broadcast = (String) request.getAttribute("broadcast"); %>
-			   			  <div class="" style="font-family:sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.4;margin:0;padding:0;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
-    <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
-      <tr>
-        <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
-        <td class="container" style="font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;">
-          <div class="content" style="box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;">
-            <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;">Here Is Our Latest Update!</span>
-            <table class="main" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;">
-              <!-- START MAIN CONTENT AREA -->
-              <tr>
-                <td class="wrapper" style="font-family:sans-serif;font-size:14px;vertical-align:top;box-sizing:border-box;padding:20px;">
-                  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
-                    <tr>
-                      <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
-                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"><b>Latest Update,</b></p>
-                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"><%=broadcast%></p>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <!-- END MAIN CONTENT AREA -->
-            </table>
+		<div class="jumbotron" style="background-color: #ffffff">
+		<section class="section-98 section-sm-110">
+          <div class="shell">
+            <div class="range range-xs-center range-xs-Left">
+              <!-- Simple quote Slider-->
+              
+              <div class="cell-sm-9 cell-lg-6 cell-lg-pull-6 text-lg-right offset-top-66 offset-lg-top-0 inset-lg-left-30">
+                <h1  class="text-danger" >${clubName}</h1>
+                <hr class="divider bg-red hr-lg-right-0">
+                <p class="offset-top-50 text-sm-left">${clubDescription}</p>
+                <div class="offset-top-20">
+                	<%
+						if (((User) session.getAttribute("user")) != null) {
+						ClubMembershipDao cmDao = new ClubMembershipDao();
+						int user_id = ((User) session.getAttribute("user")).getUser_id();
+						int club_id = (int) request.getAttribute("club_id_num");
+						String club_name = (String) request.getAttribute("clubName");
+						
+						boolean isInClub = cmDao.checkIfUserInClub(club_id, user_id);
+						if (!isInClub) {%>
+						<form action = "JoinAClubServlet" method="GET">
+						<a type="button" class="btn btn-info" href="JoinAClubServlet?club_id_num=<%=(club_id)%>">Join <%
+																		out.println(club_name);
+																	%></a></form>
+						<%
+						} else {
+							%>
+						<a type="button" class="btn btn-warning" 
+						href="LeaveClubFromClublistServlet?clubID=<%=(club_id)%>">Leave <%
+																		out.println(club_name);
+																	%></a>
+						<%
+						}
+						}
+					%> 
+                </div>
+                
+              </div>
+              
+              <div class="cell-sm-9 cell-lg-6 cell-lg-push-6">
+                <div data-items="1" data-nav="false" data-dots="false" data-nav-custom=".owl-custom-navigation" class="owl-carousel owl-carousel-classic owl-carousel-class-light shadow-drop-md">
+                    <div><img src="img/BUSpiritRock.jpg" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>               
+                  </div>
+              </div>
+            </div>
           </div>
-        </td>
-        <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
-      </tr>
-    </table>
-  </div>
-			
-			<div class="container">
-							<h3>Post Feed (Click button for more info)</h3>	
+        </section>
+        <section>
+			<hr class="divider bg-red hr-lg-center-0">
+  		</section>
+			<section class="section-98 section-sm-110">
+		          <div class="shell">
+		            <div class="range range-xs-center">
+		              <div class="cell-xs-10 cell-sm-5">
+		                <!-- Member block type 5-->
+		                <div class="member-block-type-5 inset-md-right-20">           
+		                	<div style= "">
+								<div style="margin: auto">
+									<h1>			
+									 <%String meetingLoc = (String) request.getAttribute("meetingLoc");
+									 String meetingFreq = (String) request.getAttribute("meetingFreq");
+									 String meetingTime = (String) request.getAttribute("meetingTime");
+									 %>
+									 <p><b>Meeting Time:</b> <%=meetingTime%><br>
+									<b>Meeting Location:</b> <%=meetingLoc%><br>
+									<b>How Often We Meet:</b> <%=meetingFreq%></p>
+									</h1>
+								</div>
+								
+								<br>
+								<br>
+								<br>
+									              
+					   <%String broadcast = (String) request.getAttribute("broadcast"); %>
+					   			  <div class="" style="float: right; font-family:sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.4;margin:0;padding:0;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+								    <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
+								      <tr>
+								        <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
+								        <td class="container" style="font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;">
+								          <div class="content" style="box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;">
+								            <!-- START CENTERED WHITE CONTAINER -->
+								            <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;">Here Is Our Latest Update!</span>
+								            <table class="main" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;">
+								              <!-- START MAIN CONTENT AREA -->
+								              <tr>
+								                <td class="wrapper" style="font-family:sans-serif;font-size:14px;vertical-align:top;box-sizing:border-box;padding:20px;">
+								                  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
+								                    <tr>
+								                      <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
+								                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"><b>Latest Update,</b></p>
+								                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"><%=broadcast%></p>
+								                      </td>
+								                    </tr>
+								                  </table>
+								                </td>
+								              </tr>
+								              <!-- END MAIN CONTENT AREA -->
+								            </table>
+								          </div>
+								        </td>
+								        <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
+								      </tr>
+								    </table>
+								  </div>
+								  <div class="cell-xs-10 cell-sm-7 text-sm-left">
+					                <h5 class="offset-top-4">${clubName} Board Members</h5>
+					                <hr class="divider bg-red hr-sm-left-0">
+					                <p class="offset-top-50 text-left"><b>Board Member 1</b> <br>
+										President<br>
+									<a style="color: red;" href="">email1@ben.edu</a><br>
+									</p>
+									<p class="offset-top-50 text-left"><b>Board Member 2</b>
+									<br>Vice-President<br>
+									<a style="color: red;" href="">email2@ben.edu</a><br>
+									</p>
+									<p class="offset-top-50 text-left"><b>Board Member 3</b>
+									<br>Treasurer<br>
+									<a style="color: red;" href="">email3@ben.edu</a><br>
+									</p>
+									<p class="offset-top-50 text-left"><b>Board Member 4</b>
+									<br>Secretary<br>
+									<a style="color: red;" href="">email4@ben.edu</a><br>
+									</p>
+								</div>
+		  				</div>
+                </div>
+              </div>
+              <div class="cell-xs-10 cell-sm-7 text-sm-left">
+                	<h3>Post Feed (Click button for more info)</h3>	
 								<%
 									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
 
@@ -336,8 +396,57 @@ href="LeaveClubFromClublistServlet?clubID=<%=(club_id)%>">Leave <%
 
 								<%postListIndex++; %>
 								<%} %>
-							</div>
-			
+			</div>
+			</div>
+			</div>
+        </section> 
+        </section> </header><section id="welcome" class="section-98 section-sm-110">
+          <div class="shell">
+            <h5>Some of Our Upcoming Events!</h5>
+            <hr class="divider bg-red">
+            <div class="range range-xs-center offset-top-66">
+              <div class="cell-lg-8">
+                <p></p>
+              </div>
+            </div>
+            <div class="range offset-top-98">
+            <%
+									LinkedList<Events> eventList = new LinkedList<Events>();
+									EventsDao eDao = new EventsDao();
+									eventList = eDao.getAllEventsByClubId((int)request.getAttribute("club_id_num"));
+									int eventListIndex = 0;
+									
+								%>
+								
+								<%
+									while (eventListIndex < eventList.size()) {
+								%>
+					
+              <div class="cell-sm-8 cell-sm-preffix-2 cell-md-4 cell-md-preffix-0">
+                <!-- Icon Box Type 5-->
+            
+                <div class="box-icon box-icon-bordered well"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-account-multiple"></span>
+                  <h4 class="text-danger offset-top-20"><%=eventList.get(eventListIndex).getEvent_name()%></h4>
+                  <p><%= eventList.get(eventListIndex).getDescription() %></p>
+                  <form action="EventDetailsServlet" method="GET">
+									<button class="btn btn-danger text-red-gray" type="submit" name="eventId"
+												value="<%=eventList.get(eventListIndex).getEventId()%>">More
+												Info</button>
+										</form>
+                </div>
+                
+              </div>
+              <%
+					eventListIndex++;
+				%>
+				<%
+					}
+				%>
+              
+              
+            </div>
+          </div>
+        </section>
 			
 			   
 			   	<!--<form action = "UserEmailsBMServlet" method="POST">

@@ -207,7 +207,7 @@
                   <div>
                     <h2 class="text-italic text-uppercase text-spacing-20 thumbnail-terry-title">Wii U</h2>
                   </div>
-                  <p class="thumbnail-terry-desc offset-top-0"></p><a href="" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
+                  <p class="thumbnail-terry-desc offset-top-0"></p><a data-toggle="modal" href="#checkoutWiiUModal" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
                 </figcaption>
               </figure>
             </div>
@@ -218,7 +218,7 @@
                   <div>
                     <h2 class="text-italic text-uppercase text-spacing-20 thumbnail-terry-title">Pool</h2>
                   </div>
-                  <p class="thumbnail-terry-desc offset-top-0"></p><a href="schedule.html" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
+                  <p class="thumbnail-terry-desc offset-top-0"></p><a data-toggle="modal" href="#checkoutPoolModal" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
                 </figcaption>
               </figure>
             </div>
@@ -229,7 +229,7 @@
                   <div>
                     <h2 class="text-italic text-uppercase text-spacing-20 thumbnail-terry-title">Air Hockey</h2>
                   </div>
-                  <p class="thumbnail-terry-desc offset-top-0"></p><a href="schedule.html" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
+                  <p class="thumbnail-terry-desc offset-top-0"></p><a data-toggle="modal" href="#checkoutAirHockeyModal" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
                 </figcaption>
               </figure>
             </div>
@@ -240,7 +240,7 @@
                   <div>
                     <h2 class="text-italic text-uppercase text-spacing-20 thumbnail-terry-title">Ping Pong</h2>
                   </div>
-                  <p class="thumbnail-terry-desc offset-top-0"></p><a href="schedule.html" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
+                  <p class="thumbnail-terry-desc offset-top-0"></p><a data-toggle="modal" href="#checkoutPingPongModal" class="btn offset-top-10 offset-md-top-0 btn-danger">Checkout</a>
                 </figcaption>
               </figure>
             </div> 
@@ -314,9 +314,147 @@
 		</div>
 		</footer>
     </div>
+    
+    <div class="modal fade" id="checkoutWiiUModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group offset-top-20">
+						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
+							<div class="input-group input-group-sm">
+							
+								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
+							</div>
+							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+								
+							<div class="input-group input-group-sm">
+								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
+							</div>
+							
+						</div>
+						<button type="submit" class="btn btn-info center">
+							<span class=""></span> Checkout
+						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class=""></span> Cancel
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="checkoutPoolModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group offset-top-20">
+						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
+							<div class="input-group input-group-sm">
+							
+								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
+							</div>
+							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+								
+							<div class="input-group input-group-sm">
+								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
+							</div>
+							
+						</div>
+						<button type="submit" class="btn btn-info center">
+							<span class=""></span> Checkout
+						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class=""></span> Cancel
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="checkoutAirHockeyModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group offset-top-20">
+						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
+							<div class="input-group input-group-sm">
+							
+								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
+							</div>
+							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+								
+							<div class="input-group input-group-sm">
+								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
+							</div>
+							
+						</div>
+						<button type="submit" class="btn btn-info center">
+							<span class=""></span> Checkout
+						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class=""></span> Cancel
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="checkoutPingPongModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group offset-top-20">
+						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
+							<div class="input-group input-group-sm">
+							
+								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
+							</div>
+							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+								
+							<div class="input-group input-group-sm">
+								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
+							</div>
+							
+						</div>
+						<button type="submit" class="btn btn-info center">
+							<span class=""></span> Checkout
+						</button>
+						<button type="button" class="btn btn-danger center" data-dismiss="modal">
+							<span class=""></span> Cancel
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
     <!-- Java script-->
+    <script>
+		$(document).ready(function() {
+			$("#checkoutWiiUModal").modal();
+			$("#checkoutAirHockeyModal").modal();
+			$("#checkoutPoolModal").modal();
+			$("#checkoutPingPongModal").modal();
+		});
+	</script>
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
+    
   </body>
 
 </html>
