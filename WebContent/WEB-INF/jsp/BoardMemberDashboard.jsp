@@ -456,6 +456,7 @@
 									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
 									int index = 0;
 								%>
+								<form action="DeleteUserServlet" method="post">
 								<table class="table table-hover sortable">
 									<thead>
 										<tr>
@@ -464,7 +465,9 @@
 											<th>Last Name</th>
 											<th>ID Number</th>
 											<th>E-mail</th>
-											<th></th>
+											<th><button type="submit"
+													class="btn btn-warning">
+													Remove Users from Club</button></th>
 										</tr>
 									</thead>
 									<%
@@ -492,19 +495,19 @@
 												out.println(userList.get(index).getEmail());
 											%>
 										</td>
-										<form action="DeleteUserServlet" method="post">
+										
 
-											<td><button type="submit" name="UserID"
-													value="<%out.println(userList.get(index).getId_num());%>"
-													class="btn btn-warning">
-													Delete</a></td>
-										</form>
+										<td><input type="checkbox" name="UserID"
+													value="<%=userList.get(index).getUser_id()%>">
+										</td>
+										
 									</tr>
 									<%
 										index++;
 										}
 									%>
 								</table>
+								</form>
 							</div>
 						</div>
 
