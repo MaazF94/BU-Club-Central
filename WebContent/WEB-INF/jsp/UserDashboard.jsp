@@ -241,8 +241,11 @@
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
 								<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
-									<li class="active" role="presentation"><a href="#viewEvents"
+									<li class="active" role="tab"><a href="#viewEvents"
 										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
+									
+									<li role="tab"><a href="#viewPopularEvents"
+										aria-controls="#viewPopularEvents" role="tab" data-toggle="tab">Most Popular Events</a></li>
 										
 									<li role="presentation"><a href="#editPosts"
 										aria-controls="#editPosts" role="tab" data-toggle="tab">View
@@ -275,6 +278,8 @@
 
 								<table class="table table-hover sortable">
 									<thead>
+									<h3 class= "text-center "></h3>
+									<hr>
 										<tr>
 											<th>Event ID</th>
 											<th>Event Name</th>
@@ -302,6 +307,56 @@
 
 										<%
 										eventListIndex2++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div role="tabpanel" class="tab-pane active" id="viewPopularEvents">
+							<div class="container">
+								<%
+								EventsDao eDao = new EventsDao();
+									LinkedList<Events> eventList3 = eDao.getMostPopular();
+									int eventListIndex3 = 0;
+									int eventListSize3 = eventList3.size();
+								%>
+
+
+								<table class="table table-hover sortable">
+									<thead>
+									<h3 class= "text-center"> Most popular upcoming events</h6>
+									<hr>
+										<tr>
+											<th>Event ID</th>
+											<th>Event Name</th>
+											<th>Location</th>
+											<th>RSVP Count</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (eventListIndex3 < eventListSize3) {
+										%>
+										<tr>
+											<td><%=eventList3.get(eventListIndex3).getEventId()%></td>
+											<td><%=eventList3.get(eventListIndex3).getEvent_name()%></td>
+											<td><%=eventList3.get(eventListIndex3).getLocation()%></td>
+											<td><%=eventList3.get(eventListIndex3).getRsvp_count()%></td>
+											<td><form action="EventDetailsServlet" method="GET">
+													<button class="btn btn-warning" type="submit"
+														name="eventId"
+														value="<%=eventList3.get(eventListIndex3).getEventId()%>">Event Info</button>
+												</form></td>
+										</tr>
+
+										<%
+										eventListIndex3++;
 										%>
 										<%
 											}
@@ -356,6 +411,7 @@
 								</table>
 							</div>
 						</div>
+								
 								
 								
 								
