@@ -347,49 +347,47 @@
 								%>
 
 								
-
+								<form action="EditClubInfoServlet" method="post">
 									<table class="table table-hover sortable">
 										<thead>
 											<tr>
 												<th>Club Description</th>
+												<th>Broadcast Post</th>
 												<th>Club Meeting Time</th>
 												<th>Club Meeting Location</th>
 												<th>Club Meets How Often?</th>
-												<th>Broadcast Post</th>
 											</tr>
 										</thead>
 
 										<tbody>
 											<tr>
-												<td><form action="EditClubDescriptionServlet" method="post"><textarea onkeypress="enableUpdateButton()"
+												<td><textarea onkeypress="enableUpdateButton()"
 														cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
+												</td>
+												<td><textarea onkeypress="enableUpdateButton()"
+														cols="20" rows="10" name="broadcast"><%=broadcast%></textarea>
 													<br>
-													<button id="button" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton1()"
+												</td>
+												<td><textarea onkeypress="enableUpdateButton()"
 														cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea>
 													<br>
-													<button id="button1" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton2()"
+												</td>
+												<td><textarea onkeypress="enableUpdateButton()"
 														cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
 													<br>
-													<button id="button2" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton3()"
+												</td>
+												<td><textarea onkeypress="enableUpdateButton()"
 														cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
 													<br>
-													<button id="button3" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td> 
-												<td><form action="EditClubInfoServlet" method="post"><textarea onkeypress="enableUpdateButton4()"
-														cols="10" rows="5" name="broadcast"><%=broadcast%></textarea>
-													<br>
-													<button id="button4" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form></td>
+												</td> 
 											</tr>
 										</tbody>
 
 									</table>
+									
+													<br>
+													<button id="button" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></form>
 							</div>
 						</div>
 
@@ -1320,30 +1318,6 @@
 		function enableUpdateButton() {
 
 			document.getElementById("button").disabled = false;
-
-		}
-		
-		function enableUpdateButton1() {
-
-			document.getElementById("button1").disabled = false;
-
-		}
-		
-		function enableUpdateButton2() {
-
-			document.getElementById("button2").disabled = false;
-
-		}
-		
-		function enableUpdateButton3() {
-
-			document.getElementById("button3").disabled = false;
-
-		}
-		
-		function enableUpdateButton4() {
-
-			document.getElementById("button4").disabled = false;
 
 		}
 
