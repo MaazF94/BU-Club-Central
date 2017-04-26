@@ -595,25 +595,16 @@
 									int eventListSize2 = eventList.size();
 								%>
 
-								<%
-									while (eventListIndex2 < eventListSize2) {
-								%>
 								<table class="table table-hover sortable">
 									<thead>
 										<tr>
-											<th>Event ID: <%=eventList2.get(eventListIndex2).getEventId()%></th>
-											<th>Event Name: <%=eventList2.get(eventListIndex2).getEvent_name()%></th>
-											<th>Club ID Number: <%=eventList2.get(eventListIndex2).getClub_id_num()%></th>
-
-										</tr>
-
-										<tr>
-											<th>Comment ID</th>
+											<th>Event Name</th>
 											<th>Comment</th>
-											<th>Event ID</th>
-											<th></th>
 										</tr>
 									</thead>
+								<%
+									while (eventListIndex2 < eventListSize2) {
+								%>
 									<tbody
 										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
 										<%
@@ -630,9 +621,8 @@
 										%>
 
 										<tr>
-											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
+											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
 											<td><%=commentList.get(commentListIndex).getComment()%></td>
-											<td><%=commentList.get(commentListIndex).getEventId()%></td>
 											<td>
 												<form action="user/EditCommentServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
