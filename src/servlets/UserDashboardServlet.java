@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.EventNotificationDao;
 import edu.ben.bu_club_central.daos.EventRSVPListDao;
 import edu.ben.bu_club_central.daos.EventsDao;
 import edu.ben.bu_club_central.daos.PostDao;
@@ -53,6 +54,11 @@ public class UserDashboardServlet extends HttpServlet {
 			LinkedList<Post> postList = new LinkedList<Post>();
 			postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
 			request.setAttribute("postList", postList);
+			
+			EventNotificationDao eventNotDao = new EventNotificationDao();
+			LinkedList<Events> eventList3 = eventNotDao
+					.getEventNotifications(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			request.setAttribute("eventList3", eventList3);
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
 		}else {

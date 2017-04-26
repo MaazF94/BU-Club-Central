@@ -1,27 +1,55 @@
 package edu.ben.bu_club_central.daos;
 
-import mailDispatcher.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
-
-import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
 import jbcrypt.BCrypt;
 
 public class UserDao {
+	/**
+	 * class variable for the table name of this class in the database
+	 */
 	private String tableName = "user";
+	
+	/**
+	 * class variable for when registering a user the default is enabled
+	 */
 	private int enabled = 1;
+	
+	/**
+	 * class variable for a method that when you disable a user
+	 */
 	private int disabled = 0;
-	private int default_user_id = 1;
+	
+	/**
+	 * class variable for the default role id when registering users
+	 * which is user a regular member
+	 */
+	private int default_role_id = 1;
 
+	/**
+	 * the declaration of the database connection class
+	 */
 	private DatabaseConnection dbc;
+	
+	/**
+	 * the declaration of the connection class
+	 */
 	private Connection conn;
 
-	// Register user method works
+	/**
+	 * The method registers users into the database
+	 * @param first_name String 
+	 * @param last_name String
+	 * @param username String
+	 * @param passwrd String
+	 * @param id_num integer
+	 * @param email String
+	 * @return true if the  user is registered in the database false otherwise
+	 */
 	public boolean registerUser(String first_name, String last_name, String username, String passwrd, int id_num,
 			String email) {
 		dbc = new DatabaseConnection();
@@ -29,7 +57,7 @@ public class UserDao {
 		String sql = "INSERT INTO " + tableName
 				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name
 				+ "', '" + last_name + "', '" + username + "', '" + passwrd + "', " + id_num + ", '" + email + "', "
-				+ default_user_id + ", " + enabled + ")";
+				+ default_role_id + ", " + enabled + ")";
 		System.out.println(sql);
 
 		PreparedStatement ps;
@@ -44,11 +72,15 @@ public class UserDao {
 			System.out.println("Did not update");
 			e.printStackTrace();
 		}
-
-		dbc.closeConnection();
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public boolean checkPasswordUsernameMatch(String username, String password) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();

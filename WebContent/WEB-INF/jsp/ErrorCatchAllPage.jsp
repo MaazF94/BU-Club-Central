@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>	
-
+		<h1>ERROR!!!!!</h1>
+		<br>
+		<br>
 		<div class="container">
 			<h2>As we try to fix this issue have a few laughs below then click the home button when your ready</h2>
 		</div>

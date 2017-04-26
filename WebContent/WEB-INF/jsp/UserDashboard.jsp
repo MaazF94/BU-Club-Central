@@ -94,22 +94,18 @@
 							<ul class="rd-navbar-nav">
 
 								<%
-									EventNotificationDao eventNotDao = new EventNotificationDao();
-									LinkedList<Events> eventList = eventNotDao
-											.getEventNotifications(((User) session.getAttribute("user")).getId_num());
+									LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList3");
 									int eventListIndex = 0;
 									int eventListSize = eventList.size();
 								%>
 
-								<%
-									if (eventList.size() != 0) {
-								%>
+								
 
 								<li>
 									<div class="dropdown " style="width: 100px">
 										<span data-toggle="dropdown"
 											class="glyphicon glyphicon-calendar"
-											style="color: yellow; font-size: 20px">Notifications</span>
+											style="color: yellow; font-size: 30px"><%=eventListSize%></span>
 										<ul class="dropdown-menu">
 
 											<%
@@ -127,9 +123,8 @@
 
 
 										</ul>
-									</div> <%
- 	}
- %>
+									</div>
+	
 
 								</li>
 
