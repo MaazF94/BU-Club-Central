@@ -225,7 +225,7 @@ public class UserDao {
 			while (rs.next()) {
 
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), "", "", rs.getInt("id_num"),
-						rs.getString("email"), 0, rs.getInt("iduser"), 0);
+						rs.getString("email"), 0, rs.getInt("iduser"), 0, rs.getString("preference"));
 				userList.add(user);
 			}
 			rs.close();
@@ -709,7 +709,7 @@ public class UserDao {
 			} else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
@@ -755,7 +755,7 @@ public class UserDao {
 
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
@@ -795,7 +795,7 @@ public class UserDao {
 			while (rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 				userList.add(user);
 			}
 			rs.close();
@@ -889,6 +889,24 @@ public class UserDao {
 		}
 		return false;
 	}
+	
+	public boolean updatePreference(String[] preferences, int userID) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String joinedPreferences = String.join(",", preferences);
+		
+				String sql = "UPDATE " + tableName + " SET preference='" + joinedPreferences + "' WHERE iduser=" + userID;
+		PreparedStatement ps;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	/**
 	 * This method gets the user by their id number
@@ -924,7 +942,7 @@ public class UserDao {
 			} else {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 				user.setRole_id(rs.getInt("role_id"));
 				user.setClub_id_num(rs.getInt("club_id_num"));
 				rs.close();
@@ -1037,7 +1055,7 @@ public class UserDao {
 
 				User newUser = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 				results.add(newUser);
 			}
 			rs.close();
@@ -1072,7 +1090,7 @@ public class UserDao {
 
 				User newUser = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 				results.add(newUser);
 			}
 			rs.close();
@@ -1118,7 +1136,7 @@ public class UserDao {
 				if (rs.getInt("enabled") == 1) {
 					user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 							rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-							rs.getInt("iduser"), rs.getInt("enabled"));
+							rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 					userList.add(user);
 				}
 			}
@@ -1202,7 +1220,7 @@ public class UserDao {
 			while (rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
 				userList.add(user);
 			}
 			rs.close();

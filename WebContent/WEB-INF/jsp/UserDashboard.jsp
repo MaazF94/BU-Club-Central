@@ -236,7 +236,9 @@
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
 								<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
-									<li class="active" role="tab"><a href="#viewEvents"
+									<li class="active" role="tab"><a href="suggestedClubs"
+										aria-controls="#suggestedClubs" role="tab" data-toggle="tab">Suggested Clubs</a></li>
+									<li role="tab"><a href="#viewEvents"
 										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
 									
 									<li role="tab"><a href="#viewPopularEvents"
@@ -262,7 +264,80 @@
 								<!-- Tab panes -->
 								
 								<div class="tab-content well">
-										<div role="tabpanel" class="tab-pane active" id="viewEvents">
+								<div role="tabpanel" class="tab-pane active" id="suggestedClubs">
+							<div class="container">
+
+							<form action="ShowClubByPreferenceServlet" method="GET">
+								<table class="table table-hover sortable">
+									<thead>
+									
+								<%
+									LinkedList<User> userList2 = (LinkedList<User>) request.getAttribute("userList2");
+									int userIndex = 0;
+									int userList2Index = userList2.size();
+									
+											ClubDao cDao = new ClubDao();
+											LinkedList<Club> clubList = cDao.displayClubsByUserPreference(userList2.get(userIndex).getPreference());
+											int clubListIndex = clubList.size();
+											int clubIndex = 0;
+								%>
+									<h3 class= "text-center "></h3>
+									<hr>
+										<tr>
+											<th>Preferences</th>
+											<th>Suggested Clubs</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%while (clubIndex < clubListIndex) { %>
+										<tr>
+										<%if (clubIndex == 0) { %>
+											<td>
+											<input type="checkbox" name="preference" value="sports">Sports
+											<input type="checkbox" name="preference" value="technology">Technology
+											<input type="checkbox" name="preference" value="movies">Movies
+											<input type="checkbox" name="preference" value="art">Art
+											<input type="checkbox" name="preference" value="other">Other
+											</td>
+											<%} else { %>
+											<td>
+											</td>
+											<%} %>
+											<td>
+											<a type="button" class="btn-xs btn-danger" 
+											href="ClubHomepage?club_id_num=<%=(clubList.get(clubIndex).getClub_id_num())%>">
+											<span class="icon icon-xxs text-middle mdi mdi-run"></a></span>
+                           					<span class="text-middle"><strong><%=clubList.get(clubIndex).getClub_name()%></strong></span>
+											</td>
+										</tr>
+											<%clubIndex++;
+											}
+										if (clubIndex == 0) {
+											%>
+											<tr>
+																						<td>
+											<input type="checkbox" name="preference" value="sports">Sports
+											<input type="checkbox" name="preference" value="technology">Technology
+											<input type="checkbox" name="preference" value="movies">Movies
+											<input type="checkbox" name="preference" value="art">Art
+											<input type="checkbox" name="preference" value="other">Other
+											</td>
+											</tr>
+											<%
+										}
+											%>
+
+									</tbody>
+								</table>
+								<button class="btn btn-warning" type="submit">
+													See Suggested Clubs</button>
+								</form>
+							</div>
+						</div>
+						
+						
+										<div role="tabpanel" class="tab-pane" id="viewEvents">
 							<div class="container">
 								<%
 									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");

@@ -12,11 +12,10 @@ public class User {
 	private int enabled;
 	private int club_id_num;
 	private int user_id;
+	private String preference;
 	
 
-	
-
-	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id, int user_id, int enabled) {
+	public User(String first_name, String last_name, String username, String password, int id_num, String email, int role_id, int user_id, int enabled, String preference) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -26,6 +25,7 @@ public class User {
 		this.role_id = role_id;
 		this.user_id = user_id;
 		this.enabled = enabled;
+		this.preference = preference;
 	}
 
 	public String getFirst_name() {
@@ -106,6 +106,14 @@ public class User {
 	
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+	
+	public String getPreference() {
+		return preference;
+	}
+	
+	public void setPreference(String preference) {
+		this.preference = preference;
 	}
 	
 	
