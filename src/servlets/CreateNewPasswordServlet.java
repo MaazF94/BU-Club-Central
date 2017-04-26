@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.UserDao;
+import jbcrypt.BCrypt;
 
 /**
  * Servlet implementation class CreateNewPasswordServlet
@@ -91,7 +92,9 @@ public class CreateNewPasswordServlet extends HttpServlet {
 	
 	public static boolean callCreateNewPassword(String password, int id_num, String username) {
 		UserDao uDao = new UserDao();
-		if (uDao.userUpdatePassword(username, password, id_num)) {
+		String hashedPw = BCrypt.hashpw(password, BCrypt.gensalt());
+
+		if (uDao.userUpdatePassword(username, hashedPw, id_num)) {
 			return true;
 		}
 		return false;
