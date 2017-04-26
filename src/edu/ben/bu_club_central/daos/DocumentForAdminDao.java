@@ -40,6 +40,13 @@ public class DocumentForAdminDao {
 	 */
 	private Connection conn;
 
+	/**
+	 * gets all documents
+	 * 
+	 * @return linked list of document for admin objects
+	 * @throws IOException
+	 *             exception
+	 */
 	public LinkedList<DocumentForAdmin> displayDocumentForAdminInfo() throws IOException {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -76,6 +83,21 @@ public class DocumentForAdminDao {
 		return DocumentForAdminList;
 	}
 
+	/**
+	 * adds a new document
+	 * 
+	 * @param name
+	 *            String
+	 * @param user_id_num
+	 *            Integer
+	 * @param inputStream
+	 *            InputStream
+	 * @param active
+	 *            boolean
+	 * @return true if added false otherwise
+	 * @throws IOException
+	 *             exception
+	 */
 	public boolean addDocument(String name, int user_id_num, InputStream inputStream, boolean active)
 			throws IOException {
 		dbc = new DatabaseConnection();

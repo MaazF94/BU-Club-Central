@@ -12,32 +12,58 @@ import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Events;
 import javafx.event.Event;
 
-/**
- * @author raza The connector for the events table in the database
- *
- */
 public class EventsDao {
 
+	/**
+	 * database table name
+	 */
 	private String tableName = "bu_club_central.event";
+
+	/**
+	 * event object
+	 */
 	private Events eventObj;
+
+	/**
+	 * default value for the rsvp count of an event
+	 */
 	private final int rsvpInitalCount = 0;
 
+	/**
+	 * database connection
+	 */
 	private DatabaseConnection dbc;
+
+	/**
+	 * Connection
+	 */
 	private Connection conn;
 
 	/**
+	 * Adds an event to the database
 	 * 
 	 * @param event_name
+	 *            String
 	 * @param description
+	 *            String
 	 * @param location
-	 * @param type_of_event
-	 * @param date
-	 * @param funding
-	 * @param expected_count
-	 * @param length_of_event
-	 * @param time
+	 *            String
 	 * @param club_id_num
-	 *            add a single event object into the database
+	 *            Integer
+	 * @param startyear
+	 *            String
+	 * @param startmonth
+	 *            String
+	 * @param startday
+	 *            String
+	 * @param endyear
+	 *            String
+	 * @param endmonth
+	 *            String
+	 * @param endday
+	 *            String
+	 * @param category
+	 *            String
 	 */
 	public void addEvent(String event_name, String description, String location, int club_id_num, String startyear,
 			String startmonth, String startday, String endyear, String endmonth, String endday, String category) {
@@ -62,6 +88,11 @@ public class EventsDao {
 		}
 	}
 
+	/**
+	 * Gets all the events in the database
+	 * 
+	 * @return linked list of events
+	 */
 	public LinkedList<Events> getAllEvents() {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -78,7 +109,6 @@ public class EventsDao {
 						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
-				// event.setAcutal_count(cs.getInt("acutal_count"));
 				results.add(event);
 			}
 			cs.close();
@@ -87,11 +117,15 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(results.size());
-
 		return results;
 	}
 
+	/**
+	 * Increases the rsvp count for a specific event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 */
 	public void increaseRSVPCount(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -108,18 +142,14 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			rs.next();
 			rsvpCount = rs.getInt("rsvp_count");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		rsvpCount = rsvpCount + 1;
-
 		String sql2 = "UPDATE " + tableName + " SET rsvp_count=" + rsvpCount + " WHERE idevent=" + eventId;
-
 		try {
 			ps2 = conn.prepareStatement(sql2);
 			ps2.executeUpdate();
@@ -131,6 +161,13 @@ public class EventsDao {
 		}
 	}
 
+	/**
+	 * gets an event from a specific event id
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @return event object
+	 */
 	public Events getEventByEventId(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -146,14 +183,12 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
 						rs.getInt("club_id_num"), rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
-				// event.setAcutal_count(rs.getInt("acutal_count"));
 			}
 			rs.close();
 			conn.close();
@@ -161,15 +196,20 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return event;
 	}
 
+	/**
+	 * gets all the events for a specific club
+	 * 
+	 * @param clubId
+	 *            Integer
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getAllEventsByClubId(int clubId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql = "SELECT * FROM " + tableName + " WHERE club_id_num=" + clubId;
-		// System.out.println(sql);
 
 		LinkedList<Events> list = new LinkedList<Events>();
 		Events event;
@@ -183,15 +223,12 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
 						rs.getInt("club_id_num"), rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
-				// event.setAcutal_count(rs.getInt("acutal_count"));
-
 				list.add(event);
 			}
 			rs.close();
@@ -200,19 +237,29 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(list.size());
-
 		return list;
 	}
 
+	/**
+	 * this method edits an event
+	 * 
+	 * @param idevent
+	 *            Integer
+	 * @param eventName
+	 *            String
+	 * @param description
+	 *            String
+	 * @param location
+	 *            String
+	 * @param rsvp_count
+	 *            Integer
+	 */
 	public void editEvent(int idevent, String eventName, String description, String location, int rsvp_count) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql = "UPDATE " + tableName + " SET event_name='" + eventName + "', description='" + description
 				+ "', location='" + location + "', rsvp_count=" + rsvp_count + " WHERE idevent=" + idevent;
-
 		PreparedStatement ps;
-
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
@@ -222,16 +269,19 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * this method deletes and event by event id number
+	 * 
+	 * @param eventId
+	 *            Integer
+	 */
 	public void deleteEventByEventId(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql = "DELETE FROM " + tableName + " WHERE idevent=" + eventId;
-
 		PreparedStatement ps;
-
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
@@ -241,9 +291,17 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * this method gets all events for paging
+	 * 
+	 * @param offset
+	 *            Integer
+	 * @param noOfRecords
+	 *            Integer
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getAllEventsForPaging(int offset, int noOfRecords) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -254,13 +312,11 @@ public class EventsDao {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
-
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
 						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
-
 				results.add(event);
 			}
 			cs.close();
@@ -269,7 +325,6 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return results;
 	}
 
@@ -277,7 +332,7 @@ public class EventsDao {
 	 * returns the event id of the last event to be created this method goes in
 	 * part with the event notification methods
 	 * 
-	 * @return
+	 * @return Integer
 	 */
 	public int getLatestEventId() {
 		dbc = new DatabaseConnection();
@@ -305,15 +360,19 @@ public class EventsDao {
 		return eventId;
 	}
 
+	/**
+	 * gets event by name
+	 * 
+	 * @param eventName
+	 *            String
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getAllEventsByEventName(String eventName) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql = "SELECT * FROM " + tableName + " WHERE event_name like '%" + eventName + "%'";
-		System.out.println(sql);
-
 		LinkedList<Events> list = new LinkedList<Events>();
 		Events event;
-
 		PreparedStatement ps;
 		ResultSet rs = null;
 
@@ -323,14 +382,12 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
 						rs.getInt("club_id_num"), rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
-
 				list.add(event);
 			}
 			rs.close();
@@ -339,11 +396,17 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(list.size());
-
 		return list;
 	}
 
+	/**
+	 * updates the actual count for an event
+	 * 
+	 * @param acutalCount
+	 *            Integer
+	 * @param eventId
+	 *            Integer
+	 */
 	public void increaseActualCount(int acutalCount, int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -360,9 +423,15 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * gets all events by category
+	 * 
+	 * @param category
+	 *            String
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getAllEventsByCategory(String category) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -381,14 +450,12 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
 						rs.getInt("club_id_num"), rs.getString("category"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
-
 				list.add(event);
 			}
 			rs.close();
@@ -397,11 +464,14 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(list.size());
-
 		return list;
 	}
 
+	/**
+	 * gets the 3 most recent events
+	 * 
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getLast3Events() {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -412,13 +482,11 @@ public class EventsDao {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
-
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
 						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
-				// event.setAcutal_count(cs.getInt("acutal_count"));
 				results.add(event);
 			}
 			cs.close();
@@ -427,11 +495,17 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(results.size());
-
 		return results;
 	}
 
+	/**
+	 * adds a like to an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @param currentLikes
+	 *            Integer
+	 */
 	public void addLikeToEvent(int eventId, int currentLikes) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -448,9 +522,15 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * gets the total number of likes for an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @return Integer
+	 */
 	public int getNumOfLikes(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -464,7 +544,6 @@ public class EventsDao {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-
 				likes = rs.getInt("likes");
 			}
 			;
@@ -480,6 +559,11 @@ public class EventsDao {
 		return 0;
 	}
 
+	/**
+	 * gets the most popular events
+	 * 
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getMostPopular() {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -490,13 +574,11 @@ public class EventsDao {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet cs = ps.executeQuery();
-
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
 						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
-				// event.setAcutal_count(cs.getInt("acutal_count"));
 				results.add(event);
 			}
 			cs.close();
@@ -505,11 +587,15 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(results.size());
-
 		return results;
 	}
 
+	/**
+	 * decreases the rsvp count for an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 */
 	public void decreaseAttendanceCount(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();

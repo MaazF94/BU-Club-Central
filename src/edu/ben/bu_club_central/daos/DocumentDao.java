@@ -30,6 +30,11 @@ public class DocumentDao {
 	 */
 	private Connection conn;
 
+	/**
+	 * gets all documents
+	 * 
+	 * @return linked list of document objects
+	 */
 	public LinkedList<Document> displayDocumentInfo() {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();

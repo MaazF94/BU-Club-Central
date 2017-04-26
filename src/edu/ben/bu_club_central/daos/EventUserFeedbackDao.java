@@ -5,11 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class EventUserFeedbackDao {
+	/**
+	 * database table name
+	 */
 	private String tableName = "bu_club_central.event_feedback";
 
+	/**
+	 * database connection
+	 */
 	private DatabaseConnection dbc;
+
+	/**
+	 * connection
+	 */
 	private Connection conn;
 
+	/**
+	 * This method inserts feedback
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @param userId
+	 *            Integer
+	 * @param feedback
+	 *            String
+	 */
 	public void insertFeedback(int eventId, int userId, String feedback) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -28,7 +48,6 @@ public class EventUserFeedbackDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

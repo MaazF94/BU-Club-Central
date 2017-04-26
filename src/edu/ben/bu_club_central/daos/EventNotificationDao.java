@@ -11,10 +11,19 @@ import edu.ben.bu_club_central.models.Events;
 import edu.ben.bu_club_central.models.User;
 
 public class EventNotificationDao {
+	/**
+	 * database table name
+	 */
 	private String tableName = "bu_club_central.event_notifications";
 
+	/**
+	 * database connection
+	 */
 	private DatabaseConnection dbc;
 
+	/**
+	 * connection
+	 */
 	private Connection conn;
 
 	/**
@@ -22,6 +31,7 @@ public class EventNotificationDao {
 	 * table with a flag set to false menaing they have not seen that event yet
 	 * 
 	 * @param eventId
+	 *            Integer
 	 */
 	public void addEventsAndUsers(int eventId) {
 		dbc = new DatabaseConnection();
@@ -65,7 +75,8 @@ public class EventNotificationDao {
 	 * notification table
 	 * 
 	 * @param id_num
-	 * @return
+	 *            Integer
+	 * @return linked list of event objects
 	 */
 	public LinkedList<Events> getEventNotifications(int id_num) {
 		dbc = new DatabaseConnection();
@@ -120,7 +131,9 @@ public class EventNotificationDao {
 	 * visits the event details page of that event
 	 * 
 	 * @param eventId
+	 *            Integer
 	 * @param id_num
+	 *            Integer
 	 */
 	public void checkedNotification(int eventId, int id_num) {
 		dbc = new DatabaseConnection();

@@ -168,23 +168,31 @@ public class ClubMembershipDao {
 
 		for (int i = 0; i < club_id_nums.length; i++) {
 			if (club_id_nums[i] != 0) {
-			sql = "UPDATE " + tableName + " SET active = 0 WHERE user_id = " + user_id + " AND club_id = "
-					+ club_id_nums[i];
+				sql = "UPDATE " + tableName + " SET active = 0 WHERE user_id = " + user_id + " AND club_id = "
+						+ club_id_nums[i];
 
-			PreparedStatement ps;
-			try {
-				ps = conn.prepareStatement(sql);
-				ps.executeUpdate(sql);
-			} catch (SQLException e) {
-				System.out.println("User does not exist in club");
-				e.printStackTrace();
-				result = false;
-			}
+				PreparedStatement ps;
+				try {
+					ps = conn.prepareStatement(sql);
+					ps.executeUpdate(sql);
+				} catch (SQLException e) {
+					System.out.println("User does not exist in club");
+					e.printStackTrace();
+					result = false;
+				}
 			}
 		}
 		return result;
 	}
 
+	/**
+	 * removes a user from a club
+	 * 
+	 * @param club_id
+	 *            Integer
+	 * @param userIDs
+	 *            Integer array
+	 */
 	public void removeUserFromClub(int club_id, int[] userIDs) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -196,7 +204,7 @@ public class ClubMembershipDao {
 						+ club_id;
 
 				PreparedStatement ps;
-				
+
 				try {
 					ps = conn.prepareStatement(sql);
 					ps.executeUpdate(sql);
@@ -207,7 +215,7 @@ public class ClubMembershipDao {
 			}
 		}
 	}
-	
+
 	/**
 	 * Used to display which clubs a user is in on dashboard
 	 * 

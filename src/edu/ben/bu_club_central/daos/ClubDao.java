@@ -194,7 +194,7 @@ public class ClubDao {
 				results.add(newClub);
 			}
 			cs.close();
-			
+
 			dbc.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -203,6 +203,13 @@ public class ClubDao {
 		return results;
 	}
 
+	/**
+	 * gets a club by its id
+	 * 
+	 * @param clubId
+	 *            Integer
+	 * @return club object
+	 */
 	public Club getClubById(int clubId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -239,6 +246,11 @@ public class ClubDao {
 		return club;
 	}
 
+	/**
+	 * gets all the clubs
+	 * 
+	 * @return linked list of club objects
+	 */
 	public LinkedList<Club> getAllClubs() {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -276,6 +288,12 @@ public class ClubDao {
 		return clubList;
 	}
 
+	/**
+	 * deletes a club
+	 * 
+	 * @param club_id_num
+	 *            String
+	 */
 	public void deleteClub(String club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -309,7 +327,9 @@ public class ClubDao {
 	 * allow board member to edit club description from dashboard
 	 * 
 	 * @param club_description
+	 *            String
 	 * @param club_id_num
+	 *            Integer
 	 */
 	public boolean editClubDescription(String club_description, int club_id_num) {
 		dbc = new DatabaseConnection();
@@ -333,6 +353,15 @@ public class ClubDao {
 		return false;
 	}
 
+	/**
+	 * edits meeting time
+	 * 
+	 * @param meeting_time
+	 *            String
+	 * @param club_id_num
+	 *            Integer
+	 * @return true if edited false otherwise
+	 */
 	public boolean editClubMeetingTime(String meeting_time, int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -355,6 +384,15 @@ public class ClubDao {
 		return false;
 	}
 
+	/**
+	 * edit club meeting location
+	 * 
+	 * @param meeting_loc
+	 *            String
+	 * @param club_id_num
+	 *            Integer
+	 * @return true if updated false otherwise
+	 */
 	public boolean editClubMeetingLoc(String meeting_loc, int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -377,6 +415,14 @@ public class ClubDao {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param meeting_freq
+	 *            String
+	 * @param club_id_num
+	 *            Integer
+	 * @return true if updated false otherwise
+	 */
 	public boolean editClubMeetingFreq(String meeting_freq, int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -399,6 +445,14 @@ public class ClubDao {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param broadcast
+	 *            String
+	 * @param club_id_num
+	 *            Integer
+	 * @return true if updated false otherwise
+	 */
 	public boolean editClubBroadcast(String broadcast, int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -421,6 +475,12 @@ public class ClubDao {
 		return false;
 	}
 
+	/**
+	 * disable club
+	 * 
+	 * @param club_id_num
+	 *            Integer
+	 */
 	public void disableClub(int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -441,6 +501,12 @@ public class ClubDao {
 
 	}
 
+	/**
+	 * enable club
+	 * 
+	 * @param club_id_num
+	 *            Integer
+	 */
 	public void enableClub(int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -461,6 +527,13 @@ public class ClubDao {
 
 	}
 
+	/**
+	 * counts how many people are in each club
+	 * 
+	 * @param club_id_num
+	 *            Integer
+	 * @return Integer
+	 */
 	public int countMemebers(int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -497,6 +570,13 @@ public class ClubDao {
 		return size;
 	}
 
+	/**
+	 * shoes club preferences
+	 * 
+	 * @param preference
+	 *            String
+	 * @return linked list of club objects
+	 */
 	public LinkedList<Club> displayClubByPreference(String preference) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();

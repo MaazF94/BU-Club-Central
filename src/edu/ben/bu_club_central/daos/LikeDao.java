@@ -10,17 +10,28 @@ import edu.ben.bu_club_central.models.Likes;
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 public class LikeDao {
+	/**
+	 * table name in database
+	 */
 	private String tableName = "bu_club_central.likes";
 
+	/**
+	 * database connection
+	 */
 	private DatabaseConnection dbc;
+
+	/**
+	 * connection
+	 */
 	private Connection conn;
 
 	/**
+	 * This mehtod adds a like
 	 * 
-	 * @param idlike
 	 * @param idUser
-	 * @param likeCount
+	 *            Integer
 	 * @param idevent
+	 *            Integer
 	 */
 	public void addLike(int idUser, int idevent) {
 		dbc = new DatabaseConnection();
@@ -37,9 +48,15 @@ public class LikeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * This method gets all like for events
+	 * 
+	 * @param idevent
+	 *            Integer
+	 * @return linked list of likes objects
+	 */
 	public LinkedList<Likes> getAllLikesByEventId(int idevent) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -58,12 +75,6 @@ public class LikeDao {
 
 		try {
 			while (rs.next()) {
-				// newLike = new Likes(Integer.parseInt(rs.getString("idlike")),
-				// Integer.parseInt(rs.getString("idUser")),
-				// Integer.parseInt(rs.getString("idevent")) );
-				// newLike.setIdlike(rs.getInt("idlike"));
-				// likeList.add(newLike);
-
 			}
 			rs.close();
 			conn.close();
@@ -71,7 +82,6 @@ public class LikeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return likeList;
 	}
 

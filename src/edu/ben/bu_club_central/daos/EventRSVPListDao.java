@@ -10,11 +10,29 @@ import edu.ben.bu_club_central.models.Events;
 import edu.ben.bu_club_central.models.User;
 
 public class EventRSVPListDao {
+	/**
+	 * database table name
+	 */
 	private String tableName = "bu_club_central.event_rsvp_list";
 
+	/**
+	 * database connection
+	 */
 	private DatabaseConnection dbc;
+
+	/**
+	 * connection
+	 */
 	private Connection conn;
 
+	/**
+	 * this rsvps a user for an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @param user_id_num
+	 *            Integer
+	 */
 	public void rsvpUserForEvent(int eventId, int user_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -78,6 +96,13 @@ public class EventRSVPListDao {
 		return false;
 	}
 
+	/**
+	 * gets all users that are going to an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @return linked list of user objects
+	 */
 	public LinkedList<User> getAllUsersForEvent(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -114,6 +139,13 @@ public class EventRSVPListDao {
 
 	}
 
+	/**
+	 * gets all events that a user said that they will be going to
+	 * 
+	 * @param userId
+	 *            Integer
+	 * @return linked list of event objects
+	 */
 	public LinkedList<Events> getAllEventsThatuserRSVP(int userId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -132,7 +164,6 @@ public class EventRSVPListDao {
 
 			while (rs.next()) {
 				eventIdList.add(rs.getInt("eventId"));
-
 			}
 			rs.close();
 
@@ -162,10 +193,17 @@ public class EventRSVPListDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return eventList;
 	}
 
+	/**
+	 * this removes a user from the rsvp list for an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @param id_num
+	 *            Integer
+	 */
 	public void unRSVPForEvent(int eventId, int id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
