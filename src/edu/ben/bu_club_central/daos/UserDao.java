@@ -445,6 +445,46 @@ public class UserDao {
 		}
 		return false;
 	}
+	
+	public boolean editFirstName(int user_id, String first_name) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET first_name = '" + first_name + "' WHERE iduser =" + user_id;
+
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				return true;
+			} else {
+				throw new SQLException();
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean editLastName(int user_id, String last_name) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "UPDATE " + tableName + " SET last_name = '" + last_name + "' WHERE iduser =" + user_id;
+
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			if (ps.executeUpdate() == 1) {
+				return true;
+			} else {
+				throw new SQLException();
+			}
+		} catch (SQLException e) {
+			System.out.println("Did not update");
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	/**
 	 * Checks to make sure username only contains letters and numbers

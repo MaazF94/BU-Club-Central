@@ -311,7 +311,7 @@
 							</div>
 						</div>
 						
-						<div role="tabpanel" class="tab-pane active" id="viewPopularEvents">
+						<div role="tabpanel" class="tab-pane" id="viewPopularEvents">
 							<div class="container">
 								<%
 								EventsDao eDao = new EventsDao();
@@ -557,7 +557,7 @@
 										</div>
 									</div>
 
-									<div role="tabpanel" class="tab-pane active" id="viewProfile">
+									<div role="tabpanel" class="tab-pane" id="viewProfile">
 										<div class="container">
 											<%
 												UserDao uDao = new UserDao();
@@ -570,9 +570,8 @@
 											<table class="table table-hover sortable">
 												<thead>
 													<tr>
-														<th>Username</th>
-														<th>Password</th>
-														<th>Email</th>
+														<th>Edit Password</th>
+														<th>Edit Name/Email</th>
 													</tr>
 												</thead>
 
@@ -582,32 +581,85 @@
 													%>
 													<tr>
 														<td>
-															<form action="EditUsernameServlet" method="POST">
-																<textarea onkeypress="enableUpdateButton1()" cols="15"
-																	rows="1" name="editUsername"><%=userList.get(index2).getUsername()%></textarea>
-																<br>
-																<button id="button1" disabled class="btn btn-warning"
-																	type="submit">Save Changes</button>
-															</form>
-														</td>
-														<td>
 															<form action="EditPasswordServlet" method="POST">
-																<textarea onkeypress="enableUpdateButton2()" cols="15"
-																	rows="1" name="editPassword"><%=userList.get(index2).getPassword()%></textarea>
+																<div class="form-group">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
+												style="width: 220px;"
+												id="login-your-pw" placeholder="Your Current Password"
+												type="password" name="currentPW" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
+												style="width: 220px;"
+												id="login-your-newpw" placeholder="Your New Password"
+												type="password" name="newPW" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
+												style="width: 220px;" onkeypress="enableUpdateButton2()"
+												id="login-your-new-password" placeholder="Retype Your New Password"
+												type="password" name="verifyNewPW" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
 																<br>
 																<button id="button2" disabled class="btn btn-warning"
 																	type="submit">Save Changes</button>
 															</form>
 														</td>
-														<td>
-															<form action="EditEmailServlet" method="POST">
-																<textarea onkeypress="enableUpdateButton3()" cols="20"
-																	rows="1" name="editEmail"><%=userList.get(index2).getEmail()%></textarea>
-																<br>
-																<button id="button3" disabled class="btn btn-warning"
+									<td>
+									<form action="EditEmailServlet" method="POST">
+									<div class="form-group">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span> <input
+												value="<%= userList.get(index2).getFirst_name()%>"
+												onkeypress="enableUpdateButton3()"
+												style="width: 200px;"
+												id="login-your-first-name"
+												type="text" name="first_name" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span>
+												<input value="<%= userList.get(index2).getLast_name()%>"
+												onkeypress="enableUpdateButton3()"
+												style="width: 200px;"
+												id="login-your-last-name"
+												type="text" name="last_name" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span>
+												<input value="<%= userList.get(index2).getEmail()%>"
+												onkeypress="enableUpdateButton3()"
+												style="width: 200px;"
+												id="login-your-email"
+												type="text" name="email" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<br>
+									<button id="button3" disabled class="btn btn-warning"
 																	type="submit">Save Changes</button>
-															</form>
-														</td>
+									</form>
+									 </td>
 													</tr>
 													<%
 														index2++;
