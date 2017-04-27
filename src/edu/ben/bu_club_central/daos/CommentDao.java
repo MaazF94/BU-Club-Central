@@ -15,12 +15,31 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import edu.ben.bu_club_central.models.Comment;
 
 public class CommentDao {
-
+	/**
+	 * database table name
+	 */
 	private String tableName = "bu_club_central.comments";
 
+	/**
+	 * database connection
+	 */
 	private DatabaseConnection dbc;
+
+	/**
+	 * connection
+	 */
 	private Connection conn;
 
+	/**
+	 * adds a comment
+	 * 
+	 * @param comment
+	 *            String
+	 * @param eventId
+	 *            Integer
+	 * @param userId
+	 *            Integer
+	 */
 	public void addComent(String comment, int eventId, int userId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -41,6 +60,13 @@ public class CommentDao {
 
 	}
 
+	/**
+	 * gets all comments for an event
+	 * 
+	 * @param eventId
+	 *            Integer
+	 * @return linked list of comment objects
+	 */
 	public LinkedList<Comment> getCommentsByEventId(int eventId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -64,20 +90,23 @@ public class CommentDao {
 				c = new Comment(rs.getInt("idcomments"), rs.getString("comment"), rs.getInt("eventId"),
 						rs.getInt("userId"), rs.getString("createdOn"));
 				commentList.add(c);
-
 			}
-			
 			rs.close();
-		
+			conn.close();
 			dbc.closeConnection();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return commentList;
 	}
 
+	/**
+	 * gets a comment by its id
+	 * 
+	 * @param commentId
+	 *            Integer
+	 * @return comment object
+	 */
 	public Comment getCommentByCommentId(int commentId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -109,6 +138,14 @@ public class CommentDao {
 
 	}
 
+	/**
+	 * edits comment
+	 * 
+	 * @param commentId
+	 *            Integer
+	 * @param comment
+	 *            String
+	 */
 	public void editComment(int commentId, String comment) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -128,6 +165,12 @@ public class CommentDao {
 
 	}
 
+	/**
+	 * deletes comment
+	 * 
+	 * @param commentId
+	 *            Integer
+	 */
 	public void deleteComment(int commentId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -147,6 +190,14 @@ public class CommentDao {
 
 	}
 
+	/**
+	 * adds a like to a comment
+	 * 
+	 * @param commentId
+	 *            Integer
+	 * @param currentLikes
+	 *            Integer
+	 */
 	public void addLikeToComment(int commentId, int currentLikes) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -166,6 +217,13 @@ public class CommentDao {
 
 	}
 
+	/**
+	 * gets the total number of likes for a comment
+	 * 
+	 * @param commentId
+	 *            Integer
+	 * @return Integer number of likes
+	 */
 	public int getNumOfLikes(int commentId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -195,6 +253,15 @@ public class CommentDao {
 		return 0;
 	}
 
+	/**
+	 * parses the data in the database
+	 * 
+	 * @param date
+	 *            String
+	 * @return String date
+	 * @throws Exception
+	 *             exception
+	 */
 	public String getparsedDate(String date) throws Exception {
 
 		DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", Locale.US);

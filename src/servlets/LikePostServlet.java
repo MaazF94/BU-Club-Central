@@ -34,8 +34,11 @@ public class LikePostServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		likePost(Integer.parseInt(request.getParameter("postId")));
-		response.sendRedirect("ClubHomepage");
+		int postID = Integer.parseInt(request.getParameter("postId").substring(0, request.getParameter("postId").indexOf(" ")));
+		String club_id = request.getParameter("postId").substring(request.getParameter("postId").indexOf(" "), request.getParameter("postId").length()).trim();
+		int club_id_num = Integer.parseInt(club_id);
+		likePost(postID);
+		response.sendRedirect("ClubHomepage?club_id_num=" + club_id_num);
 	}
 
 	private void likePost(int postId) {

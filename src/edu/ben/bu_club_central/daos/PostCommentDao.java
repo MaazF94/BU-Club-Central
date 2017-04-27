@@ -9,12 +9,31 @@ import java.util.LinkedList;
 import edu.ben.bu_club_central.models.PostComments;
 
 public class PostCommentDao {
+	/**
+	 * class variable for table name in database
+	 */
 	private String tableName = "post_comments";
 
+	/**
+	 * declaration of database connection
+	 */
 	private DatabaseConnection dbc;
 
+	/**
+	 * declaration of connection
+	 */
 	private Connection conn;
 
+	/**
+	 * This method add a comment for a post into the database
+	 * 
+	 * @param postId
+	 *            Integer
+	 * @param user_id_num
+	 *            Integer
+	 * @param comment
+	 *            String
+	 */
 	public void addPostComment(int postId, int user_id_num, String comment) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -31,9 +50,15 @@ public class PostCommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * This method gets all the comments for a specific post
+	 * 
+	 * @param postId
+	 *            Integer
+	 * @return linked list of post comment objects
+	 */
 	public LinkedList<PostComments> getAllCommentsForPost(int postId) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -49,7 +74,6 @@ public class PostCommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			while (rs.next()) {
 				PostComments comment = new PostComments(rs.getInt("idpost_comments"), rs.getInt("postId"),
@@ -62,7 +86,6 @@ public class PostCommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return commentList;
 	}
 

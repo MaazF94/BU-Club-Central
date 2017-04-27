@@ -236,10 +236,13 @@
 
 									int indexViewMember = 0;
 								%>
+								<form action="UserLeavesClubServlet" method="post">
 								<table class="table table-hover">
 									<thead>
 										<tr>
 											<th>Club Name</th>
+											<th><button class="btn btn-warning" type="submit">Leave
+														Clubs</button></th>
 										</tr>
 									</thead>
 									<tbody
@@ -249,11 +252,10 @@
 										%>
 										<tr>
 											<td><%=clubMembershipList.get(indexViewMember).getClub_name()%></td>
-											<td><form action="UserLeavesClubServlet" method="post">
-													<button class="btn btn-warning" type="submit" name="clubID"
-														value="<%=clubMembershipList.get(indexViewMember).getClubID()%>">Leave
-														Club</button>
-												</form></td>
+											<td><input type="checkbox"  name="club_id_num"
+														value="<%=clubMembershipList.get(indexViewMember).getClubID()%>">
+													
+											</td>
 										</tr>
 
 										<%
@@ -264,6 +266,7 @@
 										%>
 									</tbody>
 								</table>
+								</form>
 							</div>
 						</div>
 
@@ -344,18 +347,19 @@
 								%>
 
 								
-
+								<form action="EditClubInfoServlet" method="post">
 									<table class="table table-hover sortable">
 										<thead>
 											<tr>
+<<<<<<< HEAD
 												<td>Club Information</td>
-												
 											</tr>
 										</thead>
 
 										<tbody>
 											
 											<tr>
+<<<<<<< HEAD
 												<td>Club Description: </td>
 												<td><form action="EditClubDescriptionServlet" method="post">
 												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
@@ -426,6 +430,10 @@
 										</tbody>
 
 									</table>
+									
+													<br>
+													<button id="button" disabled class="btn btn-warning"
+														type="submit">Save Changes</button></form>
 							</div>
 						</div>
 
@@ -443,10 +451,14 @@
 											.getAttribute("clubMembershipList2");
 									int index3 = 0;
 								%>
+								<form action="RejoinClubFromDashboardServlet"
+													method="post">
 								<table class="table table-hover">
 									<thead>
 										<tr>
 											<th>Club Name</th>
+											<th><button class="btn btn-warning" type="submit">Rejoin
+														Club</button></th>
 										</tr>
 									</thead>
 									<tbody
@@ -456,13 +468,11 @@
 										%>
 										<tr>
 											<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
-											<td><form action="RejoinClubFromDashboardServlet"
-													method="post">
-													<button class="btn btn-warning" type="submit"
+											<td><input type="checkbox" 
 														name="club_id_num"
-														value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin
-														Club</button>
-												</form></td>
+														value="<%=clubMembershipList2.get(index3).getClubID()%>">
+													
+											</td>
 										</tr>
 
 										<%
@@ -473,6 +483,7 @@
 										%>
 									</tbody>
 								</table>
+								</form>
 							</div>
 						</div>
 
@@ -489,6 +500,7 @@
 									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
 									int index = 0;
 								%>
+								<form action="DeleteUserServlet" method="post">
 								<table class="table table-hover sortable">
 									<thead>
 										<tr>
@@ -497,7 +509,9 @@
 											<th>Last Name</th>
 											<th>ID Number</th>
 											<th>E-mail</th>
-											<th></th>
+											<th><button type="submit"
+													class="btn btn-warning">
+													Remove Users from Club</button></th>
 										</tr>
 									</thead>
 									<%
@@ -525,19 +539,19 @@
 												out.println(userList.get(index).getEmail());
 											%>
 										</td>
-										<form action="DeleteUserServlet" method="post">
+										
 
-											<td><button type="submit" name="UserID"
-													value="<%out.println(userList.get(index).getId_num());%>"
-													class="btn btn-warning">
-													Delete</a></td>
-										</form>
+										<td><input type="checkbox" name="UserID"
+													value="<%=userList.get(index).getUser_id()%>">
+										</td>
+										
 									</tr>
 									<%
 										index++;
 										}
 									%>
 								</table>
+								</form>
 							</div>
 						</div>
 
@@ -625,25 +639,16 @@
 									int eventListSize2 = eventList.size();
 								%>
 
-								<%
-									while (eventListIndex2 < eventListSize2) {
-								%>
 								<table class="table table-hover sortable">
 									<thead>
 										<tr>
-											<th>Event ID: <%=eventList2.get(eventListIndex2).getEventId()%></th>
-											<th>Event Name: <%=eventList2.get(eventListIndex2).getEvent_name()%></th>
-											<th>Club ID Number: <%=eventList2.get(eventListIndex2).getClub_id_num()%></th>
-
-										</tr>
-
-										<tr>
-											<th>Comment ID</th>
+											<th>Event Name</th>
 											<th>Comment</th>
-											<th>Event ID</th>
-											<th></th>
 										</tr>
 									</thead>
+								<%
+									while (eventListIndex2 < eventListSize2) {
+								%>
 									<tbody
 										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
 										<%
@@ -660,9 +665,8 @@
 										%>
 
 										<tr>
-											<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
+											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
 											<td><%=commentList.get(commentListIndex).getComment()%></td>
-											<td><%=commentList.get(commentListIndex).getEventId()%></td>
 											<td>
 												<form action="user/EditCommentServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
@@ -1360,30 +1364,6 @@
 		function enableUpdateButton() {
 
 			document.getElementById("button").disabled = false;
-
-		}
-		
-		function enableUpdateButton1() {
-
-			document.getElementById("button1").disabled = false;
-
-		}
-		
-		function enableUpdateButton2() {
-
-			document.getElementById("button2").disabled = false;
-
-		}
-		
-		function enableUpdateButton3() {
-
-			document.getElementById("button3").disabled = false;
-
-		}
-		
-		function enableUpdateButton4() {
-
-			document.getElementById("button4").disabled = false;
 
 		}
 

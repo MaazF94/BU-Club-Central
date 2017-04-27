@@ -333,7 +333,8 @@
 
 									<div id="<%=postList.get(postListIndex).getIdpost()%>" class="collapse">
 									<form action="LikePostServlet" method="post">
-										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost()%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+									<%int club_id  = (int) request.getAttribute("club_id_num"); %>
+										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
 										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
 									</form>
 									<br>
@@ -356,7 +357,7 @@
 										<form action="PostCommentServlet" method="POST">
 											<textarea rows="4" cols="20" placeholder="leave a comment" name="comment"></textarea>
 											<br>
-											<button class="btn btn-success" type="submit" value="<%=postList.get(postListIndex).getIdpost()%>" name="postIdForComment">Comment</button>
+											<button class="btn btn-success" type="submit" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>" name="postIdForComment">Comment</button>
 										</form>
 										
 										<br>

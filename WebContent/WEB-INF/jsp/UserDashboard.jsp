@@ -94,22 +94,18 @@
 							<ul class="rd-navbar-nav">
 
 								<%
-									EventNotificationDao eventNotDao = new EventNotificationDao();
-									LinkedList<Events> eventList = eventNotDao
-											.getEventNotifications(((User) session.getAttribute("user")).getId_num());
+									LinkedList<Events> eventList = (LinkedList<Events>) request.getAttribute("eventList3");
 									int eventListIndex = 0;
 									int eventListSize = eventList.size();
 								%>
 
-								<%
-									if (eventList.size() != 0) {
-								%>
+								
 
 								<li>
 									<div class="dropdown " style="width: 100px">
 										<span data-toggle="dropdown"
 											class="glyphicon glyphicon-calendar"
-											style="color: yellow; font-size: 20px">Notifications</span>
+											style="color: yellow; font-size: 30px"><%=eventListSize%></span>
 										<ul class="dropdown-menu">
 
 											<%
@@ -127,9 +123,8 @@
 
 
 										</ul>
-									</div> <%
- 	}
- %>
+									</div>
+	
 
 								</li>
 
@@ -214,11 +209,7 @@
 				data-url="images/background-04-1920x750.jpg"
 				class="rd-parallax-layer"></div>
 			<div data-speed="0" data-type="html" class="rd-parallax-layer">
-				<div
-					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-					<!--   <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>-->
-
-				</div>
+				<div class="shell    section-lg-top-110 "></div>
 			</div>
 			</section>
 		</div>
@@ -241,8 +232,13 @@
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
 								<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
-									<li class="active" role="presentation"><a href="#viewEvents"
+									<li class="active" role="tab"><a href="suggestedClubs"
+										aria-controls="#suggestedClubs" role="tab" data-toggle="tab">Suggested Clubs</a></li>
+									<li role="tab"><a href="#viewEvents"
 										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
+									
+									<li role="tab"><a href="#viewPopularEvents"
+										aria-controls="#viewPopularEvents" role="tab" data-toggle="tab">Most Popular Events</a></li>
 										
 									<li role="presentation"><a href="#editPosts"
 										aria-controls="#editPosts" role="tab" data-toggle="tab">View
@@ -264,7 +260,80 @@
 								<!-- Tab panes -->
 								
 								<div class="tab-content well">
-										<div role="tabpanel" class="tab-pane active" id="viewEvents">
+								<div role="tabpanel" class="tab-pane active" id="suggestedClubs">
+							<div class="container">
+
+							<form action="ShowClubByPreferenceServlet" method="GET">
+								<table class="table table-hover sortable">
+									<thead>
+									
+								<%
+									LinkedList<User> userList2 = (LinkedList<User>) request.getAttribute("userList2");
+									int userIndex = 0;
+									int userList2Index = userList2.size();
+									
+											ClubDao cDao = new ClubDao();
+											LinkedList<Club> clubList = cDao.displayClubsByUserPreference(userList2.get(userIndex).getPreference());
+											int clubListIndex = clubList.size();
+											int clubIndex = 0;
+								%>
+									<h3 class= "text-center "></h3>
+									<hr>
+										<tr>
+											<th>Preferences</th>
+											<th>Suggested Clubs</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%while (clubIndex < clubListIndex) { %>
+										<tr>
+										<%if (clubIndex == 0) { %>
+											<td>
+											<input type="checkbox" name="preference" value="sports">Sports
+											<input type="checkbox" name="preference" value="technology">Technology
+											<input type="checkbox" name="preference" value="movies">Movies
+											<input type="checkbox" name="preference" value="art">Art
+											<input type="checkbox" name="preference" value="other">Other
+											</td>
+											<%} else { %>
+											<td>
+											</td>
+											<%} %>
+											<td>
+											<a type="button" class="btn-xs btn-danger" 
+											href="ClubHomepage?club_id_num=<%=(clubList.get(clubIndex).getClub_id_num())%>">
+											<span class="icon icon-xxs text-middle mdi mdi-run"></a></span>
+                           					<span class="text-middle"><strong><%=clubList.get(clubIndex).getClub_name()%></strong></span>
+											</td>
+										</tr>
+											<%clubIndex++;
+											}
+										if (clubIndex == 0) {
+											%>
+											<tr>
+																						<td>
+											<input type="checkbox" name="preference" value="sports">Sports
+											<input type="checkbox" name="preference" value="technology">Technology
+											<input type="checkbox" name="preference" value="movies">Movies
+											<input type="checkbox" name="preference" value="art">Art
+											<input type="checkbox" name="preference" value="other">Other
+											</td>
+											</tr>
+											<%
+										}
+											%>
+
+									</tbody>
+								</table>
+								<button class="btn btn-warning" type="submit">
+													See Suggested Clubs</button>
+								</form>
+							</div>
+						</div>
+						
+						
+										<div role="tabpanel" class="tab-pane" id="viewEvents">
 							<div class="container">
 								<%
 									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
@@ -275,6 +344,8 @@
 
 								<table class="table table-hover sortable">
 									<thead>
+									<h3 class= "text-center "></h3>
+									<hr>
 										<tr>
 											<th>Event ID</th>
 											<th>Event Name</th>
@@ -302,6 +373,56 @@
 
 										<%
 										eventListIndex2++;
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div role="tabpanel" class="tab-pane" id="viewPopularEvents">
+							<div class="container">
+								<%
+								EventsDao eDao = new EventsDao();
+									LinkedList<Events> eventList3 = eDao.getMostPopular();
+									int eventListIndex3 = 0;
+									int eventListSize3 = eventList3.size();
+								%>
+
+
+								<table class="table table-hover sortable">
+									<thead>
+									<h3 class= "text-center"> Most popular upcoming events</h6>
+									<hr>
+										<tr>
+											<th>Event ID</th>
+											<th>Event Name</th>
+											<th>Location</th>
+											<th>RSVP Count</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
+										<%
+											while (eventListIndex3 < eventListSize3) {
+										%>
+										<tr>
+											<td><%=eventList3.get(eventListIndex3).getEventId()%></td>
+											<td><%=eventList3.get(eventListIndex3).getEvent_name()%></td>
+											<td><%=eventList3.get(eventListIndex3).getLocation()%></td>
+											<td><%=eventList3.get(eventListIndex3).getRsvp_count()%></td>
+											<td><form action="EventDetailsServlet" method="GET">
+													<button class="btn btn-warning" type="submit"
+														name="eventId"
+														value="<%=eventList3.get(eventListIndex3).getEventId()%>">Event Info</button>
+												</form></td>
+										</tr>
+
+										<%
+										eventListIndex3++;
 										%>
 										<%
 											}
@@ -356,6 +477,7 @@
 								</table>
 							</div>
 						</div>
+								
 								
 								
 								
@@ -433,10 +555,14 @@
 
 												int index = 0;
 											%>
+											<form action="UserLeavesClubServlet"
+																method="post">
 											<table class="table table-hover">
 												<thead>
-													<tr>
+													<tr>													
 														<th>Club Name</th>
+														<th><button class="btn btn-warning" type="submit">Leave
+																	Clubs</button></th>
 													</tr>
 												</thead>
 												<tbody
@@ -446,13 +572,7 @@
 													%>
 													<tr>
 														<td><%=clubMembershipList.get(index).getClub_name()%></td>
-														<td><form action="UserLeavesClubServlet"
-																method="post">
-																<button class="btn btn-warning" type="submit"
-																	name="clubID"
-																	value="<%=clubMembershipList.get(index).getClubID()%>">Leave
-																	Club</button>
-															</form></td>
+														<td><input type="checkbox" name = "club_id_num" value="<%=clubMembershipList.get(index).getClubID()%>"></td>
 													</tr>
 
 													<%
@@ -463,6 +583,7 @@
 													%>
 												</tbody>
 											</table>
+											</form>
 										</div>
 									</div>
 
@@ -474,10 +595,14 @@
 												clubMembershipList2 = cmDao2.displayUserPastClubInfo(((User) session.getAttribute("user")).getUser_id());
 												int index3 = 0;
 											%>
+											<form action="RejoinClubFromDashboardServlet"
+																method="post">
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Club Name</th>
+														<th><button class="btn btn-warning" type="submit">Rejoin
+																	Club</button></th>
 													</tr>
 												</thead>
 												<tbody
@@ -487,13 +612,8 @@
 													%>
 													<tr>
 														<td><%=clubMembershipList2.get(index3).getClub_name()%></td>
-														<td><form action="RejoinClubFromDashboardServlet"
-																method="post">
-																<button class="btn btn-warning" type="submit"
-																	name="club_id_num"
-																	value="<%=clubMembershipList2.get(index3).getClubID()%>">Rejoin
-																	Club</button>
-															</form></td>
+														<td><input type="checkbox" name="club_id_num" value = 
+														"<%=clubMembershipList2.get(index3).getClubID()%>"></td>
 													</tr>
 
 													<%
@@ -504,10 +624,11 @@
 													%>
 												</tbody>
 											</table>
+											</form>
 										</div>
 									</div>
 
-									<div role="tabpanel" class="tab-pane active" id="viewProfile">
+									<div role="tabpanel" class="tab-pane" id="viewProfile">
 										<div class="container">
 											<%
 												UserDao uDao = new UserDao();
@@ -520,9 +641,8 @@
 											<table class="table table-hover sortable">
 												<thead>
 													<tr>
-														<th>Username</th>
-														<th>Password</th>
-														<th>Email</th>
+														<th>Edit Password</th>
+														<th>Edit Name/Email</th>
 													</tr>
 												</thead>
 
@@ -532,32 +652,85 @@
 													%>
 													<tr>
 														<td>
-															<form action="EditUsernameServlet" method="POST">
-																<textarea onkeypress="enableUpdateButton1()" cols="15"
-																	rows="1" name="editUsername"><%=userList.get(index2).getUsername()%></textarea>
-																<br>
-																<button id="button1" disabled class="btn btn-warning"
-																	type="submit">Save Changes</button>
-															</form>
-														</td>
-														<td>
 															<form action="EditPasswordServlet" method="POST">
-																<textarea onkeypress="enableUpdateButton2()" cols="15"
-																	rows="1" name="editPassword"><%=userList.get(index2).getPassword()%></textarea>
+																<div class="form-group">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
+												style="width: 220px;"
+												id="login-your-pw" placeholder="Your Current Password"
+												type="password" name="currentPW" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
+												style="width: 220px;"
+												id="login-your-newpw" placeholder="Your New Password"
+												type="password" name="newPW" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-lock-open-outline"></span></span> <input
+												style="width: 220px;" onkeypress="enableUpdateButton2()"
+												id="login-your-new-password" placeholder="Retype Your New Password"
+												type="password" name="verifyNewPW" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
 																<br>
 																<button id="button2" disabled class="btn btn-warning"
 																	type="submit">Save Changes</button>
 															</form>
 														</td>
-														<td>
-															<form action="EditEmailServlet" method="POST">
-																<textarea onkeypress="enableUpdateButton3()" cols="20"
-																	rows="1" name="editEmail"><%=userList.get(index2).getEmail()%></textarea>
-																<br>
-																<button id="button3" disabled class="btn btn-warning"
+									<td>
+									<form action="EditEmailServlet" method="POST">
+									<div class="form-group">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span> <input
+												value="<%= userList.get(index2).getFirst_name()%>"
+												onkeypress="enableUpdateButton3()"
+												style="width: 200px;"
+												id="login-your-first-name"
+												type="text" name="first_name" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span>
+												<input value="<%= userList.get(index2).getLast_name()%>"
+												onkeypress="enableUpdateButton3()"
+												style="width: 200px;"
+												id="login-your-last-name"
+												type="text" name="last_name" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group offset-top-20">
+										<div class="input-group input-group-sm">
+											<span class="input-group-addon input-group-addon-inverse"><span
+												class="input-group-icon mdi mdi-account-outline"></span></span>
+												<input value="<%= userList.get(index2).getEmail()%>"
+												onkeypress="enableUpdateButton3()"
+												style="width: 200px;"
+												id="login-your-email"
+												type="text" name="email" data-constraints="@Required"
+												class="form-control">
+										</div>
+									</div>
+									<br>
+									<button id="button3" disabled class="btn btn-warning"
 																	type="submit">Save Changes</button>
-															</form>
-														</td>
+									</form>
+									 </td>
 													</tr>
 													<%
 														index2++;

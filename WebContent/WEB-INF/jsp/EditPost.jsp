@@ -190,10 +190,13 @@
       			<form action="EditPostServlet" method="POST" onsubmit="return confirm('Are you sure you want to edit this post.');">
       				Post ID Number: <%=post.getIdpost()%> <br><br>
       				
-      				Post Title: <input name="postTitle" type="text" value="<%=post.getTitle()%>"> <br><br>
+      				Post Title: <input name="postTitle" type="text" value="<%=post.getTitle()%>" onkeyup="textCounterPostTitle(this,'counter',45);"> <br><br>
       				
-      				Post Content: <br> <textarea name="postContents" rows="5" cols="50"><%=post.getContents()%></textarea><br><br>
-      				
+      				Post Content: <br> <textarea name="postContents" rows="5" cols="50" onkeyup="textCounterPost(this,'counter',500);"><%=post.getContents()%></textarea>
+      				<h6 class="pull-right">
+							<input disabled maxlength="1" size="1" class= "" value="500" id="counter">
+							Remaining
+						</h6>
       				Club ID Number: <%=post.getClub_id_num()%> <br><br>
       				
 					Posted By: <%=user.getFirst_name() + " " + user.getLast_name()%>  <br><br>    				
@@ -298,6 +301,29 @@
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
     <script src="js/js/script.js"></script>
+    
+     <script>
+		function textCounterPost(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
+	<script>
+		function textCounterPostTitle(field, field2, maxlimit) {
+			var countfield = document.getElementById(field2);
+			if (field.value.length > maxlimit) {
+				field.value = field.value.substring(0, maxlimit);
+				return false;
+			} else {
+				countfield.value = maxlimit - field.value.length;
+			}
+		}
+	</script>
   </body>
 
 </html>

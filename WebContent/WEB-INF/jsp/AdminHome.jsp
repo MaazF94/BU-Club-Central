@@ -130,7 +130,7 @@
 								<li><a href="MeetTheAdminsServlet"><span>About
 											Us</span></a></li>
 								<li><a href="ContactUsServlet"><span>Contact Us</span></a>
-								 <li class="dropdown">
+								<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="LoginSevlet"><%
 					if (session.getAttribute("user") == null) {
  						%> <a  href="LoginServlet"> Sign In <%
@@ -142,33 +142,39 @@
 					}
 											%>
       
-        <ul class="dropdown-menu">
-        						<%int role_id = ((User) session.getAttribute("user")).getRole_id(); %>
-        						<%if (role_id == 1) { %>
-        							<li><a href=UserServlet><span class="">Dash Board</span></a>
-        						<%}else if (role_id == 2) { %>
-        							<li><a href="BoardMemberDashBoard"><span class="">Dash Board</span></a>
-        						<%}else { %>
-        							<li><a href="AdminHome"><span class="">Dash Board</span></a>
-        						<%} %>
- 							    <li><a href="LogoutServlet"><span class="text-danger">logout</span></a>
- 							
+         <ul class="dropdown-menu">
+         <%if (session.getAttribute("user") != null) { %>
+         					<%
+												int role_id = ((User) session.getAttribute("user")).getRole_id();
+											%>
+											<%
+												if (role_id == 1) {
+											%>
+											<li><a href="UserServlet"><span class="">Dash
+														Board</span></a> <%
+ 	} else if (role_id == 2) {
+ %>
+											<li><a href="BoardMemberDashBoard"><span class="">Dash
+														Board</span></a> <%
+ 	} else {
+ %>
+											<li><a href="AdminHome"><span class="">Dash
+														Board</span></a> <%
+ 	}
+ %>
+ <%} %>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        <%} %>
+ 							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
       
         
           
         </ul>
       </li>
-								
-								
-                      
                           </ul>
-								
-									
-									
-									
-							
-							
-							
 						</div>
 					</div>
 					<!--RD Navbar Search-->
@@ -176,20 +182,19 @@
 				</div>
 			</div>
 			</nav>
-        </div>
-        <div class="context-dark">
-          <!-- Modern Breadcrumbs-->
-          <section class="breadcrumb-modern rd-parallax bg-gray-darkest">
-            <div data-speed="0.2" data-type="media" data-url="images/background-04-1920x750.jpg" class="rd-parallax-layer"></div>
-            <div data-speed="0" data-type="html" class="rd-parallax-layer">
-              <div class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-             <!--   <h2 class="veil reveal-md-block offset-top-30"><span class="big">Admin Home</span></h2>-->
-                
-              </div>
-            </div>
-          </section>
-        </div>
-      </header>
+		</div>
+		<div class="context-dark">
+			<!-- Modern Breadcrumbs-->
+			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+			<div data-speed="0.2" data-type="media"
+				data-url="images/background-04-1920x750.jpg"
+				class="rd-parallax-layer"></div>
+			<div data-speed="0" data-type="html" class="rd-parallax-layer">
+				<div class="shell    section-lg-top-110 "></div>
+			</div>
+			</section>
+		</div>
+		</header>
       <!-- Page Contents-->
       <main class="page-content">
         <section class="section-top-98 section-md-top-110 text-lg-left">

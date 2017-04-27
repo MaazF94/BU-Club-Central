@@ -218,6 +218,51 @@ button.accordion.active:after {
                 <h1>Benedictine Clubs and Organizations</h1>
                 <hr class="divider bg-red hr-lg-left-0">
                 ${message}
+                <%if (session.getAttribute("user") != null) { %>
+            <a style="font-size: 20pt;" data-toggle="modal" href="#joinClubsModal"><span
+				class="icon glyphicon glyphicon-list"></span><br><b>Join Clubs</b></a>
+									
+	<div class="modal fade" id="joinClubsModal">
+		<div class="modal-dialog" style="top: 25%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px; font-size: 20pt;"><b>Do You Want to Join These Clubs?</b></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+				<form method="GET" action="JoinAClubServlet"
+						onsubmit="return confirm('Are you sure you want to join these clubs?');">
+						                    <%
+			ClubDao cDao = new ClubDao();
+			LinkedList<Club> clubs = new LinkedList<Club>();
+			clubs = cDao.displayClub();
+			int index = 0;
+		%>
+								<%
+							while (index < clubs.size()) {
+						%>
+              
+              <label><input type="checkbox" name="club_id_num" value="<%=clubs.get(index).getClub_id_num()%>" /> 	<%
+												out.println(clubs.get(index).getClub_name());
+											%></label><br>
+              
+            <%
+										index++;
+										}
+									%> 
+
+						<button type="submit" class="btn btn-success center">
+							<span class="glyphicon glyphicon-pencil"></span> Join
+						</button>
+						<button type="button" class="btn btn-danger center"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Not Yet
+						</button>
+						</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<%} %>
                   <div class="range range-lg text-left">
 					  
               
@@ -532,6 +577,7 @@ button.accordion.active:after {
 	<!-- Java script-->
 	<script src="js/js/core.min.js"></script>
 	<script src="js/js/script.js"></script>
+
 	<script>
 	var acc = document.getElementsByClassName("accordion");
 	var i;

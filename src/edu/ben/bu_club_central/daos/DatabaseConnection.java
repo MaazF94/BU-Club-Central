@@ -5,12 +5,26 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-	private String username = "root";
+	/**
+	 * username for database connection
+	 */
+	private String username = "bu-user";
+
+	/**
+	 * password for database connection
+	 */
 	private String password = "root";
-	private String url ="jdbc:mysql://localhost:3306/bu_club_central";
+
+	/**
+	 * database url string
+	 */
+	private String url = "jdbc:mysql://localhost:3306/bu_club_central";
 
 	private Connection conn = null;
-	
+
+	/**
+	 * gets the connection with database
+	 */
 	public DatabaseConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -26,10 +40,18 @@ public class DatabaseConnection {
 		}
 	}
 
+	/**
+	 * getter for connection variable
+	 * 
+	 * @return
+	 */
 	public Connection getConn() {
 		return conn;
 	}
-	
+
+	/**
+	 * closes connection
+	 */
 	public void closeConnection() {
 		try {
 			conn.close();
@@ -38,6 +60,5 @@ public class DatabaseConnection {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 }
