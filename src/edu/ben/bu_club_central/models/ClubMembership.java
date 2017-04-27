@@ -1,21 +1,49 @@
 package edu.ben.bu_club_central.models;
 
 public class ClubMembership {
-
+	/**
+	 * private Integer class variable
+	 */
 	private int club_membership_ID;
+
+	/**
+	 * private Integer class variable
+	 */
 	private int club_ID;
+
+	/**
+	 * private Integer class variable
+	 */
 	private int user_ID;
+
+	/**
+	 * private Integer class variable
+	 */
 	private int role_ID;
+
+	/**
+	 * private boolean class variable
+	 */
 	private boolean active;
+
+	/**
+	 * private String class variable
+	 */
 	private String club_name;
-	
+
 	/**
 	 * Constructor
 	 * 
 	 * @param club_ID
+	 *            Integer
 	 * @param user_ID
+	 *            Integer
 	 * @param role_ID
+	 *            Integer
 	 * @param active
+	 *            boolean
+	 * @param club_name
+	 *            String
 	 */
 	public ClubMembership(int club_ID, int user_ID, int role_ID, boolean active, String club_name) {
 		this.club_ID = club_ID;
@@ -60,11 +88,22 @@ public class ClubMembership {
 	public int getClubID() {
 		return club_ID;
 	}
-	
+
+	/**
+	 * getter
+	 * 
+	 * @return club_name String
+	 */
 	public String getClub_name() {
 		return club_name;
 	}
 
+	/**
+	 * setter
+	 * 
+	 * @param club_name
+	 *            String
+	 */
 	public void setClub_name(String club_name) {
 		this.club_name = club_name;
 	}
