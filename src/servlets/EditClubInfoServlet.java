@@ -1,11 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.models.Club;
@@ -48,6 +51,7 @@ public class EditClubInfoServlet extends HttpServlet {
 			Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
 			int club_id_num = clubObject.getClub_id_num();
 			String message = "";
+			
 			if (request.getParameter("editMeetingTime") != null) {
 				if (callEditMeetingTime(request.getParameter("editMeetingTime"), club_id_num)) {
 					result = true;
