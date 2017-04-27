@@ -232,12 +232,13 @@
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
 								<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
-									<li class="active" role="tab"><a href="suggestedClubs"
-										aria-controls="#suggestedClubs" role="tab" data-toggle="tab">Suggested Clubs</a></li>
-									<li role="tab"><a href="#viewEvents"
+									<li role="presentation"><a
+										href="#suggestedClubs" aria-controls="suggestedClubs" role="tab"
+										data-toggle="tab">Suggested Clubs</a></li>
+									<li class = "active" role="presentation"><a href="#viewEvents"
 										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
 									
-									<li role="tab"><a href="#viewPopularEvents"
+									<li role="presentation"><a href="#viewPopularEvents"
 										aria-controls="#viewPopularEvents" role="tab" data-toggle="tab">Most Popular Events</a></li>
 										
 									<li role="presentation"><a href="#editPosts"
@@ -260,7 +261,7 @@
 								<!-- Tab panes -->
 								
 								<div class="tab-content well">
-								<div role="tabpanel" class="tab-pane active" id="suggestedClubs">
+								<div role="tabpanel" class="tab-pane" id="suggestedClubs">
 							<div class="container">
 
 							<form action="ShowClubByPreferenceServlet" method="GET">
@@ -333,7 +334,7 @@
 						</div>
 						
 						
-										<div role="tabpanel" class="tab-pane" id="viewEvents">
+										<div role="tabpanel" class="tab-pane active" id="viewEvents">
 							<div class="container">
 								<%
 									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
