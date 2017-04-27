@@ -351,36 +351,82 @@
 									<table class="table table-hover sortable">
 										<thead>
 											<tr>
-												<th>Club Description</th>
-												<th>Broadcast Post</th>
-												<th>Club Meeting Time</th>
-												<th>Club Meeting Location</th>
-												<th>Club Meets How Often?</th>
+<<<<<<< HEAD
+												<td>Club Information</td>
 											</tr>
 										</thead>
 
 										<tbody>
+											
 											<tr>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
+<<<<<<< HEAD
+												<td>Club Description: </td>
+												<td><form action="EditClubDescriptionServlet" method="post">
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
+													cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
 												</td>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="20" rows="10" name="broadcast"><%=broadcast%></textarea>
-													<br>
+												<td>
+												<button id="button" disabled class="btn btn-warning"
+													type="submit">Save Changes</button>
+												</td></form>
 												</td>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea>
-													<br>
-												</td>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
-													<br>
-												</td>
-												<td><textarea onkeypress="enableUpdateButton()"
-														cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
-													<br>
-												</td> 
 											</tr>
+											<tr><td>Meeting Time: </td>
+												<td><form action="EditClubInfoServlet" method="post">
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton1()"
+													cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea></td>
+												
+												<td><button id="button1" disabled class="btn btn-warning"
+													type="submit">Save Changes</button></td></form></td></tr>
+											<tr><td>Meeting Location: </td>
+												<td><form action="EditClubInfoServlet" method="post">
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton2()"
+													cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
+												</td>
+												<td>
+												<button id="button2" disabled class="btn btn-warning"
+													type="submit">Save Changes</button>
+												</td></form>
+												</td>
+											</tr>
+											<tr><td>Meeting Frequency: </td>
+												<td><form action="EditClubInfoServlet" method="post">
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton3()"
+													cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
+												</td>
+												<td>
+												<button id="button3" disabled class="btn btn-warning"
+													type="submit">Save Changes</button>
+												</td>
+												</form>
+												</td>
+											</tr> 
+											<tr><td>Broadcast Message: </td>
+												<td><form action="EditClubInfoServlet" method="post">
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton4()"
+													cols="10" rows="5" name="broadcast"><%=broadcast%></textarea>
+												</td>
+												<td>
+												<button id="button4" disabled class="btn btn-warning"
+													type="submit">Save Changes</button>
+												</td>
+												</form>
+												</td>
+											</tr>
+											
+											<tr><td>Club Photo:</td>
+												<td>
+												<form action = "EditClubPhoto" method="post" enctype="multipart/form-data">
+												<td>
+							                        <input type="file" name="clubPhoto" required="required"/>
+												</td>
+												<td>
+												<button id="button5" class="btn btn-warning"
+													type="submit">Upload Photo</button>
+												</form>
+												</td>
+											</tr>
+											
 										</tbody>
 
 									</table>
@@ -760,11 +806,11 @@
 							</table>	
 							<center>
 							<form action="UploadFileServlet" method="POST" enctype="multipart/form-data">
-            <table border="0">
-            									<thead>
+           						<table border="0">
+    								<thead>
 										<tr>
 											<th>Upload Completed Form:</th>
-																				</tr>
+										</tr>
 									</thead>
                 <tr>
                 	<td>File: </td>
@@ -1325,6 +1371,9 @@
 
 			document.getElementById("buttonContact").disabled = false;
 
+		}
+		function enableUpdateButton5() {
+			document.getElementById("button5").disabled = false;
 		}
 	</script>
 

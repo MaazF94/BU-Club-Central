@@ -1,5 +1,6 @@
 package edu.ben.bu_club_central.daos;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -645,4 +646,42 @@ public class ClubDao {
 		return results;
 	}
 
+	public boolean addImage(int club_id_num, InputStream is, long size) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "UPDATE " + tableName + " SET club_image = ? WHERE club_id_num = " + club_id_num + ";";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setBinaryStream(1, is, (int) size);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public byte[] getClubPhoto(int club_id_num){
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "SELECT club_image from " + tableName + "Where club_id_num = " + club_id_num + ";";
+		try{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()){
+				byte[] content = rs.getBytes("club_image");
+				return content;
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
 }
