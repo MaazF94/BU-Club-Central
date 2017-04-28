@@ -40,7 +40,10 @@ public class AdminDeleteUserServlet extends HttpServlet {
 	
 	}
 	
-	
+	/**
+	 * call the disable user method in the dao
+	 * @param userIdNum Integer
+	 */
 	private void disableUser(int userIdNum) {
 		UserDao uDao = new UserDao();
 		uDao.disableUser(userIdNum);

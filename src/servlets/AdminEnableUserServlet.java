@@ -40,6 +40,10 @@ public class AdminEnableUserServlet extends HttpServlet {
 	
 	}
 	
+	/**
+	 * calls the enable user method in the dao
+	 * @param userIdNum
+	 */
 	private void enabledUser(int userIdNum) {
 		UserDao uDao = new UserDao();
 		uDao.enableUser(userIdNum);

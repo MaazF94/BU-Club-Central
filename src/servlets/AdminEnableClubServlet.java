@@ -41,6 +41,10 @@ public class AdminEnableClubServlet extends HttpServlet {
 		response.sendRedirect("AdminHome");
 	}
 	
+	/**
+	 * calls the enable club method in the dao
+	 * @param club_id_num Integer
+	 */
 	private void enableClub(int club_id_num) {
 		ClubDao clubDao = new ClubDao();
 		
@@ -48,6 +52,10 @@ public class AdminEnableClubServlet extends HttpServlet {
 		sendAcceptanceEmail(club_id_num);
 	}
 	
+	/**
+	 * sends an email to the admin to accept a club
+	 * @param club_id_num Integer
+	 */
 	private static void sendAcceptanceEmail(int club_id_num){
 		ClubDao cD = new ClubDao();
 		Club newClub = null;

@@ -24,7 +24,6 @@ public class EditPostServlet extends HttpServlet {
      */
     public EditPostServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -53,7 +52,12 @@ public class EditPostServlet extends HttpServlet {
 
 	}
 	
-	
+	/**
+	 * calls edit post method
+	 * @param idpost Integer 
+	 * @param title String
+	 * @param contents String
+	 */
 	private void editPost(int idpost, String title, String contents) {
 		PostDao pDao = new PostDao();
 		pDao.editPost(idpost, title, contents);

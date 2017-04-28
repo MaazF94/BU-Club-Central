@@ -27,7 +27,6 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	public RegisterServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -36,7 +35,6 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, response);
 	}
 
@@ -100,6 +98,15 @@ response.sendRedirect("LoginServlet");
 
 	}
 
+	/**
+	 * 
+	 * @param first_name String 
+	 * @param last_name String
+	 * @param username String
+	 * @param passwrd String
+	 * @param id_num Integer
+	 * @param email String
+	 */
 	public static void callRegisterUser(String first_name, String last_name, String username, String passwrd,
 			int id_num, String email) {
 		System.out.println("called register user");
@@ -252,6 +259,19 @@ response.sendRedirect("LoginServlet");
 		
 	}
 
+	/**
+	 * 
+	 * @param first_name String
+	 * @param last_name String
+	 * @param username String
+	 * @param passwrd String
+	 * @param passwrd2 Sting
+	 * @param id_num String
+	 * @param email String
+	 * @param request httpservletrequest
+	 * @param response httpservletrequest
+	 * @return true or false
+	 */
 	private static boolean userErrorChecking(String first_name, String last_name, String username, String passwrd,
 			String passwrd2, String id_num, String email, HttpServletRequest request, HttpServletResponse response) {
 		UserDao uDao = new UserDao();

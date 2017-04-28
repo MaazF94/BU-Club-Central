@@ -39,6 +39,10 @@ public class AdminDeletePostServlet extends HttpServlet {
 		response.sendRedirect("AdminHome");
 	}
 
+	/**
+	 * calls delete post method in dao
+	 * @param postId
+	 */
 	private void deletePost(int postId) {
 		PostDao pDao = new PostDao();
 		pDao.deletePost(postId);

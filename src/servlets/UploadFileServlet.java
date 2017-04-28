@@ -28,7 +28,6 @@ public class UploadFileServlet extends HttpServlet {
      */
     public UploadFileServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -64,6 +63,15 @@ public class UploadFileServlet extends HttpServlet {
         }
 	}
 	
+	/**
+	 * 
+	 * @param name String
+	 * @param user_id Integer
+	 * @param inputStream InputStream
+	 * @param active boolean
+	 * @return true or false
+	 * @throws IOException exception
+	 */
 	public boolean callAddDocument(String name, int user_id, InputStream inputStream, boolean active) throws IOException {
 
 		DocumentForAdminDao dfaDao = new DocumentForAdminDao();

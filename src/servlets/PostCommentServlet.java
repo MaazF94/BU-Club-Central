@@ -22,7 +22,6 @@ public class PostCommentServlet extends HttpServlet {
      */
     public PostCommentServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,7 +41,12 @@ public class PostCommentServlet extends HttpServlet {
 		response.sendRedirect("ClubHomepage?club_id_num=" + club_id_num);
 	}
 	
-	
+	/**
+	 * 
+	 * @param postId Integer
+	 * @param user_id Integer
+	 * @param comment String
+	 */
 	private void commentOnPost(int postId, int user_id, String comment) {
 		PostCommentDao pDao = new PostCommentDao();
 		pDao.addPostComment(postId, user_id, comment);

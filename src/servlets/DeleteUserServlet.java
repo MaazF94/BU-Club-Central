@@ -23,7 +23,6 @@ public class DeleteUserServlet extends HttpServlet {
 	 */
 	public DeleteUserServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -32,7 +31,6 @@ public class DeleteUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 	}
 
@@ -42,7 +40,6 @@ public class DeleteUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		ClubMembershipDao cmDao = new ClubMembershipDao();
 		System.out.println(request.getParameter("UserID"));
 		if (request.getParameterValues("UserID") == null) {

@@ -33,8 +33,6 @@ public class ClublistServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 		ClubDao cDao = new ClubDao(); 
 		LinkedList<Club> clubList = new LinkedList<Club>();
 		clubList =cDao.displayClub(); 
@@ -50,7 +48,6 @@ public class ClublistServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

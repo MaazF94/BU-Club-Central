@@ -22,7 +22,6 @@ public class EventUserFeedbackServlet extends HttpServlet {
      */
     public EventUserFeedbackServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,6 +38,12 @@ public class EventUserFeedbackServlet extends HttpServlet {
 		response.sendRedirect("UserServlet");
 	}
 	
+	/**
+	 * 
+	 * @param eventId Integer
+	 * @param userId Integer
+	 * @param feedback String
+	 */
 	private void eventUserFeedback(int eventId, int userId, String feedback) {
 		EventUserFeedbackDao eDao = new EventUserFeedbackDao();
 		eDao.insertFeedback(eventId, userId, feedback);

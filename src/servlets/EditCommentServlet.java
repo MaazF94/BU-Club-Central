@@ -24,7 +24,6 @@ public class EditCommentServlet extends HttpServlet {
      */
     public EditCommentServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -52,6 +51,11 @@ public class EditCommentServlet extends HttpServlet {
 		response.sendRedirect("BoardMemberDashBoard");
 	}
 
+	/**
+	 * call edit comment method in dao
+	 * @param commentID Integer
+	 * @param comment String
+	 */
 	private void editComment(int commentID, String comment) {
 		CommentDao cDao = new CommentDao();
 		cDao.editComment(commentID, comment);

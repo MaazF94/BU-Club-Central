@@ -21,7 +21,6 @@ public class DeletePostServlet extends HttpServlet {
      */
     public DeletePostServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,6 +38,10 @@ public class DeletePostServlet extends HttpServlet {
 		response.sendRedirect("BoardMemberDashBoard");
 	}
 	
+	/**
+	 * this calls the delete post method in the dao
+	 * @param idpost Integer
+	 */
 	private void deletePost(int idpost) {
 		PostDao pDao = new PostDao();
 		pDao.deletePost(idpost);

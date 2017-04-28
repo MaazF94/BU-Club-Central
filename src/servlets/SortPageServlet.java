@@ -27,7 +27,6 @@ public class SortPageServlet extends HttpServlet {
 	 */
 	public SortPageServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -57,7 +56,6 @@ public class SortPageServlet extends HttpServlet {
 			PreparedStatement ps;
 			ResultSet rs = null;
 			try {
-//				System.out.println(sql);
 				ps = conn.prepareStatement(sql);
 				rs = ps.executeQuery();
 			} catch (SQLException e) {
@@ -86,7 +84,6 @@ public class SortPageServlet extends HttpServlet {
 
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -99,7 +96,6 @@ public class SortPageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

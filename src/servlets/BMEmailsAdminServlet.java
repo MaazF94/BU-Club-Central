@@ -29,7 +29,6 @@ public class BMEmailsAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 	}
 
@@ -37,8 +36,6 @@ public class BMEmailsAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		String first_name = (((User) request.getSession().getAttribute("user")).getFirst_name());
 		String last_name = (((User) request.getSession().getAttribute("user")).getLast_name());
 		String email = (((User) request.getSession().getAttribute("user")).getEmail());
@@ -217,6 +214,11 @@ response.sendRedirect("BoardMemberDashBoard");
 		System.out.println("Sent email");
 	}
 	
+	/**
+	 * checks to make sure the input is not null
+	 * @param message String
+	 * @return true if message is not null or false otherwise
+	 */
 	public static boolean checkMessage(String message) {
 		if (message.equals(null)) {
 			return false;

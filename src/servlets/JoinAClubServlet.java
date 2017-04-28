@@ -29,7 +29,6 @@ public class JoinAClubServlet extends HttpServlet {
 	 */
 	public JoinAClubServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -38,7 +37,6 @@ public class JoinAClubServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 
 			String[] clubIdList = new String[100];

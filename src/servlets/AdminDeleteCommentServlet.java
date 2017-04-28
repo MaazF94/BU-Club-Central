@@ -39,6 +39,10 @@ public class AdminDeleteCommentServlet extends HttpServlet {
 		response.sendRedirect("AdminHome");
 	}
 	
+	/**
+	 * calls the delete comment method in the dow
+	 * @param commentId Integer
+	 */
 	private void deleteComment(int commentId) {
 		CommentDao cDao = new CommentDao();
 		cDao.deleteComment(commentId);

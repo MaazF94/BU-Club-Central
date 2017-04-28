@@ -32,14 +32,12 @@ public class UserDashboardServlet extends HttpServlet {
      */
     public UserDashboardServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {
 			
 			LinkedList<Events> eventList = new LinkedList<Events>();
@@ -81,7 +79,6 @@ public class UserDashboardServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

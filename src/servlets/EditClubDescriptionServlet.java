@@ -22,15 +22,12 @@ public class EditClubDescriptionServlet extends HttpServlet {
      */
     public EditClubDescriptionServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 	}
 
@@ -38,7 +35,6 @@ public class EditClubDescriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			ClubDao cDao = new ClubDao();
 			Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
@@ -90,6 +86,12 @@ request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(re
 					response.sendRedirect("BoardMemberDashBoard");		}
 	}
 	
+	/**
+	 * this calls the edit club description method in the dao
+	 * @param club_description String
+	 * @param club_id_num Integer
+	 * @return true if it is edited or false otherwise
+	 */
 	public static boolean callEditClubDescription(String club_description, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubDescription(club_description, club_id_num)) {		

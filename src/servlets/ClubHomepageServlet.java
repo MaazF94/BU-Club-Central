@@ -100,7 +100,7 @@ public class ClubHomepageServlet extends HttpServlet {
 	/**
 	 * call the clubMemberCount method
 	 * 
-	 * @param club_id
+	 * @param club_id Integer
 	 * @return the number of members in club
 	 */
 	public static int callClubMemberCount(int club_id) {

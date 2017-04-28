@@ -54,14 +54,24 @@ public class CommentServlet extends HttpServlet {
 	
 	}
 	
-	
+	/**
+	 * this method calls the add comment in the dao
+	 * @param comment String
+	 * @param eventId Integer
+	 * @param userId Integer
+	 */
 	private void addComment(String comment, int eventId, int userId) {
 		CommentDao cDao = new CommentDao();
 		cDao.addComent(comment, eventId, userId);
 	}
 	
 	
-	
+	/**
+	 * this method sends an email notification 
+	 * @param u User object
+	 * @param comment String
+	 * @param commentId_eventId Integer
+	 */
 	private void sendEmailNotificationComment(User u, String comment, int commentId_eventId) {
 		EventsDao eDao = new EventsDao();
 		Events event = eDao.getEventByEventId(commentId_eventId);

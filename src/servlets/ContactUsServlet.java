@@ -29,7 +29,6 @@ public class ContactUsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/ContactUs.jsp").forward(request, response);
 	}
 
@@ -87,6 +86,11 @@ request.getRequestDispatcher("/WEB-INF/jsp/ContactUs.jsp").forward(request, resp
 
 	}
 	
+	/**
+	 * checks to make sure message is not null
+	 * @param message String
+	 * @return false if null true otherwise
+	 */
 	public static boolean checkMessage(String message) {
 		if (message.equals(null)) {
 			return false;
@@ -99,6 +103,11 @@ request.getRequestDispatcher("/WEB-INF/jsp/ContactUs.jsp").forward(request, resp
 		return true;
 	}
 	
+	/**
+	 * checks to make sure name is not null and has only characters in it
+	 * @param fullName String
+	 * @return false if null or does not contain only characters and true otherwise
+	 */
 	public static boolean checkName(String fullName) {
 		char fullNameArray[] = fullName.toCharArray();
 
@@ -122,6 +131,12 @@ request.getRequestDispatcher("/WEB-INF/jsp/ContactUs.jsp").forward(request, resp
 		return true;
 	}
 
+	/**
+	 * sends an email for contact us
+	 * @param fullName String
+	 * @param email String
+	 * @param message String
+	 */
 	public static void callContactUsForEmail(String fullName, String email, String message) {
 		String subject = "Question for BU Club Central by " + fullName + "!";
 		String content = "<!DOCTYPE html>\r\n" + 

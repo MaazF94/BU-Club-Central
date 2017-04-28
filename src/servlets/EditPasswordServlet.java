@@ -23,7 +23,6 @@ public class EditPasswordServlet extends HttpServlet {
 	 */
 	public EditPasswordServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -32,7 +31,6 @@ public class EditPasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
 	}
 
@@ -70,6 +68,15 @@ public class EditPasswordServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * calls edit password method
+	 * @param user_id Integer
+	 * @param password String
+	 * @param newPW String
+	 * @param verifyNewPW String
+	 * @param username String
+	 * @return true or false
+	 */
 	public static boolean callEditPassword(int user_id, String password, String newPW, String verifyNewPW,
 			String username) {
 		UserDao uDao = new UserDao();

@@ -40,6 +40,10 @@ public class DeleteCommentServlet extends HttpServlet {
 	
 	}
 
+	/**
+	 * this method calls the delete comment method in the dao
+	 * @param commentId Integer
+	 */
 	private void deleteComment(int commentId) {
 		CommentDao cDao = new CommentDao();
 		cDao.deleteComment(commentId);

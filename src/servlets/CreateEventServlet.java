@@ -51,12 +51,29 @@ public class CreateEventServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * this method calls the create event method in the dao
+	 * @param event_name String 
+	 * @param description String
+	 * @param location String
+	 * @param club_id_num Integer
+	 * @param startyear String
+	 * @param startmonth String
+	 * @param startday String
+	 * @param endyear String
+	 * @param endmonth String
+	 * @param endday String
+	 * @param category String
+	 */
 	public void createEvent(String event_name, String description, String location, int club_id_num, String startyear, String startmonth, String startday,
 			String endyear, String endmonth, String endday,String category) {
 		EventsDao eDao = new EventsDao();
 		eDao.addEvent(event_name, description, location, club_id_num, startyear, startmonth, startday, endyear, endmonth, endday, category);
 	}
 	
+	/**
+	 * this method adds that event to the event notifications table in the database
+	 */
 	public void eventNotifications() {
 		EventNotificationDao eDao = new EventNotificationDao();
 		EventsDao eventDao = new EventsDao();
