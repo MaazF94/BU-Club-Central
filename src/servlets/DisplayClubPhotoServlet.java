@@ -32,7 +32,8 @@ public class DisplayClubPhotoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ClubDao cd = new ClubDao();
 		byte[] content = cd.getClubPhoto(Integer.parseInt(request.getParameter("club_id_num")));
-		response.setContentType("image/gif");
+		response.setContentType("image/jpeg");
+		response.setContentLength(content.length);
 		response.getOutputStream().write(content);
 		
 	}

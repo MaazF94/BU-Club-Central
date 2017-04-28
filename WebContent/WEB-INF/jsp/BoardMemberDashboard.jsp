@@ -351,7 +351,6 @@
 									<table class="table table-hover sortable">
 										<thead>
 											<tr>
-<<<<<<< HEAD
 												<td>Club Information</td>
 											</tr>
 										</thead>
@@ -359,7 +358,6 @@
 										<tbody>
 											
 											<tr>
-<<<<<<< HEAD
 												<td>Club Description: </td>
 												<td><form action="EditClubDescriptionServlet" method="post">
 												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
