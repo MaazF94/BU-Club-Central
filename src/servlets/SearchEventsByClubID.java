@@ -26,20 +26,12 @@ public class SearchEventsByClubID extends HttpServlet {
      */
     public SearchEventsByClubID() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		System.out.println("IT GETS HERE GET ");
-//		String clubID = request.getParameter("clubID");
-//		System.out.println(request.getContextPath());
-//		System.out.println("IT GETS HERE GET too ");
-//		System.out.println(clubID);
-		//request.setAttribute(arg0, arg1);
 		request.getRequestDispatcher("/WEB-INF/jsp/EventPageByClub.jsp").forward(request, response);
 	}
 

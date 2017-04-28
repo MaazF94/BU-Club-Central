@@ -30,7 +30,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -39,7 +38,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		request.getAttribute("message");
 		request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
@@ -62,12 +60,6 @@ public class LoginServlet extends HttpServlet {
 					user = uDao.getUserByUsername(request.getParameter("username"));
 					request.getSession().setAttribute("user", user);
 					request.getSession().setAttribute("loggedIn", 0);
-
-					// int club_id_num = user.getClub_id_num();
-					// ClubDao cDao = new ClubDao();
-					// Club clubObject = cDao.getClubById(club_id_num);
-					// request.getSession().setAttribute("clubObject",
-					// clubObject);
 
 					if (user.getRole_id() == 1) {
 						response.sendRedirect("UserServlet");
@@ -94,12 +86,23 @@ public class LoginServlet extends HttpServlet {
 	}// Need to add if checks for where to long into when there are different
 		// roles. ie: user, admin, president
 
+	/**
+	 * 
+	 * @param username String
+	 * @return User object
+	 */
 	private User loginUser(String username) {
 		uDao = new UserDao();
 		
 		return uDao.getUserByUsername(username);
 	}
 
+	/**
+	 * 
+	 * @param username String
+	 * @param password String
+	 * @return true or false
+	 */
 	private boolean checkUsernamePasswordMatch(String username, String password) {
 		boolean result = false;
 		UserDao uDao = new UserDao();

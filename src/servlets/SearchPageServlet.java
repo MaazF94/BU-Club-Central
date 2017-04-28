@@ -30,7 +30,6 @@ public class SearchPageServlet extends HttpServlet {
 	 */
 	public SearchPageServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -39,12 +38,6 @@ public class SearchPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// request.getRequestDispatcher("/WEB-INF/jsp/SearchPage.jsp").forward(request,
-		// response);
-		
-		
-		
 		String name = request.getParameter("val");
 		if (name == null || name.trim().equals("")) {
 			System.out.print("<p>Please enter name!</p>");
@@ -58,11 +51,6 @@ public class SearchPageServlet extends HttpServlet {
 				ResultSet rs = ps.executeQuery();
 
 				if (!rs.isBeforeFirst()) {
-//					response.getWriter().println("No Record Found!!!");
-//					response.getWriter().println("<br>");
-//					response.getWriter().println("<h3>These are all the events to search from</h3>");
-//					response.getWriter().println("<br>");
-					
 					LinkedList<Events> preSearchList = new LinkedList<Events>();
 					EventsDao eDao = new EventsDao();
 					preSearchList = eDao.getAllEvents();
@@ -70,10 +58,6 @@ public class SearchPageServlet extends HttpServlet {
 					int listSize = preSearchList.size();
 					
 					while (listIndex < listSize) {
-//						response.getWriter().println("<tr>");
-//						response.getWriter().println("<td> </td>");
-//						response.getWriter().println("<td> </td>");
-						
 						response.getWriter().println("<tr>");
 						response.getWriter().println("<td> </td>");
 						response.getWriter().println("<td> </td>");
@@ -84,7 +68,6 @@ public class SearchPageServlet extends HttpServlet {
 						response.getWriter().println("</td>");
 						response.getWriter().println("</tr>");
 						
-//						response.getWriter().print("<br>");
 						listIndex++;
 						}
 					
@@ -140,7 +123,6 @@ public class SearchPageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

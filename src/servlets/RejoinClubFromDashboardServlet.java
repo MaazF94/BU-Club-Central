@@ -28,7 +28,6 @@ public class RejoinClubFromDashboardServlet extends HttpServlet {
 	 */
 	public RejoinClubFromDashboardServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -37,7 +36,6 @@ public class RejoinClubFromDashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		session = request.getSession();
 		session.setAttribute("first_name", null);
 		if (((User) request.getSession().getAttribute("user")).getRole_id() == 1) {

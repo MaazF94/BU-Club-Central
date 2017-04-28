@@ -352,6 +352,8 @@
 										<thead>
 											<tr>
 												<td>Club Information</td>
+												<td><button id="button" disabled class="btn btn-warning"
+													type="submit">Save Changes</button></td>
 											</tr>
 										</thead>
 
@@ -359,56 +361,31 @@
 											
 											<tr>
 												<td>Club Description: </td>
-												<td><form action="EditClubDescriptionServlet" method="post">
 												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
 													cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
 												</td>
-												<td>
-												<button id="button" disabled class="btn btn-warning"
-													type="submit">Save Changes</button>
-												</td></form>
+												
+											</tr>
+											<tr>
+												<td>Meeting Time: </td>
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
+													cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea>
 												</td>
 											</tr>
-											<tr><td>Meeting Time: </td>
-												<td><form action="EditClubInfoServlet" method="post">
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton1()"
-													cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea></td>
-												
-												<td><button id="button1" disabled class="btn btn-warning"
-													type="submit">Save Changes</button></td></form></td></tr>
-											<tr><td>Meeting Location: </td>
-												<td><form action="EditClubInfoServlet" method="post">
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton2()"
+											<tr>
+											<td>Meeting Location: </td>
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
 													cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
-												</td>
-												<td>
-												<button id="button2" disabled class="btn btn-warning"
-													type="submit">Save Changes</button>
-												</td></form>
 												</td>
 											</tr>
 											<tr><td>Meeting Frequency: </td>
-												<td><form action="EditClubInfoServlet" method="post">
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton3()"
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
 													cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
-												</td>
-												<td>
-												<button id="button3" disabled class="btn btn-warning"
-													type="submit">Save Changes</button>
-												</td>
-												</form>
 												</td>
 											</tr> 
 											<tr><td>Broadcast Message: </td>
-												<td><form action="EditClubInfoServlet" method="post">
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton4()"
+												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
 													cols="10" rows="5" name="broadcast"><%=broadcast%></textarea>
-												</td>
-												<td>
-												<button id="button4" disabled class="btn btn-warning"
-													type="submit">Save Changes</button>
-												</td>
-												</form>
 												</td>
 											</tr>
 											
@@ -416,22 +393,19 @@
 												<td>
 												<form action = "EditClubPhoto" method="post" enctype="multipart/form-data">
 												<td>
-							                        <input type="file" name="clubPhoto" required="required"/>
+							                        <input type="file" name="clubPhoto"/>
 												</td>
 												<td>
 												<button id="button5" class="btn btn-warning"
-													type="submit">Upload Photo</button>
-												</form>
+													type="submit">Upload Photo</button>											</form>
+														</form>
 												</td>
 											</tr>
 											
 										</tbody>
 
 									</table>
-									
-													<br>
-													<button id="button" disabled class="btn btn-warning"
-														type="submit">Save Changes</button></form>
+									</form>
 							</div>
 						</div>
 

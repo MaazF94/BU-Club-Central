@@ -44,6 +44,11 @@ public class BoardMemberEmailEventServlet extends HttpServlet {
 		
 	}
 	
+	/**
+	 * this method sends an email to the board member about an upcoming event 
+	 * @param eventId
+	 * @param emailContent
+	 */
 	private void sendEmailToEvent(int eventId, String emailContent) {
 		EventRSVPListDao rsvpDao = new EventRSVPListDao();
 		LinkedList<User> userList = rsvpDao.getAllUsersForEvent(eventId);

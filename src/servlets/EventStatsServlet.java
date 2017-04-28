@@ -21,7 +21,6 @@ public class EventStatsServlet extends HttpServlet {
      */
     public EventStatsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,6 +38,11 @@ public class EventStatsServlet extends HttpServlet {
 	
 	}
 	
+	/**
+	 * increases the count of people going to an event
+	 * @param actualCount Integer
+	 * @param eventId Integer
+	 */
 	private void setActualCount(int actualCount, int eventId) {
 		EventsDao eDao = new EventsDao();
 		eDao.increaseActualCount(actualCount, eventId);

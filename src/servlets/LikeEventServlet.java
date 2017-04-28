@@ -23,14 +23,12 @@ public class LikeEventServlet extends HttpServlet {
      */
     public LikeEventServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/EventPage.jsp").forward(request, response);
 	}
 
@@ -39,12 +37,9 @@ public class LikeEventServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int eventID = 0;
-		//System.out.println("it gets to the like post");
 		EventsDao eDao = new EventsDao();
 		eventID = Integer.parseInt(request.getParameter("eventID"));
-		//System.out.println(eventID );
 		int currentLikes = eDao.getNumOfLikes(eventID);
-		//System.out.println(currentLikes);
 		eDao.addLikeToEvent(eventID, currentLikes);;
 		doGet(request, response);
 	}

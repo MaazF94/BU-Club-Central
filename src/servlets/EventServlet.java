@@ -33,7 +33,6 @@ public class EventServlet extends HttpServlet {
      */
     public EventServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

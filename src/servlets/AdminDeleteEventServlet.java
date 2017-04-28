@@ -40,6 +40,10 @@ public class AdminDeleteEventServlet extends HttpServlet {
 		response.sendRedirect("AdminHome");
 	}
 	
+	/**
+	 * calls the delete event method in the dao
+	 * @param eventId Integer
+	 */
 	private void deleteEvent(int eventId) {
 		EventsDao eDao = new EventsDao();
 		eDao.deleteEventByEventId(eventId);

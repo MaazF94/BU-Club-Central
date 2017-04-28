@@ -23,7 +23,6 @@ public class UNRSVPServlet extends HttpServlet {
      */
     public UNRSVPServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,7 +41,11 @@ public class UNRSVPServlet extends HttpServlet {
 
 	
 	
-	
+	/**
+	 * 
+	 * @param eventId Integer
+	 * @param userId Integer
+	 */
 	private void unrsvp(int eventId, int userId) {
 		EventRSVPListDao eDao = new EventRSVPListDao();
 		eDao.unRSVPForEvent(eventId, userId);

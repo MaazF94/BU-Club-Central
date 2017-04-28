@@ -21,7 +21,6 @@ public class LikePostServlet extends HttpServlet {
      */
     public LikePostServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -41,6 +40,10 @@ public class LikePostServlet extends HttpServlet {
 		response.sendRedirect("ClubHomepage?club_id_num=" + club_id_num);
 	}
 
+	/**
+	 * 
+	 * @param postId Integer
+	 */
 	private void likePost(int postId) {
 		PostDao pDao = new PostDao();
 		pDao.likePost(postId);

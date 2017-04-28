@@ -21,15 +21,12 @@ public class deleteClubServlet extends HttpServlet {
      */
     public deleteClubServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		response.sendRedirect("AccessDeniedServlet");
 	}
 
@@ -37,10 +34,7 @@ public class deleteClubServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
 		ClubDao cDao = new ClubDao();
-		System.out.println( request.getParameter("clubID"));
 		
 		cDao.deleteClub( request.getParameter("clubID"));
 		doGet(request, response);

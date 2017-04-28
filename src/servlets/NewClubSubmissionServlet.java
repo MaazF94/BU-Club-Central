@@ -23,14 +23,12 @@ public class NewClubSubmissionServlet extends HttpServlet {
      */
     public NewClubSubmissionServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (((User) request.getSession().getAttribute("user")) != null ) {
 			request.getRequestDispatcher("/WEB-INF/jsp/NewClubSubmission.jsp").forward(request, response);
 		}else {
@@ -42,7 +40,6 @@ public class NewClubSubmissionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// send email to a newly registered user
 				String subject = "New Club Create Request from " + request.getParameter("petName");
 				String content = "<!doctype html>\r\n" + 

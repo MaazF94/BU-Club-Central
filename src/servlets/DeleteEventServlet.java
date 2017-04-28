@@ -21,7 +21,6 @@ public class DeleteEventServlet extends HttpServlet {
      */
     public DeleteEventServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,6 +38,10 @@ public class DeleteEventServlet extends HttpServlet {
 		response.sendRedirect("BoardMemberDashBoard");
 	}
 	
+	/**
+	 * this calls the delete event method in the event
+	 * @param eventID Integer
+	 */
 	private void deleteEvent(int eventID) {
 		EventsDao eDao = new EventsDao();
 		eDao.deleteEventByEventId(eventID);

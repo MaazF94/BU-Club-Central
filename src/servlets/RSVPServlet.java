@@ -28,7 +28,6 @@ public class RSVPServlet extends HttpServlet {
      */
     public RSVPServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -54,17 +53,31 @@ public class RSVPServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 
+	 * @param eventId Integer
+	 */
 	private void addRSVP(int eventId) {
 		EventsDao eDao = new EventsDao();
 		eDao.increaseRSVPCount(eventId);
 	}
 	
+	/**
+	 * 
+	 * @param eventId Integer
+	 * @param user_id_num Integer
+	 */
 	private void addUserToRsvpList(int eventId, int user_id_num) {
 		EventRSVPListDao rsvpListDao = new EventRSVPListDao();
 		rsvpListDao.rsvpUserForEvent(eventId, user_id_num);
 		
 	}
 	
+	/**
+	 * 
+	 * @param u User object
+	 * @param eventId Integer
+	 */
 	private void sendEmailNotification(User u, int eventId) {
 		EventsDao eDao = new EventsDao();
 		Events event = eDao.getEventByEventId(eventId);

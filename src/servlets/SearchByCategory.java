@@ -22,14 +22,12 @@ public class SearchByCategory extends HttpServlet {
      */
     public SearchByCategory() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/byCategory.jsp").forward(request, response);
 	}
 

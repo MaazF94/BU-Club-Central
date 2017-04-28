@@ -22,14 +22,12 @@ public class CreateNewPasswordServlet extends HttpServlet {
      */
     public CreateNewPasswordServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String id_num = request.getParameter("id_num");
 		String username = request.getParameter("username");
@@ -45,7 +43,6 @@ public class CreateNewPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (callCreateNewPassword(request.getParameter("password"), Integer.parseInt(request.getParameter("id_num")), 
 				request.getParameter("username"))) {
 			String message = 	"<!DOCTYPE html>\r\n" + 
@@ -90,6 +87,13 @@ public class CreateNewPasswordServlet extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * updates the users password
+	 * @param password String
+	 * @param id_num Integer
+	 * @param username String
+	 * @return true if its updated or false otherwise
+	 */
 	public static boolean callCreateNewPassword(String password, int id_num, String username) {
 		UserDao uDao = new UserDao();
 		String hashedPw = BCrypt.hashpw(password, BCrypt.gensalt());

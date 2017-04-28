@@ -22,7 +22,6 @@ public class EditEmailServlet extends HttpServlet {
 	 */
 	public EditEmailServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -31,7 +30,6 @@ public class EditEmailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
 	}
 
@@ -41,7 +39,6 @@ public class EditEmailServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			int user_id = (((User) request.getSession().getAttribute("user")).getUser_id());
 			boolean result = true;
@@ -92,6 +89,12 @@ public class EditEmailServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 
+	 * @param user_id Integer
+	 * @param email String
+	 * @return true or false
+	 */
 	public static boolean callEditEmail(int user_id, String email) {
 		UserDao uDao = new UserDao();
 		if (uDao.editEmail(user_id, email)) {
@@ -101,6 +104,12 @@ public class EditEmailServlet extends HttpServlet {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param user_id Integer
+	 * @param firstName String
+	 * @return
+	 */
 	public static boolean callEditFirstName(int user_id, String firstName) {
 		UserDao uDao = new UserDao();
 		if (uDao.editFirstName(user_id, firstName)) {
@@ -110,6 +119,12 @@ public class EditEmailServlet extends HttpServlet {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param user_id Integer
+	 * @param lastName String
+	 * @return
+	 */
 	public static boolean callEditLastName(int user_id, String lastName) {
 		UserDao uDao = new UserDao();
 		if (uDao.editLastName(user_id, lastName)) {

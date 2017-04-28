@@ -26,7 +26,6 @@ public class ShowClubByPreferenceServlet extends HttpServlet {
      */
     public ShowClubByPreferenceServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

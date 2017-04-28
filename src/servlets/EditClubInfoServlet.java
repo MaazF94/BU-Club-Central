@@ -1,11 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.models.Club;
@@ -23,7 +26,6 @@ public class EditClubInfoServlet extends HttpServlet {
 	 */
 	public EditClubInfoServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -32,7 +34,6 @@ public class EditClubInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 	}
 
@@ -48,6 +49,7 @@ public class EditClubInfoServlet extends HttpServlet {
 			Club clubObject = cDao.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
 			int club_id_num = clubObject.getClub_id_num();
 			String message = "";
+			
 			if (request.getParameter("editMeetingTime") != null) {
 				if (callEditMeetingTime(request.getParameter("editMeetingTime"), club_id_num)) {
 					result = true;
@@ -119,6 +121,12 @@ public class EditClubInfoServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 
+	 * @param meeting_time String
+	 * @param club_id_num Integer
+	 * @return true or false
+	 */
 	public static boolean callEditMeetingTime(String meeting_time, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubMeetingTime(meeting_time, club_id_num)) {
@@ -128,6 +136,12 @@ public class EditClubInfoServlet extends HttpServlet {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param meeting_loc String
+	 * @param club_id_num Integer
+	 * @return true or false
+	 */
 	public static boolean callEditMeetingLoc(String meeting_loc, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubMeetingLoc(meeting_loc, club_id_num)) {
@@ -136,7 +150,13 @@ public class EditClubInfoServlet extends HttpServlet {
 
 		return false;
 	}
-
+	
+	/**
+	 * 
+	 * @param meeting_freq String
+	 * @param club_id_num Integer
+	 * @return true or false
+	 */
 	public static boolean callEditMeetingFreq(String meeting_freq, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubMeetingFreq(meeting_freq, club_id_num)) {
@@ -146,6 +166,12 @@ public class EditClubInfoServlet extends HttpServlet {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param broadcast String
+	 * @param club_id_num Integer
+	 * @return true or false
+	 */
 	public static boolean callEditBroadcast(String broadcast, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubBroadcast(broadcast, club_id_num)) {
@@ -155,6 +181,12 @@ public class EditClubInfoServlet extends HttpServlet {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param club_description String
+	 * @param club_id_num Integer
+	 * @return true or false
+	 */
 	public static boolean callEditClubDescription(String club_description, int club_id_num) {
 		ClubDao cDao = new ClubDao();
 		if (cDao.editClubDescription(club_description, club_id_num)) {

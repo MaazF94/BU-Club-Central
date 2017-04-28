@@ -21,14 +21,12 @@ public class CreateNewUsernameServlet extends HttpServlet {
      */
     public CreateNewUsernameServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String id_num = request.getParameter("id_num");
 		String firstName = request.getParameter("first_name");
@@ -44,7 +42,6 @@ public class CreateNewUsernameServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (callCreateNewUsername(request.getParameter("first_name"), request.getParameter("last_name"),
 				Integer.parseInt(request.getParameter("id_num")), request.getParameter("username"))) {
 			String message = 	"<!DOCTYPE html>\r\n" + 
@@ -90,6 +87,14 @@ public class CreateNewUsernameServlet extends HttpServlet {
 		
 	}
 	
+	/**
+	 * this method creates a new user name
+	 * @param first_name String
+	 * @param last_name String
+	 * @param id_num Integer
+	 * @param newUsername String
+	 * @return true if created or false otherwise
+	 */
 	public static boolean callCreateNewUsername(String first_name, String last_name, int id_num, String newUsername) {
 		UserDao uDao = new UserDao();
 		if (uDao.userForgotUsernameUpdate(first_name, last_name, id_num, newUsername)) {

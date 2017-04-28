@@ -22,7 +22,6 @@ public class CreatePostServlet extends HttpServlet {
 	 */
 	public CreatePostServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -48,6 +47,13 @@ public class CreatePostServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * this method calls the create post method in the dao
+	 * @param title String
+	 * @param contents String
+	 * @param club_id_num Integer
+	 * @param id_num_of_user Integer
+	 */
 	private void createPost(String title, String contents, int club_id_num, int id_num_of_user) {
 		PostDao postDao = new PostDao();
 		postDao.addPost(title, contents, club_id_num, id_num_of_user);

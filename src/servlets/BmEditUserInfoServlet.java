@@ -57,9 +57,9 @@ public class BmEditUserInfoServlet extends HttpServlet {
 
 	/**
 	 * This method edits users email
-	 * @param oldEmail for user
-	 * @param newEmail for user
-	 * @param id_num for user
+	 * @param oldEmail for user String
+	 * @param newEmail for user String
+	 * @param id_num for user String
 	 * @return true if email is changed or false if not
 	 */
 	public boolean editUserInfo(String oldEmail, String newEmail, String id_num) {

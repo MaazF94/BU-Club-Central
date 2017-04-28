@@ -22,7 +22,6 @@ public class EditEventServlet extends HttpServlet {
      */
     public EditEventServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -47,6 +46,14 @@ public class EditEventServlet extends HttpServlet {
 		
 	}
 
+	/**
+	 * calls the edit event emthod in the dao
+	 * @param idevent Integer
+	 * @param event_name String
+	 * @param description String
+	 * @param location String
+	 * @param rsvp_count Integer
+	 */
 	private void editEvent(int idevent, String event_name, String description, String location, int rsvp_count) {
 		EventsDao eDao = new EventsDao();
 		eDao.editEvent(idevent, event_name, description, location, rsvp_count);

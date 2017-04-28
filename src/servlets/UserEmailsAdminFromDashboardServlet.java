@@ -22,14 +22,12 @@ public class UserEmailsAdminFromDashboardServlet extends HttpServlet {
      */
     public UserEmailsAdminFromDashboardServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
 	}
 
@@ -37,7 +35,6 @@ public class UserEmailsAdminFromDashboardServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		String first_name = (((User) request.getSession().getAttribute("user")).getFirst_name());
 		String last_name = (((User) request.getSession().getAttribute("user")).getLast_name());
@@ -89,6 +86,13 @@ response.sendRedirect("UserServlet");
 		}
 	}
 	
+	/**
+	 * 
+	 * @param first_name String
+	 * @param last_name String
+	 * @param email String
+	 * @param message String
+	 */
 	public static void callEmailAdmin(String first_name, String last_name, String email, String message) {
 		String subject = "Message by BU Club Central User " + first_name + " " + last_name + "!";
 		String content = "<!DOCTYPE html>\r\n" + 
@@ -217,6 +221,11 @@ response.sendRedirect("UserServlet");
 		System.out.println("Sent email");
 	}
 	
+	/**
+	 * 
+	 * @param message String
+	 * @return boolean
+	 */
 	public static boolean checkMessage(String message) {
 		if (message.equals(null)) {
 			return false;

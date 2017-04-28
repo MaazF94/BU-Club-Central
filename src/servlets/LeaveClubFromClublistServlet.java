@@ -25,7 +25,6 @@ public class LeaveClubFromClublistServlet extends HttpServlet {
 	 */
 	public LeaveClubFromClublistServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -59,9 +58,6 @@ public class LeaveClubFromClublistServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-
 		request.getRequestDispatcher("/WEB-INF/jsp/Clublist.jsp").forward(request, response);
 	}
 

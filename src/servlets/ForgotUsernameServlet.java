@@ -24,7 +24,6 @@ public class ForgotUsernameServlet extends HttpServlet {
 	 */
 	public ForgotUsernameServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -33,7 +32,6 @@ public class ForgotUsernameServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/ForgotUsername.jsp").forward(request, response);
 	}
 
@@ -95,6 +93,11 @@ request.getRequestDispatcher("/WEB-INF/jsp/ForgotPassword.jsp").forward(request,
 		}
 	}
 	
+	/**
+	 * 
+	 * @param email Stirng
+	 * @return true or false
+	 */
 	public static boolean callUserCheckEmailExists(String email) {
 		UserDao uDao = new UserDao();
 
@@ -107,6 +110,13 @@ request.getRequestDispatcher("/WEB-INF/jsp/ForgotPassword.jsp").forward(request,
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param email String
+	 * @param id_num Integer
+	 * @param firstName String
+	 * @param lastName String
+	 */
 	public static void callEmailForgotUsername(String email, int id_num, String firstName, String lastName) {
 		String subject = "Reset BU Club Central Password";
 		String content = "<!DOCTYPE html>\r\n" + 
