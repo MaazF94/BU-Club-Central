@@ -227,7 +227,7 @@
               <div class="cell-sm-9 cell-lg-6 cell-lg-push-6">
               <%int id = (int) request.getAttribute("club_id_num"); %>
                 <div data-items="1" data-nav="false" data-dots="false" data-nav-custom=".owl-custom-navigation" class="owl-carousel owl-carousel-classic owl-carousel-class-light shadow-drop-md">
-                    <div><img src="/images?club_id_num=<%=id%> }" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>               
+                    <div><img src="${pageContext.request.contextPath}/images?club_id_num=<%=id%>" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>               
                   </div>
               </div>
             </div>

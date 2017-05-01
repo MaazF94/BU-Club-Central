@@ -669,7 +669,7 @@ public class ClubDao {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql;
-		sql = "SELECT club_image from " + tableName + "Where club_id_num = " + club_id_num + ";";
+		sql = "SELECT club_image from " + tableName + " WHERE club_id_num = " + club_id_num + ";";
 		try{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();

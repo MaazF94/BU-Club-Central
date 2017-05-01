@@ -51,16 +51,20 @@ public class EditClubPhoto extends HttpServlet {
 		ClubDao cd = new ClubDao();
 		Club clubObject = cd.getClubById(((User) request.getSession().getAttribute("user")).getClub_id_num());
 		Part filePart = request.getPart("clubPhoto");
-		long size = filePart.getSize();
+		long size = 0;
 
 		if (filePart != null) {
-			System.out.println(size);
-			
+			size = filePart.getSize();
 			is = filePart.getInputStream();
-		}
-		if (uploadPhoto(clubObject.getClub_id_num(), is, size)) {
-			response.sendRedirect("BoardMemberDashboard");
 		}else{
+			System.out.println("file part is null");
+		}
+		
+		if (uploadPhoto(clubObject.getClub_id_num(), is, size)) {
+			System.out.println("send to bmdashboard");
+			response.sendRedirect("BoardMemberDashBoard");
+		}else{
+			System.out.println("error uploading.");
 			response.sendRedirect("ErrorCatchAllServelt");
 		}
 	}

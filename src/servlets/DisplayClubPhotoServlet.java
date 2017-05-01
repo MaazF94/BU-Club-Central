@@ -17,31 +17,39 @@ import edu.ben.bu_club_central.daos.ClubDao;
 @WebServlet("/images")
 public class DisplayClubPhotoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DisplayClubPhotoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ClubDao cd = new ClubDao();
-		byte[] content = cd.getClubPhoto(Integer.parseInt(request.getParameter("club_id_num")));
-		response.setContentType("image/jpeg");
-		response.setContentLength(content.length);
-		response.getOutputStream().write(content);
-		
+	public DisplayClubPhotoServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ClubDao cd = new ClubDao();
+		byte[] content = cd.getClubPhoto(Integer.parseInt(request.getParameter("club_id_num")));
+		if (content != null) {
+			response.setContentType("image/jpeg");
+			response.setContentLength(content.length);
+			response.getOutputStream().write(content);
+		} else {
+			
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
