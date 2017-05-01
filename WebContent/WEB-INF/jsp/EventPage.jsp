@@ -327,14 +327,17 @@
                     <ul class="list list-marked offset-top-30">
                     <%
 							while (index < clubList.size()) {
+								if(eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size()>0){
 						%>
                       <li><form action ="EventpageByClub" method="POST" >
                       <button type="submit" class="btn btn-xs btn-default" name="clubID" value=<%=clubList.get(index).getClub_id_num()%>><span class="text-red"><%
 												out.println(clubList.get(index).getClub_name());
 											%>(<%= eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size() %>)</span></button></form></li>
 												<%
-										index++;
+										
 										}
+								index++;
+							}
 									%>
                       
                     </ul>
