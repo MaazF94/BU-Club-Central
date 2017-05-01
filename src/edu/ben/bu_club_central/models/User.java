@@ -81,7 +81,7 @@ public class User {
 	 *            String
 	 */
 	public User(String first_name, String last_name, String username, String password, int id_num, String email,
-			int role_id, int user_id, int enabled, String preference) {
+			int role_id, int user_id, int enabled, String preference, int club_id_num) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -92,6 +92,7 @@ public class User {
 		this.user_id = user_id;
 		this.enabled = enabled;
 		this.preference = preference;
+		this.club_id_num = club_id_num;
 	}
 
 	/**

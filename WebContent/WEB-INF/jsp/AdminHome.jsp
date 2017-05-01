@@ -520,11 +520,14 @@
 							<div class="container">
 								<%
 									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
+									LinkedList<Club> clubList2 = (LinkedList<Club>) request.getAttribute("clubList2");
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
 									int linkCount = 1000;
-								
+									int clubIDNum = 0;
+									Club clubObject = null;
+									String clubName = "";
 								%>
 								
 								<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
@@ -536,16 +539,20 @@
 											<th>User Name</th>
 											<th>ID Number</th>
 											<th>Email</th>
-											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
+											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" /><br>Role ID</th>
 											<th>Enabled/Disabled</th>
-											<th></th>
-											<th></th>
 										</tr>
 									</thead>
 									<tbody
 										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
 										<%
 											while (userListIndex < userListSize) {
+												clubIDNum = userList.get(userListIndex).getClub_id_num();
+												if (clubIDNum != 0) {
+													ClubDao cDao2 = new ClubDao();
+													clubObject = cDao2.getClubById(clubIDNum);
+													clubName = clubObject.getClub_name();
+												}
 										%>
 																		<%
 								String role = "";
@@ -609,7 +616,9 @@
 		</div>
 
 	</div>
-</td>												
+	<b><%=clubName%></b>
+</td>
+
 
 											<td><%=userList.get(userListIndex).getEnabled() %></td>
 											
@@ -632,6 +641,8 @@
 										<%
 											userListIndex++;
 											linkCount++;
+	            							clubIDNum = 0;
+	            							clubName = "";
 										%>
 										<%
 											}

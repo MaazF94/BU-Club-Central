@@ -555,7 +555,7 @@ public class ClubDao {
 			while (rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"), rs.getInt("club_id_num"));
 
 				list.add(user);
 			}
