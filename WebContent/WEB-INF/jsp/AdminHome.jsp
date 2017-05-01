@@ -64,6 +64,18 @@
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
 }
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
 		</style>
 		
 
@@ -575,8 +587,8 @@
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
   <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
 </select>
-<a id="<%=linkCount%>" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal"><span
-									class="icon glyphicon glyphicon-list"></span>Set Club</a>
+<br>
+<a id="<%=linkCount%>" class="btn btn-primary" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal">Choose Club</a>
 									
 										<div class="modal fade" id="setRolesModal" role="dialog">
 		<div class="modal-dialog" style="top: 25%;">
@@ -605,11 +617,11 @@
 
 						<button type="button" class="btn btn-success center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Set
+							<span class="glyphicon glyphicon-ok-sign"></span> Set
 						</button>
 						<button type="button" class="btn btn-danger center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Cancel
+							<span class="glyphicon glyphicon-remove-sign"></span> Cancel
 						</button>
 				</div>
 			</div>
