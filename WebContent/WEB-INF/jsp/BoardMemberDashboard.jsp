@@ -368,19 +368,19 @@
 											</tr>
 											<tr>
 												<td>Meeting Time: </td>
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
-													cols="10" rows="5" name="editMeetingTime"><%=clubMeetingTime%></textarea>
+												<td><input placeholder="Ex: Thursday 12:30pm-1:20pm" value="<%=clubMeetingTime%>" onkeypress="enableUpdateButton()"
+													name="editMeetingTime">
 												</td>
 											</tr>
 											<tr>
 											<td>Meeting Location: </td>
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
-													cols="10" rows="5" name="editMeetingLoc"><%=clubMeetingLoc%></textarea>
+												<td><input placeholder="Ex: Rm 111, Birck Hall" onkeypress="enableUpdateButton()"
+													value = "<%=clubMeetingLoc%>" name="editMeetingLoc">
 												</td>
 											</tr>
 											<tr><td>Meeting Frequency: </td>
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
-													cols="10" rows="5" name="editMeetingFreq"><%=clubMeetingFreq%></textarea>
+												<td><input  placeholder="Ex: Once a month" onkeypress="enableUpdateButton()"
+													value="<%=clubMeetingFreq%>" name="editMeetingFreq">
 												</td>
 											</tr> 
 											<tr><td>Broadcast Message: </td>
