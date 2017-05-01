@@ -74,7 +74,10 @@ public class AdminHomeServlet extends HttpServlet {
 			documentForAdminList = dfaDao.displayDocumentForAdminInfo();
 			request.setAttribute("documentForAdminList", documentForAdminList);
 			
-			
+			ClubDao clubDao2 = new ClubDao();
+			LinkedList<Club> clubList2 = new LinkedList<Club>();
+			clubList2 = clubDao2.displayClubForAdmin();
+			request.setAttribute("clubList2", clubList2);
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 		} else {

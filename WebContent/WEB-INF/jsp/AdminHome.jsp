@@ -64,6 +64,18 @@
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
 }
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
 		</style>
 		
 
@@ -520,11 +532,14 @@
 							<div class="container">
 								<%
 									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
+									LinkedList<Club> clubList2 = (LinkedList<Club>) request.getAttribute("clubList2");
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
 									int linkCount = 1000;
-								
+									int clubIDNum = 0;
+									Club clubObject = null;
+									String clubName = "";
 								%>
 								
 								<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
@@ -536,16 +551,20 @@
 											<th>User Name</th>
 											<th>ID Number</th>
 											<th>Email</th>
-											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" />Role ID</th>
+											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" /><br>Role ID</th>
 											<th>Enabled/Disabled</th>
-											<th></th>
-											<th></th>
 										</tr>
 									</thead>
 									<tbody
 										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
 										<%
 											while (userListIndex < userListSize) {
+												clubIDNum = userList.get(userListIndex).getClub_id_num();
+												if (clubIDNum != 0) {
+													ClubDao cDao2 = new ClubDao();
+													clubObject = cDao2.getClubById(clubIDNum);
+													clubName = clubObject.getClub_name();
+												}
 										%>
 																		<%
 								String role = "";
@@ -568,8 +587,8 @@
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
   <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
 </select>
-<a id="<%=linkCount%>" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal"><span
-									class="icon glyphicon glyphicon-list"></span>Set Club</a>
+<br>
+<a id="<%=linkCount%>" class="btn btn-primary" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal">Choose Club</a>
 									
 										<div class="modal fade" id="setRolesModal" role="dialog">
 		<div class="modal-dialog" style="top: 25%;">
@@ -598,18 +617,20 @@
 
 						<button type="button" class="btn btn-success center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Set
+							<span class="glyphicon glyphicon-ok-sign"></span> Set
 						</button>
 						<button type="button" class="btn btn-danger center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Cancel
+							<span class="glyphicon glyphicon-remove-sign"></span> Cancel
 						</button>
 				</div>
 			</div>
 		</div>
 
 	</div>
-</td>												
+	<b><%=clubName%></b>
+</td>
+
 
 											<td><%=userList.get(userListIndex).getEnabled() %></td>
 											
@@ -632,6 +653,8 @@
 										<%
 											userListIndex++;
 											linkCount++;
+	            							clubIDNum = 0;
+	            							clubName = "";
 										%>
 										<%
 											}
