@@ -14,6 +14,8 @@
 <%@ page import="edu.ben.bu_club_central.daos.CommentDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.PostCommentDao"%>
 <%@ page import="edu.ben.bu_club_central.daos.ClubMembershipDao"%>
+<%@ page import="edu.ben.bu_club_central.daos.PostLikesDao"%>
+
 
 
 <%@ page import="java.util.*"%>
@@ -332,11 +334,23 @@
 									
 
 									<div id="<%=postList.get(postListIndex).getIdpost()%>" class="collapse">
-									<form action="LikePostServlet" method="post">
+									<%PostLikesDao pLikesDao = new PostLikesDao();
+									boolean likedPost = pLikesDao.userLikedPost(postList.get(postListIndex).getIdpost(), ((User)request.getSession().getAttribute("user")).getId_num());
+									%>
 									<%int club_id  = (int) request.getAttribute("club_id_num"); %>
+									<%if(likedPost) { %>
+										<button disabled type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
+										<form action="UnlikePostServlet" method="post" >
+											<button class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>" type="submit">Unlike</button>
+										</form>
+									<%}else { %>
+									
+									<form action="LikePostServlet" method="post">
 										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
 										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
 									</form>
+									<%} %>
 									<br>
 									<%=postList.get(postListIndex).getContents() %>
 									

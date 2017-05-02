@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.ClubMembership;
 import edu.ben.bu_club_central.models.Post;
 
@@ -304,6 +305,64 @@ public class ClubMembershipDao {
 		}
 
 		return ClubMembershipList;
+	}
+	
+	/**
+	 * gets all the clubs a user is apart of
+	 * @param user_ID Integer
+	 * @return linked list of club objects
+	 */
+	public LinkedList<Club> getAllClubsApartOf(int user_ID) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "SELECT * FROM " + tableName + " WHERE user_ID=" + user_ID;
+		
+		LinkedList<Integer> clubIdNumList = new LinkedList<Integer>();
+		
+		PreparedStatement ps, ps2;
+		ResultSet rs, cs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				clubIdNumList.add(rs.getInt("club_ID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int index = 0;
+		int size = clubIdNumList.size();
+		
+		LinkedList<Club> clubList = new LinkedList<Club>();
+		
+		String sql2 = "SELECT * FROM bu_club_central.club WHERE club_id_num=?";
+		
+		while(index < size) {
+			try {
+				ps2 = conn.prepareStatement(sql2);
+				ps2.setInt(1, clubIdNumList.get(index));
+				cs = ps2.executeQuery();
+				cs.next();
+				clubList.add(new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
+						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
+						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
+						cs.getString("meeting_loc"), cs.getString("broadcast_update"), cs.getString("preference")));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			index++;
+		}
+		
+		try {
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clubList;
 	}
 
 }
