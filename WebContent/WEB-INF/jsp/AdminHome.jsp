@@ -581,7 +581,9 @@
 											<td><%=userList.get(userListIndex).getUsername() %></td>
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
-											<td><select  name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = 'inline'">
+
+											
+											<td><select id="role_Id" name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = showChooseClubButton(document.getElementById('role_Id'));">
   <option selected="selected" disabled="disabled"><%=role%></option>											
   <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
@@ -872,6 +874,22 @@
 	</script>
 	
 		<script>
+		
+function showChooseClubButton(e){
+	
+	var m = e.options[e.selectedIndex].value;
+	m = m.charAt(0);
+	
+	if(m == 2) {
+	
+		
+		
+	return 'inline';}
+	
+	return 'none';
+}
+		
+		
 function myFunction() {
   // Declare variables 
   var input, filter, table, tr, td, i;
