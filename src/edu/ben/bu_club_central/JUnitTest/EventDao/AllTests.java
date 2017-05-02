@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestDeleteEvent.class, TestGetAnEventMethod.class, TestUpdateEvent.class })
+@SuiteClasses({ TestDeleteEvent.class, TestGetAnEventMethod.class, TestUpdateEvent.class, TestEventDao.class })
 public class AllTests {
 
 }
