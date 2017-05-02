@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.EventNotificationDao;
 import edu.ben.bu_club_central.daos.EventRSVPListDao;
 import edu.ben.bu_club_central.daos.EventsDao;
@@ -67,6 +68,11 @@ public class UserDashboardServlet extends HttpServlet {
 			ClubDao cDao = new ClubDao();
 			LinkedList<Club> clubList = cDao.getAllClubs();
 			request.setAttribute("clubList", clubList);
+			
+			ClubMembershipDao clubMemDao = new ClubMembershipDao();
+			LinkedList<Club> clubsUserIsIn = clubMemDao.getAllClubsApartOf(((User) request.getSession().getAttribute("user")).getUser_id());
+			System.out.println(((User) request.getSession().getAttribute("user")).getUser_id());
+			request.setAttribute("clubsUserIsIn", clubsUserIsIn);
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/UserDashboard.jsp").forward(request, response);
 		}else {

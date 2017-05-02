@@ -13,6 +13,7 @@ import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.PostCommentDao;
 import edu.ben.bu_club_central.daos.PostDao;
+import edu.ben.bu_club_central.daos.PostLikesDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.Post;
@@ -75,6 +76,8 @@ public class ClubHomepageServlet extends HttpServlet {
 		LinkedList<Post> postList = new LinkedList<Post>();
 		postList = pDao.getAllPostsByClubId(Integer.parseInt(request.getParameter("club_id_num")));
 		request.setAttribute("postList", postList);
+		
+		
 		
 		
 		
