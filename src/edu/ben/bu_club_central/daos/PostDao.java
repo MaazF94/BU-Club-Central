@@ -256,5 +256,43 @@ public class PostDao {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param post_id
+	 */
+	public void decreaseLikeCount(int post_id) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE idpost=" + post_id;
+
+		PreparedStatement ps, ps2;
+		ResultSet rs;
+		int count = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt("numOfLikes");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int newCount = count - 1;
+		
+		String sql2 = "UPDATE " + tableName + " SET numOfLikes=" + newCount + " WHERE idpost=" + post_id;
+		
+		try {
+			ps2 = conn.prepareStatement(sql2);
+			ps2.executeUpdate();
+			
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
