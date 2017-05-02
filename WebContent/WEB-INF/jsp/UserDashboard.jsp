@@ -342,7 +342,7 @@
 										<div role="tabpanel" class="tab-pane active" id="viewEvents">
 							<div class="container">
 								<%
-									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
+									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList");
 									int eventListIndex2 = 0;
 									int eventListSize2 = eventList2.size();
 								%>
@@ -356,7 +356,6 @@
 											<th>Event ID</th>
 											<th>Event Name</th>
 											<th>Location</th>
-											<th>RSVP Count</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -369,7 +368,6 @@
 											<td><%=eventList2.get(eventListIndex2).getEventId()%></td>
 											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
 											<td><%=eventList2.get(eventListIndex2).getLocation()%></td>
-											<td><%=eventList2.get(eventListIndex2).getRsvp_count()%></td>
 											<td><form action="EventDetailsServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
 														name="eventId"

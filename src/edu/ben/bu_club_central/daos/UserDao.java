@@ -209,7 +209,7 @@ public class UserDao {
 		User user;
 		LinkedList<User> userList = new LinkedList<User>();
 
-		String sql = "SELECT u.first_name, u.last_name, u.id_num, u.email, u.iduser FROM " + tableName
+		String sql = "SELECT u.first_name, u.last_name, u.id_num, u.email, u.iduser, u.preference, u.club_id_num FROM " + tableName
 				+ " u INNER JOIN club_membership cm on u.iduser = cm.user_ID WHERE cm.club_ID = " + club_id_num
 				+ " and cm.active = 1";
 		PreparedStatement ps;
