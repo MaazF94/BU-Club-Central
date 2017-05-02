@@ -684,4 +684,47 @@ public class ClubDao {
 		}
 		return null;
 	}
+	
+	/**
+	 * gets all the clubs
+	 * 
+	 * @return linked list of club objects
+	 */
+	public LinkedList<Club> getAllClubsWithEvents() {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql = "SELECT * FROM " + tableName + "where ";
+
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Club club = null;
+		LinkedList<Club> clubList = new LinkedList<Club>();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			while (rs.next()) {
+
+				club = new Club(rs.getInt("club_id_num"), rs.getString("club_name"), rs.getString("pet_name"),
+						rs.getString("club_description"), rs.getString("pet_email"), rs.getString("advisor_name"),
+						rs.getInt("enabled"), rs.getString("meeting_time"), rs.getString("meeting_freq"),
+						rs.getString("meeting_loc"), rs.getString("broadcast_update"), rs.getString("preference"));
+
+				clubList.add(club);
+			}
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return clubList;
+	}
+
 }

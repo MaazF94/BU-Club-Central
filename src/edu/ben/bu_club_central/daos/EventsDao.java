@@ -477,7 +477,7 @@ public class EventsDao {
 		conn = dbc.getConn();
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
-		sql = "SELECT * FROM " + tableName + " LIMIT 3";
+		sql = "SELECT * FROM " + tableName + " order by startDate DESC LIMIT 3";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);

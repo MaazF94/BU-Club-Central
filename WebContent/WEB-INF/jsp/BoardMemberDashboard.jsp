@@ -1158,7 +1158,7 @@
 							<label><input type="checkbox" name="category" value= "sports"/>Sports</label><br>
               				<label><input type="checkbox" name="category" value= "technology"/>Technology</label><br>
               				<label><input type="checkbox" name="category" value= "movies"/>Movies</label><br>
-              				<label><input type="checkbox" name="category" value= "arts"/>arts</label><br>
+              				<label><input type="checkbox" name="category" value= "arts"/>Arts</label><br>
               				<label><input type="checkbox" name="category" value= "community"/>Community</label><br>
              			    <label><input type="checkbox" name="category" value= "other"/>Other</label><br>
 						</div>
