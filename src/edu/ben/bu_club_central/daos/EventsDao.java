@@ -628,5 +628,33 @@ public class EventsDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean EventExists(String event) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		
+		boolean eventExists = false;
+		
+		String sql = "SELECT * FROM "+tableName+" WHERE event_name = '" + event + "'";
+
+		try {
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				String events = rs.getString("event_name");
+				
+				if (events.contains(event)) {
+					eventExists = true;
+				}
+			}
+			conn.close();
+			dbc.closeConnection();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return eventExists;
+	}
 
 }

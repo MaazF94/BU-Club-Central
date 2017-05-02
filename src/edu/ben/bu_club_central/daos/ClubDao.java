@@ -726,5 +726,33 @@ public class ClubDao {
 
 		return clubList;
 	}
+	
+	public boolean ClubExists(String club) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		
+		boolean clubExists = false;
+		
+		String sql = "SELECT * FROM "+tableName+" WHERE club_name = '" + club + "'";
+
+		try {
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				String clubs = rs.getString("event_name");
+				
+				if (clubs.contains(club)) {
+					clubExists = true;
+				}
+			}
+			conn.close();
+			dbc.closeConnection();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clubExists;
+	}
 
 }
