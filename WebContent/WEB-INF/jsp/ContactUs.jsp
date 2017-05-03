@@ -322,8 +322,7 @@
     </div>
     <!-- Java script-->
     <script src="js/js/core.min.js"></script>
-    <script src="js/js/script.js"></script>
-    <script type="text/javascript">
+    <script src="js/js/script.js"></script>    <script type="text/javascript">
 $(document).ready(function() {
 // Tooltip only Text
 $('.masterTooltip').hover(function(){
@@ -346,6 +345,7 @@ $('.masterTooltip').hover(function(){
 });
 });
 </script>
+
   </body>
 
 </html>

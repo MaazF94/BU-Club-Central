@@ -26,7 +26,7 @@ public class TestEventDao {
 		dc.getConn();
 		
 		ed.addEvent("Test Event", "This is a testcase to add an event", "Coal ben", 34, "2017", "08", "15", "2017", "08", "15", "other");
-		dc.getConn();
+		
 		boolean expected = true;
 		boolean actual = ed.EventExists("Test Event");
 		assertEquals(expected, actual);	

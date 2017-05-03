@@ -206,6 +206,9 @@
 						href="privacy.html">Privacy Policy</a>
 				</p>
 			</div>
+			<div class="one-page-footer">
+			
+			</div>
 		</div>
 		</main>
 	</div>
