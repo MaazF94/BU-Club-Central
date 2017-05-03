@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.BenUnionDao;
 import edu.ben.bu_club_central.daos.ClubDao;
 import edu.ben.bu_club_central.daos.DocumentForAdminDao;
 import edu.ben.bu_club_central.daos.EventsDao;
@@ -17,6 +18,7 @@ import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.DocumentForAdmin;
 import edu.ben.bu_club_central.models.Events;
+import edu.ben.bu_club_central.models.ItemForCheckout;
 import edu.ben.bu_club_central.models.Post;
 import edu.ben.bu_club_central.models.User;
 
@@ -78,6 +80,11 @@ public class AdminHomeServlet extends HttpServlet {
 			LinkedList<Club> clubList2 = new LinkedList<Club>();
 			clubList2 = clubDao2.displayClubForAdmin();
 			request.setAttribute("clubList2", clubList2);
+			
+			BenUnionDao bud = new BenUnionDao();
+			LinkedList<ItemForCheckout> itemList = new LinkedList<ItemForCheckout>();
+			itemList = bud.getItemsNotCheckedIn();
+			request.setAttribute("itemList", itemList);
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/AdminHome.jsp").forward(request, response);
 		} else {

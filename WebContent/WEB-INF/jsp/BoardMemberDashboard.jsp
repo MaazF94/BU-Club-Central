@@ -389,22 +389,27 @@
 												</td>
 											</tr>
 											
-											<tr><td>Club Photo:</td>
-												<td>
-												<form action = "EditClubPhoto" method="post" enctype="multipart/form-data">
-												<td>
-							                        <input type="file" name="clubPhoto"/>
-												</td>
-												<td>
-												<button id="button5" class="btn btn-warning"
-													type="submit">Upload Photo</button>											</form>
-														</form>
-												</td>
-											</tr>
-											
 										</tbody>
 
 									</table>
+									</form>
+									<form action = "EditClubPhoto" method="post" enctype="multipart/form-data">	
+										<table>
+											<tbody>
+												<tr>											
+													<td>Club Photo:</td>
+													<td>
+					                       			<input type="file" name="clubPhoto"/>
+													</td>
+													<td>
+										
+														<button id="button5" class="btn btn-warning"
+															type="submit">Upload Photo</button>	
+										
+													</td>
+												</tr>
+											</tbody>
+										</table>
 									</form>
 							</div>
 						</div>

@@ -320,24 +320,27 @@
 
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-header" style="padding: 35px 50px;">
+					<a href="#" title="" class="masterTooltip"><strong>Please enter your information!</strong></a></div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form role="form" action = "ItemCheckoutServlet" method= "POST">
 						<div class="form-group offset-top-20">
 						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
 							<div class="input-group input-group-sm">
 							
 								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
 							</div>
-							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+							<a href="#" title="Enter your b-ID number" class="masterTooltip"><strong>Student ID Number: </strong></a>
 								
 							<div class="input-group input-group-sm">
 								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
 							</div>
 							
 						</div>
-						<button type="submit" class="btn btn-info center">
-							<span class=""></span> Checkout
+						<button style= "margin-left: 50px; margin-right: 100px;"type="submit" 
+							<%String item = "Wii U"; %>
+							class="btn btn-info center" name= "itemForCheckout" value="<%=item%>">
+								<span class=""></span> Checkout
 						</button>
 						<button type="button" class="btn btn-danger center" data-dismiss="modal">
 							<span class=""></span> Cancel
@@ -352,24 +355,27 @@
 
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-header" style="padding: 35px 50px;">
+					<a href="#" title="" class="masterTooltip"><strong>Please enter your information!</strong></a></div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form role="form" action = "ItemCheckoutServlet" method= "POST">
 						<div class="form-group offset-top-20">
 						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
 							<div class="input-group input-group-sm">
 							
 								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
 							</div>
-							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+							<a href="#" title="Enter your b-ID number" class="masterTooltip"><strong>Student ID Number: </strong></a>
 								
 							<div class="input-group input-group-sm">
 								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
 							</div>
 							
 						</div>
-						<button type="submit" class="btn btn-info center">
-							<span class=""></span> Checkout
+						<button style= "margin-left: 50px; margin-right: 100px;"type="submit" 
+							<%item = "Pool"; %>
+							class="btn btn-info center" name= "itemForCheckout" value="<%=item%>">
+								<span class=""></span> Checkout
 						</button>
 						<button type="button" class="btn btn-danger center" data-dismiss="modal">
 							<span class=""></span> Cancel
@@ -384,24 +390,27 @@
 
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-header" style="padding: 35px 50px;">
+					<a href="#" title="" class="masterTooltip"><strong>Please enter your information!</strong></a></div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form role="form" action = "ItemCheckoutServlet" method= "POST">
 						<div class="form-group offset-top-20">
 						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
 							<div class="input-group input-group-sm">
 							
 								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
 							</div>
-							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+							<a href="#" title="Enter your b-ID number" class="masterTooltip"><strong>Student ID Number: </strong></a>
 								
 							<div class="input-group input-group-sm">
 								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
 							</div>
 							
 						</div>
-						<button type="submit" class="btn btn-info center">
-							<span class=""></span> Checkout
+						<button style= "margin-left: 50px; margin-right: 100px;"type="submit" 
+							<%item = "Air Hockey"; %>
+							class="btn btn-info center" name= "itemForCheckout" value="<%=item%>">
+								<span class=""></span> Checkout
 						</button>
 						<button type="button" class="btn btn-danger center" data-dismiss="modal">
 							<span class=""></span> Cancel
@@ -416,24 +425,27 @@
 
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-header" style="padding: 35px 50px;">
+					<a href="#" title="" class="masterTooltip"><strong>Please enter your information!</strong></a></div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form role="form" action = "ItemCheckoutServlet" method= "POST">
 						<div class="form-group offset-top-20">
 						<a href="#" title="Enter your full name" class="masterTooltip"><strong>Name:</strong></a>
 							<div class="input-group input-group-sm">
 							
 								<input id="checkout-name"  type="text" name="name"  class="form-control form-control-impressed">								
 							</div>
-							<a href="#" title="Enter your full name" class="masterTooltip"><strong>Student ID Number: </strong></a>
+							<a href="#" title="Enter your b-ID number" class="masterTooltip"><strong>Student ID Number: </strong></a>
 								
 							<div class="input-group input-group-sm">
 								<input id="checkout-id"  type="text" name="studentId"  class="form-control form-control-impressed">								
 							</div>
 							
 						</div>
-						<button type="submit" class="btn btn-info center">
-							<span class=""></span> Checkout
+						<button style= "margin-left: 50px; margin-right: 100px;"type="submit" 
+							<%item = "Wii U"; %>
+							class="btn btn-info center" name= "itemForCheckout" value="<%=item%>">
+								<span class=""></span> Checkout
 						</button>
 						<button type="button" class="btn btn-danger center" data-dismiss="modal">
 							<span class=""></span> Cancel
