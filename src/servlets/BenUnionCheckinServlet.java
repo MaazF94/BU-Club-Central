@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.BenUnionDao;
+
 /**
  * Servlet implementation class BenUnionCheckinServlet
  */
@@ -33,7 +35,10 @@ public class BenUnionCheckinServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		int itemId = Integer.parseInt(request.getParameter("checkInItem"));
+		BenUnionDao bud = new BenUnionDao();
+		bud.checkInItem(itemId);
+		response.sendRedirect("AdminHome");
 	}
 
 }
