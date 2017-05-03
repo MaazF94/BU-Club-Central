@@ -170,15 +170,20 @@
  	}
  %>
  <%} %>
-        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
-          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 1) { %>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span style="color:black" class="">Club Home Page</span></a></li>
         <%} %>
+    
+ 						
+ 			<a data-toggle="modal" href="#createModal"><span style="color:black"
+									class="icon glyphicon glyphicon-calendar"></span> </a>
+									
+									
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a>
-      
         
-          
+        
         </ul>
       </li>
 
@@ -337,7 +342,7 @@
 										<div role="tabpanel" class="tab-pane active" id="viewEvents">
 							<div class="container">
 								<%
-									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
+									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList");
 									int eventListIndex2 = 0;
 									int eventListSize2 = eventList2.size();
 								%>
@@ -351,7 +356,6 @@
 											<th>Event ID</th>
 											<th>Event Name</th>
 											<th>Location</th>
-											<th>RSVP Count</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -364,7 +368,6 @@
 											<td><%=eventList2.get(eventListIndex2).getEventId()%></td>
 											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
 											<td><%=eventList2.get(eventListIndex2).getLocation()%></td>
-											<td><%=eventList2.get(eventListIndex2).getRsvp_count()%></td>
 											<td><form action="EventDetailsServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
 														name="eventId"
@@ -816,6 +819,54 @@
 		</footer>
 
 	</div>
+	
+	<!-- create Modal -->
+	<div class="modal fade" id="createModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+			<!-- Modal content-->
+			<div class="modal-content" style="height:500px">
+						    
+        <%LinkedList<Club> clubListUsersIn = (LinkedList<Club>) request.getAttribute("clubsUserIsIn"); 
+        	
+        	int clubListUsersInIndex = 0;
+        	int clubListUsersInSize = clubListUsersIn.size();
+        	int club_num;
+        	
+        %>
+	
+		<%while (clubListUsersInIndex < clubListUsersInSize) { %>
+		
+			<a  href="ClubHomepage?club_id_num=<%=clubListUsersIn.get(clubListUsersInIndex).getClub_id_num()%>"><span class="btn btn-lg btn-info " style="color:black"><%=clubListUsersIn.get(clubListUsersInIndex).getClub_name() %> Home Page</span></a>
+		
+		
+		<%clubListUsersInIndex++; %>
+		<%} %>
+			   
+        	
+					
+
+						<button type="button" class="btn btn-danger center"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash"></span> Cancel
+						</button>
+
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- Global Mailform Output-->
 	<div id="form-output-global" class="snackbars"></div>
 	<!-- PhotoSwipe Gallery-->

@@ -477,7 +477,7 @@ public class EventsDao {
 		conn = dbc.getConn();
 		LinkedList<Events> results = new LinkedList<Events>();
 		String sql;
-		sql = "SELECT * FROM " + tableName + " LIMIT 3";
+		sql = "SELECT * FROM " + tableName + " order by startDate DESC LIMIT 3";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -627,6 +627,34 @@ public class EventsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean EventExists(String event) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		
+		boolean eventExists = false;
+		
+		String sql = "SELECT * FROM "+tableName+" WHERE event_name = '" + event + "'";
+
+		try {
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				String events = rs.getString("event_name");
+				
+				if (events.contains(event)) {
+					eventExists = true;
+				}
+			}
+			conn.close();
+			dbc.closeConnection();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return eventExists;
 	}
 
 }
