@@ -756,6 +756,12 @@ public class ClubDao {
 		}
 		return clubExists;
 	}
+	
+
+	
+	
+	
+	
 
 	public boolean addPresident(int club_id_num, String President) {
 		dbc = new DatabaseConnection();
