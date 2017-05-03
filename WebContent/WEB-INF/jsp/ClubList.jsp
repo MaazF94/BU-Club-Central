@@ -250,11 +250,11 @@ button.accordion.active:after {
 									%> 
 
 						<button type="submit" class="btn btn-success center">
-							<span class="glyphicon glyphicon-pencil"></span> Join
+							<span class="glyphicon glyphicon-ok-sign"></span> Join
 						</button>
 						<button type="button" class="btn btn-danger center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Not Yet
+							<span class="glyphicon glyphicon-remove-sign"></span> Not Yet
 						</button>
 						</form>
 				</div>
