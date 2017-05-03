@@ -61,9 +61,11 @@ public class LoginServlet extends HttpServlet {
 					request.getSession().setAttribute("user", user);
 					request.getSession().setAttribute("loggedIn", 0);
 
-					if (user.getRole_id() == 1) {
+					if (user.getRole_id() == 1 && !checkForNullClubIdNum(user.getId_num())) {
 						response.sendRedirect("UserServlet");
-					} else if (user.getRole_id() == 2) {
+					}else if (user.getRole_id() == 1 && checkForNullClubIdNum(user.getId_num())) {
+						response.sendRedirect("NewUserHomePageServlet");
+					}else if(user.getRole_id() == 2) {
 
 						response.sendRedirect("BoardMemberDashBoard");
 
@@ -108,6 +110,16 @@ public class LoginServlet extends HttpServlet {
 		UserDao uDao = new UserDao();
 		result = uDao.checkPasswordUsernameMatch(username, password);
 		return result;
+	}
+	
+	private boolean checkForNullClubIdNum(int id_num) {
+		boolean result = false;
+		
+		UserDao uDao = new UserDao();
+		result = uDao.checkForNullClubIdNum(id_num);
+		
+		return result;
+		
 	}
 
 }

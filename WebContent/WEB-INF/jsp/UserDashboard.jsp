@@ -105,7 +105,7 @@
 									<div class="dropdown " style="width: 100px">
 										<span data-toggle="dropdown"
 											class="glyphicon glyphicon-calendar"
-											style="color: yellow; font-size: 30px"><%=eventListSize%></span>
+											style="color: red; font-size: 30px"><%=eventListSize%></span>
 										<ul class="dropdown-menu">
 
 											<%
@@ -176,7 +176,10 @@
     
  						
  			<a data-toggle="modal" href="#createModal"><span style="color:black"
-									class="icon glyphicon glyphicon-calendar"></span> </a>
+									class="glyphicon glyphicon-home">More Clubs</span> </a>
+									
+									<br>
+									<br>
 									
 									
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
@@ -847,7 +850,7 @@
 
 						<button type="button" class="btn btn-danger center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Cancel
+							<span></span> Cancel
 						</button>
 
 			</div>
