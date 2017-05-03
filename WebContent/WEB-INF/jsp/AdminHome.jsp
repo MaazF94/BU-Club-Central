@@ -665,20 +665,45 @@
 								</div>
 
 
-								<div role="tabpanel" class="tab-pane " id="editUsers">
-									<div class="container">
+						<div role="tabpanel" class="tab-pane " id="editUsers">
+							<div class="container">
+								<%
+									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
+									LinkedList<Club> clubList2 = (LinkedList<Club>) request.getAttribute("clubList2");
+									
+									int userListIndex = 0;
+									int userListSize = userList.size();
+									int linkCount = 1000;
+									int clubIDNum = 0;
+									Club clubObject = null;
+									String clubName = "";
+								%>
+								
+								<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by first name..">
+								<form action = "AdminChangeRoleID" method="POST">
+							<table id="myTable" class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>User Name</th>
+											<th>ID Number</th>
+											<th>Email</th>
+											<th><input value="Set Roles" onclick="return confirm('Please be aware, roles will be processed and set in the order as they appear.');" type="submit" id="submit-form" class="btn btn-primary" /><br>Role ID</th>
+											<th>Enabled/Disabled</th>
+										</tr>
+									</thead>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
 										<%
-											LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
-											LinkedList<Club> clubList2 = (LinkedList<Club>) request.getAttribute("clubList2");
-
-											int userListIndex = 0;
-											int userListSize = userList.size();
-											int linkCount = 1000;
-											int clubIDNum = 0;
-											Club clubObject = null;
-											String clubName = "";
+											while (userListIndex < userListSize) {
+												clubIDNum = userList.get(userListIndex).getClub_id_num();
+												if (clubIDNum != 0) {
+													ClubDao cDao2 = new ClubDao();
+													clubObject = cDao2.getClubById(clubIDNum);
+													clubName = clubObject.getClub_name();
+												}
 										%>
-										<%
+																		<%
 								String role = "";
 								if (userList.get(userListIndex).getRole_id() == 1) {
 									role = "Regular User";
@@ -694,101 +719,90 @@
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
 
-
-											<td><select id="role_Id" name="role_id"
-												onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = showChooseClubButton(document.getElementById('role_Id'));">
-													<option selected="selected" disabled="disabled"><%=role%></option>
-													<option
-														value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option>
-													<option
-														value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
-													<option
-														value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
-											</select> <br> <a id="<%=linkCount%>" class="btn btn-primary"
-												style="font-size: 12pt; display: none;" data-toggle="modal"
-												href="#setRolesModal">Choose Club</a>
-
-												<div class="modal fade" id="setRolesModal" role="dialog">
-													<div class="modal-dialog" style="top: 25%;">
-														<!-- Modal content-->
-														<div class="modal-content">
-															<div class="modal-header" style="padding: 35px 50px;"></div>
-															<div class="modal-body" style="padding: 40px 50px;">
-																<%
+											
+											<td><select id="role_Id" name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = showChooseClubButton(document.getElementById('role_Id'));">
+  <option selected="selected" disabled="disabled"><%=role%></option>											
+  <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
+  <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
+  <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
+</select>
+<br>
+<a id="<%=linkCount%>" class="btn btn-primary" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal">Choose Club</a>
+									
+										<div class="modal fade" id="setRolesModal" role="dialog">
+		<div class="modal-dialog" style="top: 25%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;"></div>
+				<div class="modal-body" style="padding: 40px 50px;">
+						                    <%
 			ClubDao cDao = new ClubDao();
 			LinkedList<Club> clubs = new LinkedList<Club>();
 			clubs = cDao.displayClubWithoutBM();
 			int index = 0;
 		%>
-																<%
+								<%
 							while (index < clubs.size()) {
 						%>
-
-																<label><input type="checkbox" name="club_id_num"
-																	value="<%=clubs.get(index).getClub_id_num()%>" /> <%
+              
+              <label><input type="checkbox" name="club_id_num" value="<%=clubs.get(index).getClub_id_num()%>" /> 	<%
 												out.println(clubs.get(index).getClub_name());
 											%></label><br>
-
-																<%
+              
+            <%
 										index++;
 										}
-									%>
+									%> 
 
-																<button type="button" class="btn btn-success center"
-																	data-dismiss="modal">
-																	<span class="glyphicon glyphicon-ok-sign"></span> Set
-																</button>
-																<button type="button" class="btn btn-danger center"
-																	data-dismiss="modal">
-																	<span class="glyphicon glyphicon-remove-sign"></span>
-																	Cancel
-																</button>
-															</div>
-														</div>
-													</div>
+						<button type="button" class="btn btn-success center"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-ok-sign"></span> Set
+						</button>
+						<button type="button" class="btn btn-danger center"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove-sign"></span> Cancel
+						</button>
+				</div>
+			</div>
+		</div>
 
-												</div> <b><%=clubName%></b></td>
+	</div>
+	<b><%=clubName%></b>
+</td>
 
 
-											<td><%=userList.get(userListIndex).getEnabled()%></td>
-
-											<td><form action="AdminDeleteUserServlet" method="POST"
-													onsubmit="return confirm('Are you sure you want to disable this user.');">
-													<button title="Delete User"
-														class="btn btn-danger masterTooltip" type="submit"
-														name="deleteUserId"
-														<%int userId = userList.get(userListIndex).getId_num();%>
-														value="<%=userId%>">
-														<i class="mdi mdi-delete mdi  "></i>
-													</button>
-
+											<td><%=userList.get(userListIndex).getEnabled() %></td>
+											
+											<td><form action="AdminDeleteUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to disable this user.');">
+													<button title="Delete User"  class="btn btn-danger masterTooltip" type="submit" name="deleteUserId"
+														<%int userId = userList.get(userListIndex).getId_num();%> value="<%=userId %>"><i class="mdi mdi-delete mdi  "></i></button>
+													
 												</form>
-
-												<form action="AdminEnableUserServlet" method="POST"
-													onsubmit="return confirm('Are you sure you want to enable this user.');">
-													<button title="Enable User"
-														class="btn btn-warning masterTooltip" type="submit"
-														name="enableUserId"
-														<%int userId2 = userList.get(userListIndex).getId_num();%>
-														value="<%=userId2%>">
-														<i class="fa fa-plus-square-o"></i>
-													</button>
-
-												</form></td>
-
+												
+												<form action="AdminEnableUserServlet" method="POST" onsubmit="return confirm('Are you sure you want to enable this user.');">
+													<button title="Enable User"class="btn btn-warning masterTooltip" type="submit" name="enableUserId"
+														<%int userId2 = userList.get(userListIndex).getId_num();%> value="<%=userId2 %>"><i class="fa fa-plus-square-o"></i></button>
+													
+												</form>
+												
+											</td>
+											
 										</tr>
 
 										<%
-														userListIndex++;
-															linkCount++;
-															clubIDNum = 0;
-															clubName = "";
-													%>
-										</tbody>
-										</table>
-										</form>
-									</div>
-								</div>
+											userListIndex++;
+											linkCount++;
+	            							clubIDNum = 0;
+	            							clubName = "";
+										%>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+								</form>
+							</div>
+						</div>
 
 
 
@@ -1409,9 +1423,7 @@ sorttable = {
     } // while(swap)
   }
 }
->>>>>>> ad79e3ba46f3673a80dd6c2999d665783e206c6f
 
-	<script>
 		function myFunction() {
 			// Declare variables 
 			var input, filter, table, tr, td, i;
