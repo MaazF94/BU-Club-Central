@@ -344,6 +344,7 @@
 									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
 									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();
 									String broadcast = ((Club) request.getAttribute("clubObject")).getBroadcast_Update();
+									int club_id_num = clubObject.getClub_id_num();
 								%>
 
 								

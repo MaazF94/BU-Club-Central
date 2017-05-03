@@ -380,7 +380,7 @@
                     <div class="text-subline"></div>
                    <ul class="list list-marked offset-top-30">
                     <%
-							while (index < clubList.size()) {
+							while (index < clubList.size() && index < 5) {
 								if(eventDao.getAllEventsByClubId(clubList.get(index).getClub_id_num()).size()>0){
 						%>
                       <li><form action ="EventpageByClub" method="POST" >

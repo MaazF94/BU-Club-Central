@@ -277,26 +277,92 @@
 													<th>Club ID Number</th>
 													<th>Club Name</th>
 													<th>Member count</th>
+													<th>Board Members</th>
 													<th></th>
 												</tr>
 											</thead>
 											<%
 												while (clubListIndex < clubListSize) {
-													int memberCount = cmDao.countClubMembers(clubList.get(clubListIndex).getClub_id_num());
+												int memberCount = cmDao.countClubMembers(clubList.get(clubListIndex).getClub_id_num());
+												int club_id_num = clubList.get(clubListIndex).getClub_id_num();
+												ClubDao cd = new ClubDao();
 											%>
 
 											<tbody>
 												<tr>
-													<td><%=clubList.get(clubListIndex).getClub_id_num()%>
+													<td><%=club_id_num%>
 													</td>
 													<td><%=clubList.get(clubListIndex).getClub_name()%></td>
 													<td><%=memberCount%></td>
 													<td>
+														President: <%=cd.getPresident(club_id_num)%><br>
+														Vice President: <%=cd.getVicePresident(club_id_num) %><br>
+														Treasurer: <%=cd.getTreasurer(club_id_num) %> <br>
+														Secretary: <%=cd.getSecretary(club_id_num) %>
+													</td>
+													<td>
 														<%
 															if (clubList.get(clubListIndex).getEnabled() == 1) {
 														%> <%
- 	int clubId = clubList.get(clubListIndex).getClub_id_num();
- %> <a data-toggle="modal" href="#confirmationModal"><button
+															 	int clubId = clubList.get(clubListIndex).getClub_id_num();
+															 %> 
+															
+															 <a data-toggle="modal" href="#editBoardModal"><button
+																				style="margin-right: 25px;"
+																				type="button" class="btn btn-info center">
+																				<span class=i"glyphicon glyphicon-lock"></span>
+																				Edit Board Members
+																			</button></a>
+
+										  <div class="modal fade" id="editBoardModal" role="dialog">
+												<div class="modal-dialog" style="top: 15%;">
+										
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header" style="padding: 35px 50px;">
+															<a href="#" title="" class="masterTooltip"><strong></strong></a></div>
+														<div class="modal-body" style="padding: 40px 50px;">
+															<form role="form" action = "EditBoardServlet" method= "POST">
+																<div class="form-group offset-top-20">
+																	<a href="#" title="Enter the full name of the President" class="masterTooltip"><strong>President:</strong></a>
+																	<div class="input-group input-group-sm">
+																	
+																		<input id="checkout-name"  type="text" name="president"  value ="<%=cd.getPresident(club_id_num)%>" 
+																			class="form-control form-control-impressed">								
+																	</div>
+																	<a href="#" title="Enter the full name of the Vice President" class="masterTooltip"><strong>Vice-President: </strong></a>
+																		
+																	<div class="input-group input-group-sm">
+																		<input id="checkout-id"  type="text" name="vicePresident"  value ="<%=cd.getVicePresident(club_id_num)%>"
+																			class="form-control form-control-impressed">								
+																	</div>
+																	<a href="#" title="Enter the full name of the Treasurer" class="masterTooltip"><strong>Treasurer: </strong></a>
+																	<div class="input-group input-group-sm">
+																	
+																		<input id="checkout-name"  type="text" name="treasurer"  value="<%=cd.getTreasurer(club_id_num)%>"
+																			class="form-control form-control-impressed">						
+																	</div>
+																	<a href="#" title="Enter the full name of the Secretary" class="masterTooltip"><strong>Secretary: </strong></a>
+																		
+																	<div class="input-group input-group-sm">
+																		<input id="checkout-id"  type="text" name="secretary"  value="<%=cd.getSecretary(club_id_num)%>"
+																			class="form-control form-control-impressed">								
+																	</div>
+																</div>
+																<button style= "margin-left: 50px; margin-right: 100px;"type="submit"
+																	class="btn btn-info center" name= "clubId" value="<%=club_id_num%>">
+																		<span class=""></span> Save Changes
+																</button>
+																<button type="button" class="btn btn-danger center" data-dismiss="modal">
+																	<span class=""></span> Cancel
+																</button>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+
+															 <a data-toggle="modal" href="#confirmationModal"><button
 																title="Disable Club"
 																class="btn btn-danger masterTooltip">
 																<i class="mdi-lock mdi"></i>
@@ -612,7 +678,7 @@
 											Club clubObject = null;
 											String clubName = "";
 										%>
-																		<%
+										<%
 								String role = "";
 								if (userList.get(userListIndex).getRole_id() == 1) {
 									role = "Regular User";
@@ -628,96 +694,98 @@
 											<td><%=userList.get(userListIndex).getId_num() %></td>
 											<td><%=userList.get(userListIndex).getEmail() %></td>
 
-											
-											<td><select id="role_Id" name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = showChooseClubButton(document.getElementById('role_Id'));">
-  <option selected="selected" disabled="disabled"><%=role%></option>											
-  <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
-  <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
-  <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
-</select>
-<br>
-<a id="<%=linkCount%>" class="btn btn-primary" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal">Choose Club</a>
-									
-										<div class="modal fade" id="setRolesModal" role="dialog">
-		<div class="modal-dialog" style="top: 25%;">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header" style="padding: 35px 50px;"></div>
-				<div class="modal-body" style="padding: 40px 50px;">
-						                    <%
+
+											<td><select id="role_Id" name="role_id"
+												onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = showChooseClubButton(document.getElementById('role_Id'));">
+													<option selected="selected" disabled="disabled"><%=role%></option>
+													<option
+														value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option>
+													<option
+														value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
+													<option
+														value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
+											</select> <br> <a id="<%=linkCount%>" class="btn btn-primary"
+												style="font-size: 12pt; display: none;" data-toggle="modal"
+												href="#setRolesModal">Choose Club</a>
+
+												<div class="modal fade" id="setRolesModal" role="dialog">
+													<div class="modal-dialog" style="top: 25%;">
+														<!-- Modal content-->
+														<div class="modal-content">
+															<div class="modal-header" style="padding: 35px 50px;"></div>
+															<div class="modal-body" style="padding: 40px 50px;">
+																<%
 			ClubDao cDao = new ClubDao();
 			LinkedList<Club> clubs = new LinkedList<Club>();
 			clubs = cDao.displayClubWithoutBM();
 			int index = 0;
 		%>
-								<%
+																<%
 							while (index < clubs.size()) {
 						%>
-              
-              <label><input type="checkbox" name="club_id_num" value="<%=clubs.get(index).getClub_id_num()%>" /> 	<%
+
+																<label><input type="checkbox" name="club_id_num"
+																	value="<%=clubs.get(index).getClub_id_num()%>" /> <%
 												out.println(clubs.get(index).getClub_name());
 											%></label><br>
-              
-            <%
+
+																<%
 										index++;
 										}
-									%> 
+									%>
 
-						<button type="button" class="btn btn-success center"
-							data-dismiss="modal">
-							<span class="glyphicon glyphicon-ok-sign"></span> Set
-						</button>
-						<button type="button" class="btn btn-danger center"
-							data-dismiss="modal">
-							<span class="glyphicon glyphicon-remove-sign"></span> Cancel
-						</button>
-				</div>
-			</div>
-		</div>
-
-															</div> <b><%=clubName%></b></td>
-
-
-														<td><%=userList.get(userListIndex).getEnabled()%></td>
-
-														<td><form action="AdminDeleteUserServlet"
-																method="POST"
-																onsubmit="return confirm('Are you sure you want to disable this user.');">
-																<button title="Delete User"
-																	class="btn btn-danger masterTooltip" type="submit"
-																	name="deleteUserId"
-																	<%int userId = userList.get(userListIndex).getId_num();%>
-																	value="<%=userId%>">
-																	<i class="mdi mdi-delete mdi  "></i>
+																<button type="button" class="btn btn-success center"
+																	data-dismiss="modal">
+																	<span class="glyphicon glyphicon-ok-sign"></span> Set
 																</button>
-
-															</form>
-
-															<form action="AdminEnableUserServlet" method="POST"
-																onsubmit="return confirm('Are you sure you want to enable this user.');">
-																<button title="Enable User"
-																	class="btn btn-warning masterTooltip" type="submit"
-																	name="enableUserId"
-																	<%int userId2 = userList.get(userListIndex).getId_num();%>
-																	value="<%=userId2%>">
-																	<i class="fa fa-plus-square-o"></i>
+																<button type="button" class="btn btn-danger center"
+																	data-dismiss="modal">
+																	<span class="glyphicon glyphicon-remove-sign"></span>
+																	Cancel
 																</button>
+															</div>
+														</div>
+													</div>
 
-															</form></td>
+												</div> <b><%=clubName%></b></td>
 
-													</tr>
 
-													<%
+											<td><%=userList.get(userListIndex).getEnabled()%></td>
+
+											<td><form action="AdminDeleteUserServlet" method="POST"
+													onsubmit="return confirm('Are you sure you want to disable this user.');">
+													<button title="Delete User"
+														class="btn btn-danger masterTooltip" type="submit"
+														name="deleteUserId"
+														<%int userId = userList.get(userListIndex).getId_num();%>
+														value="<%=userId%>">
+														<i class="mdi mdi-delete mdi  "></i>
+													</button>
+
+												</form>
+
+												<form action="AdminEnableUserServlet" method="POST"
+													onsubmit="return confirm('Are you sure you want to enable this user.');">
+													<button title="Enable User"
+														class="btn btn-warning masterTooltip" type="submit"
+														name="enableUserId"
+														<%int userId2 = userList.get(userListIndex).getId_num();%>
+														value="<%=userId2%>">
+														<i class="fa fa-plus-square-o"></i>
+													</button>
+
+												</form></td>
+
+										</tr>
+
+										<%
 														userListIndex++;
 															linkCount++;
 															clubIDNum = 0;
 															clubName = "";
 													%>
-													<%
-														}
-													%>
-												</tbody>
-											</table>
+										</tbody>
+										</table>
 										</form>
 									</div>
 								</div>
@@ -937,6 +1005,7 @@
 		$(document).ready(function() {
 			$("#setRolesModal").modal();
 			$("#confirmationModal").modal();
+			$("#editBoardModal").modal();
 		});
 	</script>
 	<script type="text/javascript">
@@ -962,10 +1031,8 @@
 
 		}
 	</script>
-<<<<<<< HEAD
-=======
-	
-		<script>
+
+	<script>
 		
 function showChooseClubButton(e){
 	
@@ -1004,7 +1071,7 @@ function myFunction() {
 }
 </script>
 
-<script>
+	<script>
 function myFunction() {
   // Declare variables 
   var input, filter, table, tr, td, i;
@@ -1026,7 +1093,7 @@ function myFunction() {
   }
 }
 </script>
-<script>var stIsIE = /*@cc_on!@*/false;
+	<script>var stIsIE = /*@cc_on!@*/false;
 
 sorttable = {
   init: function() {
