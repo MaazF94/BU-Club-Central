@@ -229,7 +229,7 @@
               <div class="cell-sm-9 cell-lg-6 cell-lg-push-6">
               <%int id = (int) request.getAttribute("club_id_num"); %>
                 <div data-items="1" data-nav="false" data-dots="false" data-nav-custom=".owl-custom-navigation" class="owl-carousel owl-carousel-classic owl-carousel-class-light shadow-drop-md">
-                    <div><img src="/images?club_id_num=<%=id%> }" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>               
+                    <div><img src="${pageContext.request.contextPath}/images?club_id_num=<%=id%>" width="570" height="321" alt="" class="img-responsive element-fullwidth"></div>               
                   </div>
               </div>
             </div>
@@ -295,19 +295,19 @@
 								  <div class="cell-xs-10 cell-sm-7 text-sm-left">
 					                <h5 class="offset-top-4">${clubName} Board Members</h5>
 					                <hr class="divider bg-red hr-sm-left-0">
-					                <p class="offset-top-50 text-left"><b>Board Member 1</b> <br>
+					                <p class="offset-top-50 text-left"><b>${President}</b> <br>
 										President<br>
 									<a style="color: red;" href="">email1@ben.edu</a><br>
 									</p>
-									<p class="offset-top-50 text-left"><b>Board Member 2</b>
+									<p class="offset-top-50 text-left"><b>${VicePresident}</b>
 									<br>Vice-President<br>
 									<a style="color: red;" href="">email2@ben.edu</a><br>
 									</p>
-									<p class="offset-top-50 text-left"><b>Board Member 3</b>
+									<p class="offset-top-50 text-left"><b>${Treasurer}</b>
 									<br>Treasurer<br>
 									<a style="color: red;" href="">email3@ben.edu</a><br>
 									</p>
-									<p class="offset-top-50 text-left"><b>Board Member 4</b>
+									<p class="offset-top-50 text-left"><b>${Secretary}</b>
 									<br>Secretary<br>
 									<a style="color: red;" href="">email4@ben.edu</a><br>
 									</p>

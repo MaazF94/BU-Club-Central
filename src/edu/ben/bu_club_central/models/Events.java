@@ -40,6 +40,16 @@ public class Events {
 	 * private String class variable
 	 */
 	private String category;
+	
+	/**
+	 * private String class variable
+	 */
+	private String startDate;
+	
+	/**
+	 * private String class variable
+	 */
+	private String endDate;
 
 	/**
 	 * Constructor
@@ -55,12 +65,15 @@ public class Events {
 	 * @param category
 	 *            String
 	 */
-	public Events(String event_name, String description, String location, int club_id_num, String category) {
+	public Events(String event_name, String description, String location, int club_id_num, String category,
+			String startDate, String endDate) {
 		this.event_name = event_name;
 		this.description = description;
 		this.location = location;
 		this.club_id_num = club_id_num;
 		this.category = category;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	/**
@@ -217,5 +230,35 @@ public class Events {
 	 */
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	/**
+	 * @return the startDate
+	 */
+	public String getStartDate() {
+		return startDate;
+	}
+
+	/**
+	 * @param startDate
+	 *            the startDate to set
+	 */
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	
+	/**
+	 * @return the endDate
+	 */
+	public String getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * @param endDate
+	 *            the endDate to set
+	 */
+	public void setendDate(String endDate) {
+		this.endDate = endDate;
 	}
 }

@@ -77,7 +77,18 @@ public class ClubHomepageServlet extends HttpServlet {
 		postList = pDao.getAllPostsByClubId(Integer.parseInt(request.getParameter("club_id_num")));
 		request.setAttribute("postList", postList);
 		
+		ClubDao clDao = new ClubDao();
+		String President = clDao.getPresident(Integer.parseInt(request.getParameter("club_id_num")));
+		request.setAttribute("President", President);
 		
+		String VicePresident = clDao.getVicePresident(Integer.parseInt(request.getParameter("club_id_num")));
+		request.setAttribute("VicePresident", VicePresident);
+		
+		String Treasurer = clDao.getTreasurer(Integer.parseInt(request.getParameter("club_id_num")));
+		request.setAttribute("Treasurer", Treasurer);
+		
+		String Secretary = clDao.getSecretary(Integer.parseInt(request.getParameter("club_id_num")));
+		request.setAttribute("Secretary", Secretary);
 		
 		
 		

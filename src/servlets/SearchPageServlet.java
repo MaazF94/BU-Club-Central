@@ -80,7 +80,8 @@ public class SearchPageServlet extends HttpServlet {
 					
 					
 					while (rs.next()) {
-						event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"), rs.getString("category"));
+						event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"), rs.getInt("club_id_num"), rs.getString("category")
+								, rs.getString("startDate"), rs.getString("endDate"));
 						event.setRsvp_count(rs.getInt("rsvp_count"));
 						event.setEventId(Integer.parseInt(rs.getString("idevent")));
 						eventList.add(event);

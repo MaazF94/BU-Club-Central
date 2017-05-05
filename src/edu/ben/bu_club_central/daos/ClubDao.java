@@ -555,7 +555,8 @@ public class ClubDao {
 			while (rs.next()) {
 				user = new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
 						rs.getString("passwrd"), rs.getInt("id_num"), rs.getString("email"), rs.getInt("role_id"),
-						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"), rs.getInt("club_id_num"));
+						rs.getInt("iduser"), rs.getInt("enabled"), rs.getString("preference"),
+						rs.getInt("club_id_num"));
 
 				list.add(user);
 			}
@@ -609,7 +610,7 @@ public class ClubDao {
 
 		return results;
 	}
-	
+
 	public LinkedList<Club> displayClubsByUserPreference(String preference) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
@@ -621,26 +622,27 @@ public class ClubDao {
 		} else {
 			preferenceArray = preference.split(" ");
 		}
-		
+
 		for (int i = 0; i < preferenceArray.length; i++) {
-		sql = "SELECT * FROM " + tableName + " where preference =" + "'" + preferenceArray[i] + "'";
-		System.out.println(sql);
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet cs = ps.executeQuery();
+			sql = "SELECT * FROM " + tableName + " where preference =" + "'" + preferenceArray[i] + "'";
+			System.out.println(sql);
+			try {
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet cs = ps.executeQuery();
 
-			while (cs.next()) {
+				while (cs.next()) {
 
-				Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"), cs.getString("pet_name"),
-						cs.getString("club_description"), cs.getString("pet_email"), cs.getString("advisor_name"),
-						cs.getInt("enabled"), cs.getString("meeting_time"), cs.getString("meeting_freq"),
-						cs.getString("meeting_loc"), cs.getString("broadcast_update"), cs.getString("preference"));
+					Club newClub = new Club(cs.getInt("club_id_num"), cs.getString("club_name"),
+							cs.getString("pet_name"), cs.getString("club_description"), cs.getString("pet_email"),
+							cs.getString("advisor_name"), cs.getInt("enabled"), cs.getString("meeting_time"),
+							cs.getString("meeting_freq"), cs.getString("meeting_loc"), cs.getString("broadcast_update"),
+							cs.getString("preference"));
 
-				results.add(newClub);
+					results.add(newClub);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		}
 
 		return results;
@@ -664,27 +666,27 @@ public class ClubDao {
 			return false;
 		}
 	}
-	
-	public byte[] getClubPhoto(int club_id_num){
+
+	public byte[] getClubPhoto(int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		String sql;
-		sql = "SELECT club_image from " + tableName + "Where club_id_num = " + club_id_num + ";";
-		try{
+		sql = "SELECT club_image from " + tableName + " WHERE club_id_num = " + club_id_num + ";";
+		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			
-			if (rs.next()){
+
+			if (rs.next()) {
 				byte[] content = rs.getBytes("club_image");
 				return content;
 			}
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * gets all the clubs
 	 * 
@@ -726,14 +728,14 @@ public class ClubDao {
 
 		return clubList;
 	}
-	
+
 	public boolean ClubExists(String club) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
-		
+
 		boolean clubExists = false;
-		
-		String sql = "SELECT * FROM "+tableName+" WHERE club_name = '" + club + "'";
+
+		String sql = "SELECT * FROM " + tableName + " WHERE club_name = '" + club + "'";
 
 		try {
 
@@ -741,7 +743,7 @@ public class ClubDao {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String clubs = rs.getString("event_name");
-				
+
 				if (clubs.contains(club)) {
 					clubExists = true;
 				}
@@ -753,6 +755,201 @@ public class ClubDao {
 			e.printStackTrace();
 		}
 		return clubExists;
+	}
+	
+
+	
+	
+	
+	
+
+	public boolean addPresident(int club_id_num, String President) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Update " + tableName + " SET President = '" + President + "' WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean addVicePresident(int club_id_num, String VicePresident) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Update " + tableName + " SET Vice_President = '" + VicePresident + "' WHERE club_id_num = " + club_id_num
+				+ ";";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean addTreasurer(int club_id_num, String Treasurer) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Update " + tableName + " SET Treasurer = '" + Treasurer + "' WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean addSecretary(int club_id_num, String Secretary) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Update " + tableName + " SET Secretary = '" + Secretary + "' WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public String getPresident(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Select President FROM club WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		String President = "";
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				President = rs.getString("President");
+			}
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "n/a";
+		}
+		if (President == null) {
+			return "None Assigned";
+		} else {
+			return President;
+		}
+	}
+
+	public String getVicePresident(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Select Vice_President FROM club WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		String VicePresident = "N/A";
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				VicePresident = rs.getString("Vice_President");
+			}
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "n/a";
+		}
+		if (VicePresident == null) {
+			return "None Assigned";
+		} else {
+			return VicePresident;
+		}
+	}
+
+	public String getTreasurer(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Select Treasurer FROM club WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		String Treasurer = "N/A";
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Treasurer = rs.getString("Treasurer");
+			}
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "n/a";
+		}
+		if (Treasurer == null) {
+			return "None Assigned";
+		} else {
+			return Treasurer;
+		}
+	}
+
+	public String getSecretary(int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		String sql;
+		sql = "Select Secretary FROM club WHERE club_id_num = " + club_id_num + ";";
+		PreparedStatement ps;
+		String Secretary = "N/A";
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Secretary = rs.getString("Secretary");
+			}
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "n/a";
+		}
+		if (Secretary == null) {
+			return "None Assigned";
+		} else {
+			return Secretary;
+		}
 	}
 
 }

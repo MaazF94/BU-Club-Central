@@ -7,17 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ben.bu_club_central.daos.BenUnionDao;
 /**
- * Servlet implementation class BenUnionCheckoutServlet
+ * Servlet implementation class ItemCheckoutServlet
  */
-@WebServlet("/BenUnionCheckoutServlet")
-public class BenUnionCheckoutServlet extends HttpServlet {
+@WebServlet("/ItemCheckoutServlet")
+public class ItemCheckoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BenUnionCheckoutServlet() {
+    public ItemCheckoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,6 +27,7 @@ public class BenUnionCheckoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.sendRedirect("AccessDeniedServlet");
 	}
 
@@ -33,7 +35,15 @@ public class BenUnionCheckoutServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		// TODO Auto-generated method stub
+		String item = request.getParameter("itemForCheckout");
+		String name = request.getParameter("name");
+		String studentId = request.getParameter("studentId");
+		String checkedOutBy = name +", "+ studentId;
+		BenUnionDao bud = new BenUnionDao();
+		bud.checkOutItem(item, checkedOutBy);
+		
+		response.sendRedirect("BenUnionServlet");
 	}
 
 }

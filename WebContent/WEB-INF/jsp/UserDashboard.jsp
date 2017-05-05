@@ -105,7 +105,7 @@
 									<div class="dropdown " style="width: 100px">
 										<span data-toggle="dropdown"
 											class="glyphicon glyphicon-calendar"
-											style="color: yellow; font-size: 30px"><%=eventListSize%></span>
+											style="color: red; font-size: 30px"><%=eventListSize%></span>
 										<ul class="dropdown-menu">
 
 											<%
@@ -176,7 +176,10 @@
     
  						
  			<a data-toggle="modal" href="#createModal"><span style="color:black"
-									class="icon glyphicon glyphicon-calendar"></span> </a>
+									class="glyphicon glyphicon-home">More Clubs</span> </a>
+									
+									<br>
+									<br>
 									
 									
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
@@ -237,10 +240,10 @@
 							<div class="col-lg-12">
 								<!-- Nav tabs -->
 								<ul class="tabs nav nav-pills nav-stacked text-center text-md-left" role="tablist">
-									<li role="presentation"><a
+									<li class = "active" role="presentation"><a
 										href="#suggestedClubs" aria-controls="suggestedClubs" role="tab"
 										data-toggle="tab">Suggested Clubs</a></li>
-									<li class = "active" role="presentation"><a href="#viewEvents"
+									<li role="presentation"><a href="#viewEvents"
 										aria-controls="#viewEvents" role="tab" data-toggle="tab">View Events</a></li>
 									
 									<li role="presentation"><a href="#viewPopularEvents"
@@ -266,7 +269,7 @@
 								<!-- Tab panes -->
 								
 								<div class="tab-content well">
-								<div role="tabpanel" class="tab-pane" id="suggestedClubs">
+								<div role="tabpanel" class="tab-pane active" id="suggestedClubs">
 							<div class="container">
 
 							<form action="ShowClubByPreferenceServlet" method="GET">
@@ -287,7 +290,7 @@
 									<hr>
 										<tr>
 											<th>Preferences</th>
-											<th>Suggested Clubs</th>
+											<th>Suggested Clubs: <%=userList2.get(userIndex).getPreference()%></th>
 										</tr>
 									</thead>
 									<tbody
@@ -339,10 +342,10 @@
 						</div>
 						
 						
-										<div role="tabpanel" class="tab-pane active" id="viewEvents">
+										<div role="tabpanel" class="tab-pane" id="viewEvents">
 							<div class="container">
 								<%
-									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
+									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList");
 									int eventListIndex2 = 0;
 									int eventListSize2 = eventList2.size();
 								%>
@@ -356,7 +359,7 @@
 											<th>Event ID</th>
 											<th>Event Name</th>
 											<th>Location</th>
-											<th>RSVP Count</th>
+											<th>Date</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -369,7 +372,8 @@
 											<td><%=eventList2.get(eventListIndex2).getEventId()%></td>
 											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
 											<td><%=eventList2.get(eventListIndex2).getLocation()%></td>
-											<td><%=eventList2.get(eventListIndex2).getRsvp_count()%></td>
+											<td><%=eventList2.get(eventListIndex2).getStartDate() + " to " + 
+											eventList2.get(eventListIndex2).getEndDate()%>
 											<td><form action="EventDetailsServlet" method="GET">
 													<button class="btn btn-warning" type="submit"
 														name="eventId"
@@ -643,7 +647,7 @@
 
 												int index2 = 0;
 											%>
-
+										<form action="EditPasswordServlet" method="POST">
 											<table class="table table-hover sortable">
 												<thead>
 													<tr>
@@ -658,7 +662,7 @@
 													%>
 													<tr>
 														<td>
-															<form action="EditPasswordServlet" method="POST">
+															
 																<div class="form-group">
 										<div class="input-group input-group-sm">
 											<span class="input-group-addon input-group-addon-inverse"><span
@@ -688,20 +692,15 @@
 												type="password" name="verifyNewPW" data-constraints="@Required"
 												class="form-control">
 										</div>
-									</div>
-																<br>
-																<button id="button2" disabled class="btn btn-warning"
-																	type="submit">Save Changes</button>
-															</form>
+									</div>																
 														</td>
 									<td>
-									<form action="EditEmailServlet" method="POST">
 									<div class="form-group">
 										<div class="input-group input-group-sm">
 											<span class="input-group-addon input-group-addon-inverse"><span
 												class="input-group-icon mdi mdi-account-outline"></span></span> <input
 												value="<%= userList.get(index2).getFirst_name()%>"
-												onkeypress="enableUpdateButton3()"
+												onkeypress="enableUpdateButton2()"
 												style="width: 200px;"
 												id="login-your-first-name"
 												type="text" name="first_name" data-constraints="@Required"
@@ -713,7 +712,7 @@
 											<span class="input-group-addon input-group-addon-inverse"><span
 												class="input-group-icon mdi mdi-account-outline"></span></span>
 												<input value="<%= userList.get(index2).getLast_name()%>"
-												onkeypress="enableUpdateButton3()"
+												onkeypress="enableUpdateButton2()"
 												style="width: 200px;"
 												id="login-your-last-name"
 												type="text" name="last_name" data-constraints="@Required"
@@ -725,7 +724,7 @@
 											<span class="input-group-addon input-group-addon-inverse"><span
 												class="input-group-icon mdi mdi-account-outline"></span></span>
 												<input value="<%= userList.get(index2).getEmail()%>"
-												onkeypress="enableUpdateButton3()"
+												onkeypress="enableUpdateButton2()"
 												style="width: 200px;"
 												id="login-your-email"
 												type="text" name="email" data-constraints="@Required"
@@ -733,9 +732,7 @@
 										</div>
 									</div>
 									<br>
-									<button id="button3" disabled class="btn btn-warning"
-																	type="submit">Save Changes</button>
-									</form>
+									
 									 </td>
 													</tr>
 													<%
@@ -747,6 +744,9 @@
 												</tbody>
 
 											</table>
+											<button id="button2" disabled class="btn btn-warning"
+																	type="submit">Save Changes</button>
+															</form>
 										</div>
 									</div>
 
@@ -849,7 +849,7 @@
 
 						<button type="button" class="btn btn-danger center"
 							data-dismiss="modal">
-							<span class="glyphicon glyphicon-trash"></span> Cancel
+							<span></span> Cancel
 						</button>
 
 			</div>

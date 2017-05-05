@@ -65,7 +65,6 @@ public class UserDao {
 				+ " (first_name, last_name, username, passwrd, id_num, email, role_id, enabled) VALUES ('" + first_name
 				+ "', '" + last_name + "', '" + username + "', '" + passwrd + "', " + id_num + ", '" + email + "', "
 				+ default_role_id + ", " + enabled + ")";
-		System.out.println(sql);
 
 		PreparedStatement ps;
 		try {
@@ -177,7 +176,6 @@ public class UserDao {
 		conn = dbc.getConn();
 		String sql = "UPDATE " + tableName + " SET passwrd='" + passwrd + "'" + " WHERE username='" + username + "'"
 				+ "and id_num='" + id_num + "'";
-		System.out.println(sql);
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -209,7 +207,7 @@ public class UserDao {
 		User user;
 		LinkedList<User> userList = new LinkedList<User>();
 
-		String sql = "SELECT u.first_name, u.last_name, u.id_num, u.email, u.iduser FROM " + tableName
+		String sql = "SELECT u.first_name, u.last_name, u.id_num, u.email, u.iduser, u.preference, u.club_id_num FROM " + tableName
 				+ " u INNER JOIN club_membership cm on u.iduser = cm.user_ID WHERE cm.club_ID = " + club_id_num
 				+ " and cm.active = 1";
 		PreparedStatement ps;
@@ -1231,5 +1229,68 @@ public class UserDao {
 		}
 		return userList;
 	}
+	
+	/**
+	 * set the intinal club for a new user when they first join the site
+	 * @param user_id int
+	 * @param club_id_num int
+	 */
+	public void addClubForNewUser(int user_id, int club_id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		
+		String sql = "UPDATE " + tableName + " SET club_id_num=" + club_id_num + " WHERE id_num=" + user_id;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * @param id_num
+	 * @return
+	 */
+	public boolean checkForNullClubIdNum(int id_num) {
+		dbc = new DatabaseConnection();
+		conn = dbc.getConn();
+		
+		boolean result = false;
+		int value = -1;
+		
+		String sql = "SELECT * FROM " + tableName + " WHERE id_num=" + id_num;
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			rs.next();
+			value = rs.getInt("club_id_num");
+			if (value == 0) {
+				result = true;
+				return result;
+			}
+			ps.close();
+			rs.close();
+			conn.close();
+			dbc.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 
 }

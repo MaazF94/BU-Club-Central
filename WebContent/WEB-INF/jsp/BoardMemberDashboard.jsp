@@ -344,6 +344,7 @@
 									String clubMeetingLoc = ((Club) request.getAttribute("clubObject")).getMeeting_Loc();
 									String clubMeetingFreq = ((Club) request.getAttribute("clubObject")).getMeeting_Freq();
 									String broadcast = ((Club) request.getAttribute("clubObject")).getBroadcast_Update();
+									int club_id_num = clubObject.getClub_id_num();
 								%>
 
 								
@@ -352,8 +353,6 @@
 										<thead>
 											<tr>
 												<td>Club Information</td>
-												<td><button id="button" disabled class="btn btn-warning"
-													type="submit">Save Changes</button></td>
 											</tr>
 										</thead>
 
@@ -361,7 +360,7 @@
 											
 											<tr>
 												<td>Club Description: </td>
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
+												<td><textarea style="background-color: white;"  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
 													cols="20" rows="10" name="editDescription"><%=clubDescription%></textarea>
 												</td>
 												
@@ -389,22 +388,30 @@
 												</td>
 											</tr>
 											
-											<tr><td>Club Photo:</td>
-												<td>
-												<form action = "EditClubPhoto" method="post" enctype="multipart/form-data">
-												<td>
-							                        <input type="file" name="clubPhoto"/>
-												</td>
-												<td>
-												<button id="button5" class="btn btn-warning"
-													type="submit">Upload Photo</button>											</form>
-														</form>
-												</td>
-											</tr>
-											
 										</tbody>
 
 									</table>
+									<button id="button" disabled class="btn btn-warning"
+													type="submit">Save Changes</button>
+									</form>
+									<br>
+									<form action = "EditClubPhoto" method="post" enctype="multipart/form-data">	
+										<table>
+											<tbody>
+												<tr>											
+													<td>Club Photo:</td>
+													<td>
+					                       			<input type="file" name="clubPhoto"/>
+													</td>
+													<td>
+										
+														<button id="button5" class="btn btn-warning"
+															type="submit">Upload Photo</button>	
+										
+													</td>
+												</tr>
+											</tbody>
+										</table>
 									</form>
 							</div>
 						</div>
@@ -775,31 +782,7 @@
 										%>
 									</tbody>
 							
-							</table>	
-							<center>
-							<form action="UploadFileServlet" method="POST" enctype="multipart/form-data">
-           						<table border="0">
-    								<thead>
-										<tr>
-											<th>Upload Completed Form:</th>
-										</tr>
-									</thead>
-                <tr>
-                	<td>File: </td>
-                    <td><input type="file" name="document" size="50"/></td>
-                </tr>
-                <tr>
-                	<td><input placeholder="Which form are you submitting?" type="text" name="name"/></td>
-                </tr>
-                <br>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" value="Save">
-                    </td>
-                </tr>
-            </table>
-        </form>	
-        </center>					
+							</table>					
 						</div>
 						</div>
 						

@@ -109,13 +109,11 @@ response.sendRedirect("LoginServlet");
 	 */
 	public static void callRegisterUser(String first_name, String last_name, String username, String passwrd,
 			int id_num, String email) {
-		System.out.println("called register user");
 		UserDao uDao = new UserDao();
 		
 		String hashedPw = BCrypt.hashpw(passwrd, BCrypt.gensalt());
 
 		if (uDao.registerUser(first_name, last_name, username, hashedPw, id_num, email)) {
-		System.out.println("Added user");
 		
 		// send email to a newly registered user after they've been put into database
 		String subject = "Thank You for Registering " + first_name + "!";
@@ -254,7 +252,6 @@ response.sendRedirect("LoginServlet");
 				"  </body>\r\n" + 
 				"</html>";
 		SendMail.email("BUclubcentral@gmail.com", "BUclubcentral@gmail.com" , "thefirm123", email, subject, content);
-		System.out.println("Sent email");
 		}
 		
 	}
