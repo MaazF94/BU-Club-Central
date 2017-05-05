@@ -247,9 +247,6 @@
 								<li role="presentation"><a href="#editUsers"
 									aria-controls="editUsers" role="tab" data-toggle="tab">Edit
 										Users</a></li>
-								<li role="presentation"><a href="#pendingForms"
-									aria-controls="pendingForms" role="tab" data-toggle="tab">Pending
-										Forms</a></li>
 								<li role="presentation"><a href="#BenUnion"
 									aria-controls="BenUnion" role="tab" data-toggle="tab">Checked
 										Out Items</a></li>
@@ -609,6 +606,7 @@
 
 
 								<div role="tabpanel" class="tab-pane" id="editPosts">
+																	<div class="container">
 									<%
 										LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
 
@@ -663,7 +661,7 @@
 										%>
 									</table>
 								</div>
-
+							</div>
 
 						<div role="tabpanel" class="tab-pane " id="editUsers">
 							<div class="container">
@@ -808,45 +806,10 @@
 
 
 
-								<div role="tabpanel" class="tab-pane " id="pendingForms">
-									<div class="container">
-										<%
-											LinkedList<DocumentForAdmin> documentForAdminList = (LinkedList<DocumentForAdmin>) request
-													.getAttribute("documentForAdminList");
-											int documentPendingIndex = 0;
-										%>
-										<table class="table table-hover sortable">
-											<thead>
-												<tr>
-													<th>Name of Form</th>
-													<th>Submitted by</th>
-													<th>File</th>
-													<th>Accept/Deny</th>
-												</tr>
-											</thead>
-											<tbody
-												style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
-												<%
-													while (documentPendingIndex < documentForAdminList.size()) {
-												%>
-												<tr>
-													<td><%=documentForAdminList.get(documentPendingIndex).getName()%></td>
-													<td><%=documentForAdminList.get(documentPendingIndex).getFrom_id_num()%></td>
-													<td><%=documentForAdminList.get(documentPendingIndex).getFile()%></td>
-
-												</tr>
-
-												<%
-													documentPendingIndex++;
-												%>
-												<%
-													}
-												%>
-											</tbody>
-										</table>
-									</div>
-								</div>
+								
 								<div role="tabpanel" class="tab-pane" id="BenUnion">
+																	<div class="container">
+								
 									<%
 										LinkedList<ItemForCheckout> itemList = (LinkedList<ItemForCheckout>) request.getAttribute("itemList");
 
@@ -895,7 +858,7 @@
 									</table>
 								</div>
 							</div>
-
+</div>
 
 						</div>
 					</div>
