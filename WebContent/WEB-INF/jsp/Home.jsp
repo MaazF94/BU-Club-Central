@@ -274,7 +274,9 @@
 					<a href= "clublistServlet">Clubs</a><br>
 					<a href= "ContactUsServlet">Contact Us</a><br>
 					<a href= "MeetTheAdminsServlet">About Us</a><br>
-					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					<a href= "BenUnionServlet">Benedictine Underground</a><br>
+					<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a><br>
+					
 					</div>
 					
 						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">
@@ -294,7 +296,6 @@
 							<p class="text-darker offset-top-20">
 								The F.I.R.M &copy; <span id="copyright-year"></span> . <a
 									href="privacy.html">Privacy Policy</a>
-									<a style="color: white;" href="FAQServlet">Frequently Asked Questions</a>
 								<!-- {%FOOTER_LINK}-->
 							</p>
 						</div>
@@ -306,7 +307,7 @@
 						<a href= "loginServlet">Login</a><br>
 						<a href= "RegisterServlet">Register</a><br>
 						<a href= "forgotPasswordServlet">Forgot Password?</a><br>
-						<a href= "forgotUsernameServlet">Forot Username?</a><br>
+						<a href= "forgotUsernameServlet">Forgot Username?</a><br>
 					</div>
 				</div>
 			</div>
