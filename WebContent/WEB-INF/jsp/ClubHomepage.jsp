@@ -295,19 +295,19 @@
 								  <div class="cell-xs-10 cell-sm-7 text-sm-left">
 					                <h5 class="offset-top-4">${clubName} Board Members</h5>
 					                <hr class="divider bg-red hr-sm-left-0">
-					                <p class="offset-top-50 text-left"><b>Board Member 1</b> <br>
+					                <p class="offset-top-50 text-left"><b>${President}</b> <br>
 										President<br>
 									<a style="color: red;" href="">email1@ben.edu</a><br>
 									</p>
-									<p class="offset-top-50 text-left"><b>Board Member 2</b>
+									<p class="offset-top-50 text-left"><b>${VicePresident}</b>
 									<br>Vice-President<br>
 									<a style="color: red;" href="">email2@ben.edu</a><br>
 									</p>
-									<p class="offset-top-50 text-left"><b>Board Member 3</b>
+									<p class="offset-top-50 text-left"><b>${Treasurer}</b>
 									<br>Treasurer<br>
 									<a style="color: red;" href="">email3@ben.edu</a><br>
 									</p>
-									<p class="offset-top-50 text-left"><b>Board Member 4</b>
+									<p class="offset-top-50 text-left"><b>${Secretary}</b>
 									<br>Secretary<br>
 									<a style="color: red;" href="">email4@ben.edu</a><br>
 									</p>

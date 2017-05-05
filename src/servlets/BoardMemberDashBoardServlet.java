@@ -95,6 +95,18 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 			eventListFeedback = eventListFeedbackDao.getAllEventsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
 			request.setAttribute("eventListFeedback", eventListFeedback);
 			
+			String President = clDao.getPresident(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			request.setAttribute("President", President);
+			
+			String VicePresident = clDao.getVicePresident(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			request.setAttribute("VicePresident", VicePresident);
+			
+			String Treasurer = clDao.getTreasurer(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			request.setAttribute("Treasurer", Treasurer);
+			
+			String Secretary = clDao.getSecretary(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			request.setAttribute("Secretary", Secretary);
+			
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/BoardMemberDashboard.jsp").forward(request, response);
 			
