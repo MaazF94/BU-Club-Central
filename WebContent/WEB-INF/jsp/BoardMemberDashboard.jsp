@@ -167,12 +167,14 @@
 			</nav>
 		</div>
 		<div class="context-dark">
+			<div class="context-dark">
 			<!-- Modern Breadcrumbs-->
 			<section class="breadcrumb-modern rd-parallax bg-gray-darkest">
+			<div data-speed="0.2" data-type="media"
+				data-url="images/background-04-1920x750.jpg"
+				class="rd-parallax-layer"></div>
 			<div data-speed="0" data-type="html" class="rd-parallax-layer">
-				<div
-					class="shell section-top-98 section-bottom-34 section-md-bottom-66 section-md-98 section-lg-top-110 section-lg-bottom-41">
-				</div>
+				<div class="shell    section-lg-top-110 "></div>
 			</div>
 			</section>
 		</div>
