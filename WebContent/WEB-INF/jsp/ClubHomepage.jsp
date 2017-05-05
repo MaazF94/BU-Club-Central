@@ -322,6 +322,8 @@
 
 									int postListIndex = 0;
 									int postListSize = postList.size();
+									int club_id  = (int) request.getAttribute("club_id_num");
+
 								%>
 								
 								<%while (postListIndex < postListSize) { %>
@@ -334,10 +336,11 @@
 									
 
 									<div id="<%=postList.get(postListIndex).getIdpost()%>" class="collapse">
+									<%if ((User)request.getSession().getAttribute("user") != null) { %>
 									<%PostLikesDao pLikesDao = new PostLikesDao();
 									boolean likedPost = pLikesDao.userLikedPost(postList.get(postListIndex).getIdpost(), ((User)request.getSession().getAttribute("user")).getId_num());
+									
 									%>
-									<%int club_id  = (int) request.getAttribute("club_id_num"); %>
 									<%if(likedPost) { %>
 										<button disabled type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
 										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
@@ -350,7 +353,8 @@
 										<button type="submit" class="btn btn-info" name="postId" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
 										<%=postList.get(postListIndex).getNumOfLikes() + " "%>	Like</span></button>
 									</form>
-									<%} %>
+									<%}
+									}%>
 									<br>
 									<%=postList.get(postListIndex).getContents() %>
 									
@@ -365,7 +369,7 @@
 											LinkedList<PostComments> commentList = postCDao.getAllCommentsForPost(postList.get(postListIndex).getIdpost());
 										int postCommentIndex = 0; 
 										int postCommentListSize = commentList.size();
-										
+										if ((User)request.getSession().getAttribute("user") != null) {
 										%>
 										
 										<form action="PostCommentServlet" method="POST">
@@ -373,7 +377,7 @@
 											<br>
 											<button class="btn btn-success" type="submit" value="<%=postList.get(postListIndex).getIdpost() + " " + club_id%>" name="postIdForComment">Comment</button>
 										</form>
-										
+										<%} %>
 										<br>
 										<br>
 										<table class="table table-hover sortable">
