@@ -106,7 +106,7 @@ public class EventsDao {
 
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
+						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"), cs.getString("startDate"), cs.getString("endDate"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				results.add(event);
@@ -186,7 +186,7 @@ public class EventsDao {
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
-						rs.getInt("club_id_num"), rs.getString("category"));
+						rs.getInt("club_id_num"), rs.getString("category"), rs.getString("startDate"), rs.getString("endDate"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 			}
@@ -226,7 +226,7 @@ public class EventsDao {
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
-						rs.getInt("club_id_num"), rs.getString("category"));
+						rs.getInt("club_id_num"), rs.getString("category"), rs.getString("startDate"), rs.getString("endDate"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 				list.add(event);
@@ -314,7 +314,7 @@ public class EventsDao {
 			ResultSet cs = ps.executeQuery();
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
+						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"), cs.getString("startDate"), cs.getString("endDate"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				results.add(event);
@@ -385,7 +385,7 @@ public class EventsDao {
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
-						rs.getInt("club_id_num"), rs.getString("category"));
+						rs.getInt("club_id_num"), rs.getString("category"), rs.getString("startDate"), rs.getString("endDate"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 				list.add(event);
@@ -453,7 +453,7 @@ public class EventsDao {
 		try {
 			while (rs.next()) {
 				event = new Events(rs.getString("event_name"), rs.getString("description"), rs.getString("location"),
-						rs.getInt("club_id_num"), rs.getString("category"));
+						rs.getInt("club_id_num"), rs.getString("category"), rs.getString("startDate"), rs.getString("endDate"));
 				event.setRsvp_count(rs.getInt("rsvp_count"));
 				event.setEventId(rs.getInt("idevent"));
 				list.add(event);
@@ -484,7 +484,8 @@ public class EventsDao {
 			ResultSet cs = ps.executeQuery();
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
+						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category")
+						, cs.getString("startDate"), cs.getString("endDate"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				results.add(event);
@@ -576,7 +577,8 @@ public class EventsDao {
 			ResultSet cs = ps.executeQuery();
 			while (cs.next()) {
 				Events event = new Events(cs.getString("event_name"), cs.getString("description"),
-						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category"));
+						cs.getString("location"), cs.getInt("club_id_num"), cs.getString("category")
+						, cs.getString("startDate"), cs.getString("endDate"));
 				event.setEventId(cs.getInt("idevent"));
 				event.setRsvp_count(cs.getInt("rsvp_count"));
 				results.add(event);

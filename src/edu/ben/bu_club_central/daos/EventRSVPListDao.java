@@ -182,7 +182,7 @@ public class EventRSVPListDao {
 				rs2 = ps2.executeQuery();
 				rs2.next();
 				event = new Events(rs2.getString("event_name"), rs2.getString("description"), rs2.getString("location"),
-						rs2.getInt("club_id_num"), rs2.getString("category"));
+						rs2.getInt("club_id_num"), rs2.getString("category"), rs2.getString("startDate"), rs2.getString("endDate"));
 				event.setEventId(rs2.getInt("idevent"));
 				eventList.add(event);
 
