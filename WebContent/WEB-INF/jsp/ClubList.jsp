@@ -459,6 +459,45 @@ button.accordion.active:after {
             	%>           
                       </ul>    
                 </div>
+                
+                
+                <div class="offset-top-41 ">
+                  <!-- Blog-->
+                  <h3>Community</h3>
+                  <%
+			ClubDao cDao6 = new ClubDao();
+			LinkedList<Club> clubList6 = new LinkedList<Club>();
+			clubList6 = cDao3.displayClubByPreference("community");
+
+
+			int index6 = 0;
+		%>
+                  <hr>
+                    <ul class="list list-unstyled">
+                   <%
+                   if(clubList6.size()>0){
+							while (index6 < clubList6.size()) {
+						%>
+                          <!-- Sitemap-->
+                         
+                            <li class="post-meta inset-left-10"><form action="ClubHomepageServlet" method="GET">
+                          <a type="button" class="btn-xs btn-danger" href="ClubHomepage?club_id_num=<%=(clubList6.get(index6).getClub_id_num())%>"><span class="icon icon-xxs text-middle  glyphicon glyphicon-asterisk"></a></span>
+                           <span class="text-middle"><strong><%=clubList6.get(index6).getClub_name()%></strong></span>
+                           </form>
+                                  </li>
+                                 <hr class="divider bg-gray-darkest hr-lg-left-0">
+                          
+                          <%
+										index6++;
+										}
+                   }else{%>
+                   <span class=""></span> <span class="text-middle">Currently no clubs</span>
+                       <hr class="divider bg-gray-darkest hr-lg-left-0">          
+                	   
+                 <%  }
+            	%>                                    
+                     </ul>     
+                </div>
               </div>
              
             </div>

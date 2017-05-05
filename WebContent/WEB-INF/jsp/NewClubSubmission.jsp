@@ -210,8 +210,8 @@
               <div class="cell-sm-8 offset-top-66 offset-lg-top-0">              
                 <h3 class="text-bold">New Club Submission Form</h3>
                 <hr class="divider hr-lg-left-0 bg-red">
+                                 ${message}
                 <!-- RD Mailform-->
-                 ${message}
                
                 <form data-form-output="form-output-global" data-form-type="contact" method="post" action="NewClubSubmissionServlet" class="rd-mailform text-left offset-top-50">
                   <div class="range">
@@ -253,12 +253,12 @@
             
 		
               
-              <label><input type="checkbox" name="preference" value= "sports"/>Sports</label><br>
-              <label><input type="checkbox" name="preference" value= "technology"/>Technology</label><br>
-              <label><input type="checkbox" name="preference" value= "movies"/>Movies</label><br>
-              <label><input type="checkbox" name="preference" value= "arts"/>arts</label><br>
-              <label><input type="checkbox" name="preference" value= "community"/>Community</label><br>
-              <label><input type="checkbox" name="preference" value= "other"/>Other</label><br>
+              <label><input type="radio" name="preference" value= "sports"/>Sports</label><br>
+              <label><input type="radio" name="preference" value= "technology"/>Technology</label><br>
+              <label><input type="radio" name="preference" value= "movies"/>Movies</label><br>
+              <label><input type="radio" name="preference" value= "art"/>Art</label><br>
+              <label><input type="radio" name="preference" value= "community"/>Community</label><br>
+              <label><input type="radio" name="preference" value= "other"/>Other</label><br>
                 
               </div>
                   </div>

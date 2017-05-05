@@ -643,7 +643,7 @@
 								</div>
 							</div>
 
-						<div role="tabpanel" class="tab-pane " id="editUsers">
+						<div role="tabpanel" class="tab-pane" id="editUsers">
 							<div class="container">
 								<%
 									LinkedList<User> userList = (LinkedList<User>) request.getAttribute("userList");
