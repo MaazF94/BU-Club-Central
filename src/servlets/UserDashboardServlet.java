@@ -48,7 +48,7 @@ public class UserDashboardServlet extends HttpServlet {
 			
 			EventNotificationDao eventNotDao = new EventNotificationDao();
 			LinkedList<Events> eventList3 = eventNotDao
-					.getEventNotifications(((User) request.getSession().getAttribute("user")).getUser_id());
+					.getEventNotifications(((User) request.getSession().getAttribute("user")).getId_num());
 			request.setAttribute("eventList3", eventList3);
 			
 			UserDao uDao = new UserDao();
