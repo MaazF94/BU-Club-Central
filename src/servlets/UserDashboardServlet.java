@@ -46,19 +46,9 @@ public class UserDashboardServlet extends HttpServlet {
 			eventList = eDao.getAllEventsThatuserRSVP(((User)request.getSession().getAttribute("user")).getId_num());
 			request.setAttribute("eventList", eventList);
 			
-			LinkedList<Events> eventList2 = new LinkedList<Events>();
-			EventsDao eDao2 = new EventsDao();
-			eventList2 = eDao2.getAllEventsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
-			request.setAttribute("eventList2", eventList2);
-			
-			PostDao pDao = new PostDao();
-			LinkedList<Post> postList = new LinkedList<Post>();
-			postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
-			request.setAttribute("postList", postList);
-			
 			EventNotificationDao eventNotDao = new EventNotificationDao();
 			LinkedList<Events> eventList3 = eventNotDao
-					.getEventNotifications(((User) request.getSession().getAttribute("user")).getClub_id_num());
+					.getEventNotifications(((User) request.getSession().getAttribute("user")).getUser_id());
 			request.setAttribute("eventList3", eventList3);
 			
 			UserDao uDao = new UserDao();

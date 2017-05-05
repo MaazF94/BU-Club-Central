@@ -315,7 +315,7 @@ public class ClubMembershipDao {
 	public LinkedList<Club> getAllClubsApartOf(int user_ID) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
-		String sql = "SELECT * FROM " + tableName + " WHERE user_ID=" + user_ID;
+		String sql = "SELECT * FROM " + tableName + " WHERE user_ID=" + user_ID + " and active = 1";
 		
 		LinkedList<Integer> clubIdNumList = new LinkedList<Integer>();
 		

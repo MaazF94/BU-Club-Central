@@ -61,7 +61,7 @@ public class BoardMemberDashBoardServlet extends HttpServlet {
 			
 			PostDao pDao = new PostDao();
 			LinkedList<Post> postList = new LinkedList<Post>();
-			postList = pDao.getAllPostsByClubId(((User) request.getSession().getAttribute("user")).getClub_id_num());
+			postList = pDao.getAllPostsByClubID(((User) request.getSession().getAttribute("user")).getClub_id_num());
 			request.setAttribute("postList", postList);
 			
 			UserDao uDao = new UserDao();

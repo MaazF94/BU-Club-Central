@@ -170,9 +170,6 @@
  	}
  %>
  <%} %>
-        					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 1) { %>
-          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span style="color:black" class="">Club Home Page</span></a></li>
-        <%} %>
     
  						
  			<a data-toggle="modal" href="#createModal"><span style="color:black"
@@ -248,10 +245,6 @@
 									
 									<li role="presentation"><a href="#viewPopularEvents"
 										aria-controls="#viewPopularEvents" role="tab" data-toggle="tab">Most Popular Events</a></li>
-										
-									<li role="presentation"><a href="#editPosts"
-										aria-controls="#editPosts" role="tab" data-toggle="tab">View
-											Posts</a></li>	
 									<li role="presentation" ><a
 										href="#viewProfile" aria-controls="viewProfile" role="tab"
 										data-toggle="tab">View Profile</a></li>
@@ -442,51 +435,6 @@
 							</div>
 						</div>
 								
-								<div role="tabpanel" class="tab-pane" id="editPosts">
-							<div class="container">
-								
-								<%
-									LinkedList<Post> postList = (LinkedList<Post>) request.getAttribute("postList");
-
-									int postListIndex = 0;
-									int postListSize = postList.size();
-								%>
-
-
-								<table class="table table-hover ">
-									<thead>
-										<tr>
-											<th>Post ID</th>
-											<th>Post Title</th>
-											<th>Contents</th>
-											<th>Club ID Number</th>
-											<th>Posted by</th>
-										</tr>
-									</thead>
-									<%
-										while (postListIndex < postListSize) {
-									%>
-
-									<tbody>
-										<tr>
-											<td><%=postList.get(postListIndex).getIdpost()%></td>
-											<td><%=postList.get(postListIndex).getTitle()%></td>
-											<td><%=postList.get(postListIndex).getContents()%></td>
-											<td><%=postList.get(postListIndex).getClub_id_num()%></td>
-											<td><%=postList.get(postListIndex).getUser_id_num()%></td>
-											
-										</tr>
-									</tbody>
-
-									<%
-										postListIndex++;
-									%>
-									<%
-										}
-									%>
-								</table>
-							</div>
-						</div>
 								
 								
 								
@@ -781,7 +729,7 @@
 					<a href= "clublistServlet">Clubs</a><br>
 					<a href= "ContactUsServlet">Contact Us</a><br>
 					<a href= "MeetTheAdminsServlet">About Us</a><br>
-					<a href= "BenUnionServlet">Bendictine Underground</a><br>
+					<a href= "BenUnionServlet">Benedictine Underground</a><br>
 					</div>
 					
 						<div class="cell-xs-10 cell-sm-3 offset-top-66 cell-sm-push-1 offset-sm-top-0 cell-sm-6 cell-lg-3 cell-lg-push-1">

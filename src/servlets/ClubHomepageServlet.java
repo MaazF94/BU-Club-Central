@@ -74,7 +74,7 @@ public class ClubHomepageServlet extends HttpServlet {
 		
 		PostDao pDao = new PostDao();
 		LinkedList<Post> postList = new LinkedList<Post>();
-		postList = pDao.getAllPostsByClubId(Integer.parseInt(request.getParameter("club_id_num")));
+		postList = pDao.getAllPostsByClubID(Integer.parseInt(request.getParameter("club_id_num")));
 		request.setAttribute("postList", postList);
 		
 		ClubDao clDao = new ClubDao();

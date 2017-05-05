@@ -61,7 +61,7 @@ public class PostDao {
 	 *            Integer
 	 * @return linked list of post objects
 	 */
-	public LinkedList<Post> getAllPostsByClubId(int club_id_num) {
+	public LinkedList<Post> getAllPostsByClubID(int club_id_num) {
 		dbc = new DatabaseConnection();
 		conn = dbc.getConn();
 		LinkedList<Post> postList = new LinkedList<Post>();

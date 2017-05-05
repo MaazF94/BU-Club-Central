@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.ben.bu_club_central.daos.ClubDao;
+import edu.ben.bu_club_central.daos.ClubMembershipDao;
 import edu.ben.bu_club_central.daos.UserDao;
 import edu.ben.bu_club_central.models.Club;
 import edu.ben.bu_club_central.models.User;
@@ -61,9 +63,9 @@ public class LoginServlet extends HttpServlet {
 					request.getSession().setAttribute("user", user);
 					request.getSession().setAttribute("loggedIn", 0);
 
-					if (user.getRole_id() == 1 && !checkForNullClubIdNum(user.getId_num())) {
+					if (user.getRole_id() == 1 && !checkForNullClubIdNum(user.getId_num()).isEmpty()) {
 						response.sendRedirect("UserServlet");
-					}else if (user.getRole_id() == 1 && checkForNullClubIdNum(user.getId_num())) {
+					}else if (user.getRole_id() == 1 && checkForNullClubIdNum(user.getId_num()).isEmpty()) {
 						response.sendRedirect("NewUserHomePageServlet");
 					}else if(user.getRole_id() == 2) {
 
@@ -112,11 +114,12 @@ public class LoginServlet extends HttpServlet {
 		return result;
 	}
 	
-	private boolean checkForNullClubIdNum(int id_num) {
-		boolean result = false;
-		
+	private LinkedList<Club> checkForNullClubIdNum(int id_num) {
+		LinkedList<Club> result = new LinkedList<Club>();
 		UserDao uDao = new UserDao();
-		result = uDao.checkForNullClubIdNum(id_num);
+		User user = uDao.getUserByIdNum(id_num);
+		ClubMembershipDao cmDao = new ClubMembershipDao();
+		result = cmDao.getAllClubsApartOf(user.getUser_id());
 		
 		return result;
 		

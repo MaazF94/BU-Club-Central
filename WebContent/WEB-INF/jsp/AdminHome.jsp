@@ -514,95 +514,75 @@
 
 
 
-								<div role="tabpanel" class="tab-pane" id="editComments">
-									<div class="container">
+<div role="tabpanel" class="tab-pane" id="editComments">
+							<div class="container">
+								
+								<%
+									LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
+
+									int eventListIndex2 = 0;
+									int eventListSize2 = eventList.size();
+								%>
+
+								<table class="table table-hover sortable">
+									<thead>
+										<tr>
+											<th>Event Name</th>
+											<th>Comment</th>
+										</tr>
+									</thead>
+								<%
+									while (eventListIndex2 < eventListSize2) {
+								%>
+									<tbody
+										style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
 										<%
-											LinkedList<Events> eventList2 = (LinkedList<Events>) request.getAttribute("eventList2");
-											int eventListIndex2 = 0;
-											int eventListSize2 = eventList.size();
+											CommentDao cDao = new CommentDao();
+												LinkedList<Comment> commentList = new LinkedList<Comment>();
+												commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
+
+												int commentListIndex = 0;
+												int commentListSize = commentList.size();
 										%>
 
 										<%
-											while (eventListIndex2 < eventListSize2) {
+											while (commentListIndex < commentListSize) {
 										%>
-										<table class="table table-hover sortable">
-											<thead>
-												<tr>
-													<th>Event ID: <%=eventList2.get(eventListIndex2).getEventId()%></th>
-													<th>Event Name: <%=eventList2.get(eventListIndex2).getEvent_name()%></th>
-													<th>Club ID Number: <%=eventList2.get(eventListIndex2).getClub_id_num()%></th>
 
-												</tr>
+										<tr>
+											<td><%=eventList2.get(eventListIndex2).getEvent_name()%></td>
+											<td><%=commentList.get(commentListIndex).getComment()%></td>
+											<td>
+												<form action="user/EditCommentServlet" method="GET">
+													<button class="btn btn-warning" type="submit"
+														name="editCommentId"
+														value="<%=commentList.get(commentListIndex).getIdcomment()%>">Edit</button>
 
-												<tr>
-													<th>Comment ID</th>
-													<th>Comment</th>
-													<th>Event ID</th>
-													<th>By:</th>
-													<th></th>
-												</tr>
-											</thead>
-											<tbody
-												style="max-height: 300px; overflow-y: auto; overflow-x: hidden; display:">
-												<%
-													CommentDao cDao = new CommentDao();
-														LinkedList<Comment> commentList = new LinkedList<Comment>();
-														commentList = cDao.getCommentsByEventId(eventList2.get(eventListIndex2).getEventId());
-														UserDao uDao2 = new UserDao();
-														User u;
+												</form>
 
-														int commentListIndex = 0;
-														int commentListSize = commentList.size();
-												%>
-
-												<%
-													while (commentListIndex < commentListSize) {
-												%>
-
-												<tr>
-													<td><%=commentList.get(commentListIndex).getIdcomment()%></td>
-													<td><%=commentList.get(commentListIndex).getComment()%></td>
-													<td><%=commentList.get(commentListIndex).getEventId()%></td>
-													<td>
-														<%
-															u = uDao2.getUserByIdNum(commentList.get(commentListIndex).getUserId());
-														%> <%=u.getFirst_name() + " " + u.getLast_name()%>
-													</td>
-													<td>
-														<form action="AdminDeleteCommentServlet" method="POST"
-															onsubmit="return confirm('Are you sure you want to delete this event.');">
-															<button title="Delete Comment"
-																class="btn btn-danger masterTooltip" type="submit"
-																name="deleteCommentId"
-																value="<%=commentList.get(commentListIndex).getIdcomment()%>">
-																<i class="mdi mdi-delete mdi  "></i>
-															</button>
-
-														</form>
-
-													</td>
-												</tr>
+											</td>
+										</tr>
 
 
 
-												<%
-													commentListIndex++;
-												%>
-												<%
-													}
-												%>
+										<%
+											commentListIndex++;
+										%>
+										<%
+											}
+										%>
 
-												<%
-													eventListIndex2++;
-												%>
-												<div class="container" style="height: 50px"></div>
-												<%
-													}
-												%>
-											</tbody>
-										</table>
-									</div>
-								</div>
+										<%
+											eventListIndex2++;
+										%>
+										<div class="container" style="height: 50px"></div>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
 
 								<div role="tabpanel" class="tab-pane" id="editPosts">
