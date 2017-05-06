@@ -651,7 +651,8 @@
 									
 									int userListIndex = 0;
 									int userListSize = userList.size();
-									int linkCount = 1000;
+									String modalCount = "modalCount" + 1;
+									String roleIDCount = "roleIDCount" + 1;
 									int clubIDNum = 0;
 									Club clubObject = null;
 									String clubName = "";
@@ -698,14 +699,14 @@
 											<td><%=userList.get(userListIndex).getEmail() %></td>
 
 											
-											<td><select id="role_Id" name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=linkCount%>').style.display = showChooseClubButton(document.getElementById('role_Id'));">
+											<td><select id="<%=roleIDCount%>" name = "role_id" onchange="document.getElementById('<%=userListIndex%>').bgColor = '#00FF00'; document.getElementById('<%=modalCount%>').style.display = showChooseClubButton(document.getElementById('<%=roleIDCount%>'));">
   <option selected="selected" disabled="disabled"><%=role%></option>											
   <option value="1 <%=userList.get(userListIndex).getUser_id()%>">Regular User </option> 
   <option value="2 <%=userList.get(userListIndex).getUser_id()%>">Board Member</option>
   <option value="3 <%=userList.get(userListIndex).getUser_id()%>">Admin</option>
 </select>
 <br>
-<a id="<%=linkCount%>" class="btn btn-primary" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal">Choose Club</a>
+<a id="<%=modalCount%>" class="btn btn-primary" style="font-size: 12pt; display: none;" data-toggle="modal" href="#setRolesModal">Choose Club</a>
 									
 										<div class="modal fade" id="setRolesModal" role="dialog">
 		<div class="modal-dialog" style="top: 25%;">
@@ -769,7 +770,8 @@
 
 										<%
 											userListIndex++;
-											linkCount++;
+											roleIDCount = roleIDCount + 1;
+											modalCount = modalCount + 1;
 	            							clubIDNum = 0;
 	            							clubName = "";
 										%>
