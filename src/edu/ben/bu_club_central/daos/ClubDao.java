@@ -585,7 +585,7 @@ public class ClubDao {
 		LinkedList<Club> results = new LinkedList<Club>();
 		String sql;
 
-		sql = "SELECT * FROM " + tableName + " where preference =" + "'" + preference + "'";
+		sql = "SELECT * FROM " + tableName + " where preference =" + "'" + preference + "'" + " and enabled = 1";
 		System.out.println(sql);
 
 		try {
