@@ -385,7 +385,7 @@
 												</td>
 											</tr> 
 											<tr><td>Broadcast Message: </td>
-												<td><textarea  class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
+												<td><textarea style="background-color: white;" class="form-control form-control-impressed" onkeypress="enableUpdateButton()"
 													cols="10" rows="5" name="broadcast"><%=broadcast%></textarea>
 												</td>
 											</tr>
