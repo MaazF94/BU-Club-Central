@@ -172,7 +172,7 @@
 								
 								<div
 									class="offset-top-30 text-sm-left text-dark text-extra-small">
-									<a href="#" class="text-picton-blue">Forgot your password?</a>
+									<a href="ForgotPasswordServlet" class="text-picton-blue">Forgot your password?</a>
 									<div class="offset-top-0">
 										Don't have an account? <a href="RegisterServlet"
 											class="text-picton-blue">Sign up here</a>.
