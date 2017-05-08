@@ -157,15 +157,15 @@
 											<%
 												if (role_id == 1) {
 											%>
-											<li><a href="UserServlet"><span class="">Dash
+											<li><a href="UserServlet"><span class="btn btn-sm btn-info ">Dash
 														Board</span></a> <%
  	} else if (role_id == 2) {
  %>
-											<li><a href="BoardMemberDashBoard"><span class="">Dash
+											<li><a href="BoardMemberDashBoard"><span class="btn btn-sm btn-info ">Dash
 														Board</span></a> <%
  	} else {
  %>
-											<li><a href="AdminHome"><span class="">Dash
+											<li><a href="AdminHome"><span class="btn btn-sm btn-info ">Dash
 														Board</span></a> <%
  	}
  %>

@@ -133,21 +133,21 @@
 											<%
 												if (role_id == 1) {
 											%>
-											<li><a href="UserServlet"><span class="">Dash
+											<li><a href="UserServlet"><span class="btn btn-sm btn-info ">Dash
 														Board</span></a> <%
  	} else if (role_id == 2) {
  %>
-											<li><a href="BoardMemberDashBoard"><span class="">Dash
+											<li><a href="BoardMemberDashBoard"><span class="btn btn-sm btn-info ">Dash
 														Board</span></a> <%
  	} else {
  %>
-											<li><a href="AdminHome"><span class="">Dash
+											<li><a href="AdminHome"><span class="btn btn-sm btn-info ">Dash
 														Board</span></a> <%
  	}
  %>
  <%} %>
         					        <% if (session.getAttribute("user") != null && ((User) session.getAttribute("user")).getRole_id() == 2) { %>
-          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="">Club Home Page</span></a>
+          <li><a href="ClubHomepage?club_id_num=<%=((User) session.getAttribute("user")).getClub_id_num()%>"><span class="btn btn-sm btn-info ">Club Home Page</span></a>
         <%} %>
  							<a type="button" href="LogoutServlet" class="btn btn-sm btn-info ">
           <span class="glyphicon glyphicon-log-out"></span> Log out
