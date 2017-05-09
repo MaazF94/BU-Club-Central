@@ -239,6 +239,7 @@
                 <!-- Icon Box Type 5-->
             
                 <div class="box-icon box-icon-bordered well"><span class="icon icon-outlined icon-sm icon-dark-filled mdi mdi-account-multiple"></span>
+                 <p >Event date: <%=eventList.get(eventListIndex).getStartDate()%></p>
                   <h4 class="text-danger offset-top-20"><%=eventList.get(eventListIndex).getEvent_name()%></h4>
                   <p><%= eventList.get(eventListIndex).getDescription() %></p>
                   <form action="EventDetailsServlet" method="GET">
@@ -246,6 +247,7 @@
 												value="<%=eventList.get(eventListIndex).getEventId()%>">More
 												Info</button>
 										</form>
+										
                 </div>
                 
               </div>
