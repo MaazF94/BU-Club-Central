@@ -112,7 +112,7 @@
 												while (eventListIndex < eventListSize) {
 											%>
 											<li><a
-												href="EventDetailsServlet?eventId=<%=eventList.get(eventListIndex).getEventId()%>"><%=eventList.get(eventListIndex).getEvent_name()%></a></li>
+												href="EventDetailsServlet?eventId=<%=eventList.get(eventListIndex).getEventId()%>" class="btn btn-sm btn-info"><%=eventList.get(eventListIndex).getEvent_name()%></a></li>
 
 											<%
 												eventListIndex++;
